@@ -1,0 +1,294 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "evidence-box"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "label cyan"
+                },
+                "children": [
+                  {
+                    "slot": "p_04"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "p_05"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "evidence-box source"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "label lime"
+                },
+                "children": [
+                  {
+                    "slot": "p_06"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "p_07"
+                  },
+                  {
+                    "tag": "br",
+                    "attrs": {},
+                    "children": []
+                  },
+                  {
+                    "slot": "p_08"
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "verdict"
+            },
+            "children": [
+              {
+                "tag": "strong",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "strong_09"
+                  }
+                ]
+              },
+              {
+                "slot": "div_10"
+              }
+            ],
+            "motion": "m03"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "repair"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "label cyan"
+                },
+                "children": [
+                  {
+                    "slot": "p_11"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "p_12"
+                  }
+                ]
+              }
+            ],
+            "motion": "m04"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "rerun"
+            },
+            "children": [
+              {
+                "tag": "code",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "code_13"
+                  }
+                ]
+              },
+              {
+                "tag": "strong",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "strong_14"
+                  }
+                ]
+              }
+            ],
+            "motion": "m05"
+          },
+          {
+            "text": "\n"
+          }
+        ]
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_15"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "p_05",
+    "p_06",
+    "p_07",
+    "p_08",
+    "strong_09",
+    "div_10",
+    "p_11",
+    "p_12",
+    "code_13",
+    "strong_14",
+    "p_15"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "03 / AUDIT, FIX, RETEST",
+      "h2_02": "Does the source",
+      "h2_03": "support the claim?",
+      "p_04": "GENERATED CLAIM [2]",
+      "p_05": "\"Final-sale items can be returned.\"",
+      "p_06": "SOURCE [2] / RETURN EXCEPTIONS",
+      "p_07": "\"Final-sale items are excluded",
+      "p_08": "from returns.\"",
+      "strong_09": "FAIL",
+      "div_10": " / The source contradicts the claim.",
+      "p_11": "IMPROVE THE SYSTEM",
+      "p_12": "Retrieval \u00b7 Prompts \u00b7 Data \u00b7 Policy",
+      "code_13": "run_evals(test_set)",
+      "strong_14": "TEST AGAIN",
+      "p_15": "Fictional policy example. Keep failures as regression cases."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.3
+      },
+      "m02": {
+        "enter": 1.9
+      },
+      "m03": {
+        "enter": 3.6
+      },
+      "m04": {
+        "enter": 6.4
+      },
+      "m05": {
+        "enter": 10.25
+      }
+    }
+  }
+}

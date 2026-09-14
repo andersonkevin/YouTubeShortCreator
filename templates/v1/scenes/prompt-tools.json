@@ -1,0 +1,384 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "h1",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h1_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h1_03"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "panel prompt"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "label cyan"
+                },
+                "children": [
+                  {
+                    "slot": "p_04"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "quote"
+                },
+                "children": [
+                  {
+                    "slot": "p_05"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "split"
+            },
+            "children": [
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": []
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": []
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": []
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "tool-grid"
+            },
+            "children": [
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "tool"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "symbol"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_06"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_07"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_08"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m03"
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "tool"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "symbol"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_09"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_10"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_11"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m04"
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "tool"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "symbol"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_12"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_13"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_14"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m05"
+              },
+              {
+                "text": "\n      "
+              }
+            ]
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "statement"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "lime"
+                },
+                "children": [
+                  {
+                    "slot": "span_15"
+                  }
+                ]
+              },
+              {
+                "tag": "br",
+                "attrs": {},
+                "children": []
+              },
+              {
+                "slot": "div_16"
+              }
+            ],
+            "motion": "m06"
+          },
+          {
+            "text": "\n    "
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_17"
+          }
+        ]
+      },
+      {
+        "text": "\n  "
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h1_02",
+    "h1_03",
+    "p_04",
+    "p_05",
+    "span_06",
+    "strong_07",
+    "span_08",
+    "span_09",
+    "strong_10",
+    "span_11",
+    "span_12",
+    "strong_13",
+    "span_14",
+    "span_15",
+    "div_16",
+    "p_17"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ],
+    "m06": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "01 / AI AGENT CONTRACTS",
+      "h1_02": "A prompt isn't",
+      "h1_03": "an operating contract.",
+      "p_04": "INSTRUCTION",
+      "p_05": "\"Handle this support ticket.\"",
+      "span_06": "{ }",
+      "strong_07": "READ",
+      "span_08": "ticket",
+      "span_09": ">_",
+      "strong_10": "SEND",
+      "span_11": "response",
+      "span_12": "[ - ]",
+      "strong_13": "DELETE",
+      "span_14": "record",
+      "span_15": "Which tools?",
+      "div_16": "Which limits?",
+      "p_17": "The instruction leaves the boundaries undefined."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.25
+      },
+      "m02": {
+        "enter": 0.9
+      },
+      "m03": {
+        "enter": 1.1
+      },
+      "m04": {
+        "enter": 1.65
+      },
+      "m05": {
+        "enter": 2.2
+      },
+      "m06": {
+        "enter": 3.24
+      }
+    }
+  }
+}

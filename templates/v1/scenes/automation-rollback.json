@@ -1,0 +1,321 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "prompt-code"
+            },
+            "children": [
+              {
+                "tag": "code",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "code_04"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "snapshot-strip"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "snapshot"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "code",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "code_06"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m02"
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m03"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "snapshot restored"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_07"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "code",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "code_08"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m04"
+              }
+            ]
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "restore-label"
+            },
+            "children": [
+              {
+                "slot": "p_09"
+              }
+            ],
+            "motion": "m05"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "checks"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "proof-row"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_10"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_11"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m06"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "proof-row"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_12"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_13"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m07"
+              }
+            ]
+          },
+          {
+            "text": "\n"
+          }
+        ]
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_14"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "code_04",
+    "span_05",
+    "code_06",
+    "span_07",
+    "code_08",
+    "p_09",
+    "span_10",
+    "strong_11",
+    "span_12",
+    "strong_13",
+    "p_14"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "fill"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ],
+    "m06": [
+      "enter"
+    ],
+    "m07": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "03 / REPEATABLE AND REVERSIBLE",
+      "h2_02": "One run isn't enough.",
+      "h2_03": "Prove you can restore it.",
+      "code_04": "test_restore_before_state()",
+      "span_05": "AFTER CHANGE",
+      "code_06": "retry_limit: 3",
+      "span_07": "RESTORED / S001",
+      "code_08": "retry_limit: 2",
+      "p_09": "restore(snapshot=\"S001\")",
+      "span_10": "Before-state restored",
+      "strong_11": "VERIFIABLE",
+      "span_12": "Recovery recorded",
+      "strong_13": "AUDITABLE",
+      "p_14": "Illustrative recovery path, not a live test result."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.3
+      },
+      "m02": {
+        "enter": 2.0
+      },
+      "m03": {
+        "fill": [
+          4.6,
+          1.0
+        ]
+      },
+      "m04": {
+        "enter": 5.6
+      },
+      "m05": {
+        "enter": 6.4
+      },
+      "m06": {
+        "enter": 7.4
+      },
+      "m07": {
+        "enter": 8.8
+      }
+    }
+  }
+}

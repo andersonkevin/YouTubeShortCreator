@@ -1,0 +1,499 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "editor"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "editor-head"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_04"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "code-rows short-code"
+                },
+                "children": [
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_06"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_07"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m02"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_08"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_09"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m03"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_10"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_11"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m04"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_12"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_13"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m05"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_14"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_15"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_16"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m06"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_17"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "  "
+                          },
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_18"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_19"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m07"
+                  },
+                  {
+                    "text": "\n"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "flow-strip"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "rose"
+                },
+                "children": [
+                  {
+                    "slot": "div_20"
+                  }
+                ]
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m09"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "lime"
+                },
+                "children": [
+                  {
+                    "slot": "div_21"
+                  }
+                ]
+              }
+            ],
+            "motion": "m08"
+          },
+          {
+            "text": "\n"
+          }
+        ]
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_22"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "span_04",
+    "span_05",
+    "b_06",
+    "code_07",
+    "b_08",
+    "code_09",
+    "b_10",
+    "code_11",
+    "b_12",
+    "code_13",
+    "b_14",
+    "em_15",
+    "code_16",
+    "b_17",
+    "em_18",
+    "code_19",
+    "div_20",
+    "div_21",
+    "p_22"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter",
+      "active"
+    ],
+    "m03": [
+      "enter",
+      "active"
+    ],
+    "m04": [
+      "enter",
+      "active"
+    ],
+    "m05": [
+      "enter",
+      "active"
+    ],
+    "m06": [
+      "enter",
+      "active"
+    ],
+    "m07": [
+      "enter",
+      "active"
+    ],
+    "m08": [
+      "enter"
+    ],
+    "m09": [
+      "fill"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "02 / THE EVALUATION LOOP",
+      "h2_02": "Check the evidence.",
+      "h2_03": "Gate the response.",
+      "span_04": "evaluate.py",
+      "span_05": "ILLUSTRATIVE",
+      "b_06": "01",
+      "code_07": "docs = retrieve(query)",
+      "b_08": "02",
+      "code_09": "reply = answer(query, docs)",
+      "b_10": "03",
+      "code_11": "check_citations(reply, docs)",
+      "b_12": "04",
+      "code_13": "score = grounding(reply, docs)",
+      "b_14": "05",
+      "em_15": "if",
+      "code_16": " score < threshold:",
+      "b_17": "06",
+      "em_18": "return",
+      "code_19": " withhold()",
+      "div_20": "WEAK EVIDENCE",
+      "div_21": "WITHHOLD",
+      "p_22": "A valid citation must also support the claim being made."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.3,
+        "active": [
+          0.3,
+          1.3
+        ]
+      },
+      "m03": {
+        "enter": 1.3,
+        "active": [
+          1.3,
+          2.3
+        ]
+      },
+      "m04": {
+        "enter": 2.3,
+        "active": [
+          2.3,
+          3.5
+        ]
+      },
+      "m05": {
+        "enter": 3.5,
+        "active": [
+          3.5,
+          4.7
+        ]
+      },
+      "m06": {
+        "enter": 4.7,
+        "active": [
+          4.7,
+          5.8
+        ]
+      },
+      "m07": {
+        "enter": 5.8,
+        "active": [
+          5.8,
+          8.64
+        ]
+      },
+      "m08": {
+        "enter": 6.25
+      },
+      "m09": {
+        "fill": [
+          6.6,
+          0.5
+        ]
+      }
+    }
+  }
+}

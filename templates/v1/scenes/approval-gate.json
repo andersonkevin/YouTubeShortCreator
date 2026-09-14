@@ -1,0 +1,334 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "panel request"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "label cyan"
+                },
+                "children": [
+                  {
+                    "slot": "p_04"
+                  }
+                ]
+              },
+              {
+                "tag": "code",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "code_05"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "gate-path"
+            },
+            "children": [
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m02"
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "packet"
+                },
+                "children": [],
+                "motion": "m03"
+              }
+            ]
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "approval"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "label lime"
+                },
+                "children": [
+                  {
+                    "slot": "p_06"
+                  }
+                ]
+              },
+              {
+                "tag": "strong",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "strong_07"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "span_08"
+                  }
+                ]
+              }
+            ],
+            "motion": "m04"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "blocked-path"
+            },
+            "children": [],
+            "motion": "m05"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "destination"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "span_09"
+                  }
+                ]
+              },
+              {
+                "tag": "strong",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "strong_10"
+                  }
+                ]
+              }
+            ],
+            "motion": "m06"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "support lime approval-close"
+            },
+            "children": [
+              {
+                "slot": "p_11"
+              },
+              {
+                "tag": "br",
+                "attrs": {},
+                "children": []
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "span_12"
+                  }
+                ],
+                "motion": "m08"
+              }
+            ],
+            "motion": "m07"
+          },
+          {
+            "text": "\n    "
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_13"
+          }
+        ]
+      },
+      {
+        "text": "\n  "
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "code_05",
+    "p_06",
+    "strong_07",
+    "span_08",
+    "span_09",
+    "strong_10",
+    "p_11",
+    "span_12",
+    "p_13"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "fill"
+    ],
+    "m03": [
+      "travel"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ],
+    "m06": [
+      "enter"
+    ],
+    "m07": [
+      "enter"
+    ],
+    "m08": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "04 / THE APPROVAL GATE",
+      "h2_02": "Risky action?",
+      "h2_03": "Pause for approval.",
+      "p_04": "REQUESTED ACTION",
+      "code_05": "send(response)",
+      "p_06": "HUMAN APPROVAL REQUIRED",
+      "strong_07": "AWAITING REVIEW",
+      "span_08": "Recipient + message + proposed action",
+      "span_09": "EXTERNAL SEND",
+      "strong_10": "NOT EXECUTED",
+      "p_11": "Better AI systems are governed.",
+      "span_12": "Follow Your Channel.",
+      "p_13": "The agent requests approval. It cannot grant its own."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "fill": [
+          0.55,
+          0.7
+        ]
+      },
+      "m03": {
+        "travel": [
+          0.55,
+          0.7
+        ]
+      },
+      "m04": {
+        "enter": 1.15
+      },
+      "m05": {
+        "enter": 1.8
+      },
+      "m06": {
+        "enter": 2.15
+      },
+      "m07": {
+        "enter": 2.8
+      },
+      "m08": {
+        "enter": 3.2
+      }
+    }
+  }
+}

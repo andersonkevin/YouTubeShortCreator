@@ -1,0 +1,559 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "editor"
+            },
+            "children": [
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "editor-head"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_04"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "code-rows"
+                },
+                "children": [
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_06"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_07"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_08"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m02"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_09"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_10"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_11"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m03"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_12"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_13"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_14"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m04"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_15"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_16"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_17"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m05"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_18"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_19"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_20"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m06"
+                  },
+                  {
+                    "text": "\n        "
+                  }
+                ]
+              },
+              {
+                "text": "\n      "
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "policy-outcomes"
+            },
+            "children": [
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {
+                      "class": "lime"
+                    },
+                    "children": [
+                      {
+                        "slot": "strong_21"
+                      }
+                    ]
+                  },
+                  {
+                    "slot": "span_22"
+                  }
+                ],
+                "motion": "m07"
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {
+                      "class": "rose"
+                    },
+                    "children": [
+                      {
+                        "slot": "strong_23"
+                      }
+                    ]
+                  },
+                  {
+                    "slot": "span_24"
+                  }
+                ],
+                "motion": "m08"
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "strong_25"
+                      }
+                    ]
+                  },
+                  {
+                    "slot": "span_26"
+                  }
+                ],
+                "motion": "m09"
+              },
+              {
+                "text": "\n      "
+              }
+            ]
+          },
+          {
+            "text": "\n    "
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_27"
+          }
+        ]
+      },
+      {
+        "text": "\n  "
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "span_04",
+    "span_05",
+    "b_06",
+    "em_07",
+    "code_08",
+    "b_09",
+    "em_10",
+    "code_11",
+    "b_12",
+    "em_13",
+    "code_14",
+    "b_15",
+    "em_16",
+    "code_17",
+    "b_18",
+    "em_19",
+    "code_20",
+    "strong_21",
+    "span_22",
+    "strong_23",
+    "span_24",
+    "strong_25",
+    "span_26",
+    "p_27"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter",
+      "active"
+    ],
+    "m03": [
+      "enter",
+      "active"
+    ],
+    "m04": [
+      "enter",
+      "active"
+    ],
+    "m05": [
+      "enter",
+      "active"
+    ],
+    "m06": [
+      "enter",
+      "active"
+    ],
+    "m07": [
+      "enter"
+    ],
+    "m08": [
+      "enter"
+    ],
+    "m09": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "02 / DECLARE THE BOUNDARY",
+      "h2_02": "Define the contract.",
+      "h2_03": "Before the first call.",
+      "span_04": "agent.yaml",
+      "span_05": "CONTRACT",
+      "b_06": "01",
+      "em_07": "goal:",
+      "code_08": " resolve_ticket",
+      "b_09": "02",
+      "em_10": "tools:",
+      "code_11": " [search, draft]",
+      "b_12": "03",
+      "em_13": "deny:",
+      "code_14": " [delete_record]",
+      "b_15": "04",
+      "em_16": "evidence:",
+      "code_17": " trace_required",
+      "b_18": "05",
+      "em_19": "approval:",
+      "code_20": " before_send",
+      "strong_21": "ALLOW",
+      "span_22": "search(ticket)",
+      "strong_23": "DENY",
+      "span_24": "delete_record(id)",
+      "strong_25": "REVIEW",
+      "span_26": "send(response)",
+      "p_27": "Illustrative policy decisions, not measured test results."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 1.03,
+        "active": [
+          1.03,
+          2.24
+        ]
+      },
+      "m03": {
+        "enter": 2.24,
+        "active": [
+          2.24,
+          3.1
+        ]
+      },
+      "m04": {
+        "enter": 3.1,
+        "active": [
+          3.1,
+          4.03
+        ]
+      },
+      "m05": {
+        "enter": 4.03,
+        "active": [
+          4.03,
+          4.75
+        ]
+      },
+      "m06": {
+        "enter": 4.75,
+        "active": [
+          4.75,
+          7.62
+        ]
+      },
+      "m07": {
+        "enter": 7.62
+      },
+      "m08": {
+        "enter": 9.85
+      },
+      "m09": {
+        "enter": 11.56
+      }
+    }
+  }
+}

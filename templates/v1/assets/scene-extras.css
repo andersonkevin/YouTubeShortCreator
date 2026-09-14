@@ -1,0 +1,6 @@
+
+    .policy-outcomes { display:flex; gap:24px; margin-top:45px; font-size:26px; line-height:1.4; }
+    .policy-outcomes span { flex:1; border-top:2px solid var(--line); padding-top:20px; }
+    .policy-outcomes strong { display:block; font-size:29px; }
+    .approval-close { font-size:32px; }
+  

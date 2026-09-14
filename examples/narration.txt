@@ -1,0 +1,6 @@
+An AI agent needs more than a prompt.
+It needs tools, clear permissions, and a way to check results.
+Start with a small contract. Define the input, the allowed action, and the expected output.
+Then test what happens when the tool fails.
+Before a sensitive action, pause for human approval.
+More autonomy is not the goal. Reliable behavior is.

@@ -1,0 +1,376 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h1",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h1_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h1_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "document-row"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "doc-mark"
+                },
+                "children": [
+                  {
+                    "slot": "span_04"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "span_05"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "document-row"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "doc-mark"
+                },
+                "children": [
+                  {
+                    "slot": "span_06"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "span_07"
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "flow-strip"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "cyan"
+                },
+                "children": [
+                  {
+                    "slot": "div_08"
+                  }
+                ]
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m04"
+              },
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_09"
+                  },
+                  {
+                    "tag": "small",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "small_10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "motion": "m03"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "checks"
+            },
+            "children": [
+              {
+                "text": "\n"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "check-row"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_11"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "strong_12"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m05"
+              },
+              {
+                "text": "\n"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "check-row"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_13"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "strong_14"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m06"
+              },
+              {
+                "text": "\n"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "check-row"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_15"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "strong",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "strong_16"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m07"
+              },
+              {
+                "text": "\n"
+              }
+            ]
+          },
+          {
+            "text": "\n"
+          }
+        ]
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_17"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h1_02",
+    "h1_03",
+    "span_04",
+    "span_05",
+    "span_06",
+    "span_07",
+    "div_08",
+    "div_09",
+    "small_10",
+    "span_11",
+    "strong_12",
+    "span_13",
+    "strong_14",
+    "span_15",
+    "strong_16",
+    "p_17"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "fill"
+    ],
+    "m05": [
+      "enter"
+    ],
+    "m06": [
+      "enter"
+    ],
+    "m07": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "01 / RAG NEEDS EVALS",
+      "h1_02": "Found the chunks.",
+      "h1_03": "Can you trust the answer?",
+      "span_04": "[1]",
+      "span_05": "General return policy",
+      "span_06": "[2]",
+      "span_07": "Final-sale exceptions",
+      "div_08": "RETRIEVAL",
+      "div_09": "ANSWER",
+      "small_10": "Still needs checking",
+      "span_11": "Supported by the sources?",
+      "strong_12": "GROUNDED?",
+      "span_13": "Answers the whole question?",
+      "strong_14": "COMPLETE?",
+      "span_15": "Meets the release policy?",
+      "strong_16": "SAFE?",
+      "p_17": "Retrieval gives you candidates. Evaluation tests the answer."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.3
+      },
+      "m02": {
+        "enter": 1.6
+      },
+      "m03": {
+        "enter": 3.1
+      },
+      "m04": {
+        "fill": [
+          3.6,
+          0.7
+        ]
+      },
+      "m05": {
+        "enter": 6.5
+      },
+      "m06": {
+        "enter": 8.5
+      },
+      "m07": {
+        "enter": 10.5
+      }
+    }
+  }
+}

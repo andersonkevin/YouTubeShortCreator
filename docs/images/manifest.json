@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "docs/images/approval-gate.png",
+      "layout": "approval-gate",
+      "sha256": "9eecf8d56bd187e873ab0fdc005440c1d349d9c4d469f821fe309a7476567240",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 2,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/automation-close.png",
+      "layout": "automation-close",
+      "sha256": "f9fad961eabc896855219bf408858cec2d165be4639214523ddd75905eb14411",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 6,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/automation-plan.png",
+      "layout": "automation-plan",
+      "sha256": "cd0b1fa9cdfa951388eeafbf5e28b5a288aa53ed0b151ed4f8e50436fee1c806",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 8,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/automation-preview.png",
+      "layout": "automation-preview",
+      "sha256": "53fff5fbc3626156adf53a071bca014ad7ba87d49199993a59d9b6092f84e77f",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 11.9,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/automation-rollback.png",
+      "layout": "automation-rollback",
+      "sha256": "edbea604150d4bbda621da2c60ce9bb1c5719c03af1bcec0b0212d5b5db40592",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 2,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/closing.png",
+      "layout": "closing",
+      "sha256": "9eb7d28892d81c9582b84e9e1b7b2314a69454edec250526d6b6ee3b5c5080bc",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 6,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/code-evaluation.png",
+      "layout": "code-evaluation",
+      "sha256": "bc900d7567ca6d6a2b4ddad00fffe97f2abf925305f7f040a99a5e2df0b92c71",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 8,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/code-pipeline.png",
+      "layout": "code-pipeline",
+      "sha256": "9e39a5efb1a7cc999ac2e26eccb791b5712660c50636350547954af520192aea",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 11.9,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/code-policy.png",
+      "layout": "code-policy",
+      "sha256": "b133c9fb5dd2ac36771f55422de467530361867808bfc54cf9e642a89dd1dd3f",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 2,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/evidence-comparison.png",
+      "layout": "evidence-comparison",
+      "sha256": "f0c242722b37a857e3fab0c1b497827b84c3de7b53c9d84bc5c141317026a6fb",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 6,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/prompt-tools.png",
+      "layout": "prompt-tools",
+      "sha256": "6c975f15df3059ea71674a775197836fb9fbad22fd2af6442863b6c980a943de",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 8,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/retrieval-checks.png",
+      "layout": "retrieval-checks",
+      "sha256": "2a9894596127f65bf8a507aad2ba0b5282b50b4e84ce20ccfa1941d76898312f",
+      "width": 1080,
+      "height": 1920,
+      "sample_seconds": 11.9,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/template-preview.png",
+      "layout": "code-policy",
+      "sha256": "a0f0af937fc753c3c7b94e8fc030faf585d1a5b2ab99ffe98a6aaa1e67c17519",
+      "width": 1080,
+      "height": 1920,
+      "source": "Initial release local browser qualification",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    }
+  ]
+}

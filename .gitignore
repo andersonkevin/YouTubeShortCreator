@@ -1,0 +1,22 @@
+# Private channel data and outputs. Use workspace/ or workspaces/ inside this repo.
+/workspace/
+/workspaces/
+/dist/
+/node_modules/
+/.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+*.local.json
+*.mp3
+*.wav
+*.m4a
+*.opus
+*.mp4
+*.mov
+*.ttf
+*.otf
+*.ttc
+*.f32

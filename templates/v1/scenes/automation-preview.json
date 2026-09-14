@@ -1,0 +1,487 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "status-chip"
+            },
+            "children": [
+              {
+                "slot": "div_04"
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "editor evidence-code"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "editor-head"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_06"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "code-rows short-code"
+                },
+                "children": [
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_07"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_08"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m03"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_09"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "  "
+                          },
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_10"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_11"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m04"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_12"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "  "
+                          },
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_13"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_14"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m05"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_15"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "  "
+                          },
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_16"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_17"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m06"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_18"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "  "
+                          },
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_19"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_20"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m07"
+                  },
+                  {
+                    "text": "\n"
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_21"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_22"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m08"
+                  },
+                  {
+                    "text": "\n"
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "support lime"
+            },
+            "children": [
+              {
+                "slot": "p_23"
+              }
+            ],
+            "motion": "m09"
+          },
+          {
+            "text": "\n"
+          }
+        ]
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_24"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "div_04",
+    "span_05",
+    "span_06",
+    "b_07",
+    "code_08",
+    "b_09",
+    "em_10",
+    "code_11",
+    "b_12",
+    "em_13",
+    "code_14",
+    "b_15",
+    "em_16",
+    "code_17",
+    "b_18",
+    "em_19",
+    "code_20",
+    "b_21",
+    "code_22",
+    "p_23",
+    "p_24"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ],
+    "m06": [
+      "enter"
+    ],
+    "m07": [
+      "enter"
+    ],
+    "m08": [
+      "enter"
+    ],
+    "m09": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "02 / APPROVAL AND EVIDENCE",
+      "h2_02": "Approve the scope.",
+      "h2_03": "Record what changed.",
+      "div_04": "HUMAN APPROVAL RECORDED",
+      "span_05": "change.json",
+      "span_06": "ILLUSTRATIVE",
+      "b_07": "01",
+      "code_08": "{",
+      "b_09": "02",
+      "em_10": "\"file\":",
+      "code_11": " \"config.yaml\",",
+      "b_12": "03",
+      "em_13": "\"change\":",
+      "code_14": " \"retry_limit 2->3\",",
+      "b_15": "04",
+      "em_16": "\"reason\":",
+      "code_17": " \"transient errors\",",
+      "b_18": "05",
+      "em_19": "\"snapshot\":",
+      "code_20": " \"S001\"",
+      "b_21": "06",
+      "code_22": "}",
+      "p_23": "Capture the before-state before writing.",
+      "p_24": "An auditable change links approval, purpose and recovery."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.3
+      },
+      "m02": {
+        "enter": 1.4
+      },
+      "m03": {
+        "enter": 1.7
+      },
+      "m04": {
+        "enter": 2.6
+      },
+      "m05": {
+        "enter": 3.8
+      },
+      "m06": {
+        "enter": 5.0
+      },
+      "m07": {
+        "enter": 6.2
+      },
+      "m08": {
+        "enter": 6.8
+      },
+      "m09": {
+        "enter": 7.3
+      }
+    }
+  }
+}

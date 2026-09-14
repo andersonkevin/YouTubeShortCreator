@@ -1,0 +1,94 @@
+/* Branding only: scene geometry, typography and timing inherit from the motion base. */
+:root {
+  --purple: #140b30;
+  --line: #514268;
+  --surface: #211637;
+  --edge: rgb(from var(--cyan) r g b / 0.42);
+}
+
+#film::before {
+  content: "";
+  position: absolute;
+  inset: 590px 48px 310px;
+  background-image:
+    linear-gradient(rgb(from var(--cyan) r g b / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(from var(--cyan) r g b / 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+  pointer-events: none;
+}
+
+#film::after {
+  content: "";
+  position: absolute;
+  right: 64px;
+  top: 650px;
+  width: 36px;
+  height: 760px;
+  border-top: 2px solid rgb(from var(--cyan) r g b / 0.24);
+  border-right: 2px solid rgb(from var(--cyan) r g b / 0.14);
+  border-bottom: 2px solid rgb(from var(--lime) r g b / 0.28);
+  border-radius: 0 8px 8px 0;
+  pointer-events: none;
+}
+
+.panel,
+.tool,
+.editor,
+.approval,
+.destination,
+.pipeline div {
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px rgba(5, 2, 16, 0.18);
+}
+
+.tool,
+.editor,
+.pipeline div {
+  border-color: var(--edge);
+}
+
+.prompt,
+.request {
+  border-color: rgb(from var(--cyan) r g b / 0.7);
+  box-shadow: inset 0 3px 0 rgb(from var(--cyan) r g b / 0.22), 0 12px 30px rgba(5, 2, 16, 0.18);
+}
+
+.editor {
+  background: color-mix(in srgb,var(--purple),black 22%);
+}
+
+.editor-head {
+  background: var(--surface);
+  box-shadow: inset 0 3px 0 rgb(from var(--cyan) r g b / 0.45);
+}
+
+.code-row.active {
+  background: rgb(from var(--lime) r g b / 0.1);
+}
+
+.pipeline div.active,
+.approval {
+  background: var(--surface);
+  border-color: var(--lime);
+  box-shadow: inset 0 0 22px rgb(from var(--lime) r g b / 0.035), 0 0 22px rgb(from var(--lime) r g b / 0.055);
+}
+
+.event i {
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgb(from var(--lime) r g b / 0.2);
+}
+
+.packet {
+  border-radius: 3px;
+  box-shadow: 0 0 14px rgb(from var(--cyan) r g b / 0.25);
+}
+
+.progress {
+  background: var(--line);
+  border-radius: 3px;
+}
+
+.progress span {
+  border-radius: 3px;
+}

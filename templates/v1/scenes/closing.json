@@ -1,0 +1,173 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual finale"
+        },
+        "children": [
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "slot": "p_04"
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "slot": "p_05"
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "slot": "p_06"
+              }
+            ],
+            "motion": "m03"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "final-rule"
+            },
+            "children": [],
+            "motion": "m04"
+          },
+          {
+            "tag": "strong",
+            "attrs": {},
+            "children": [
+              {
+                "slot": "strong_07"
+              }
+            ],
+            "motion": "m05"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_08"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "p_05",
+    "p_06",
+    "strong_07",
+    "p_08"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "fill"
+    ],
+    "m05": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "04 / AI ARCHITECTURE",
+      "h2_02": "Make RAG quality",
+      "h2_03": "measurable.",
+      "p_04": "RETRIEVE.",
+      "p_05": "EVALUATE.",
+      "p_06": "IMPROVE.",
+      "strong_07": "Follow Your Channel",
+      "p_08": "AI architecture explained."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.5
+      },
+      "m03": {
+        "enter": 0.9
+      },
+      "m04": {
+        "fill": [
+          1.1,
+          0.5
+        ]
+      },
+      "m05": {
+        "enter": 1.5
+      }
+    }
+  }
+}

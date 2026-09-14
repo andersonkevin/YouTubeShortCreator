@@ -1,0 +1,399 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h1",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h1_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h1_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "editor"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "editor-head"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_04"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "\n"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "diff-line removed"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_06"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "code",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "code_07"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m02"
+              },
+              {
+                "text": "\n"
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "diff-line added"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_08"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "code",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "code_09"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m03"
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "flow-strip three"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_10"
+                  },
+                  {
+                    "tag": "small",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "small_11"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m05"
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m06"
+              },
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_12"
+                  },
+                  {
+                    "tag": "small",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "small_13"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m07"
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m08"
+              },
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_14"
+                  },
+                  {
+                    "tag": "small",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "small_15"
+                      }
+                    ]
+                  }
+                ],
+                "motion": "m09"
+              }
+            ],
+            "motion": "m04"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "statement"
+            },
+            "children": [
+              {
+                "slot": "p_16"
+              },
+              {
+                "tag": "br",
+                "attrs": {},
+                "children": []
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "lime"
+                },
+                "children": [
+                  {
+                    "slot": "span_17"
+                  }
+                ]
+              }
+            ],
+            "motion": "m10"
+          },
+          {
+            "text": "\n"
+          }
+        ]
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_18"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h1_02",
+    "h1_03",
+    "span_04",
+    "span_05",
+    "span_06",
+    "code_07",
+    "span_08",
+    "code_09",
+    "div_10",
+    "small_11",
+    "div_12",
+    "small_13",
+    "div_14",
+    "small_15",
+    "p_16",
+    "span_17",
+    "p_18"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "active"
+    ],
+    "m06": [
+      "fill"
+    ],
+    "m07": [
+      "active"
+    ],
+    "m08": [
+      "fill"
+    ],
+    "m09": [
+      "active"
+    ],
+    "m10": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "01 / SAFE AI AUTOMATION",
+      "h1_02": "Before the write,",
+      "h1_03": "show the change.",
+      "span_04": "config.yaml",
+      "span_05": "PREVIEW",
+      "span_06": "-",
+      "code_07": "retry_limit: 2",
+      "span_08": "+",
+      "code_09": "retry_limit: 3",
+      "div_10": "VALIDATE",
+      "small_11": "Check inputs",
+      "div_12": "PREVIEW",
+      "small_13": "Inspect the diff",
+      "div_14": "APPROVE",
+      "small_15": "Authorize scope",
+      "p_16": "One field. One file.",
+      "span_17": "No writes yet.",
+      "p_18": "A reversible configuration change, shown as an example."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.2
+      },
+      "m02": {
+        "enter": 0.8
+      },
+      "m03": {
+        "enter": 2.8
+      },
+      "m04": {
+        "enter": 4.5
+      },
+      "m05": {
+        "active": [
+          4.5,
+          7.5
+        ]
+      },
+      "m06": {
+        "fill": [
+          6.8,
+          0.7
+        ]
+      },
+      "m07": {
+        "active": [
+          7.5,
+          10.5
+        ]
+      },
+      "m08": {
+        "fill": [
+          9.8,
+          0.7
+        ]
+      },
+      "m09": {
+        "active": [
+          10.5,
+          14.18
+        ]
+      },
+      "m10": {
+        "enter": 10.8
+      }
+    }
+  }
+}

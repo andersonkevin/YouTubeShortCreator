@@ -1,0 +1,606 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual"
+        },
+        "children": [
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "editor"
+            },
+            "children": [
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "editor-head"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_04"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "cyan"
+                    },
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "code-rows compact"
+                },
+                "children": [
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_06"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_07"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m02"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_08"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_09"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m03"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_10"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_11"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_12"
+                          },
+                          {
+                            "tag": "em",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "slot": "em_13"
+                              }
+                            ]
+                          },
+                          {
+                            "slot": "code_14"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m04"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_15"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_16"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m05"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_17"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_18"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m06"
+                  },
+                  {
+                    "text": "\n          "
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "code-row"
+                    },
+                    "children": [
+                      {
+                        "tag": "b",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "b_19"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "code",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "slot": "code_20"
+                          }
+                        ]
+                      }
+                    ],
+                    "motion": "m07"
+                  },
+                  {
+                    "text": "\n        "
+                  }
+                ]
+              },
+              {
+                "text": "\n      "
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "pipeline"
+            },
+            "children": [
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_21"
+                  }
+                ],
+                "motion": "m09"
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m10"
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_22"
+                  }
+                ],
+                "motion": "m11"
+              },
+              {
+                "tag": "i",
+                "attrs": {},
+                "children": [],
+                "motion": "m12"
+              },
+              {
+                "text": "\n        "
+              },
+              {
+                "tag": "div",
+                "attrs": {},
+                "children": [
+                  {
+                    "slot": "div_23"
+                  }
+                ],
+                "motion": "m13"
+              },
+              {
+                "text": "\n      "
+              }
+            ],
+            "motion": "m08"
+          },
+          {
+            "text": "\n      "
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "support"
+            },
+            "children": [
+              {
+                "slot": "p_24"
+              }
+            ],
+            "motion": "m14"
+          },
+          {
+            "text": "\n    "
+          }
+        ]
+      },
+      {
+        "text": "\n    "
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_25"
+          }
+        ]
+      },
+      {
+        "text": "\n  "
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "span_04",
+    "span_05",
+    "b_06",
+    "code_07",
+    "b_08",
+    "code_09",
+    "b_10",
+    "em_11",
+    "code_12",
+    "em_13",
+    "code_14",
+    "b_15",
+    "code_16",
+    "b_17",
+    "code_18",
+    "b_19",
+    "code_20",
+    "div_21",
+    "div_22",
+    "div_23",
+    "p_24",
+    "p_25"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter",
+      "active"
+    ],
+    "m03": [
+      "enter",
+      "active"
+    ],
+    "m04": [
+      "enter",
+      "active"
+    ],
+    "m05": [
+      "enter",
+      "active"
+    ],
+    "m06": [
+      "enter",
+      "active"
+    ],
+    "m07": [
+      "enter",
+      "active"
+    ],
+    "m08": [
+      "enter"
+    ],
+    "m09": [
+      "active"
+    ],
+    "m10": [
+      "fill"
+    ],
+    "m11": [
+      "active"
+    ],
+    "m12": [
+      "fill"
+    ],
+    "m13": [
+      "active"
+    ],
+    "m14": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "03 / ENFORCE AT RUNTIME",
+      "h2_02": "The contract",
+      "h2_03": "has to run in code.",
+      "span_04": "runner.py",
+      "span_05": "ILLUSTRATIVE",
+      "b_06": "01",
+      "code_07": "policy = load_contract()",
+      "b_08": "02",
+      "code_09": "validate(request, policy)",
+      "b_10": "03",
+      "em_11": "with",
+      "code_12": " trace() ",
+      "em_13": "as",
+      "code_14": " log:",
+      "b_15": "04",
+      "code_16": "  result = guarded_run(",
+      "b_17": "05",
+      "code_18": "    request, policy, log",
+      "b_19": "06",
+      "code_20": "  )",
+      "div_21": "VALIDATE",
+      "div_22": "GUARDED RUN",
+      "div_23": "TRACE",
+      "p_24": "Every tool decision leaves evidence.",
+      "p_25": "A declaration alone does not enforce a boundary."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 1.23,
+        "active": [
+          1.23,
+          2.81
+        ]
+      },
+      "m03": {
+        "enter": 2.81,
+        "active": [
+          2.81,
+          4.27
+        ]
+      },
+      "m04": {
+        "enter": 3.6,
+        "active": [
+          3.6,
+          4.27
+        ]
+      },
+      "m05": {
+        "enter": 4.27,
+        "active": [
+          4.27,
+          6.0
+        ]
+      },
+      "m06": {
+        "enter": 4.5,
+        "active": [
+          4.5,
+          6.0
+        ]
+      },
+      "m07": {
+        "enter": 4.73,
+        "active": [
+          4.73,
+          7.41
+        ]
+      },
+      "m08": {
+        "enter": 0.8
+      },
+      "m09": {
+        "active": [
+          2.81,
+          4.27
+        ]
+      },
+      "m10": {
+        "fill": [
+          3.87,
+          0.4
+        ]
+      },
+      "m11": {
+        "active": [
+          4.27,
+          6.0
+        ]
+      },
+      "m12": {
+        "fill": [
+          5.6,
+          0.4
+        ]
+      },
+      "m13": {
+        "active": [
+          6.0,
+          7.41
+        ]
+      },
+      "m14": {
+        "enter": 6.0
+      }
+    }
+  }
+}
