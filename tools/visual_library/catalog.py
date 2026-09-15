@@ -17,6 +17,7 @@ INTENTS = {
 
 
 def entries():
+    from visual_adapter import PRODUCTION_KINDS, REVEALS, DEFAULT_PRESENTATION
     manifest = kit.verify_assets()
     recipes = kit.validate_recipes(kit.read_json(kit.HOME/'recipes.json'), manifest['icons'])
     result = []
@@ -35,9 +36,16 @@ def entries():
         examples.update({chart['kind']:chart for chart in document['charts']})
     for name, (intent, limit) in INTENTS.items():
         result.append({'id':'visual:'+name, 'kind':'widget' if name in ('flow','metric','comparison') else 'chart',
-                       'title':name, 'keywords':(name+' '+intent).lower().split(), 'use_when':intent,
-                       'limits':limit, 'ready_for':'validated-study-export', 'dimensions':[880,810],
-                       'data_provenance_required':True, 'production_scene_available':False,
+                       'title':name, 'keywords':(name+' '+intent+(' grouped stacked components' if name=='bar' else '')).lower().split()+list(REVEALS), 'use_when':intent,
+                       'limits':limit, 'ready_for':'production-v2-review' if name in PRODUCTION_KINDS else 'validated-study-export', 'dimensions':[880,810],
+                       'data_provenance_required':True, 'production_scene_available':name in PRODUCTION_KINDS,
+                       'episode_version':2 if name in PRODUCTION_KINDS else None,
+                       'scene_layout':'visual-library' if name in PRODUCTION_KINDS else None,
+                       'production_dimensions':[824,560], 'reveals':list(REVEALS),
+                       'presentation_default':dict(DEFAULT_PRESENTATION),
+                       'chart_styles':['standard','stacked'] if name=='bar' else ['standard'],
+                       'qualification':'B02' if name in ('flow','metric','comparison') else 'B03',
+                       'motion_qualification':'B03',
                        'example':examples[name]})
     for path in sorted((kit.HOME.parents[1]/'templates/v1/scenes').glob('*.json')):
         layout = kit.read_json(path)

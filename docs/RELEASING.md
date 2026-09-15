@@ -4,10 +4,16 @@
 
 ## Scope of This Guide
 
-The repository can be prepared locally without signing into GitHub. No remote,
-account integration, hosted documentation, CI pipeline or publishing automation is
-configured by the application. Creating a public repository is a separate operator
-action, after reviewing source and rights.
+The upstream repository is public at
+[andersonkevin/YouTubeShortCreator](https://github.com/andersonkevin/YouTubeShortCreator).
+Repository visibility and the default `main` branch were verified through GitHub
+on 2026-09-15. This does not mean the current development tree is published or
+release-approved. Check the actual remote commit and local changes at each handoff.
+
+The application does not configure GitHub accounts, remotes, hosted documentation,
+CI or publishing automation. It can prepare a source archive without signing in.
+Creating a separate repository or fork remains an explicit operator action; an
+existing upstream checkout does not need another repository to publish an update.
 
 Suggested repository name: `YouTubeShortCreator`.
 Suggested description: `Local-first, brand-driven Shorts production with timed captions and native media QA.`
@@ -64,16 +70,47 @@ paths. Compare source checksums when moving the archive between machines.
 
 ## 4. Publish Through Your Normal GitHub Workflow
 
+### Existing Repository
+
+Inspect `git remote -v`, the current branch and `git status --short`. Confirm the
+intended remote with the operator before writing; do not change credentials,
+create another remote or recreate the repository merely to deliver an update.
+Compare the remote branch's actual commit with the candidate being reviewed.
+Equal local HEAD and remote HEAD do not prove a clean tree: uncommitted and
+untracked development files are not present in either commit.
+
+Complete the applicable [pipeline gates](PIPELINE-ROADMAP.md), review the exact
+public diff and obtain authorization for a selective commit and normal push.
+Do not stage the whole workspace, amend unrelated commits or force-push. After
+the push, read the remote commit again and confirm its exact SHA. Record any
+remaining local changes instead of describing the whole tree as delivered.
+
+### New Repository or Fork
+
 Create the repository using your GitHub account and preferred Git client. Choose
 visibility deliberately, review/stage only intended public files, make the first
 commit, then connect and push through your normal authenticated workflow. If importing
 this existing local repository, avoid adding a conflicting starter README/license
-remotely. No account names, remotes or credentials are hardcoded in these docs.
+remotely. The upstream link identifies this project; it is not a runtime setting
+or authorization to push to a particular account. Use the operator's intended
+destination and authentication, without putting credentials into files.
 
 Before making it public, set an appropriate private security-reporting channel and
 review the MIT/license display. Do not put an invented contact address into the repo.
 After upload, verify relative links, the image gallery, Mermaid rendering and the
 license view in GitHub itself; local rendering is only an approximation.
+
+## Current Delivery Boundary
+
+On 2026-09-15 the observed upstream `main` commit and local HEAD were both
+`6ffd3cb9aab6566e21d729ef7f8b963acd8f3f60`. The local tree still contained uncommitted
+pipeline, tests and documentation changes. That is the published baseline, not
+evidence that B00-B09 or the marketing batches are complete. Reverify before a
+release; this dated observation does not authorize a commit or push.
+
+Private security reporting has not been verified by this handoff check. Follow
+[Security](../SECURITY.md) and obtain a confirmed private route before advertising
+one. The public repository URL and permission to push do not establish that route.
 
 ## 5. A Useful Release Note
 

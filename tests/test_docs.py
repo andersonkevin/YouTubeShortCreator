@@ -50,6 +50,17 @@ class DocumentationTests(unittest.TestCase):
         self.append('[Broken](not-here.md)')
         self.assertTrue(any('missing local target' in e for e in check(self.root)['errors']))
 
+    def test_private_assistant_settings_excluded_from_release(self):
+        from tools.release import files
+        private = self.root / '.claude'
+        private.mkdir()
+        (private / 'settings.local.json').write_text('{"private_fixture": true}')
+        selected = {str(p.relative_to(self.root)) for p in files(self.root)}
+        self.assertFalse(any(name.startswith('.claude/') for name in selected))
+        (self.root / '.unknown').mkdir()
+        with self.assertRaisesRegex(ValueError, 'Unknown public directory'):
+            files(self.root)
+
     def test_missing_heading_anchor(self):
         self.append('[Broken](README.md#not-a-real-heading)')
         self.assertTrue(any('missing heading anchor' in e for e in check(self.root)['errors']))

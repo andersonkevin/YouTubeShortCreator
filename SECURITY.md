@@ -36,10 +36,15 @@ Use a minimal synthetic fixture, runtime versions and the failing check.
 
 ## Reporting a Vulnerability
 
-A public repository/contact channel has not yet been configured. Do not post live
-credentials, customer media or a weaponized reproduction to obtain support. After
-publication, use the private reporting channel actually advertised by the maintainer;
-if none exists, request a private contact without disclosing the sensitive details.
+The project has a public
+[GitHub repository](https://github.com/andersonkevin/YouTubeShortCreator).
+Public issues are not a confidential security-reporting channel. Do not post live
+credentials, customer media or a weaponized reproduction there to obtain support.
+
+A private reporting route has not yet been verified and documented in this policy.
+Use a private channel only after the maintainer confirms it. Until then, request
+private contact without disclosing sensitive details. Do not assume GitHub private
+vulnerability reporting is enabled solely because this repository is public.
 
 Include affected version, prerequisites, impact, a minimal safe reproduction and
 sanitized evidence. There is no promised response deadline. This document does not

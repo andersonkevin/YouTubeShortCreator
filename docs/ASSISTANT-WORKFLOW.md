@@ -41,6 +41,13 @@ approval JSON by hand or bypass onboarding with fabricated records.
 
 ## Keep the Template Stable
 
+Stable branding does not mean repeating the same composition in every Short.
+Vary supported scene layouts and visual sequences to fit the explanation, while
+preserving the approved frame and safe zones. Follow the visual director's
+[density and variety criteria](assistant/VISUAL-DIRECTOR.md#visual-density-and-variety):
+one visual idea, short headings/labels and no redundant explanatory paragraphs.
+Do not copy the density of technical stress fixtures into production episodes.
+
 Change content slots, code examples, authorized graphics and measured timings,
 not layout CSS, fonts, logo position or animation-engine code for each episode.
 Use the existing [12-layout gallery](GALLERY.md). Match the thumbnail's fixed
@@ -48,13 +55,18 @@ type zone, logo and accent; only subject art and copy vary.
 
 Use the [visual director](assistant/VISUAL-DIRECTOR.md) and
 [offline library](VISUAL-LIBRARY.md) to discover icons, charts, widgets and existing
-layout contracts. New visual studies support asset preparation and export; they
-are not valid v1 scene types yet. Check readiness before selecting an asset for
-production. Do not bypass the scene validator to mount a study.
+layout contracts. Flow, metric and comparison support the explicit v2 episode
+extension qualified in [B02](B02-QUALIFICATION.md). Eight chart forms and selectable
+motion are implemented under [B03 qualification](VISUAL-PRESENTATION.md). Check catalog
+capability and the [adapter contract](VISUAL-ADAPTER-CONTRACT.md) before selecting
+an asset. Do not bypass the validator or rewrite a v1 episode implicitly.
 
 The voice recording is the timing source of truth. Never distribute caption
 times evenly across the script. A new recording means new transcription and
 timing review. `video.mp4` already includes audio; do not double it in Canva.
+Visual-copy simplification must leave approved spoken captions unchanged,
+including wording, grouping, timing, styling and position. Caption corrections
+are a separate explicitly requested task, not part of reducing scene text.
 
 Use 5-8 lowercase hashtags. Do not call them high-volume without current evidence:
 the local validator checks their format, not popularity. Research factual claims

@@ -8,7 +8,7 @@ illustrative hash into a production transcript.
 
 ## Episode
 
-The top-level keys must be exactly:
+Version 1 top-level keys must be exactly:
 
 | Field | Meaning and current checks |
 | --- | --- |
@@ -16,15 +16,24 @@ The top-level keys must be exactly:
 | `id` | Lowercase hyphenated ID, maximum 64 characters |
 | `template` | `v1` |
 | `language` | Must match the approved brand |
-| `duration` | Seconds; greater than 1, at most 90, on a 30 fps boundary |
+| `duration` | Seconds; greater than 1, at most 180, on a 30 fps boundary; derived from the complete recording |
 | `inputs` | Exactly `audio`, `graphic`, `transcript`, `captions` |
 | `thumbnail` | Exactly `headline` and `label` |
 | `youtube` | Exactly `title`, `description`, `hashtags`, `tags`, `pinned_comment` |
 | `scenes` | Three or four scene records |
 | `timing_adjustments` | Measured caption-start notes indexed by cue number, or `{}` |
 
+Version 2 keeps `template: "v1"` and all existing timing/media rules, and adds an
+exact `visuals` object. It enables mixed classic and visual-library scenes. Flow,
+metric and comparison passed B02; analytical charts and selectable motion are
+implemented under B03 qualification. Use the [visual adapter contract](VISUAL-ADAPTER-CONTRACT.md)
+for exact fields, symbol IDs, data limits and rendering boundaries. Version 1
+rejects these extra fields; there is no silent episode/profile migration.
+
 Each input has `path` and `sha256`. Paths are relative to the episode JSON directory,
-with containment and symlink checks. Files must be nonempty and at most 30 MB.
+with containment and symlink checks. Files must be nonempty. Audio may be at most
+75,000,000 bytes (enough for 180 seconds of 48 kHz stereo float PCM); other inputs
+remain capped at 30,000,000 bytes. This is a storage bound, not a duration estimate.
 JSON parsing applies an additional 2 MB limit. Hashes must match the current bytes.
 
 Example input descriptor, with an intentionally non-production placeholder hash:

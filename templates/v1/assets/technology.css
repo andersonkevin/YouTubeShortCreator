@@ -24,9 +24,9 @@
   top: 650px;
   width: 36px;
   height: 760px;
-  border-top: 2px solid rgb(from var(--cyan) r g b / 0.24);
-  border-right: 2px solid rgb(from var(--cyan) r g b / 0.14);
-  border-bottom: 2px solid rgb(from var(--lime) r g b / 0.28);
+  border-top: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
   border-radius: 0 8px 8px 0;
   pointer-events: none;
 }

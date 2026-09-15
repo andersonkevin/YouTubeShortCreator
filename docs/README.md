@@ -19,6 +19,16 @@
 - [Visual-library qualification](VISUAL-LIBRARY-QA.md): observed tests, export checks and integration limits.
 - [Visual director](assistant/VISUAL-DIRECTOR.md): supervised selection and source-review procedure.
 - [Pipeline roadmap](PIPELINE-ROADMAP.md): integration and qualification gates; marketing remains separate.
+- [Visual adapter contract](VISUAL-ADAPTER-CONTRACT.md): opt-in v2 structure, enabled widgets and regression boundaries.
+- [B02 qualification](B02-QUALIFICATION.md): widget media, two palettes, technical human review and classic pixel parity.
+- [Chart and motion selection](VISUAL-PRESENTATION.md): analytical visuals, stacked bars and selectable slide/fade presets under B03 qualification.
+- [B03 qualification](B03-PROGRESS.md): three encoded chart/motion samples, density checks and operator technical approval.
+- [B03 density](B03-DENSITY.md): dense datasets, label-collision rejection and numeric extremes across palettes and scene counts.
+- [Media backend boundary](MEDIA-BACKENDS.md): explicit native dispatch, runtime capabilities, temporary ownership and failure behavior.
+- [B04 qualification](B04-PROGRESS.md): native fixture comparisons, observed raster differences and operator technical approval.
+- [B05 progress](B05-PROGRESS.md): optional FFmpeg, three-minute format matrix, full-voice listening approval and pending animated review.
+- [B06 progress](B06-PROGRESS.md): failure recovery, atomic JSON records, audio-tail checks and encoded-frame regression.
+- [B07 progress](B07-PROGRESS.md): operator-approved isolated installs, lockfile reproduction and native/FFmpeg fixtures; full first-run walkthrough remains unexecuted.
 - [CLI reference](CLI.md): every command, path base and write boundary.
 - [Data contracts](DATA-CONTRACTS.md): episode fields, caption timing and safe examples.
 - [Branding](BRANDING.md): palettes, fonts, logo preparation and approval.

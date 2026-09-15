@@ -23,10 +23,13 @@ Actual exported asset from the illustrative flow example, not a video-editor moc
 The catalog has 69 entries, not 69 new video layouts. Icons and compositions are
 not company logos. Diagrams/widgets are bounded visual forms, not arbitrary HTML.
 
-The new charts/widgets are **asset studies**, not accepted scene types in the v1
-episode contract. Do not inject them into episodes or bypass validation. Their
-production adapter is the next separately qualified pipeline milestone. Existing
-12 layouts continue to use the unchanged capture, audio and caption workflow.
+The eight charts now have a production adapter under B03 qualification. Flow, metric and comparison also have
+an explicit [v2 episode adapter](VISUAL-ADAPTER-CONTRACT.md) qualified in
+[B02](B02-QUALIFICATION.md).
+Do not inject extra fields into v1 episodes or bypass validation. The original
+twelve layouts remain available, using the same capture clock and audio workflow.
+Study export and production-scene availability are separate catalog properties;
+neither grants editorial or publication approval.
 
 ## Discover
 

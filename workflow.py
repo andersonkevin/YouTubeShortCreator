@@ -11,8 +11,10 @@ import re
 import shutil
 import subprocess
 import tempfile
+from contextlib import nullcontext
 
 from safety import digest, identifier, inside, keys, number, read_json, require, text, write_json
+from media_contract import MAX_AUDIO_BYTES, duration_seconds
 
 HOME = Path(__file__).resolve().parent
 ROOT = HOME / 'workspace'
@@ -40,6 +42,7 @@ def words(value):
 
 
 def validate_captions(captions, transcript, duration, adjustments):
+    duration = duration_seconds(duration)
     require(captions['status'] in ['local_asr_aligned_review', 'word_timed_review'], 'Estimated captions are not accepted')
     require(abs(number(captions['duration']) - duration) < 1e-6, 'Caption duration mismatch')
     timed = transcript['words']
@@ -77,17 +80,23 @@ def validate(path):
     brand = branding.verified(ROOT, verify_lock())
     path = inside(ROOT, os.path.relpath(Path(path).absolute(), ROOT))
     data = read_json(path)
-    keys(data, ['version', 'id', 'template', 'language', 'duration', 'inputs', 'thumbnail', 'youtube', 'scenes', 'timing_adjustments'], 'episode')
+    require(type(data.get('version')) is int and data['version'] in (1, 2), 'Unsupported episode version')
+    fields = ['version', 'id', 'template', 'language', 'duration', 'inputs', 'thumbnail', 'youtube', 'scenes', 'timing_adjustments']
+    keys(data, fields + (['visuals'] if data['version'] == 2 else []), 'episode')
     identifier(data['id'])
-    require(data['version'] == 1 and data['template'] == 'v1' and data['language'] == brand['language'], 'Unsupported contract or language differs from brand')
-    duration = number(data['duration'])
-    require(1 < duration <= 90 and abs(duration * 30 - round(duration * 30)) < 1e-5, 'Duration must be whole 30fps frames, <=90 seconds')
+    require(data['template'] == 'v1' and data['language'] == brand['language'], 'Unsupported contract or language differs from brand')
+    visual_records = {}
+    if data['version'] == 2:
+        import visual_adapter
+        visual_records = visual_adapter.validate_records(data['visuals'])
+    duration = duration_seconds(data['duration'])
     keys(data['inputs'], ['audio', 'graphic', 'transcript', 'captions'], 'inputs')
     inputs = {}
     for name, item in data['inputs'].items():
         keys(item, ['path', 'sha256'], name)
         file = inside(path.parent, item['path'])
-        require(file.stat().st_size <= 30_000_000 and file.stat().st_size > 0, 'Input file size is outside the contract')
+        limit = MAX_AUDIO_BYTES if name == 'audio' else 30_000_000
+        require(0 < file.stat().st_size <= limit, 'Input file size is outside the contract')
         require(digest(file) == item['sha256'], f'Input changed: {name}')
         inputs[name] = file
     require(inputs['audio'].suffix.lower() in ['.mp3', '.wav', '.m4a', '.opus'], 'Unsupported audio file')
@@ -113,15 +122,25 @@ def validate(path):
     require(isinstance(meta['tags'], list) and all(isinstance(t, str) for t in meta['tags']) and len(', '.join(meta['tags'])) <= 450, 'Invalid tags')
     require(3 <= len(data['scenes']) <= 4, 'Use 3-4 scenes')
     previous = -1
+    used_visuals = []
     for scene in data['scenes']:
-        keys(scene, ['layout', 'name', 'first_cue', 'content', 'motion'], 'scene')
+        require(isinstance(scene, dict), 'Scene must be an object')
+        is_visual = scene.get('layout') == 'visual-library'
+        if is_visual:
+            require(data['version'] == 2, 'Visual scenes require episode version 2')
+            visual_adapter.validate_scene(scene, visual_records)
+            used_visuals.append(scene['visual_id'])
+        else:
+            keys(scene, ['layout', 'name', 'first_cue', 'content', 'motion'], 'scene')
         identifier(scene['layout'])
-        layout = read_json(inside(TEMPLATE / 'scenes', scene['layout'] + '.json'))
+        layout = None if is_visual else read_json(inside(TEMPLATE / 'scenes', scene['layout'] + '.json'))
         text(scene['name'], 100)
         cue = scene['first_cue']
         require(type(cue) is int and previous < cue < len(captions['cues']), 'Scene cue anchors must increase')
         require(previous != -1 or cue == 0, 'First scene must start at the first cue')
         previous = cue
+        if is_visual:
+            continue
         keys(scene['content'], layout['content_keys'], 'scene content')
         for value in scene['content'].values():
             text(value)
@@ -136,10 +155,13 @@ def validate(path):
                     require(number(value[0]) >= 0 and number(value[1]) > 0, 'Invalid motion interval')
                     if kind == 'active':
                         require(value[1] > value[0], 'Reversed active interval')
+    require(len(used_visuals) == len(set(used_visuals)) and set(used_visuals) == set(visual_records), 'Visual records must be used exactly once')
     starts = [0] + [captions['cues'][s['first_cue']]['start'] for s in data['scenes'][1:]]
     ends = starts[1:] + [duration]
     for scene, start, end in zip(data['scenes'], starts, ends):
         require(end > start, 'Empty scene')
+        if scene['layout'] == 'visual-library':
+            visual_adapter.validate_duration(scene, end - start)
         for values in scene['motion'].values():
             for kind, value in values.items():
                 limit = value if kind == 'enter' else value[1] if kind == 'active' else sum(value)
@@ -167,12 +189,22 @@ def scene_html(node, content, motion, boundary=None):
 def build_html(data, captions, bounds):
     scenes = []
     for scene, (start, end) in zip(data['scenes'], bounds):
+        if scene['layout'] == 'visual-library':
+            import visual_adapter
+            scenes.append(visual_adapter.scene_html(scene, start, end))
+            continue
         tree = read_json(TEMPLATE / 'scenes' / (scene['layout'] + '.json'))['tree']
         scenes.append(scene_html(tree, scene['content'], scene['motion'], {'data-start': start, 'data-end': end, 'data-name': scene['name']}))
     styles = ['motion.css', 'technology.css', 'code-graphics-scenes.css', 'spoken-captions.css', 'scene-extras.css', 'brand.css']
+    if data['version'] == 2:
+        styles.append('visual-scenes.css')
     links = ''.join(f'<link rel="stylesheet" href="assets/{name}">' for name in styles)
     payload = json.dumps(captions, ensure_ascii=True).replace('<', '\\u003c')
     brand = read_json(ROOT / 'brand/brand.json')
+    visual_scripts = ''
+    if data['version'] == 2:
+        import visual_adapter
+        visual_scripts = visual_adapter.scripts(data, brand)
     return (f'<!doctype html><html lang="{html.escape(data["language"], quote=True)}"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
             '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src \'self\' data:; font-src \'self\'; style-src \'self\' \'unsafe-inline\'; script-src \'self\'; connect-src \'none\'">'
@@ -181,7 +213,7 @@ def build_html(data, captions, bounds):
             f'<img class="logo" src="assets/logo.png" alt="{html.escape(brand["channel"], quote=True)}">' + ''.join(scenes) +
             '<div class="progress"><span data-progress></span></div><p class="spoken-caption" aria-label="Narration captions"><span></span></p></main>'
             f'<script type="application/json" id="spoken-captions-data">{payload}</script>'
-            '<script src="assets/motion.js"></script><script src="assets/spoken-captions.js"></script></body></html>')
+            '<script src="assets/motion.js"></script><script src="assets/spoken-captions.js"></script>' + visual_scripts + '</body></html>')
 
 
 def srt(captions):
@@ -197,6 +229,7 @@ def execute(command, **kwargs):
 
 def build(episode, run_id, render=False):
     import branding
+    import media_backend
     runtime, environment = doctor()
     data, inputs, captions, bounds = validate(episode)
     if render:
@@ -210,6 +243,9 @@ def build(episode, run_id, render=False):
         shutil.copytree(TEMPLATE / 'assets', output / 'assets')
         for asset in (ROOT / 'brand/assets').iterdir():
             shutil.copyfile(asset, output / 'assets' / asset.name)
+        if data['version'] == 2:
+            import visual_adapter
+            visual_adapter.install_assets(output, data, read_json(ROOT / 'brand/brand.json'))
         (output / 'video.html').write_text(build_html(data, captions, bounds), encoding='utf-8')
         (output / 'captions.srt').write_text(srt(captions), encoding='utf-8')
         write_json(output / 'captions.json', captions)
@@ -218,26 +254,31 @@ def build(episode, run_id, render=False):
         metadata = {**data['youtube'], 'language': data['language'], 'thumbnail': 'thumbnail.jpg', 'video': 'video.mp4' if render else None, 'status': 'review_required', 'published_url': None, 'published_at': None}
         write_json(output / 'youtube.json', metadata)
         (output / 'youtube.md').write_text('\n\n'.join(['# Title', metadata['title'], '# Description', metadata['description'], '# Tags', ', '.join(metadata['tags']), '# Pinned Comment', metadata['pinned_comment']]) + '\n', encoding='utf-8')
-        execute([runtime['node'], str(HOME / 'capture.mjs'), str(ROOT), str(output), 'render' if render else 'qa'])
-        if render:
-            with tempfile.TemporaryDirectory(prefix='shortcreator-short-audio-') as temporary:
-                cache = str(Path(temporary) / 'swift-cache')
-                def swift(name, *args):
-                    execute([runtime['swift'], '-module-cache-path', cache, str(HOME / name), *map(str, args)])
-                swift('mux.swift', output / 'silent.mp4', inputs['audio'], output / 'video.mp4')
-                swift('media-qa.swift', output / 'video.mp4', data['duration'], output / 'captions.json', output / 'media-qa.json')
-                swift('decode-audio.swift', inputs['audio'], Path(temporary) / 'source.f32')
-                swift('decode-audio.swift', output / 'video.mp4', Path(temporary) / 'export.f32')
-                from audio_qa import compare_files
-                write_json(output / 'audio-qa.json', compare_files(Path(temporary) / 'source.f32', Path(temporary) / 'export.f32'))
+        with media_backend.scratch() if render else nullcontext(None) as temporary:
+            command = [runtime['node'], str(HOME / 'capture.mjs'), str(ROOT), str(output), 'render' if render else 'qa']
+            if render:
+                command.append(str(temporary / 'frames'))
+            execute(command)
+            if render:
+                count = round(data['duration'] * 30)
+                require(read_json(output / 'visual-qa.json')['frames'] == count, 'Captured frame count differs')
+                media_backend.encode(environment['backend'], runtime, temporary, count, output / 'silent.mp4')
+                audio_report = media_backend.finish(environment['backend'], runtime, temporary, output, inputs['audio'], data['duration'])
+                write_json(output / 'audio-qa.json', audio_report)
         validate(episode)
         require(digest(Path(episode)) == episode_hash, 'Episode changed during production')
         require(verify_lock() == environment['lock_sha256'], 'Implementation changed during render')
-        hashes = {str(file.relative_to(output)): digest(file) for file in output.iterdir() if file.is_file()}
+        require(digest(inside(ROOT, 'runtime.json')) == environment['runtime_sha256'], 'Runtime profile changed during production')
+        hashes = {}
+        for file in sorted(output.rglob('*')):
+            require(not file.is_symlink(), 'Symlink in run output')
+            if file.is_file():
+                name = str(file.relative_to(output))
+                hashes[name] = digest(inside(output, name))
         report = {'status': 'review_required', 'automated_checks': 'PASS', 'mode': 'render' if render else 'build', 'episode_id': data['id'], 'episode_sha256': episode_hash, 'environment': environment, 'input_hashes': {name: digest(file) for name, file in inputs.items()}, 'outputs': hashes, 'publication_performed': False}
         write_json(output / 'run.json', report)
         return output
-    except Exception as error:
+    except (Exception, KeyboardInterrupt) as error:
         write_json(output / 'failure.json', {'status': 'FAILED', 'error': type(error).__name__, 'message': str(error), 'retry': 'Use a new run ID. Partial files preserved for diagnosis.'})
         raise
 

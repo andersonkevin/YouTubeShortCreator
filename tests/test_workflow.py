@@ -34,16 +34,18 @@ def make_brand(root, style='wordmark', logo=None):
     branding.approve(root, workflow.verify_lock())
 
 
-def fixture(root):
+def fixture(root, duration=12):
+    workflow.duration_seconds(duration)
     make_brand(root)
     intake = root / 'intake'
-    signal = .1 * np.sin(2 * np.pi * 330 * np.arange(192000) / 16000)
+    signal = .1 * np.sin(2 * np.pi * 330 * np.arange(round(duration * 16000)) / 16000)
     with wave.open(str(intake / 'voice.wav'), 'wb') as output:
         output.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
         output.writeframes((signal * 32767).astype('<i2').tobytes())
     # Deliberately synthetic timing fixture, not a real transcript or publishable episode.
-    timed = [{'text': 'Test signal.', 'start': i * 2 + .1, 'end': i * 2 + 1.5} for i in range(6)]
-    write_json(intake / 'transcript.json', {'duration': 12, 'audio_sha256': digest(intake / 'voice.wav'), 'words': timed})
+    step = duration / 6
+    timed = [{'text': 'Test signal.', 'start': i * step + .1, 'end': (i + 1) * step - .5} for i in range(6)]
+    write_json(intake / 'transcript.json', {'duration': duration, 'audio_sha256': digest(intake / 'voice.wav'), 'words': timed})
     Image.new('RGB', (1080, 1920), '#090909').save(intake / 'graphic.png')
     workflow.caption_draft('intake/transcript.json', 'intake/captions.json')
     return ysc.new_episode(root, 'test-episode', 'intake/voice.wav', 'intake/transcript.json', 'intake/graphic.png', 'intake/captions.json')
@@ -69,6 +71,26 @@ class WorkflowTests(unittest.TestCase):
 
     def test_valid_episode(self):
         self.assertEqual(len(workflow.validate(self.episode)[3]), 3)
+
+    def test_long_episode_captions_and_scene_bounds(self):
+        for duration in (91, 156.7, 180):
+            root = self.root / ('long-' + str(duration))
+            workflow.ROOT, workflow.RUNS = root, root / 'runs'
+            episode = fixture(root, duration)
+            data, _, captions, scenes = workflow.validate(episode)
+            self.assertEqual(data['duration'], duration)
+            self.assertEqual(captions['duration'], duration)
+            self.assertEqual(scenes[-1][1], duration)
+            self.assertGreater(captions['cues'][-1]['end'], 90)
+            self.assertIn(f'data-duration="{duration}', workflow.build_html(data, captions, scenes))
+
+    def test_audio_import_has_separate_bounded_size(self):
+        for extension, expected in (('.wav', 75_000_000), ('.png', 30_000_000)):
+            source = self.root / ('source' + extension)
+            source.write_bytes(b'fixture')
+            with patch.object(branding, 'external_file', return_value=source) as checked:
+                ysc.import_file(self.root, str(source), 'size-test' + extension)
+                self.assertEqual(checked.call_args.args[2], expected)
 
     def test_all_layouts_render_escaped_slots(self):
         layouts = list(workflow.TEMPLATE.joinpath('scenes').glob('*.json'))

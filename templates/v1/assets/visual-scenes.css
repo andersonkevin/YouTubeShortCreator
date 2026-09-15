@@ -1,0 +1,11 @@
+.library-visual {height:820px}
+/* Keep logo rasterization independent from SVG clip compositor changes. */
+#film .logo {transform:translateZ(0)}
+.library-visual p {margin:0;line-height:1.25;letter-spacing:0}
+.visual-title {position:absolute;left:0;top:0;width:730px;height:64px;font-size:26px;color:var(--cyan);font-weight:800}
+.visual-symbol {position:absolute;right:0;top:0;width:64px;height:64px;object-fit:contain}
+.visual-chart {position:absolute;left:0;top:70px;width:824px;height:560px;overflow:hidden}
+.visual-detail {position:absolute;left:0;top:633px;width:824px;height:50px;font-size:20px;color:var(--cyan);white-space:pre-line}
+.visual-insight {position:absolute;left:0;top:686px;width:824px;height:64px;font-size:25px;color:var(--lime)}
+.visual-source {position:absolute;left:0;top:753px;width:824px;height:65px;font-size:20px;color:var(--muted)}
+.visual-chart svg {display:block}

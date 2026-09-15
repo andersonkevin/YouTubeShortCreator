@@ -28,6 +28,15 @@ establish chain of ownership or clear trademarks.
 | Full project MIT license | Yes | Preserve the notice and terms |
 | Python/Node dependency binaries | No | Installed separately; their own licenses apply |
 | Chrome, Swift, Apple frameworks and speech models | No | Separate platform/runtime terms apply |
+| Optional FFmpeg/ffprobe and compiled codecs | No | Operator-installed binaries retain their own build-dependent licenses |
+
+The optional backend invokes external binaries; the source archive does not
+redistribute FFmpeg, ffprobe or codecs. The tested local FFmpeg 8.1.2 build enables
+GPL and version-3 components, including libx264. Do not describe that binary as
+MIT merely because the project source is MIT. Runtime profiles record complete
+version/build strings; inspect the actual selected binary's `-L` and `-buildconf`
+outputs before redistributing any runtime bundle. No blanket patent or legal
+clearance is claimed. Binary redistribution is outside this project release.
 | User fonts, logos, narration and cover artwork | No | Remain private; rights depend on their source/license |
 | Generated customer videos and run assets | No | Operator-controlled output, not blanket-cleared by MIT |
 | Selected visual-library SVG/JS and map geometry | Yes | Pinned vendor files with original licenses, notices and provenance |

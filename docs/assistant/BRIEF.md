@@ -16,7 +16,7 @@ Fill this in only inside a private workspace. Unknown fields stay pending.
 ## Episode
 
 - Episode ID and topic: pending
-- One takeaway and target duration (maximum 90 seconds): pending
+- One takeaway and recording-driven duration (maximum 180 seconds for Shorts): pending
 - Factual sources and review date: pending
 - Narration text and script review: pending
 - Final voice file (private relative path): pending
@@ -34,3 +34,14 @@ Fill this in only inside a private workspace. Unknown fields stay pending.
 
 Add a fourth scene only when needed. Caption anchors come from reviewed timed
 audio, not draft script estimates. This brief is not an executable episode JSON.
+
+## Visual Review
+
+- One focal visual and concise non-caption copy per scene: pending
+- Redundant headings, explanations and labels removed without losing meaning: pending
+- Layout/motion sequence and difference from recent episode briefs, if available: pending
+- Units, legends and essential data caveats remain readable at phone size: pending
+- Approved spoken captions unchanged in text, grouping, timing, style and position: pending
+
+Follow the [visual director](VISUAL-DIRECTOR.md#visual-density-and-variety).
+Vary supported compositions, not approved branding or the caption system.

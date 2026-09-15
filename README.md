@@ -32,8 +32,17 @@ mockups of an editor. [Explore all 12 layouts](docs/GALLERY.md).*
 
 The development tree also includes an [offline visual library](docs/VISUAL-LIBRARY.md):
 40 icons, six compositions, eight chart types and three widgets, with structured
-discovery for assistants and local SVG/PNG export. These are asset studies, not
-new production scene types. See the [pipeline completion gates](docs/PIPELINE-ROADMAP.md).
+discovery for assistants and local SVG/PNG export. Flow, metric and comparison
+also have an [opt-in v2 scene adapter](docs/VISUAL-ADAPTER-CONTRACT.md) with
+[B02 technical qualification](docs/B02-QUALIFICATION.md). Eight chart forms,
+stacked bars and [slide/fade presets](docs/VISUAL-PRESENTATION.md) are now implemented
+with [B03 technical approval](docs/B03-PROGRESS.md). See the
+[pipeline completion gates](docs/PIPELINE-ROADMAP.md).
+
+An explicit [optional FFmpeg backend](docs/MEDIA-BACKENDS.md) is implemented in the
+development tree. Its [B05 progress report](docs/B05-PROGRESS.md) distinguishes
+passed media/full-voice tests from pending animated-candidate review. Native
+macOS remains the default; FFmpeg is not installed automatically.
 
 | Stage | Output |
 | --- | --- |
@@ -41,7 +50,7 @@ new production scene types. See the [pipeline completion gates](docs/PIPELINE-RO
 | Brand approval | Preview image and a hash-locked approval record |
 | Content preparation | Recording-bound transcript, word-timed captions and an editable episode draft |
 | Visual production | 12 code/diagram layouts, 3-4 scenes, fixed logo/caption zones and a top progress bar |
-| Export | 1080×1920, 30 fps MP4; narration; burned-in captions; SRT; vertical JPEG cover |
+| Export | 1080×1920, 30 fps MP4 up to 3 minutes; narration; burned-in captions; SRT; vertical JPEG cover |
 | Handoff | YouTube title, description, hashtags, tags, pinned comment and local QA evidence |
 
 The **layout stays fixed**. The **brand changes during onboarding**. The
@@ -59,7 +68,7 @@ Run inside this repository:
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt
-PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --ignore-scripts
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci --ignore-scripts --no-audit --no-fund
 python3 ysc.py
 ```
 
