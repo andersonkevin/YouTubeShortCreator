@@ -15,6 +15,10 @@
 
 ## Reference
 
+- [Visual library](VISUAL-LIBRARY.md): offline catalog, charts, widgets and SVG/PNG asset preparation.
+- [Visual-library qualification](VISUAL-LIBRARY-QA.md): observed tests, export checks and integration limits.
+- [Visual director](assistant/VISUAL-DIRECTOR.md): supervised selection and source-review procedure.
+- [Pipeline roadmap](PIPELINE-ROADMAP.md): integration and qualification gates; marketing remains separate.
 - [CLI reference](CLI.md): every command, path base and write boundary.
 - [Data contracts](DATA-CONTRACTS.md): episode fields, caption timing and safe examples.
 - [Branding](BRANDING.md): palettes, fonts, logo preparation and approval.

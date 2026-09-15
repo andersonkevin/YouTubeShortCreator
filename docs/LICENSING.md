@@ -30,10 +30,12 @@ establish chain of ownership or clear trademarks.
 | Chrome, Swift, Apple frameworks and speech models | No | Separate platform/runtime terms apply |
 | User fonts, logos, narration and cover artwork | No | Remain private; rights depend on their source/license |
 | Generated customer videos and run assets | No | Operator-controlled output, not blanket-cleared by MIT |
+| Selected visual-library SVG/JS and map geometry | Yes | Pinned vendor files with original licenses, notices and provenance |
 | Credentials and local runtime paths | No | Never appropriate for the public source package |
 
-The source archive includes a dependency notice inventory, not a vendored dependency
-bundle or a certified, complete software bill of materials. Platform-specific wheels
+The source archive includes a dependency notice inventory and selected offline
+visual-library vendor files, not a complete dependency bundle or a certified
+software bill of materials. Platform-specific wheels
 may carry additional notices for bundled components. Preserve the actual distribution's
 licenses if you later package an executable or redistribute dependencies.
 

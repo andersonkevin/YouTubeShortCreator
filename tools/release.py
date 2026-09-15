@@ -26,16 +26,29 @@ FORBIDDEN = [re.compile(r'/(?:Users|home)/[A-Za-z0-9_.-]+/'),
 
 def files(home=HOME):
     output = []
+    vendor_root = home / 'tools/visual_library/vendor'
+    vendor_files = set()
+    if vendor_root.exists():
+        sys.path.insert(0, str(home))
+        from tools.visual_library import kit
+        require(kit.HOME.resolve() == (home/'tools/visual_library').resolve(), 'Library audit must use the selected source tree')
+        manifest = kit.verify_assets()
+        vendor_files = {'tools/visual_library/vendor/' + name for name in manifest['files']}
     for path in sorted(home.rglob('*')):
         relative = path.relative_to(home)
-        if any(part in PRIVATE for part in relative.parts) or path.name in ('.DS_Store',) or path.suffix == '.pyc':
+        # Only manifest-listed vendor payloads may bypass the build-output filter.
+        private_parts = set(relative.parts) & PRIVATE
+        if str(relative) in vendor_files or (path.is_dir() and any(name.startswith(str(relative) + '/') for name in vendor_files)):
+            private_parts.discard('dist')
+        if private_parts or path.name in ('.DS_Store',) or path.suffix == '.pyc':
             continue
         require(not path.is_symlink(), f'Symlink in release tree: {relative}')
         if path.is_dir():
             require(relative.parts[0] in DIRECTORIES, f'Unknown public directory: {relative}; move private data outside the source tree')
             continue
         require((len(relative.parts) == 1 and path.name in ROOT_FILES) or
-                (len(relative.parts) > 1 and relative.parts[0] in DIRECTORIES and path.suffix in EXTENSIONS), f'Not on public allowlist: {relative}')
+                (len(relative.parts) > 1 and relative.parts[0] in DIRECTORIES and path.suffix in EXTENSIONS) or
+                str(relative) in vendor_files or str(relative) == 'tools/visual_library/gallery.html', f'Not on public allowlist: {relative}')
         require(path.stat().st_size <= 4_000_000, f'Unexpectedly large source file: {relative}')
         if path.suffix not in ('.png', '.jpg'):
             content = path.read_text(encoding='utf-8')

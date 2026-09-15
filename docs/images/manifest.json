@@ -2,6 +2,16 @@
   "version": 1,
   "assets": [
     {
+      "path": "docs/images/visual-flow.png",
+      "layout": "visual-study-flow",
+      "sha256": "2b630427cc583aa7c7be596db87590db603d542285f4f6a28bdee73d31903618",
+      "width": 880,
+      "height": 810,
+      "source": "2026-09-15 offline visual-library SVG raster qualification",
+      "brand": "Neutral illustrative asset study",
+      "type": "unmodified browser SVG raster export"
+    },
+    {
       "path": "docs/images/approval-gate.png",
       "layout": "approval-gate",
       "sha256": "9eecf8d56bd187e873ab0fdc005440c1d349d9c4d469f821fe309a7476567240",

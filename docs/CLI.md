@@ -70,6 +70,12 @@ sanitized error report rather than silently bypassing the failing check.
 
 ## Maintenance Tools
 
+The separate `python3 -B tools/visuals.py` entry point provides `catalog`,
+`describe`, `validate`, `build` and `export-svg`. Put its `--workspace` option
+before the command. It does not require branding to inspect illustrative asset
+studies, and it cannot render or publish a Short. See the complete
+[visual-library commands and QA](VISUAL-LIBRARY.md).
+
 | Invocation | Purpose | Writes |
 | --- | --- | --- |
 | `python3 -B tools/check_docs.py` | Local links, embedded images, JSON examples, CLI coverage and image manifest checks | None |

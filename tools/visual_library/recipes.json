@@ -1,0 +1,8 @@
+{
+  "governed-agent":{"label":"Governed agent","base":"bot","badge":"shield-check","tone":"lime"},
+  "verified-document":{"label":"Verified document","base":"file-text","badge":"check","tone":"cyan"},
+  "cached-data":{"label":"Cached data","base":"database","badge":"zap","tone":"lime"},
+  "traced-request":{"label":"Traced request","base":"workflow","badge":"timer","tone":"cyan"},
+  "validated-code":{"label":"Validated code","base":"file-code","badge":"check","tone":"lime"},
+  "regional-service":{"label":"Regional service","base":"server","badge":"globe","tone":"rose"}
+}

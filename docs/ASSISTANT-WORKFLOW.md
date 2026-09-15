@@ -46,6 +46,12 @@ not layout CSS, fonts, logo position or animation-engine code for each episode.
 Use the existing [12-layout gallery](GALLERY.md). Match the thumbnail's fixed
 type zone, logo and accent; only subject art and copy vary.
 
+Use the [visual director](assistant/VISUAL-DIRECTOR.md) and
+[offline library](VISUAL-LIBRARY.md) to discover icons, charts, widgets and existing
+layout contracts. New visual studies support asset preparation and export; they
+are not valid v1 scene types yet. Check readiness before selecting an asset for
+production. Do not bypass the scene validator to mount a study.
+
 The voice recording is the timing source of truth. Never distribute caption
 times evenly across the script. A new recording means new transcription and
 timing review. `video.mp4` already includes audio; do not double it in Canva.

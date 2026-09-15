@@ -30,6 +30,11 @@ mockups of an editor. [Explore all 12 layouts](docs/GALLERY.md).*
 
 ## What You Get
 
+The development tree also includes an [offline visual library](docs/VISUAL-LIBRARY.md):
+40 icons, six compositions, eight chart types and three widgets, with structured
+discovery for assistants and local SVG/PNG export. These are asset studies, not
+new production scene types. See the [pipeline completion gates](docs/PIPELINE-ROADMAP.md).
+
 | Stage | Output |
 | --- | --- |
 | Brand setup | Guided questions, palette, imported logo or generated wordmark/monogram, local font selection |

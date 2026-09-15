@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "charts": [
+    {
+      "id": "flow", "kind": "flow", "title": "Check before execution.",
+      "insight": "An approval boundary belongs before the action, not after it.",
+      "source": {"kind": "illustrative", "label": "Fictional workflow", "reference": "Teaching example, not a real system trace", "as_of": "2026-09-15"},
+      "icon": "workflow", "data": {"steps": [{"label": "Receive request", "icon": "file-json"}, {"label": "Validate inputs", "icon": "shield-check"}, {"label": "Review action", "icon": "search"}, {"label": "Execute once", "icon": "zap"}]}
+    },
+    {
+      "id": "metric", "kind": "metric", "title": "A number needs context.",
+      "insight": "Keep the unit, sample and measurement context with the value.",
+      "source": {"kind": "illustrative", "label": "Synthetic timing example", "reference": "Not a product benchmark or measured result", "as_of": "2026-09-15"},
+      "icon": "timer", "data": {"label": "Median response time", "value": 240, "unit": "ms", "context": "Illustrative sample: 100 runs"}
+    },
+    {
+      "id": "comparison", "kind": "comparison", "title": "Different checks. Different jobs.",
+      "insight": "A valid shape does not establish that the action is correct.",
+      "source": {"kind": "illustrative", "label": "Conceptual comparison", "reference": "No real orders or business actions", "as_of": "2026-09-15"},
+      "icon": "layers", "data": {"left": {"label": "Schema", "items": ["Required fields", "Expected types", "Allowed values"]}, "right": {"label": "Business rules", "items": ["Product exists", "Stock available", "Action permitted"]}}
+    }
+  ]
+}

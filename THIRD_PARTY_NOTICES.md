@@ -62,3 +62,11 @@ Contributors must have permission to contribute their work and preserve necessar
 notices. If a future release adds vendored code, downloadable assets, an executable
 bundle or generated third-party material, update this inventory and review the actual
 distribution before publishing. A passing release audit is not legal clearance.
+## Offline Visual Library
+
+The development tree retains selected Lucide 0.468.0 SVGs (ISC with inherited MIT
+notices), ECharts 6.0.0 (Apache-2.0 and bundled notices), and simplified Natural
+Earth 5.1.2 map geometry (public domain). Original license/notice files and pinned
+source/file hashes are under `tools/visual_library/vendor/`. They are not relicensed
+under the project MIT license. Generated asset runs carry the relevant notices.
+No company logos, font software, voice recordings or customer media are included.

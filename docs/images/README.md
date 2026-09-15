@@ -12,9 +12,15 @@ brand logos, personal voice files or AI-generated artwork were imported for this
 `template-preview.png` is the previously included code-policy qualification image.
 It remains available as a reference; the expanded gallery uses the layout-named set.
 
-All PNGs are 1080x1920. They are copied without retouching, compositing or resizing;
+The original template PNGs are 1080x1920. They are copied without retouching, compositing or resizing;
 Markdown/HTML display dimensions only affect their presentation. Their code values
 and outcomes are illustrations, not factual performance claims.
+
+`visual-flow.png` is an 880x810 browser rasterization of the offline library's
+bounded flow widget, added on 2026-09-15. It uses the fictional process from
+`tools/visual_library/widgets.json`, local Lucide icons and ECharts. It contains no
+customer branding or font binaries. Its vendor notices remain in the source
+library. This image demonstrates asset export, not a new production video scene.
 
 ## Manifest
 
