@@ -152,6 +152,46 @@
       "source": "Initial release local browser qualification",
       "brand": "Signal Lab (illustrative)",
       "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/expansion-agent-loop.png",
+      "layout": "expansion-agent-loop",
+      "sha256": "5cb381f0119d2bf38fc442c3519a1a0fe4f05bdd45fd526822367317dea1371e",
+      "width": 824,
+      "height": 820,
+      "source": "2026-09-15 visual asset expansion browser SVG raster QA, run c-10, study palette",
+      "brand": "Neutral illustrative asset study",
+      "type": "unmodified browser SVG raster export"
+    },
+    {
+      "path": "docs/images/expansion-retrieval.png",
+      "layout": "expansion-retrieval",
+      "sha256": "b9f3767ed50c7f0c9b542b79a16809677badc2d74cb3f6c5b3ccbf5de6958e49",
+      "width": 824,
+      "height": 820,
+      "source": "2026-09-15 visual asset expansion browser SVG raster QA, run c-10, study palette",
+      "brand": "Neutral illustrative asset study",
+      "type": "unmodified browser SVG raster export"
+    },
+    {
+      "path": "docs/images/expansion-gate.png",
+      "layout": "expansion-gate",
+      "sha256": "d649f183057d1730a52e046f3e2b00ac564761c9974d670ab05033b198536825",
+      "width": 824,
+      "height": 820,
+      "source": "2026-09-15 visual asset expansion browser SVG raster QA, run c-10, study palette",
+      "brand": "Neutral illustrative asset study",
+      "type": "unmodified browser SVG raster export"
+    },
+    {
+      "path": "docs/images/expansion-trace.png",
+      "layout": "expansion-trace",
+      "sha256": "93d23c27926e40721298be637d0bb729e46edd4d3c2b2b318be02687d55ae067",
+      "width": 824,
+      "height": 820,
+      "source": "2026-09-15 visual asset expansion browser SVG raster QA, run c-10, study palette",
+      "brand": "Neutral illustrative asset study",
+      "type": "unmodified browser SVG raster export"
     }
   ]
 }

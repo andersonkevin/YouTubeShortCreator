@@ -2,7 +2,7 @@
 
 [Project overview](README.md) | [Shared assistant workflow](docs/ASSISTANT-WORKFLOW.md)
 
-Open this repository as a project in Codex or Claude Code. Use your own assistant
+Open this repository as a project in your file-capable AI assistant. Use your own assistant
 account and its normal permissions. This project does not need a model API key,
 run a chatbot server, or install an agent. The assistant operates the existing
 local tools with you as the approval gate.
@@ -33,7 +33,7 @@ replacing the production backend or downloading tools.
 
 An ordinary web chat without local filesystem and shell tools can help plan the
 episode, but cannot operate this workspace by itself. Opening a project in a
-file-capable assistant is the connection; this is not an OpenAI/Anthropic API app.
+file-capable assistant is the connection; this is not a model-provider API app.
 
 ## Resume an Existing Channel
 
@@ -57,12 +57,9 @@ export still requires listening and visual review. Nothing uploads to YouTube.
 
 ## Assistant Entry Points
 
-- [AGENTS.md](AGENTS.md) is the shared project contract for Codex and other compatible assistants.
-- [CLAUDE.md](CLAUDE.md) directs Claude Code to that same contract.
+- [Project instructions](AGENTS.md) define the shared contract for compatible assistants.
+- [Compatibility entry point](CLAUDE.md) directs supported clients to that same contract.
 - [Assistant workflow](docs/ASSISTANT-WORKFLOW.md) defines the stages and handoff.
 
-These entry points follow the documented conventions for
-[Codex project instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
-and [Claude Code project memory](https://code.claude.com/docs/en/memory).
 Client permissions and instruction precedence still apply. No claim is made
 that every client or model has been tested end to end.

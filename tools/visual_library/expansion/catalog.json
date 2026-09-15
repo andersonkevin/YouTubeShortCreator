@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "base_commit": "6ffd3cb9aab6566e21d729ef7f8b963acd8f3f60",
+  "status": "design_review",
+  "assets": [
+    {
+      "id": "expansion:agent-loop", "kind": "component", "status": "design_review",
+      "purpose": "Show that an agent is a bounded cycle (plan, act, observe, check) with an explicit exit condition.",
+      "keywords": ["agent", "loop", "cycle", "tool", "plan", "observe", "exit", "iteration", "autonomy"],
+      "use_when": "Explaining agent architecture, why an exit condition matters, or where a tool call sits in the cycle.",
+      "misuse": "Not for linear pipelines (use visual:flow). Do not imply the loop runs unattended; the exit gate is the point.",
+      "parameters": {"steps": "3-5 items, label <= 16 chars, pinned icon; ring shows 3-4 steps, ladder shows 3-5", "exit": "label <= 24 chars, pinned icon"},
+      "variants": ["ring", "ladder"], "states": ["active_step"], "example": "agent-loop",
+      "integration": "Mount the 824x820 graphic in the central zone. active_step may derive from the scene fill interval like flow highlights; data never changes with time."
+    },
+    {
+      "id": "expansion:retrieval", "kind": "component", "status": "design_review",
+      "purpose": "Show a query, its ranked retrieved chunks and the answer that cites them.",
+      "keywords": ["rag", "retrieval", "chunks", "ranking", "citation", "vector", "search", "grounding"],
+      "use_when": "Explaining RAG mechanics: ranking is a candidate list, citations close the loop.",
+      "misuse": "Scores are illustrative unless a measured source is declared; never present them as retrieval-quality metrics.",
+      "parameters": {"query": "<= 40 chars", "chunks": "2-4 items, label <= 30 chars, score 0-1 (rank derived at validation)", "answer": "<= 40 chars"},
+      "variants": ["scored", "plain"], "states": ["active_chunk"], "example": "retrieval",
+      "integration": "Score bars are static; no value animation. Rank order comes from derived.ranked, computed by the validator."
+    },
+    {
+      "id": "expansion:gate", "kind": "component", "status": "design_review",
+      "purpose": "Show one check with two named outcomes so the failure path is designed, not implied.",
+      "keywords": ["validation", "gate", "policy", "approval", "pass", "fail", "branch", "decision"],
+      "use_when": "Permission checks, schema validation, or any decision with a hold or reject branch.",
+      "misuse": "Not a flowchart engine: exactly one check and two outcomes. Use flow for sequences.",
+      "parameters": {"input": "<= 30 chars", "check": "label <= 26 chars, pinned icon", "pass/fail": "label <= 14, hint <= 30, pinned icon"},
+      "variants": ["vertical", "horizontal"], "states": ["outcome"], "example": "gate",
+      "integration": "outcome (pass|fail|null) dims the other branch; the adapter may set it per scene, never from data."
+    },
+    {
+      "id": "expansion:retry-queue", "kind": "component", "status": "design_review",
+      "purpose": "Show bounded retries with backoff and where exhausted work is parked.",
+      "keywords": ["retry", "queue", "backoff", "dead letter", "attempt", "failure", "resilience", "worker"],
+      "use_when": "Explaining retry policy, exponential backoff, or why a dead-letter queue exists.",
+      "misuse": "Wait values are labels, not measurements; do not present them as observed latency. At most one successful attempt.",
+      "parameters": {"job": "<= 30 chars", "attempts": "2-5 items, label <= 16, wait <= 10, outcome ok|fail|pending", "dead_letter": "<= 30 chars"},
+      "variants": ["ladder"], "states": ["active_attempt"], "example": "retry-queue",
+      "integration": "The dead-letter panel dims automatically when any attempt succeeded. Five attempts use a denser row height."
+    },
+    {
+      "id": "expansion:tiers", "kind": "component", "status": "design_review",
+      "purpose": "Show layered memory or caching tiers and which one answered.",
+      "keywords": ["cache", "memory", "tiers", "hit", "miss", "layers", "cost", "fallthrough"],
+      "use_when": "Explaining response caches, session memory, vector lookups and model calls as ordered fallbacks.",
+      "misuse": "No hit rates or latencies are encoded; the HIT/MISS chips are a scene state, not statistics.",
+      "parameters": {"request": "<= 30 chars", "layers": "2-4 items, label <= 20, hint <= 28, pinned icon"},
+      "variants": ["stack", "row"], "states": ["hit"], "example": "tiers",
+      "integration": "Tiers below the hit dim; tiers above it show MISS. Row variant wraps labels inside equal-width columns."
+    },
+    {
+      "id": "expansion:router", "kind": "component", "status": "design_review",
+      "purpose": "Show an input routed to one of several models or queues by a stated rule.",
+      "keywords": ["routing", "model", "classifier", "fallback", "escalation", "cost", "selection"],
+      "use_when": "Explaining model routing, escalation to a larger model, or a human queue.",
+      "misuse": "Route labels are placeholders; never present them as a provider recommendation or a benchmark result.",
+      "parameters": {"input": "<= 30 chars", "rule": "<= 34 chars", "routes": "2-4 items, label <= 18, hint <= 24, pinned icon"},
+      "variants": ["fan", "list"], "states": ["selected"], "example": "router",
+      "integration": "The selected route keeps full contrast and a thicker connector; the rule text is part of the graphic."
+    },
+    {
+      "id": "expansion:contract", "kind": "component", "status": "design_review",
+      "purpose": "Show a typed request or response schema with required markers and one-line notes.",
+      "keywords": ["api", "contract", "schema", "fields", "types", "required", "tool", "json"],
+      "use_when": "Explaining tool schemas, function-calling arguments, or API boundaries.",
+      "misuse": "Not a live schema; field names are editorial. Keep to six fields so type text stays readable.",
+      "parameters": {"name": "<= 30 chars", "fields": "2-6 items, name <= 16, type <= 12, required boolean, note <= 24"},
+      "variants": ["request", "response"], "states": ["highlight"], "example": "contract",
+      "integration": "Variant only changes the header chip and accent; highlight dims other rows."
+    },
+    {
+      "id": "expansion:stages", "kind": "component", "status": "design_review",
+      "purpose": "Show deployment or promotion stages with the gate that guards each one.",
+      "keywords": ["deployment", "stages", "canary", "staging", "gate", "release", "promotion", "rollout"],
+      "use_when": "Explaining progressive delivery, evaluation gates before promotion, or where a rollback plan sits.",
+      "misuse": "Not a status dashboard: the current index is editorial, not read from a deployment system.",
+      "parameters": {"stages": "3-5 items, label <= 14, gate <= 20"},
+      "variants": ["rail", "column"], "states": ["current"], "example": "stages",
+      "integration": "Done stages show a check, the current stage a ring and NOW chip, later stages dim (column) or stay muted (rail)."
+    },
+    {
+      "id": "expansion:stack", "kind": "component", "status": "design_review",
+      "purpose": "Show an architecture as ordered layers and which layer a change touches.",
+      "keywords": ["architecture", "stack", "layers", "client", "gateway", "orchestration", "model", "data"],
+      "use_when": "Locating a change (prompt, schema, index) inside the system and explaining blast radius.",
+      "misuse": "Layers are labels, not a deployment diagram; do not add vendor logos or product names as facts.",
+      "parameters": {"layers": "3-6 items, label <= 20, hint <= 30"},
+      "variants": ["bands", "blocks"], "states": ["highlight"], "example": "stack",
+      "integration": "Bands fill the slot height evenly up to 110 px each; blocks use a two-column grid."
+    },
+    {
+      "id": "expansion:annotated-code", "kind": "component", "status": "design_review",
+      "purpose": "Show a short code excerpt with numbered notes explaining the lines that matter.",
+      "keywords": ["code", "annotation", "snippet", "guard", "callout", "review", "python"],
+      "use_when": "Teaching one mechanism in code: the guard, the retry loop, the policy check.",
+      "misuse": "Not executed and not syntax-highlighted; keep to seven lines and four notes. Label the file as illustrative.",
+      "parameters": {"file": "<= 24 chars", "lines": "2-7 items (inline: <= 6), code <= 34 chars, note <= 40 chars, at most 4 notes"},
+      "variants": ["footnotes", "inline"], "states": ["active_line"], "example": "annotated-code",
+      "integration": "Complements the classic code layouts: use it when the numbered-note pattern fits better than active-line highlighting alone."
+    },
+    {
+      "id": "expansion:budget", "kind": "component", "status": "design_review",
+      "purpose": "Show how a fixed capacity (tokens, time, cost) is split and how much headroom remains.",
+      "keywords": ["tokens", "budget", "context window", "capacity", "headroom", "cost", "allocation"],
+      "use_when": "Explaining context-window planning or any bounded resource shared by parts.",
+      "misuse": "Values render exactly as given; parts must not exceed capacity. Never animate the numbers.",
+      "parameters": {"capacity": "> 0", "unit": "<= 12 chars", "parts": "2-4 items, label <= 16, value >= 0, sum <= capacity"},
+      "variants": ["bar", "ring"], "states": [], "example": "budget",
+      "integration": "Headroom below ten percent switches to the warning color. Derived used/headroom come from the validator."
+    },
+    {
+      "id": "expansion:states", "kind": "component", "status": "design_review",
+      "purpose": "Show a small state machine with named transitions and the current state.",
+      "keywords": ["state machine", "states", "transitions", "workflow", "lifecycle", "approval", "review"],
+      "use_when": "Explaining request lifecycles, approval workflows, or why a transition is not allowed.",
+      "misuse": "Not a workflow engine; at most five states and six transitions so labels stay readable. No self-transitions.",
+      "parameters": {"states": "3-5 unique labels <= 18", "transitions": "2-6 items, from/to indexes, label <= 14"},
+      "variants": ["linear", "ring"], "states": ["current"], "example": "states",
+      "integration": "Adjacent forward transitions are short arrows with labels above the row; longer and backward transitions are arcs."
+    },
+    {
+      "id": "expansion:delta", "kind": "component", "status": "design_review",
+      "purpose": "Show a before/after technical comparison row by row with a change token.",
+      "keywords": ["before", "after", "comparison", "refactor", "change", "diff", "migration"],
+      "use_when": "Summarizing what a change did across a few dimensions without a bar chart.",
+      "misuse": "Not a benchmark: values are quoted as given. Use visual:bar for measured comparisons with units.",
+      "parameters": {"before_label/after_label": "<= 14 chars", "rows": "2-4 items, label <= 16, before/after <= 20, change better|worse|same|new|removed"},
+      "variants": ["rows"], "states": [], "example": "delta",
+      "integration": "Change tokens use pinned icons in colored dots plus a legend; color never carries the meaning alone."
+    },
+    {
+      "id": "expansion:trace", "kind": "component", "status": "design_review",
+      "purpose": "Show a nested request trace as a waterfall of spans.",
+      "keywords": ["trace", "spans", "latency", "waterfall", "observability", "request", "timing"],
+      "use_when": "Explaining where a request spends time when spans nest (retrieval inside request, embed inside retrieval).",
+      "misuse": "Durations are labels from the source; nothing is measured here. Use visual:timeline for flat intervals.",
+      "parameters": {"unit": "<= 12 chars", "spans": "2-6 items, label <= 18, start < end, depth 0-2, first span depth 0"},
+      "variants": ["waterfall"], "states": ["active_span"], "example": "trace",
+      "integration": "A presentation variant of the timeline chart with nesting; axis ticks are quarter marks of the derived total."
+    },
+    {"id": "composition:gated-tool", "kind": "composition", "status": "design_review", "purpose": "A tool that runs only behind a permission gate.", "keywords": ["tool", "lock", "permission", "terminal"], "use_when": "Symbol for a guarded capability.", "misuse": "Not a product logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "gated-tool", "integration": "Merge into tools/visual_library/recipes.json (16-entry ceiling) so export-svg and the catalog pick it up."},
+    {"id": "composition:retrieved-context", "kind": "composition", "status": "design_review", "purpose": "A document surfaced by retrieval.", "keywords": ["rag", "document", "search", "context"], "use_when": "Symbol for a retrieved chunk.", "misuse": "Not a product logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "retrieved-context", "integration": "Merge into tools/visual_library/recipes.json."},
+    {"id": "composition:rejected-input", "kind": "composition", "status": "design_review", "purpose": "Structured input that failed validation.", "keywords": ["json", "reject", "validation", "input"], "use_when": "Symbol for a rejected payload.", "misuse": "Not a product logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "rejected-input", "integration": "Merge into tools/visual_library/recipes.json."},
+    {"id": "composition:routed-model", "kind": "composition", "status": "design_review", "purpose": "A model selected by a routing rule.", "keywords": ["model", "routing", "branch", "selection"], "use_when": "Symbol for model routing or fallback.", "misuse": "Not a provider logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "routed-model", "integration": "Merge into tools/visual_library/recipes.json."},
+    {"id": "composition:queued-task", "kind": "composition", "status": "design_review", "purpose": "Work waiting in a queue.", "keywords": ["queue", "task", "clock", "wait"], "use_when": "Symbol for queued or delayed work.", "misuse": "Not a product logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "queued-task", "integration": "Merge into tools/visual_library/recipes.json."},
+    {"id": "composition:flagged-output", "kind": "composition", "status": "design_review", "purpose": "Generated output that needs review.", "keywords": ["output", "warning", "review", "generated"], "use_when": "Symbol for a flagged generation.", "misuse": "Not a product logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "flagged-output", "integration": "Merge into tools/visual_library/recipes.json."},
+    {"id": "composition:deployed-service", "kind": "composition", "status": "design_review", "purpose": "A service that passed its deployment gate.", "keywords": ["deploy", "cloud", "service", "release"], "use_when": "Symbol for a live deployment stage.", "misuse": "Not a cloud-provider logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "deployed-service", "integration": "Merge into tools/visual_library/recipes.json."},
+    {"id": "composition:budgeted-run", "kind": "composition", "status": "design_review", "purpose": "A run bounded by a time or token budget.", "keywords": ["budget", "tokens", "cpu", "timer", "limit"], "use_when": "Symbol for bounded compute.", "misuse": "Not a product logo.", "parameters": {"color": "six-digit hex"}, "variants": [], "states": [], "example": "budgeted-run", "integration": "Merge into tools/visual_library/recipes.json."},
+    {
+      "id": "chart-variant:bar-horizontal", "kind": "chart-variant", "status": "design_review",
+      "purpose": "Horizontal bars for category labels longer than the vertical axis can show.",
+      "keywords": ["bar", "horizontal", "long labels", "categories"],
+      "use_when": "Category labels of 12-18 characters that collide on a vertical bar chart.",
+      "misuse": "Same data contract as visual:bar; do not use it to fit more than six categories.",
+      "parameters": {"data": "unchanged visual:bar record", "presentation.chart_style": "proposed value `horizontal`"},
+      "variants": ["horizontal"], "states": [], "example": "bar:latency",
+      "integration": "Proposal only, not rendered by this pack: swap xAxis/yAxis types in the shared options builder; labels move to the left axis with hideOverlap off."
+    },
+    {
+      "id": "chart-variant:line-step", "kind": "chart-variant", "status": "design_review",
+      "purpose": "Step line for values that change at discrete moments (counters, config versions, limits).",
+      "keywords": ["line", "step", "discrete", "counter", "threshold"],
+      "use_when": "The value is constant between categories and jumps at a boundary; a sloped line would imply interpolation.",
+      "misuse": "Not for continuous measurements; keep the zero baseline and nonnegative rule.",
+      "parameters": {"data": "unchanged visual:line record", "presentation.chart_style": "proposed value `step`"},
+      "variants": ["step"], "states": [], "example": "line:streaming",
+      "integration": "Proposal only: set series.step = 'end' in the shared options builder; no data change."
+    },
+    {
+      "id": "chart-variant:heatmap-threshold", "kind": "chart-variant", "status": "design_review",
+      "purpose": "Two-tone heatmap that separates cells above and below a stated pass threshold.",
+      "keywords": ["heatmap", "threshold", "pass", "fail", "evaluation", "matrix"],
+      "use_when": "An evaluation matrix where the question is pass/fail per cell rather than gradient magnitude.",
+      "misuse": "The threshold must be declared in the source label; do not imply a standard cutoff.",
+      "parameters": {"data": "unchanged visual:heatmap record", "presentation.chart_style": "proposed value `threshold`", "threshold": "0-100, declared in source"},
+      "variants": ["threshold"], "states": [], "example": "heatmap:regression",
+      "integration": "Proposal only: visualMap.type = 'piecewise' with two pieces; keep the percentage labels inside cells."
+    },
+    {
+      "id": "chart-variant:pie-donut-total", "kind": "chart-variant", "status": "design_review",
+      "purpose": "Donut with the total and unit in the center so the whole is visible with its parts.",
+      "keywords": ["pie", "donut", "total", "unit", "share"],
+      "use_when": "The total matters as much as the shares (a budget, a duration).",
+      "misuse": "Same four-slice limit and positive-total rule; never animate the center number.",
+      "parameters": {"data": "unchanged visual:pie record", "presentation.chart_style": "proposed value `donut-total`"},
+      "variants": ["donut-total"], "states": [], "example": "pie:composition",
+      "integration": "Proposal only: add a static graphic text at the pie center from data totals; the expansion budget ring shows the same pattern."
+    },
+    {
+      "id": "chart-variant:timeline-nested", "kind": "chart-variant", "status": "design_review",
+      "purpose": "Timeline with parent/child indentation so overlapping intervals read as nesting.",
+      "keywords": ["timeline", "nested", "trace", "spans", "waterfall"],
+      "use_when": "Intervals that contain each other; flat timelines make containment look like a coincidence.",
+      "misuse": "Not a replacement for visual:timeline when intervals are independent.",
+      "parameters": {"data": "visual:timeline record plus per-stage depth 0-2", "presentation.chart_style": "proposed value `nested`"},
+      "variants": ["nested"], "states": [], "example": "timeline:trace",
+      "integration": "Implemented here as expansion:trace; folding it into the timeline chart would require a `depth` field in kit.validate_chart, which this pack does not change."
+    }
+  ]
+}

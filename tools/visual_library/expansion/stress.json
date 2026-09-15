@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "loop-ladder-five", "kind": "agent-loop", "variant": "ladder", "title": "Ladder, five steps, labels at the limit.",
+      "insight": "Dense case for the ladder variant with sixteen-character labels.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "bot", "state": {"active_step": 4},
+      "data": {"steps": [{"label": "Read the request", "icon": "file-text"}, {"label": "Draft a plan now", "icon": "brain-circuit"}, {"label": "Run one command", "icon": "terminal"}, {"label": "Inspect outputs", "icon": "search"}, {"label": "Compare to goal", "icon": "shield-check"}], "exit": {"label": "Stop: budget exhausted", "icon": "x"}}
+    },
+    {
+      "id": "loop-ring-three", "kind": "agent-loop", "variant": "ring", "title": "Ring, three steps, sparse.",
+      "insight": "Sparse case: the minimum number of steps still reads as a loop.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "bot",
+      "data": {"steps": [{"label": "Think", "icon": "brain-circuit"}, {"label": "Act", "icon": "zap"}, {"label": "Look", "icon": "search"}], "exit": {"label": "Done", "icon": "circle-check"}}
+    },
+    {
+      "id": "loop-ring-four", "kind": "agent-loop", "variant": "ring", "title": "Ring, four steps, long labels.",
+      "insight": "Dense ring: four boxes with labels at the sixteen-character limit.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "bot", "state": {"active_step": 3},
+      "data": {"steps": [{"label": "Read the request", "icon": "file-text"}, {"label": "Draft a plan now", "icon": "brain-circuit"}, {"label": "Inspect outputs", "icon": "search"}, {"label": "Compare to goal", "icon": "shield-check"}], "exit": {"label": "Stop: budget exhausted", "icon": "x"}}
+    },
+    {
+      "id": "retrieval-plain-four", "kind": "retrieval", "variant": "plain", "title": "Plain retrieval, four chunks, long labels.",
+      "insight": "Dense case without score bars; labels at the thirty-character limit.",
+      "source": {"kind": "measured", "label": "Measured source placeholder for label testing only", "reference": "Layout test only; nothing was measured", "as_of": "2026-09-15"},
+      "icon": "search",
+      "data": {"query": "What is the refund window for gifts?", "chunks": [{"label": "Gift returns and store credit", "score": 0.91}, {"label": "Refund window, thirty days", "score": 0.88}, {"label": "Exceptions for final sale", "score": 0.52}, {"label": "Warranty claims, appliances", "score": 0.22}], "answer": "Cites [1], [2] and flags [3] as related"}
+    },
+    {
+      "id": "gate-horizontal", "kind": "gate", "variant": "horizontal", "title": "Horizontal gate with long labels.",
+      "insight": "Horizontal variant at the label limits, pass outcome selected.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "shield-check", "state": {"outcome": "pass"},
+      "data": {"input": "Write to customer_records", "check": {"label": "Scope covers this table?", "icon": "key-round"}, "pass": {"label": "Apply change", "hint": "Record before and after state", "icon": "zap"}, "fail": {"label": "Reject, log", "hint": "Explain the missing scope", "icon": "x"}}
+    },
+    {
+      "id": "retry-five", "kind": "retry-queue", "variant": "ladder", "title": "Five attempts, success on the last.",
+      "insight": "Dense retry ladder; the dead-letter box dims because one attempt succeeded.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "layers",
+      "data": {"job": "Reindex knowledge base shard", "attempts": [{"label": "First attempt", "wait": "0 s", "outcome": "fail"}, {"label": "Second attempt", "wait": "1 s", "outcome": "fail"}, {"label": "Third attempt", "wait": "4 s", "outcome": "fail"}, {"label": "Fourth attempt", "wait": "16 s", "outcome": "fail"}, {"label": "Fifth attempt", "wait": "64 s", "outcome": "ok"}], "dead_letter": "Escalate to on-call engineer"}
+    },
+    {
+      "id": "tiers-row", "kind": "tiers", "variant": "row", "title": "Row variant, four tiers.",
+      "insight": "Horizontal tiers at maximum count with wrapped hints.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "database", "state": {"hit": 2},
+      "data": {"request": "Lookup: order status for #4821", "layers": [{"label": "Edge cache", "hint": "Static answers only", "icon": "zap"}, {"label": "Session memory", "hint": "Recent turns for this user", "icon": "clock"}, {"label": "Vector index", "hint": "Nearest chunks by embedding", "icon": "database"}, {"label": "Model call", "hint": "Full generation, full cost", "icon": "brain-circuit"}]}
+    },
+    {
+      "id": "router-list", "kind": "router", "variant": "list", "title": "List router, four routes.",
+      "insight": "Dense list variant with rule text at the limit.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "git-branch", "state": {"selected": 3},
+      "data": {"input": "Translate a contract clause", "rule": "Long input, legal risk: escalate", "routes": [{"label": "Small model", "hint": "Routine, short, low risk", "icon": "cpu"}, {"label": "Large model", "hint": "Long context, reasoning", "icon": "brain-circuit"}, {"label": "Specialist model", "hint": "Domain fine-tune", "icon": "sparkles"}, {"label": "Human review", "hint": "Legal and compliance", "icon": "pause"}]}
+    },
+    {
+      "id": "contract-response-six", "kind": "contract", "variant": "response", "title": "Response contract with six fields.",
+      "insight": "Dense contract card at maximum field count and label lengths.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "file-json", "state": {"highlight": 5},
+      "data": {"name": "refund_result (response)", "fields": [{"name": "refund_id", "type": "string", "required": true, "note": "Stable identifier"}, {"name": "status", "type": "enum", "required": true, "note": "pending or settled"}, {"name": "amount", "type": "number", "required": true, "note": "Same currency"}, {"name": "settled_at", "type": "datetime", "required": false, "note": "Present when settled"}, {"name": "audit_ref", "type": "string", "required": true, "note": "Links to the log"}, {"name": "warnings", "type": "string[]", "required": false, "note": "Non-blocking notes only"}]}
+    },
+    {
+      "id": "stages-column-five", "kind": "stages", "variant": "column", "title": "Column stages, five entries.",
+      "insight": "Vertical variant with the maximum number of stages.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "cloud", "state": {"current": 3},
+      "data": {"stages": [{"label": "Build", "gate": "Unit tests green"}, {"label": "Eval", "gate": "Held-out set passes"}, {"label": "Staging", "gate": "Smoke test signed"}, {"label": "Canary", "gate": "Errors within budget"}, {"label": "Production", "gate": "Rollback rehearsed"}]}
+    },
+    {
+      "id": "stages-rail-five", "kind": "stages", "variant": "rail", "title": "Rail stages, five entries, long gates.",
+      "insight": "Dense rail variant: five circles and wrapped gate text.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "cloud", "state": {"current": 0},
+      "data": {"stages": [{"label": "Build", "gate": "Unit tests green"}, {"label": "Eval", "gate": "Held-out set passes"}, {"label": "Staging", "gate": "Smoke test signed"}, {"label": "Canary", "gate": "Errors within budget"}, {"label": "Prod", "gate": "Rollback rehearsed"}]}
+    },
+    {
+      "id": "stack-blocks-six", "kind": "stack", "variant": "blocks", "title": "Blocks stack, six layers.",
+      "insight": "Grid variant at maximum layer count.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "layers", "state": {"highlight": 4},
+      "data": {"layers": [{"label": "Client apps", "hint": "web, mobile, CLI"}, {"label": "API gateway", "hint": "auth, quotas, tracing"}, {"label": "Orchestration", "hint": "prompt assembly, tools"}, {"label": "Policy engine", "hint": "allow, deny, review"}, {"label": "Model providers", "hint": "hosted and local models"}, {"label": "Data stores", "hint": "vector index, audit log"}]}
+    },
+    {
+      "id": "code-inline-six", "kind": "annotated-code", "variant": "inline", "title": "Inline notes, six lines.",
+      "insight": "Inline variant at its maximum line count with four notes.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Not executed", "as_of": "2026-09-15"},
+      "icon": "file-code", "state": {"active_line": 4},
+      "data": {"file": "retry_policy.py", "lines": [{"code": "for attempt in range(MAX_TRIES):", "note": "Bounded, never while True"}, {"code": "    result = call(job)", "note": ""}, {"code": "    if result.ok:", "note": ""}, {"code": "        return result", "note": "Exit on first success"}, {"code": "    sleep(BASE * 2 ** attempt)", "note": "Exponential backoff"}, {"code": "park(job, reason='exhausted')", "note": "Dead letter, not a crash"}]}
+    },
+    {
+      "id": "code-footnotes-seven", "kind": "annotated-code", "variant": "footnotes", "title": "Footnotes, seven lines at the limit.",
+      "insight": "Maximum lines with code at the thirty-four-character limit.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Not executed", "as_of": "2026-09-15"},
+      "icon": "file-code",
+      "data": {"file": "long_module_name_here.py", "lines": [{"code": "policy = load_contract('agent')", "note": "Declared boundary"}, {"code": "plan = agent.propose(task, policy)", "note": ""}, {"code": "check = policy.review(plan)", "note": "Runs outside the model"}, {"code": "if check.verdict != 'allow':", "note": ""}, {"code": "    return hold(plan, check)", "note": "Fail closed, keep evidence"}, {"code": "with trace(plan.id) as log:", "note": ""}, {"code": "    return guarded_run(plan, log)", "note": "One execution, logged"}]}
+    },
+    {
+      "id": "budget-ring", "kind": "budget", "variant": "ring", "title": "Ring budget with low headroom.",
+      "insight": "Headroom under ten percent uses the warning color.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Round example numbers", "as_of": "2026-09-15"},
+      "icon": "cpu",
+      "data": {"capacity": 128000, "unit": "tokens", "parts": [{"label": "System prompt", "value": 2400}, {"label": "Documents", "value": 96000}, {"label": "History", "value": 18000}, {"label": "Answer", "value": 6000}]}
+    },
+    {
+      "id": "states-ring-five", "kind": "states", "variant": "ring", "title": "Ring states, five states, six transitions.",
+      "insight": "Dense ring variant at maximum transitions.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "workflow", "state": {"current": 3},
+      "data": {"states": ["Received", "Validated", "Reviewed", "Executed", "Archived"], "transitions": [{"from": 0, "to": 1, "label": "schema ok"}, {"from": 1, "to": 2, "label": "risky"}, {"from": 2, "to": 3, "label": "approved"}, {"from": 3, "to": 4, "label": "logged"}, {"from": 2, "to": 0, "label": "rejected"}, {"from": 1, "to": 3, "label": "low risk"}]}
+    },
+    {
+      "id": "states-linear-five", "kind": "states", "variant": "linear", "title": "Linear states, five states, six transitions.",
+      "insight": "Dense linear variant with long forward and backward arcs.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "workflow", "state": {"current": 1},
+      "data": {"states": ["Received", "Validated", "Reviewed", "Executed", "Archived"], "transitions": [{"from": 0, "to": 1, "label": "schema ok"}, {"from": 1, "to": 2, "label": "risky"}, {"from": 2, "to": 3, "label": "approved"}, {"from": 3, "to": 4, "label": "logged"}, {"from": 2, "to": 0, "label": "rejected"}, {"from": 1, "to": 3, "label": "low risk"}]}
+    },
+    {
+      "id": "delta-two", "kind": "delta", "variant": "rows", "title": "Two rows, all change tokens exercised.",
+      "insight": "Sparse delta with removed and worse tokens.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "git-branch",
+      "data": {"before_label": "Last release", "after_label": "This release", "rows": [{"label": "Legacy endpoint", "before": "/v1/complete", "after": "removed", "change": "removed"}, {"label": "Median latency", "before": "1.2 s", "after": "1.9 s", "change": "worse"}]}
+    },
+    {
+      "id": "trace-two", "kind": "trace", "variant": "waterfall", "title": "Trace with two spans, milliseconds.",
+      "insight": "Sparse trace with a short unit and no highlight.",
+      "source": {"kind": "illustrative", "label": "Stress fixture", "reference": "Layout test only", "as_of": "2026-09-15"},
+      "icon": "timer",
+      "data": {"unit": "ms", "spans": [{"label": "Handle request", "start": 0, "end": 420, "depth": 0}, {"label": "Cache lookup", "start": 10, "end": 35, "depth": 1}]}
+    }
+  ]
+}

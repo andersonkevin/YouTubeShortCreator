@@ -1,0 +1,15 @@
+/* Study overrides for the expansion pack. Appended after gallery.css; the shared file is untouched. */
+#chart{width:824px;height:820px;margin-top:40px}
+#detail{min-height:48px;margin:16px 0}
+#insight{min-height:130px;margin-top:24px}
+.brand span{color:#b9c1c6}
+.status{color:#f2b9c9}
+nav button small{font-size:11px;color:#b7c3cb;margin-left:auto}
+.icon.recipe.tone-lime .badge{background:#def0a2}
+.icon.recipe.tone-cyan .badge{background:#ade8ed}
+.icon.recipe.tone-rose .badge{background:#f2b9c9}
+.palette{display:flex;gap:6px;margin:0 0 18px}
+.palette button{border:1px solid #353c42;background:none;border-radius:6px;padding:6px 10px;font-size:12px}
+.palette button[aria-pressed=true]{border-color:#a7e4ea;background:#242d32}
+.slot-guide{position:absolute;left:100px;top:650px;width:824px;height:820px;border:1px dashed rgba(173,232,237,.35);pointer-events:none;display:none}
+#frame.show-guide .slot-guide{display:block}

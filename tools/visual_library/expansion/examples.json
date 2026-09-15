@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "agent-loop", "kind": "agent-loop", "variant": "ring", "title": "An agent is a loop with an exit.",
+      "insight": "Plan, act, observe, repeat. The exit condition is the part that makes it safe.",
+      "source": {"kind": "illustrative", "label": "Conceptual agent loop", "reference": "Teaching diagram, not a trace of a real agent run", "as_of": "2026-09-15"},
+      "icon": "bot", "state": {"active_step": 1},
+      "data": {"steps": [{"label": "Plan", "icon": "brain-circuit"}, {"label": "Call a tool", "icon": "terminal"}, {"label": "Observe result", "icon": "search"}, {"label": "Check goal", "icon": "shield-check"}], "exit": {"label": "Stop when tests pass", "icon": "circle-check"}}
+    },
+    {
+      "id": "retrieval", "kind": "retrieval", "variant": "scored", "title": "Retrieval ranks. It does not verify.",
+      "insight": "Top-ranked chunks are candidates. The answer still has to cite what it used.",
+      "source": {"kind": "illustrative", "label": "Synthetic similarity scores", "reference": "Scores are invented for teaching, not measured retrieval quality", "as_of": "2026-09-15"},
+      "icon": "search", "state": {"active_chunk": 0},
+      "data": {"query": "Can final-sale items be returned?", "chunks": [{"label": "Returns policy, section 4", "score": 0.82}, {"label": "Final-sale exceptions", "score": 0.77}, {"label": "Shipping FAQ", "score": 0.41}], "answer": "Cites [1] and [2]"}
+    },
+    {
+      "id": "gate", "kind": "gate", "variant": "vertical", "title": "A check has two outcomes.",
+      "insight": "Name what happens on failure before you ship the happy path.",
+      "source": {"kind": "illustrative", "label": "Conceptual validation gate", "reference": "No real request or policy was evaluated", "as_of": "2026-09-15"},
+      "icon": "shield-check", "state": {"outcome": "fail"},
+      "data": {"input": "Tool call: send_email", "check": {"label": "Allowed by policy?", "icon": "shield-check"}, "pass": {"label": "Execute", "hint": "Log the call and result", "icon": "zap"}, "fail": {"label": "Hold", "hint": "Ask a human to review", "icon": "pause"}}
+    },
+    {
+      "id": "retry-queue", "kind": "retry-queue", "variant": "ladder", "title": "Retries need a ceiling.",
+      "insight": "Back off between attempts, cap the count, and park what still fails.",
+      "source": {"kind": "illustrative", "label": "Conceptual retry policy", "reference": "Wait values are examples, not measured backoff", "as_of": "2026-09-15"},
+      "icon": "layers", "state": {"active_attempt": 2},
+      "data": {"job": "Embed document batch 42", "attempts": [{"label": "Attempt 1", "wait": "0 s", "outcome": "fail"}, {"label": "Attempt 2", "wait": "2 s", "outcome": "fail"}, {"label": "Attempt 3", "wait": "8 s", "outcome": "fail"}], "dead_letter": "Park for manual review"}
+    },
+    {
+      "id": "tiers", "kind": "tiers", "variant": "stack", "title": "Answer from the cheapest tier that knows.",
+      "insight": "A cache hit skips the model. A miss falls through. Both are decisions.",
+      "source": {"kind": "illustrative", "label": "Conceptual memory tiers", "reference": "No hit rates or latencies are measured here", "as_of": "2026-09-15"},
+      "icon": "database", "state": {"hit": 1},
+      "data": {"request": "Same question, second time", "layers": [{"label": "Response cache", "hint": "Exact match on prompt hash", "icon": "zap"}, {"label": "Session memory", "hint": "Recent turns, this user", "icon": "clock"}, {"label": "Model call", "hint": "Full generation, full cost", "icon": "brain-circuit"}]}
+    },
+    {
+      "id": "router", "kind": "router", "variant": "fan", "title": "Route by the job, not by habit.",
+      "insight": "A classifier picks the smallest model that can do the task. Escalate on doubt.",
+      "source": {"kind": "illustrative", "label": "Conceptual model routing", "reference": "Model names are placeholders, not provider recommendations", "as_of": "2026-09-15"},
+      "icon": "git-branch", "state": {"selected": 1},
+      "data": {"input": "Summarize this ticket", "rule": "Short input, low risk: small model", "routes": [{"label": "Small model", "hint": "Fast, cheap, routine", "icon": "cpu"}, {"label": "Large model", "hint": "Reasoning, long context", "icon": "brain-circuit"}, {"label": "Human queue", "hint": "Refusals and edge cases", "icon": "pause"}]}
+    },
+    {
+      "id": "contract", "kind": "contract", "variant": "request", "title": "Type the boundary.",
+      "insight": "A tool schema is a contract. Required fields and types are checked before the call.",
+      "source": {"kind": "illustrative", "label": "Example tool schema", "reference": "Field names are illustrative, not a real API", "as_of": "2026-09-15"},
+      "icon": "file-json", "state": {"highlight": 2},
+      "data": {"name": "create_refund(request)", "fields": [{"name": "order_id", "type": "string", "required": true, "note": "Existing order"}, {"name": "amount", "type": "number", "required": true, "note": "Not above total"}, {"name": "reason", "type": "enum", "required": true, "note": "From allowed list"}, {"name": "note", "type": "string", "required": false, "note": "Free text, logged"}]}
+    },
+    {
+      "id": "stages", "kind": "stages", "variant": "rail", "title": "Every stage has a gate.",
+      "insight": "Promotion is a decision with evidence, not a timer.",
+      "source": {"kind": "illustrative", "label": "Conceptual deployment stages", "reference": "Gate names are examples, not a release policy", "as_of": "2026-09-15"},
+      "icon": "cloud", "state": {"current": 2},
+      "data": {"stages": [{"label": "Build", "gate": "Tests pass"}, {"label": "Staging", "gate": "Eval suite passes"}, {"label": "Canary", "gate": "Error rate flat"}, {"label": "Production", "gate": "Rollback ready"}]}
+    },
+    {
+      "id": "stack", "kind": "stack", "variant": "bands", "title": "Know which layer you are changing.",
+      "insight": "Prompt edits and schema edits live in different layers with different blast radius.",
+      "source": {"kind": "illustrative", "label": "Conceptual architecture stack", "reference": "Technology names are placeholders", "as_of": "2026-09-15"},
+      "icon": "layers", "state": {"highlight": 2},
+      "data": {"layers": [{"label": "Client", "hint": "chat UI, mobile app"}, {"label": "API gateway", "hint": "auth, rate limits"}, {"label": "Orchestration", "hint": "prompts, tools, routing"}, {"label": "Models", "hint": "hosted or local"}, {"label": "Data", "hint": "vector index, records"}]}
+    },
+    {
+      "id": "annotated-code", "kind": "annotated-code", "variant": "footnotes", "title": "Read the guard, not just the call.",
+      "insight": "Three lines decide whether the tool runs. Annotate those, not the boilerplate.",
+      "source": {"kind": "illustrative", "label": "Illustrative Python snippet", "reference": "Not executed; API names are invented", "as_of": "2026-09-15"},
+      "icon": "file-code", "state": {"active_line": 2},
+      "data": {"file": "guard.py", "lines": [{"code": "plan = agent.propose(task)", "note": ""}, {"code": "check = policy.review(plan)", "note": "Policy runs outside model"}, {"code": "if not check.allowed:", "note": "Fail closed"}, {"code": "    return hold(plan, check)", "note": ""}, {"code": "result = run(plan, log=trace)", "note": "Every call is logged"}]}
+    },
+    {
+      "id": "budget", "kind": "budget", "variant": "bar", "title": "Context is a budget.",
+      "insight": "System prompt, retrieved text and the answer share one window. Reserve headroom.",
+      "source": {"kind": "illustrative", "label": "Illustrative token split", "reference": "Numbers are round examples, not a measured request", "as_of": "2026-09-15"},
+      "icon": "cpu",
+      "data": {"capacity": 8000, "unit": "tokens", "parts": [{"label": "System prompt", "value": 900}, {"label": "Retrieved chunks", "value": 3600}, {"label": "Conversation", "value": 1500}, {"label": "Answer reserve", "value": 1200}]}
+    },
+    {
+      "id": "states", "kind": "states", "variant": "linear", "title": "A request has states, not vibes.",
+      "insight": "Every transition is named. Nothing goes from received to executed without review.",
+      "source": {"kind": "illustrative", "label": "Conceptual state machine", "reference": "Illustrative transitions, not a production workflow engine", "as_of": "2026-09-15"},
+      "icon": "workflow", "state": {"current": 2},
+      "data": {"states": ["Received", "Validated", "Reviewed", "Executed"], "transitions": [{"from": 0, "to": 1, "label": "schema ok"}, {"from": 1, "to": 2, "label": "risky"}, {"from": 2, "to": 3, "label": "approved"}, {"from": 2, "to": 0, "label": "rejected"}]}
+    },
+    {
+      "id": "delta", "kind": "delta", "variant": "rows", "title": "Show the change, not the adjective.",
+      "insight": "Before and after, side by side, with the direction marked. Numbers stay as given.",
+      "source": {"kind": "illustrative", "label": "Illustrative refactor summary", "reference": "Values are examples, not measured benchmarks", "as_of": "2026-09-15"},
+      "icon": "git-branch",
+      "data": {"before_label": "Before", "after_label": "After", "rows": [{"label": "Tool access", "before": "any tool", "after": "allowlist", "change": "better"}, {"label": "Approval", "before": "none", "after": "human gate", "change": "new"}, {"label": "Retries", "before": "unbounded", "after": "3, backoff", "change": "better"}, {"label": "Prompt size", "before": "6.1k tokens", "after": "6.1k tokens", "change": "same"}]}
+    },
+    {
+      "id": "trace", "kind": "trace", "variant": "waterfall", "title": "Where did the request spend its time?",
+      "insight": "Nested spans show what ran inside what. The model call is one span among several.",
+      "source": {"kind": "illustrative", "label": "Synthetic request trace", "reference": "Durations are examples, not a production trace", "as_of": "2026-09-15"},
+      "icon": "timer", "state": {"active_span": 3},
+      "data": {"unit": "s", "spans": [{"label": "Request", "start": 0, "end": 8.6, "depth": 0}, {"label": "Retrieve", "start": 0.2, "end": 1.4, "depth": 1}, {"label": "Embed query", "start": 0.2, "end": 0.6, "depth": 2}, {"label": "Model call", "start": 1.5, "end": 6.3, "depth": 1}, {"label": "Tool: lookup", "start": 6.4, "end": 8.0, "depth": 1}, {"label": "Policy check", "start": 8.0, "end": 8.6, "depth": 1}]}
+    }
+  ]
+}
