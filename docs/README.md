@@ -6,7 +6,7 @@
 
 | Goal | Read in this order |
 | --- | --- |
-| Operate with Codex or Claude Code | [Start here](../START-HERE.md), [assistant workflow](ASSISTANT-WORKFLOW.md) |
+| Operate with an AI assistant | [Start here](../START-HERE.md), [assistant workflow](ASSISTANT-WORKFLOW.md) |
 | Create your first Short | [Installation](INSTALLATION.md), [branding](BRANDING.md), [first Short](FIRST-SHORT.md) |
 | Produce the next episode | [Workflow](WORKFLOW.md), [data contracts](DATA-CONTRACTS.md), [validation](VALIDATION.md) |
 | Pick or extend visual assets | [Visual director](assistant/VISUAL-DIRECTOR.md), [visual library](VISUAL-LIBRARY.md), [asset expansion](ASSET-EXPANSION.md) |

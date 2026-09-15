@@ -5,14 +5,15 @@
 A design_review asset pack for AI-assisted programming and AI Shorts, built on
 the offline visual library. Everything here is an asset study: it reuses the
 library's validators, pinned vendor files, gallery template and ECharts bundle,
-and adds nothing to the v1 episode contract. No renderer, capture path, media
-backend, template CSS, catalog, vendor manifest or shared document was changed.
+and adds nothing to the v1 episode contract. No production renderer, capture path,
+media backend, template CSS or vendor manifest was changed.
 
-Branch `codex/visual-assets-expansion`, base commit `6ffd3cb` (the committed
+Base commit `6ffd3cb` (the committed
 HEAD; the main checkout's uncommitted adapter work is a read-only reference).
-Additions live only under `tools/visual_library/expansion/`,
-`tests/test_visual_expansion.py` and this document. Previews and review media
-are written to the ignored `workspaces/` directory.
+The implementation lives under `tools/visual_library/expansion/`, with dedicated
+tests and this document. The documentation refresh also updates entry pages,
+image provenance and documentation tests. Previews and review media are written
+to the ignored `workspaces/` directory.
 
 | Agent loop | Retrieval | Validation gate | Request trace |
 | :---: | :---: | :---: | :---: |
@@ -71,7 +72,7 @@ a "metric pair" (two visual:metric tiles).
 No new icons were vendored. Symbols that would improve two components
 (`repeat` for the loop, `route` for the router, `inbox` for the dead-letter
 panel) exist in Lucide 0.468.0 but adding them requires a vendor manifest
-change, which is Codex's call.
+change, which requires the maintainer's approval.
 
 ## Design Rules Applied
 
@@ -144,6 +145,30 @@ Google Chrome, from this worktree. All numbers below were observed, not projecte
 Exit codes were not the evidence. Inspect `contact-sheet.png` and the per-asset
 PNGs in the run's `qa/` directory.
 
+## Integration Review Corrections
+
+The 2026-09-15 integration review reproduced two defects not covered by the initial
+Python tests. Budget series colors were captured before palette switching, and
+the browser font-size check incorrectly divided an unscaled SVG font size by the
+page scale. Budget colors now resolve from the active tokens on each draw. The
+font check reads the actual SVG font size; annotation markers were increased from
+18 to 20 px, without changing production captions.
+
+The corrected QA checks both palettes on all three viewports, rejects an injected
+18 px label at each size, restores the label, and verifies budget series colors.
+New private runs `examples-01` and `stress-01` passed: 14/19 components,
+84/114 viewport-palette samples, 28/38 raster/SVG exports, six negative font-size
+probes per run and no page errors or network attempts. Contact sheets were
+inspected by the implementation reviewer; this is not operator approval or MP4
+qualification. The four published images remain the unchanged earlier c-10
+exports with their original provenance, not replacements from these new runs.
+
+The revised source passed 106 Python tests. Private assistant settings are now
+excluded from both Git and the source archive; a regression test verifies the
+exclusion while unknown public directories still fail. Public-facing prose is
+provider-neutral; compatibility filenames are retained. No dependencies or
+production-scene availability changed.
+
 ## Licenses and Provenance
 
 The pack adds no third-party files. It reads the pinned Lucide 0.468.0 icons,
@@ -171,7 +196,7 @@ or customer content are included; the study palettes are neutral samples.
   need lower ceilings; the QA checks will say so.
 - No claims are made about retention, reach or SEO effect.
 
-## Integration Checklist for Codex
+## Integration Checklist
 
 1. Register the fourteen kinds in the production adapter behind the same
    `visuals` record envelope (`id kind title insight source icon data`) plus the

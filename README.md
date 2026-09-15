@@ -6,7 +6,7 @@ Set up your channel once. For every episode, bring a script, a final voice recor
 and thumbnail artwork. Get back a branded 1080x1920 video with word-timed captions,
 a cover and a publishing handoff, without redesigning anything.
 
-**Version 0.1.0** · **Assistant-operated** · **Local only** · **macOS production backend** · **MIT**
+**Version 0.1.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
 
 | Explain the tools | Show the contract | Make approval visible |
 | :---: | :---: | :---: |
@@ -28,10 +28,12 @@ flowchart LR
     G --> H[Review and manual publish]
 ```
 
-Open the folder in Codex or Claude Code and paste the prompt from
+Open the folder in your file-capable AI assistant and paste the prompt from
 [START-HERE.md](START-HERE.md). The assistant drives the existing local commands;
-you are the approval gate at every stage. No model API key, server or upload is
-involved.
+you are the approval gate at every stage. The production CLI needs no model API
+key or server and does not upload media. Your chosen cloud assistant may transmit
+prompts and loaded files under its provider settings; local files do not imply
+local model inference. See [privacy boundaries](SECURITY.md).
 
 | Stage | You provide | You get back |
 | --- | --- | --- |
@@ -41,8 +43,8 @@ involved.
 | Export | A new run ID | 1080x1920 MP4 at 30 fps with narration and burned-in captions, SRT, JPEG cover |
 | Handoff | Your review | YouTube title, description, hashtags, tags, pinned comment and QA evidence |
 
-The layout never changes. The brand changes once, during onboarding. The story,
-code, timing and artwork change per episode.
+The approved branding and safe zones stay fixed. Choose different supported
+layouts to fit each story; code, timing and artwork change per episode.
 
 ## Quick Start
 
@@ -67,8 +69,9 @@ python3 ysc.py configure --approve-write
 python3 ysc.py doctor
 ```
 
-Installation is the only network step. Runtime commands never install packages,
-download speech models or call a voice provider.
+Dependency installation is an explicit network-enabled step. Runtime commands
+never install packages, download speech models or call a voice provider. This is
+not a network-isolation guarantee for your assistant, browser or operating system.
 
 ## Your First Short
 

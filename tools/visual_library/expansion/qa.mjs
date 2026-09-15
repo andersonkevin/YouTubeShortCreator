@@ -36,7 +36,7 @@ const [SLOT_W, SLOT_H] = build.slot;
 const {chromium} = await import(pathToFileURL(path.resolve(playwrightPath)).href);
 const browser = await chromium.launch({executablePath: path.resolve(chromePath), headless: true});
 const errors = [], network = [];
-const report = {status: 'PASS', design_status: build.design_status, viewports: [], palettes: [], samples: [], errors, network, production_integration: false, browser: browser.version(), exports: []};
+const report = {status: 'PASS', design_status: build.design_status, viewports: [], palettes: [], samples: [], font_size_probes: [], palette_checks: [], errors, network, production_integration: false, browser: browser.version(), exports: []};
 fs.mkdirSync(qa);
 try {
   const page = await browser.newPage({viewport: {width: 1440, height: 1200}, deviceScaleFactor: 1});
@@ -95,19 +95,41 @@ try {
     // A rendered ellipsis means a label did not fit: that is a validation error, never hidden content.
     for (const t of texts) if (t.text.includes('\u2026')) failures.push('Truncated label: ' + t.text);
     // Minimum readable size: 20 CSS px at 1080 width.
-    for (const t of texts) { const size = parseFloat(getComputedStyle(t.el).fontSize) / scale; if (size < 20) failures.push(`Text too small (${size.toFixed(1)}px): ${t.text}`); }
+    // Computed SVG font size is in unscaled slot units; CSS transforms do not change it.
+    for (const t of texts) { const size = parseFloat(getComputedStyle(t.el).fontSize); if (!Number.isFinite(size) || size < 20) failures.push(`Text too small (${size}px): ${t.text}`); }
     return failures;
   }, [SLOT_W, SLOT_H]);
 
   for (const viewport of [{width: 1440, height: 1200}, {width: 390, height: 844}, {width: 375, height: 667}]) {
     await page.setViewportSize(viewport);
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-    for (const palette of (viewport.width === 1440 ? palettes : [palettes[0]])) {
+    for (const palette of palettes) {
       await page.evaluate(name => window.VisualLibrary.setPalette(name), palette);
       for (const id of ids) {
         await page.evaluate(id => { window.VisualLibrary.select(id); window.VisualLibrary.renderAt(4); }, id);
         const problems = await inspect();
         assert.deepEqual(problems, [], `${id} ${palette} ${JSON.stringify(viewport)}`);
+        if (id === ids[0]) {
+          const original = await page.locator('#chart svg text').first().getAttribute('style');
+          await page.locator('#chart svg text').first().evaluate(el => el.style.fontSize = '18px');
+          assert.ok((await inspect()).some(p => p.startsWith('Text too small')), 'Undersized text escaped QA');
+          await page.locator('#chart svg text').first().evaluate((el, style) => {
+            if (style === null) el.removeAttribute('style'); else el.setAttribute('style', style);
+          }, original);
+          assert.deepEqual(await inspect(), []);
+          report.font_size_probes.push({palette, ...viewport, rejected_font_px: 18});
+        }
+        const colors = await page.evaluate(([id, palette]) => {
+          const c = window.visualLibraryData.components.find(c => c.id === id);
+          if (c.kind !== 'budget') return null;
+          const t = window.visualLibraryData.tokens.palettes[palette];
+          const series = [t.accent, t.accent2, t.extra, t.warn];
+          return {svg: window.VisualLibrary.svg(), expected: c.data.parts.flatMap((p, i) => p.value > 0 ? [series[i]] : [])};
+        }, [id, palette]);
+        if (colors) {
+          for (const color of colors.expected) assert.ok(colors.svg.includes(`fill="${color}"`), 'Budget palette drift: ' + color);
+          report.palette_checks.push({id, palette, ...viewport, colors: colors.expected});
+        }
         assert.equal(await page.locator('#chart svg').count(), 1, 'Missing SVG');
         assert.ok(await page.locator('#chart svg path,#chart svg rect,#chart svg text,#chart svg image').count() > 3, 'Empty visual');
         const before = sha(await page.locator('#chart').screenshot());

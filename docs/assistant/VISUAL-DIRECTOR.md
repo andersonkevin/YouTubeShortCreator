@@ -2,7 +2,7 @@
 
 [Assistant workflow](../ASSISTANT-WORKFLOW.md) | [Library commands](../VISUAL-LIBRARY.md)
 
-This is a supervised procedure for Codex, Claude Code or another local-file-capable
+This is a supervised procedure for a local-file-capable
 assistant. It is not an installed model, autonomous worker or background agent.
 
 ## Selection Procedure

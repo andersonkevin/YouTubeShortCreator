@@ -48,7 +48,6 @@
       txt(left + w / 2, y, value, {size: 20, weight: 'bold', color: T.background, opacity: o.opacity ?? 1})];
   };
   const fmt = v => Number.isInteger(v) ? String(v) : String(Number(v.toFixed(2)));
-  const series = [T.accent, T.accent2, T.extra, T.warn];
   const provenance = c => {
     const kind = c.source.kind === 'illustrative' ? 'ILLUSTRATIVE' : 'SOURCE REVIEW REQUIRED';
     return [line(0, DRAW + 12, W, DRAW + 12, {stroke: T.line, lineWidth: 1}),
@@ -372,7 +371,7 @@
     });
     let ny = panelH + 34;
     if (!inline) notes.forEach(([, note], k) => {
-      g.push({type: 'circle', silent: true, shape: {cx: 16, cy: ny, r: 14}, style: {fill: T.accent}}, txt(16, ny, String(k + 1), {size: 18, weight: 'bold', color: T.background}));
+      g.push({type: 'circle', silent: true, shape: {cx: 16, cy: ny, r: 14}, style: {fill: T.accent}}, txt(16, ny, String(k + 1), {size: 20, weight: 'bold', color: T.background}));
       g.push(txt(44, ny, note, {size: 24, align: 'left', width: W - 44}));
       ny += 42;
     });
@@ -382,6 +381,7 @@
 
   draw['budget'] = c => {
     const g = [], d = c.data, used = c.derived.used, headroom = c.derived.headroom;
+    const series = [T.accent, T.accent2, T.extra, T.warn];
     if (c.variant === 'bar') {
       g.push(txt(0, 30, 'CAPACITY', {size: 20, weight: 'bold', color: T.muted, align: 'left'}), txt(0, 76, `${fmt(d.capacity)} ${d.unit}`, {size: 44, weight: 'bold', align: 'left', mono: true}));
       g.push(txt(W, 30, 'HEADROOM', {size: 20, weight: 'bold', color: T.muted, align: 'right'}), txt(W, 76, `${fmt(headroom)} ${d.unit}`, {size: 44, weight: 'bold', align: 'right', mono: true, color: headroom / d.capacity < 0.1 ? T.warn : T.accent}));
