@@ -1,0 +1,10 @@
+{
+  "gated-tool":{"label":"Gated tool","base":"terminal","badge":"lock","tone":"lime"},
+  "retrieved-context":{"label":"Retrieved context","base":"file-text","badge":"search","tone":"cyan"},
+  "rejected-input":{"label":"Rejected input","base":"file-json","badge":"x","tone":"rose"},
+  "routed-model":{"label":"Routed model","base":"brain-circuit","badge":"git-branch","tone":"cyan"},
+  "queued-task":{"label":"Queued task","base":"layers","badge":"clock","tone":"lime"},
+  "flagged-output":{"label":"Flagged output","base":"sparkles","badge":"triangle-alert","tone":"rose"},
+  "deployed-service":{"label":"Deployed service","base":"cloud","badge":"circle-check","tone":"lime"},
+  "budgeted-run":{"label":"Budgeted run","base":"cpu","badge":"timer","tone":"cyan"}
+}

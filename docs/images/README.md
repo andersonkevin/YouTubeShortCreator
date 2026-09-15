@@ -22,6 +22,13 @@ bounded flow widget, added on 2026-09-15. It uses the fictional process from
 customer branding or font binaries. Its vendor notices remain in the source
 library. This image demonstrates asset export, not a new production video scene.
 
+The four `expansion-*.png` images are 824x820 browser rasterizations of the
+[asset expansion](../ASSET-EXPANSION.md) components (agent loop, retrieval, gate
+and trace), exported by the expansion QA on 2026-09-15 with the neutral study
+palette and invented, labeled illustrative data. Like `visual-flow.png` they
+demonstrate asset export, not production video scenes, and carry no customer
+branding or font binaries.
+
 ## Manifest
 
 [manifest.json](manifest.json) lists the relative path, SHA-256, dimensions, scene

@@ -110,7 +110,7 @@ extracted archive with installed dependencies is not B07 clean-install evidence.
 
 - Human visual review remains deferred, not waived or fabricated.
 - B07 fresh package installation needs explicit download approval.
-- Claude's parallel asset expansion is separate and not integrated or qualified
+- The parallel asset expansion is separate and not integrated or qualified
   by this batch. Marketing remains M01-M03 after the pipeline release gates.
 
 ## Final Media Results
