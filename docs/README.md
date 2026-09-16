@@ -19,7 +19,7 @@
 - [Visual library](VISUAL-LIBRARY.md): offline catalog, charts, widgets and SVG/PNG asset preparation.
 - [Visual-library qualification](VISUAL-LIBRARY-QA.md): observed tests, export checks and integration limits.
 - [Asset expansion](ASSET-EXPANSION.md): design-review components for AI-programming topics, their bounds, QA evidence and the integration checklist.
-- [Asset library wave 02](ASSET-LIBRARY-WAVE02.md): 45 further design-review components across widgets, data, systems, AI and software, with a searchable catalog, own QA checks and the integration checklist.
+- [Asset library wave 02](ASSET-LIBRARY-WAVE02.md): 55 further design-review components across general-purpose forms, widgets, data, systems, AI and software, with a searchable catalog, own QA checks and the integration checklist.
 - [Asset library wave 03](ASSET-LIBRARY-WAVE03.md): 24 generated palettes with contrast rules and 10 deterministic motion recipes for the design-review components, with their QA and integration checklist.
 - [Visual director](assistant/VISUAL-DIRECTOR.md): supervised selection and source-review procedure.
 - [Pipeline roadmap](PIPELINE-ROADMAP.md): integration and qualification gates; marketing remains separate.

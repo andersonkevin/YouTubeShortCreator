@@ -1,0 +1,39 @@
+{
+  "id": "wave02:cards",
+  "kind": "cards",
+  "family": "general",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Two or three cards with an icon, a title and a line of text.",
+  "use_when": "Summarize two or three ideas side by side.",
+  "not_when": "More than three ideas; text longer than a line or two.",
+  "parameters": {
+    "items": "2-3 of {title <= 16, text <= 60, icon from the pinned icon set}"
+  },
+  "defaults": {},
+  "limits": "Card width follows the count; text wraps to at most three lines.",
+  "variants": [
+    "row"
+  ],
+  "states": [
+    "highlight"
+  ],
+  "example": "cards",
+  "stress": "cards-two"
+}

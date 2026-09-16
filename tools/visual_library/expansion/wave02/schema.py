@@ -13,7 +13,7 @@ SLOT = (824, 820)
 PROVENANCE_RESERVE = 74
 STATUS = 'design_review'
 
-FAMILIES = ('widget', 'data', 'systems', 'software', 'ai')
+FAMILIES = ('widget', 'data', 'systems', 'software', 'ai', 'general')
 
 # kind: (family, allowed variants, allowed state keys)
 KINDS = {
@@ -62,7 +62,18 @@ KINDS = {
     'slope': ('data', ('lines',), ('highlight',)),
     'state-diff': ('software', ('columns',), ()),
     'semver-rule': ('software', ('ladder',), ('highlight',)),
+    'quote': ('general', ('block',), ()),
+    'checklist': ('general', ('rows',), ('highlight',)),
+    'stat': ('general', ('hero',), ()),
+    'before-after': ('general', ('panels',), ()),
+    'steps': ('general', ('numbered',), ('highlight',)),
+    'ranking': ('general', ('bars',), ('highlight',)),
+    'timeline': ('general', ('vertical',), ('highlight',)),
+    'pros-cons': ('general', ('columns',), ()),
+    'definition': ('general', ('card',), ()),
+    'cards': ('general', ('row',), ('highlight',)),
 }
+TRENDS = ('up', 'down', 'flat', 'none')
 MEMORY_KINDS = ('stored', 'recalled', 'updated', 'forgotten')
 PARAM_TYPES = ('string', 'number', 'boolean', 'array', 'object', 'enum')
 MESSAGE_KINDS = ('request', 'response', 'tool', 'note')
@@ -749,13 +760,95 @@ def validate_component(record, icons):
         kit.require(len(set(kinds)) == len(kinds), 'One change per kind')
         derived = {'next': {k: nxt[k] for k in kinds}}
         _index_state(state, 'highlight', len(data['changes']))
+    elif kind == 'quote':
+        kit.fields(data, 'text attribution role')
+        kit.label(data['text'], 140)
+        kit.label(data['attribution'], 30)
+        _text(data['role'], 30)
+    elif kind == 'checklist':
+        kit.fields(data, 'items')
+        kit.items(data['items'], 2, 7)
+        for item in data['items']:
+            kit.fields(item, 'label done note')
+            kit.label(item['label'], 34)
+            kit.require(type(item['done']) is bool, 'done must be boolean')
+            _text(item['note'], 22)
+        derived = {'done': sum(i['done'] for i in data['items'])}
+        _index_state(state, 'highlight', len(data['items']))
+    elif kind == 'stat':
+        kit.fields(data, 'value unit label context trend')
+        kit.label(data['value'], 12)
+        _text(data['unit'], 10)
+        kit.label(data['label'], 40)
+        _text(data['context'], 60)
+        kit.require(data['trend'] in TRENDS, 'trend must be up, down, flat or none')
+    elif kind == 'before-after':
+        kit.fields(data, 'before after')
+        for side in (data['before'], data['after']):
+            kit.fields(side, 'title items')
+            kit.label(side['title'], 14)
+            kit.items(side['items'], 1, 4)
+            for item in side['items']:
+                kit.label(item, 26)
+    elif kind == 'steps':
+        kit.fields(data, 'items')
+        kit.items(data['items'], 2, 6)
+        for item in data['items']:
+            kit.fields(item, 'label note')
+            kit.label(item['label'], 26)
+            _text(item['note'], 40)
+        _index_state(state, 'highlight', len(data['items']))
+    elif kind == 'ranking':
+        kit.fields(data, 'unit items')
+        _text(data['unit'], 8)
+        kit.items(data['items'], 2, 6)
+        values = []
+        for item in data['items']:
+            kit.fields(item, 'label value')
+            kit.label(item['label'], 18)
+            kit.number(item['value'], 0)
+            values.append(item['value'])
+        kit.require(all(a >= b for a, b in zip(values, values[1:])), 'Ranking items must be listed from highest to lowest')
+        kit.require(values[0] > 0, 'The top value must be positive')
+        derived = {'high': values[0]}
+        _index_state(state, 'highlight', len(data['items']))
+    elif kind == 'timeline':
+        kit.fields(data, 'items')
+        kit.items(data['items'], 2, 6)
+        for item in data['items']:
+            kit.fields(item, 'when label note')
+            kit.label(item['when'], 12)
+            kit.label(item['label'], 24)
+            _text(item['note'], 40)
+        _index_state(state, 'highlight', len(data['items']))
+    elif kind == 'pros-cons':
+        kit.fields(data, 'pros cons')
+        for side in (data['pros'], data['cons']):
+            kit.items(side, 1, 4)
+            for item in side:
+                kit.label(item, 30)
+    elif kind == 'definition':
+        kit.fields(data, 'term kind meaning example')
+        kit.label(data['term'], 24)
+        _text(data['kind'], 16)
+        kit.label(data['meaning'], 120)
+        _text(data['example'], 80)
+    elif kind == 'cards':
+        kit.fields(data, 'items')
+        kit.items(data['items'], 2, 3)
+        for item in data['items']:
+            kit.fields(item, 'title text icon')
+            kit.label(item['title'], 16)
+            kit.label(item['text'], 60)
+            _icon(item['icon'], icons)
+        _index_state(state, 'highlight', len(data['items']))
     return {**base, 'family': family(kind), 'data': data, 'variant': variant, 'state': state, 'derived': derived, 'status': STATUS}
 
 
 def validate_document(document, icons):
     kit.fields(document, 'version components')
     kit.require(type(document['version']) is int and document['version'] == 1, 'Unsupported wave version')
-    kit.items(document['components'], high=60)
+    kit.items(document['components'], high=80)
     result = [validate_component(c, icons) for c in document['components']]
     kit.require(len({c['id'] for c in result}) == len(result), 'Duplicate component IDs')
     return result

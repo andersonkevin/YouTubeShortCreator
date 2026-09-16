@@ -2600,6 +2600,338 @@
           }
         ]
       }
+    },
+    {
+      "id": "quote-long",
+      "kind": "quote",
+      "title": "Longest quote with role.",
+      "insight": "Maximum text with attribution and role.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "sparkles",
+      "data": {
+        "text": "Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And worse: complexity sells.",
+        "attribution": "Edsger W. Dijkstra",
+        "role": "On computing science"
+      }
+    },
+    {
+      "id": "checklist-seven",
+      "kind": "checklist",
+      "title": "Seven items, none done.",
+      "insight": "Maximum items with long labels and notes, nothing done.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "check",
+      "state": {
+        "highlight": 6
+      },
+      "data": {
+        "items": [
+          {
+            "label": "Confirm the channel name and tone",
+            "done": false,
+            "note": "two candidates left"
+          },
+          {
+            "label": "Approve the color palette",
+            "done": false,
+            "note": "contrast checked"
+          },
+          {
+            "label": "License the fonts",
+            "done": false,
+            "note": ""
+          },
+          {
+            "label": "Generate the wordmark",
+            "done": false,
+            "note": "monogram or full"
+          },
+          {
+            "label": "Record the first narration",
+            "done": false,
+            "note": ""
+          },
+          {
+            "label": "Draw the first thumbnail",
+            "done": false,
+            "note": "below y=640"
+          },
+          {
+            "label": "Render and listen",
+            "done": false,
+            "note": "with sound"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stat-long",
+      "kind": "stat",
+      "title": "Long value with a down trend.",
+      "insight": "Twelve-character value, long label and context.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "chart-no-axes-combined",
+      "data": {
+        "value": "1,284,506",
+        "unit": "minutes",
+        "label": "Channel watch time this quarter",
+        "context": "Down 4% from last quarter after two weeks without uploads.",
+        "trend": "down"
+      }
+    },
+    {
+      "id": "before-after-one",
+      "kind": "before-after",
+      "title": "One item each side, long titles.",
+      "insight": "Minimum items with the longest titles and labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "arrow-right",
+      "data": {
+        "before": {
+          "title": "Last quarter",
+          "items": [
+            "Three uploads per month"
+          ]
+        },
+        "after": {
+          "title": "This quarter",
+          "items": [
+            "Twenty uploads per month"
+          ]
+        }
+      }
+    },
+    {
+      "id": "steps-six",
+      "kind": "steps",
+      "title": "Six steps with long notes.",
+      "insight": "Maximum steps at the label and note limits.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "workflow",
+      "state": {
+        "highlight": 5
+      },
+      "data": {
+        "items": [
+          {
+            "label": "Define the audience first",
+            "note": "who watches and what they already know"
+          },
+          {
+            "label": "Write the takeaway",
+            "note": "one sentence, said out loud"
+          },
+          {
+            "label": "Choose the evidence",
+            "note": "a number, a diagram or a comparison"
+          },
+          {
+            "label": "Record the narration",
+            "note": "final file, no edits after transcription"
+          },
+          {
+            "label": "Time the captions",
+            "note": "from the actual audio, never estimated"
+          },
+          {
+            "label": "Render, watch, publish",
+            "note": "with sound, on a phone, then upload"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ranking-ties",
+      "kind": "ranking",
+      "title": "Six items with ties and a zero.",
+      "insight": "Maximum items, equal values and a zero at the bottom.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "chart-column",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "unit": "",
+        "items": [
+          {
+            "label": "Onboarding guide",
+            "value": 1200
+          },
+          {
+            "label": "Palette explainer",
+            "value": 1200
+          },
+          {
+            "label": "Captions tutorial",
+            "value": 640
+          },
+          {
+            "label": "Voice audition",
+            "value": 640
+          },
+          {
+            "label": "Layout tour",
+            "value": 15
+          },
+          {
+            "label": "Release notes",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "timeline-six",
+      "kind": "timeline",
+      "title": "Six events with long labels.",
+      "insight": "Maximum items at the label and note limits.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "clock",
+      "state": {
+        "highlight": 5
+      },
+      "data": {
+        "items": [
+          {
+            "when": "2021-01-15",
+            "label": "Channel created, no plan",
+            "note": "three uploads, then silence for a year"
+          },
+          {
+            "when": "2022-06-01",
+            "label": "First scripted episode",
+            "note": "written the day before recording"
+          },
+          {
+            "when": "2023-03-20",
+            "label": "Weekly schedule begins",
+            "note": ""
+          },
+          {
+            "when": "2024-09-09",
+            "label": "Captions on every upload",
+            "note": "watch time rises within a month"
+          },
+          {
+            "when": "2025-11-30",
+            "label": "Template locked",
+            "note": "same look, faster production"
+          },
+          {
+            "when": "2026-09-16",
+            "label": "Daily assistant Shorts",
+            "note": "review stays manual, always"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pros-cons-four",
+      "kind": "pros-cons",
+      "title": "Four pros, one con, long lines.",
+      "insight": "Uneven columns at the label limit.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "filter",
+      "data": {
+        "pros": [
+          "Publishes on a fixed schedule",
+          "Consistent look across a batch",
+          "Every export reviewed first",
+          "Runs without an account"
+        ],
+        "cons": [
+          "Needs a Mac for rendering"
+        ]
+      }
+    },
+    {
+      "id": "definition-long",
+      "kind": "definition",
+      "title": "Longest meaning and example.",
+      "insight": "Maximum meaning and example lengths with a long term.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "file-text",
+      "data": {
+        "term": "Audience retention",
+        "kind": "metric",
+        "meaning": "The share of a video viewers watch on average, as a percentage of its length, plotted second by second.",
+        "example": "A Short with 62% retention loses most viewers after two sentences."
+      }
+    },
+    {
+      "id": "cards-two",
+      "kind": "cards",
+      "title": "Two cards with long text.",
+      "insight": "Minimum cards with wrapped titles and text.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-16"
+      },
+      "icon": "layers",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "items": [
+          {
+            "title": "Before upload",
+            "text": "Watch with sound on a phone; check words and timing.",
+            "icon": "shield-check"
+          },
+          {
+            "title": "After publishing",
+            "text": "Record the URL and duration; keep metadata, drop renders.",
+            "icon": "globe"
+          }
+        ]
+      }
     }
   ]
 }

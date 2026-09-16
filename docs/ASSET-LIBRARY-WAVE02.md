@@ -22,8 +22,10 @@ are written to the ignored `workspaces/` directory and are not published.
 ## Gap inventory
 
 Wave 01 covers processes, gates, retrieval, retries, tiers, routing, contracts,
-stages, stacks, annotated code, budgets, state machines, deltas and traces. It
-does not show raw evidence widgets (a terminal, a log, a payload), distribution
+stages, stacks, annotated code, budgets, state machines, deltas and traces. The
+`general` family adds subject-free forms (quotes, checklists, a headline figure,
+before/after, steps, rankings, timelines, pros and cons, definitions, cards) so a
+channel about any topic can use the same system. Wave 01 does not show raw evidence widgets (a terminal, a log, a payload), distribution
 or uncertainty, systems mechanics beyond retries and routing, or the software
 topics a programming channel returns to (events, concurrency, dependencies,
 diffs, tests, versions, trust). The inventory below was ranked by how often an
@@ -78,34 +80,46 @@ dropped (a "checklist" table, a two-tile metric, a second flow layout).
 | Data | Rank or value change between two points | slope | implemented |
 | Software | Before/after record with changed fields | state-diff | implemented |
 | Software | Which version part changes and why | semver-rule | implemented |
+| General | One sentence with attribution | quote | implemented |
+| General | Items done or not, with notes | checklist | implemented |
+| General | One headline figure with context and trend | stat | implemented |
+| General | The same list before and after a change | before-after | implemented |
+| General | Numbered steps with one line of detail | steps | implemented |
+| General | Top list with proportional bars | ranking | implemented |
+| General | Dated events on a vertical line | timeline | implemented |
+| General | Points for and against | pros-cons | implemented |
+| General | A term, its meaning and an example | definition | implemented |
+| General | Two or three idea cards with icons | cards | implemented |
 
 ## Counts
 
 | Category | Count |
 | --- | --- |
-| Proposed (catalog entry, no renderer) | 0 (the ten proposed in the first pass were implemented in a fourth batch) |
-| Implemented (validator, renderer, card, example, stress fixture) | 45 |
-| Validated by the automated QA script (examples run) | 45 of 45 |
-| Stress fixtures validated by the automated QA script | 51 of 51 |
+| Proposed (catalog entry, no renderer) | 0 |
+| Implemented (validator, renderer, card, example, stress fixture) | 55 |
+| Validated by the automated QA script (examples run) | 55 of 55 |
+| Stress fixtures validated by the automated QA script | 61 of 61 |
 | Approved by a human reviewer | 0 (`human_review: pending` on every card) |
 
-Implemented by family: widgets 6, data 11, systems 8, AI 11, software 9. Batches
-were built and validated in order: widgets and data (10), systems and data (10),
-AI and software (15), and the ten catalog candidates (10).
+Implemented by family: widgets 6, data 11, systems 8, AI 11, software 9, general
+10. Batches were built and validated in order: widgets and data (10), systems and
+data (10), AI and software (15), the ten catalog candidates (10), and ten
+general-purpose components for any subject (10): quote, checklist, stat,
+before-after, steps, ranking, timeline, pros-cons, definition and cards.
 
 ## Files
 
 | Path | Role |
 | --- | --- |
-| `tools/visual_library/expansion/wave02/schema.py` | Validators for the 45 kinds, variants, states and derived values |
+| `tools/visual_library/expansion/wave02/schema.py` | Validators for the 55 kinds, variants, states and derived values |
 | `tools/visual_library/expansion/wave02/wave02.js` | Parametrized ECharts renderer (`draw[kind]`), study gallery plumbing, deterministic `renderAt` |
 | `tools/visual_library/expansion/wave02/wave02.css` | Study overrides for the gallery template |
 | `tools/visual_library/expansion/wave02/build.py` | CLI: `validate`, `build`, `index`, `card`, `search` |
 | `tools/visual_library/expansion/wave02/qa.mjs` | Own QA script (see below); `--survey` reports every failure in one pass |
-| `tools/visual_library/expansion/wave02/examples.json` | One minimal example per implemented kind (45) |
-| `tools/visual_library/expansion/wave02/stress.json` | 51 stress fixtures: maximum counts, long labels, zero and extreme values, every variant and state |
-| `tools/visual_library/expansion/wave02/catalog/index.json` | Compact index: 45 entries, all implemented, with id, kind, family, status, purpose, tags, variants, states |
-| `tools/visual_library/expansion/wave02/catalog/cards/<kind>.json` | Detailed card per implemented kind (45): purpose, use_when, not_when, parameters, defaults, limits, variants, states, example, stress, provenance, licenses, renderer, qa, production_scene_available, human_review |
+| `tools/visual_library/expansion/wave02/examples.json` | One minimal example per implemented kind (55) |
+| `tools/visual_library/expansion/wave02/stress.json` | 61 stress fixtures: maximum counts, long labels, zero and extreme values, every variant and state |
+| `tools/visual_library/expansion/wave02/catalog/index.json` | Compact index: 55 entries, all implemented, with id, kind, family, status, purpose, tags, variants, states |
+| `tools/visual_library/expansion/wave02/catalog/cards/<kind>.json` | Detailed card per implemented kind (55): purpose, use_when, not_when, parameters, defaults, limits, variants, states, example, stress, provenance, licenses, renderer, qa, production_scene_available, human_review |
 | `tests/test_visual_wave02.py` | 13 unit tests (fixtures, rejections, catalog consistency, private offline build, writer preflight, release audit, QA script boundaries) |
 
 ## Using the catalog
@@ -167,11 +181,11 @@ wave 02 script was written independently and carries its own checks:
 
 | Run | Input | Components | Palettes | Viewports | Exports | Errors | Network | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `w-17` | examples.json | 45 | study, graphite | 1440x1200, 390x844, 375x667 | 90 | 0 | 0 | PASS |
-| `w-stress-18` | stress.json | 51 | study, graphite | 1440x1200, 390x844, 375x667 | 102 | 0 | 0 | PASS |
+| `w-19` | examples.json | 55 | study, graphite | 1440x1200, 390x844, 375x667 | 110 | 0 | 0 | PASS |
+| `w-stress-20` | stress.json | 61 | study, graphite | 1440x1200, 390x844, 375x667 | 122 | 0 | 0 | PASS |
 
 Browser: Chrome 153.0.8010.48 via Playwright 1.62.1, Node 24.19.0. Earlier
-runs (`w-01` to `w-16`, `w-stress-01` to `w-stress-17`) are the iteration
+runs (`w-01` to `w-18`, `w-stress-01` to `w-stress-19`) are the iteration
 history; `w-10` holds a partial `qa/` directory from a run that stopped at the
 first dag failure and is kept as is because the writer never overwrites.
 

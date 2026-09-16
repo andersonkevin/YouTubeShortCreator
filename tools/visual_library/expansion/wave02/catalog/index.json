@@ -898,6 +898,196 @@
         "bars"
       ],
       "states": []
+    },
+    {
+      "id": "wave02:quote",
+      "kind": "quote",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "A short quotation with attribution and role.",
+      "tags": [
+        "quote",
+        "attribution",
+        "statement",
+        "saying",
+        "headline"
+      ],
+      "variants": [
+        "block"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:checklist",
+      "kind": "checklist",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Items marked done or not, with an optional note each.",
+      "tags": [
+        "checklist",
+        "todo",
+        "progress",
+        "done",
+        "tasks"
+      ],
+      "variants": [
+        "rows"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:stat",
+      "kind": "stat",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "One headline figure with its label, context and trend.",
+      "tags": [
+        "stat",
+        "number",
+        "metric",
+        "kpi",
+        "headline"
+      ],
+      "variants": [
+        "hero"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:before-after",
+      "kind": "before-after",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Two panels with the same list before and after a change.",
+      "tags": [
+        "before",
+        "after",
+        "comparison",
+        "change",
+        "transformation"
+      ],
+      "variants": [
+        "panels"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:steps",
+      "kind": "steps",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Numbered steps with one line of detail each.",
+      "tags": [
+        "steps",
+        "procedure",
+        "how-to",
+        "method",
+        "sequence"
+      ],
+      "variants": [
+        "numbered"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:ranking",
+      "kind": "ranking",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Items ordered from highest to lowest with proportional bars.",
+      "tags": [
+        "ranking",
+        "top",
+        "list",
+        "leaderboard",
+        "bars"
+      ],
+      "variants": [
+        "bars"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:timeline",
+      "kind": "timeline",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Dated events on a vertical line with an optional note each.",
+      "tags": [
+        "timeline",
+        "history",
+        "dates",
+        "events",
+        "chronology"
+      ],
+      "variants": [
+        "vertical"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:pros-cons",
+      "kind": "pros-cons",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Two columns of points for and against.",
+      "tags": [
+        "pros",
+        "cons",
+        "decision",
+        "tradeoff",
+        "comparison"
+      ],
+      "variants": [
+        "columns"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:definition",
+      "kind": "definition",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "A term, its kind, a one-sentence meaning and an example.",
+      "tags": [
+        "definition",
+        "glossary",
+        "term",
+        "meaning",
+        "vocabulary"
+      ],
+      "variants": [
+        "card"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:cards",
+      "kind": "cards",
+      "family": "general",
+      "status": "implemented",
+      "purpose": "Two or three cards with an icon, a title and a line of text.",
+      "tags": [
+        "cards",
+        "ideas",
+        "pillars",
+        "summary",
+        "icons"
+      ],
+      "variants": [
+        "row"
+      ],
+      "states": [
+        "highlight"
+      ]
     }
   ]
 }

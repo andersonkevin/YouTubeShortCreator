@@ -143,7 +143,7 @@ node tools/visual_library/expansion/wave03/qa.mjs workspaces/<workspace> <run> <
 node tools/visual_library/expansion/wave03/layouts-qa.mjs workspaces/<workspace> <run> <playwright/index.mjs> "<chrome binary>" --approve-write
 ```
 
-The build renders the 45 wave 02 example components with a palette bar of 26
+The build renders the 55 wave 02 example components with a palette bar of 26
 entries and a recipe bar of 10, plus `palettes.html`, a swatch sheet with the
 contrast figures per palette, and `layouts.html`, every layout as an unscaled
 1080x1920 frame with placeholder zones in the build's palette and no scripts. It refuses an existing run, a public tree or a
@@ -196,8 +196,8 @@ is not operator approval.
 | Palettes generated and validated | 24 (12 families, dark and light) |
 | Motion recipes implemented and validated | 10 |
 | Layout studies validated | 18 |
-| Components available in the study | 45 (wave 02) |
-| Combinations of component, palette, recipe and layout | 210,600 |
+| Components available in the study | 55 (wave 02) |
+| Combinations of component, palette, recipe and layout | 257,400 |
 | Approved by a human reviewer | 0 |
 
 ## Limitations

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Positioned the project for explainer Shorts on any subject; the technical
+  layouts remain one example of use.
+- Added ten general-purpose components to the wave 02 catalog (quote, checklist,
+  stat, before-after, steps, ranking, timeline, pros-cons, definition, cards),
+  validated with the same QA; the catalog now holds 55 components.
+- Removed vendor names from the source tree and generalized the hidden-directory
+  exclusions.
+
 ## 0.2.0 (2026-09-16)
 
 - Added asset library wave 02: 45 design-review components across widgets, data,
