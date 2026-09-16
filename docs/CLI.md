@@ -26,6 +26,7 @@ not exist. For an existing workspace it prints the available commands.
 | `configure` | Existing runtime executables/modules | Writes a new private `runtime.json` | `--approve-write` |
 | `doctor` | Approved brand and configured runtime | Verifies implementation, brand and version drift | Read-only |
 | `layouts` | None | Lists the 18 layout identifiers | Read-only |
+| `palettes` | None | Lists the 15 palette presets with their contrast ratios | Read-only |
 | `import SOURCE --name NAME` | External file and intake filename | Copies bytes into a new intake file | `--approve-write` |
 | `transcribe AUDIO OUTPUT` | Workspace audio; new intake JSON | Runs local speech transcription and records source hash | `--approve-write` |
 | `caption-draft TRANSCRIPT OUTPUT` | Timed transcript; new intake JSON | Groups transcript segments into reviewable cues | `--approve-write` |

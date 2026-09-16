@@ -2,7 +2,7 @@
   "version": 1,
   "files": {
     "audio_qa.py": "93428fdd1d3bc7195672a94591c76753beac66a237b82cb12766a539844d00ef",
-    "branding.py": "2b720bf3dc3099a07fc04253abf928c1853cbd8098048efcbdc0ab8f07b1fd50",
+    "branding.py": "97cb0a050e98efbae1322b0657dd46266e4fbc7ef0115016185f2cb13e91bb92",
     "capture.mjs": "3aec473e9ebba37d81d6f35b23f8f5b5c0bdfb0d61f68ad2e5d26327ef5d51d5",
     "chart-qa.mjs": "5068819ebbb1bc96364f9b06e574176b6bc3740fa7da8e02b48a857596818d2e",
     "decode-audio.swift": "b47397ca80c52638b8c597508452f1eb0464828aa06e8cdfac016bb55a381dab",
@@ -96,6 +96,6 @@
     "transcribe.swift": "7f229c23785ca2b80f3a8fe5a32c88d7bc30656b4e70eda630c65edc0e326df5",
     "visual_adapter.py": "730ae3522613489f4956088bc7ce14a0d2175ca70aeeadd9e46ec1381af7003f",
     "workflow.py": "1473830ae02c31834cbd74d263dbf3af1c0727eb20292cb2b18ecda7aa7c0ca3",
-    "ysc.py": "afed19d2736d5b8b237f2352de88a891c9f5c1cac96aa996360d82aed639b771"
+    "ysc.py": "5edcdc4902c890fa9dba8d3e572400fb2e0156c724c00e7826478ab4ccabef5a"
   }
 }

@@ -87,7 +87,7 @@ def matrix_episodes(seed, count):
 
 def run(requested, palette, count, approved):
     require(approved,'Matrix writes require --approve-write')
-    require(palette in ('violet','graphite') and count in (3,4),'Invalid matrix selection')
+    require(palette in branding.PALETTES and count in (3,4),'Invalid matrix selection')
     root=new_root(requested)
     old=workflow.ROOT, workflow.RUNS
     workflow.ROOT, workflow.RUNS = root, root/'runs'
@@ -136,7 +136,7 @@ def run(requested, palette, count, approved):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace',type=Path,required=True)
-    parser.add_argument('--palette',choices=('violet','graphite'),default='violet')
+    parser.add_argument('--palette',choices=tuple(branding.PALETTES),default='violet')
     parser.add_argument('--scenes',type=int,choices=(3,4),default=4)
     parser.add_argument('--approve-write',action='store_true')
     args=parser.parse_args()

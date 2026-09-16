@@ -30,7 +30,7 @@ def onboarding(root, approved=False):
     audience = ask('Audience', 'Developers and AI builders')
     tone = ask('Editorial tone', 'Clear, practical, technically accurate')
     count = int(ask('Scenes per Short: 3 or 4', '3'))
-    palette = ask('Palette: violet, graphite, forest, custom', 'violet')
+    palette = ask('Palette preset (run: python3 ysc.py palettes) or custom', 'violet')
     require(palette in (*branding.PALETTES, 'custom'), 'Unknown palette')
     colors = dict(branding.PALETTES.get(palette, branding.PALETTES['violet']))
     if palette == 'custom':
@@ -123,6 +123,7 @@ def parser():
                 command.add_argument('--' + key)
     sub.add_parser('doctor')
     sub.add_parser('layouts')
+    sub.add_parser('palettes')
     command = sub.add_parser('import')
     command.add_argument('source')
     command.add_argument('--name', required=True)
@@ -155,7 +156,7 @@ def main(argv=None):
             if not root.exists():
                 onboarding(root)
             else:
-                print('Workspace exists. Commands: doctor, layouts, import, transcribe, caption-draft, new, validate, build, render.\nUse --help or COMMAND --help for arguments. For another brand, start with --workspace PATH init.')
+                print('Workspace exists. Commands: doctor, layouts, palettes, import, transcribe, caption-draft, new, validate, build, render.\nUse --help or COMMAND --help for arguments. For another brand, start with --workspace PATH init.')
             return 0
         if args.command == 'init':
             onboarding(root, args.approve_write)
@@ -163,7 +164,11 @@ def main(argv=None):
         if args.command == 'layouts':
             print('\n'.join(path.stem for path in sorted(workflow.TEMPLATE.joinpath('scenes').glob('*.json'))))
             return 0
-        if args.command not in ('doctor', 'validate'):
+        if args.command == 'palettes':
+            for row in branding.palette_table():
+                print(f"{row['name']:14} background {row['background']}  accent {row['accent']} ({row['accent_contrast']}:1)  secondary {row['secondary']} ({row['secondary_contrast']}:1)")
+            return 0
+        if args.command not in ('doctor', 'validate', 'palettes'):
             require(args.approve_write, 'Writer requires --approve-write')
         if args.command == 'brand-approve':
             branding.approve(root, workflow.verify_lock())
