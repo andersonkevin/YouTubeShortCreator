@@ -15,7 +15,7 @@ explanation, and a useful conclusion. Avoid trying to fit a full tutorial into a
 Create your final narration using your own voice, a service you are authorized
 to use, or the optional [local voice synthesis](VOICE.md) tool, which writes a
 WAV straight into `intake/`. Export the actual voice file before timing scenes.
-`ysc.py` itself does not call ElevenLabs or generate narration. Confirm the rights
+`ysc.py` itself does not call any voice service or generate narration. Confirm the rights
 and privacy of your source.
 
 ## 2. Import Inputs
