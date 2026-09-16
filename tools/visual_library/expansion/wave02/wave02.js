@@ -35,6 +35,19 @@
       txt(left + w / 2, y, value, {size: 19, weight: 'bold', color: o.ink || T.background, align: 'center', opacity: o.opacity ?? 1})];
   };
   const fmt = v => Number.isInteger(v) ? String(v) : String(Number(v.toFixed(3)));
+  // Wrap by measured width so lines never start with a space and heights are exact.
+  const measure = document.createElement('canvas').getContext('2d');
+  const wrapLines = (value, size, weight, mono, width) => {
+    measure.font = `${weight || 'normal'} ${size}px ${mono ? T.mono : T.font}`;
+    const lines = [];
+    let current = '';
+    value.split(/\s+/).filter(Boolean).forEach(word => {
+      const candidate = current ? current + ' ' + word : word;
+      if (current && measure.measureText(candidate).width > width) { lines.push(current); current = word; } else current = candidate;
+    });
+    if (current) lines.push(current);
+    return lines;
+  };
   const series = () => [T.accent, T.accent2, T.extra, T.warn];
   const fade = (active, i) => (active === null || active === i ? 1 : 0.6);
   const stateOf = (c, key) => (c.state && c.state[key] !== undefined) ? c.state[key] : null;
@@ -968,8 +981,9 @@
   draw['quote'] = c => {
     const g = [], d = c.data;
     g.push(txt(0, 60, '“', {size: 120, weight: 'bold', color: T.accent, vAlign: 'top', lineHeight: 100}));
-    g.push(txt(70, 110, d.text, {size: 32, weight: 'bold', width: W - 90, wrap: true, vAlign: 'top', lineHeight: 42}));
-    const lines = Math.ceil(d.text.length / 34), y = 110 + lines * 42 + 40;
+    const quoteLines = wrapLines(d.text, 32, 'bold', false, W - 90);
+    g.push(txt(70, 110, quoteLines.join('\n'), {size: 32, weight: 'bold', width: W - 90, wrap: true, vAlign: 'top', lineHeight: 42}));
+    const lines = quoteLines.length, y = 110 + lines * 42 + 40;
     g.push(line(70, y, 190, y, {stroke: T.accent, lineWidth: 4}));
     g.push(txt(70, y + 36, d.attribution, {size: 24, weight: 'bold', width: W - 90}));
     if (d.role) g.push(txt(70, y + 68, d.role, {size: 21, color: T.muted, width: W - 90}));
@@ -1077,8 +1091,9 @@
     g.push(box(0, 0, W, 60, {fill: T.surface, stroke: T.line}));
     g.push(txt(24, 30, d.term, {size: 30, weight: 'bold', width: W - 220}));
     if (d.kind) g.push(txt(W - 24, 30, d.kind, {size: 21, mono: true, align: 'right', color: T.accent2}));
-    g.push(txt(24, 96, d.meaning, {size: 26, width: W - 48, wrap: true, vAlign: 'top', lineHeight: 36}));
-    const lines = Math.ceil(d.meaning.length / 44), y = 96 + lines * 36 + 30;
+    const meaningLines = wrapLines(d.meaning, 26, 'normal', false, W - 48);
+    g.push(txt(24, 96, meaningLines.join('\n'), {size: 26, width: W - 48, wrap: true, vAlign: 'top', lineHeight: 36}));
+    const lines = meaningLines.length, y = 96 + lines * 36 + 30;
     if (d.example) { g.push(box(24, y - 12, 6, 60, {fill: T.accent, stroke: 'none', lineWidth: 0, r: 3})); g.push(txt(48, y + 18, d.example, {size: 22, color: T.muted, width: W - 72, wrap: true, vAlign: 'middle'})); }
     g.height = d.example ? y + 70 : y;
     return g;

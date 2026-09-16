@@ -181,11 +181,11 @@ wave 02 script was written independently and carries its own checks:
 
 | Run | Input | Components | Palettes | Viewports | Exports | Errors | Network | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `w-19` | examples.json | 55 | study, graphite | 1440x1200, 390x844, 375x667 | 110 | 0 | 0 | PASS |
-| `w-stress-20` | stress.json | 61 | study, graphite | 1440x1200, 390x844, 375x667 | 122 | 0 | 0 | PASS |
+| `w-20` | examples.json | 55 | study, graphite | 1440x1200, 390x844, 375x667 | 110 | 0 | 0 | PASS |
+| `w-stress-21` | stress.json | 61 | study, graphite | 1440x1200, 390x844, 375x667 | 122 | 0 | 0 | PASS |
 
 Browser: Chrome 153.0.8010.48 via Playwright 1.62.1, Node 24.19.0. Earlier
-runs (`w-01` to `w-18`, `w-stress-01` to `w-stress-19`) are the iteration
+runs (`w-01` to `w-19`, `w-stress-01` to `w-stress-20`) are the iteration
 history; `w-10` holds a partial `qa/` directory from a run that stopped at the
 first dag failure and is kept as is because the writer never overwrites.
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 (2026-09-16)
 
 - Positioned the project for explainer Shorts on any subject; the technical
   layouts remain one example of use.
@@ -9,6 +9,9 @@
   validated with the same QA; the catalog now holds 55 components.
 - Removed vendor names from the source tree and generalized the hidden-directory
   exclusions.
+- Quote and definition components wrap text by measured width, so lines never
+  start with a space and heights are exact.
+- Documentation examples published as the repository wiki.
 
 ## 0.2.0 (2026-09-16)
 
