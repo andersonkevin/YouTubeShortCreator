@@ -8,8 +8,10 @@ reuses the library's `kit.py` helpers, the pinned vendor files (Lucide 0.468.0,
 ECharts 6.0.0), the gallery template and the wave 01 palette tokens (read only).
 No production renderer, template, caption, validator, manifest, dependency,
 top-level README or first-expansion file was changed. `production_scene_available` is
-`false` for every asset; integration requires the maintainer's approval and is
-not performed here.
+`true` for every asset since the adapter integration of 2026-09-16: a record with
+the `wave02:<kind>` prefix renders in a version 2 `visual-library` scene (see the
+[adapter contract](VISUAL-ADAPTER-CONTRACT.md)). Human review of each component
+in a real episode is still pending and is recorded as such on every card.
 
 Base commit `c0b275e07b1a399f0c75012f2bddde242f7d79dc` (the reviewed head of
 the first expansion); the branch was fast-forwarded to the merged `main`,
@@ -99,6 +101,7 @@ dropped (a "checklist" table, a two-tile metric, a second flow layout).
 | Implemented (validator, renderer, card, example, stress fixture) | 55 |
 | Validated by the automated QA script (examples run) | 55 of 55 |
 | Stress fixtures validated by the automated QA script | 61 of 61 |
+| Available as production scene records (`wave02:<kind>`) | 55 of 55 |
 | Approved by a human reviewer | 0 (`human_review: pending` on every card) |
 
 Implemented by family: widgets 6, data 11, systems 8, AI 11, software 9, general
@@ -181,11 +184,11 @@ wave 02 script was written independently and carries its own checks:
 
 | Run | Input | Components | Palettes | Viewports | Exports | Errors | Network | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `w-20` | examples.json | 55 | study, graphite | 1440x1200, 390x844, 375x667 | 110 | 0 | 0 | PASS |
-| `w-stress-21` | stress.json | 61 | study, graphite | 1440x1200, 390x844, 375x667 | 122 | 0 | 0 | PASS |
+| `w-22` | examples.json | 55 | study, graphite | 1440x1200, 390x844, 375x667 | 110 | 0 | 0 | PASS |
+| `w-stress-23` | stress.json | 61 | study, graphite | 1440x1200, 390x844, 375x667 | 122 | 0 | 0 | PASS |
 
 Browser: Chrome 153.0.8010.48 via Playwright 1.62.1, Node 24.19.0. Earlier
-runs (`w-01` to `w-19`, `w-stress-01` to `w-stress-20`) are the iteration
+runs (`w-01` to `w-21`, `w-stress-01` to `w-stress-22`) are the iteration
 history; `w-10` holds a partial `qa/` directory from a run that stopped at the
 first dag failure and is kept as is because the writer never overwrites.
 
@@ -247,7 +250,7 @@ None were required. Two observations for the maintainers, left as proposals:
    palette checks twice. A shared helper under `tools/visual_library/` would
    keep one implementation of the computed-font-size and token-set checks.
 
-## Integration checklist (not executed)
+## Integration checklist (steps 1-4 executed on 2026-09-16; 5-7 pending)
 
 1. Pick kinds from `catalog/index.json` and read the card for each; confirm
    `not_when` does not apply to the planned scene.

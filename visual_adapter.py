@@ -8,9 +8,12 @@ import shutil
 
 from safety import digest, identifier, keys, number, require, text, write_json
 from tools.visual_library import kit
+from tools.visual_library.expansion.wave02 import schema as wave02_schema
 
 HOME = Path(__file__).resolve().parent
 PRODUCTION_KINDS = kit.KINDS
+WAVE02_PREFIX = 'wave02:'
+WAVE02_KINDS = tuple(WAVE02_PREFIX + kind for kind in wave02_schema.KINDS)
 REVEALS = ('wipe-right', 'wipe-left', 'wipe-down', 'wipe-up', 'fade', 'slide-left', 'slide-right', 'slide-up', 'slide-down', 'scale-settle')
 DEFAULT_PRESENTATION = {'reveal': 'wipe-right', 'exit': 'none', 'exit_duration': 0, 'chart_style': 'standard'}
 CONTENT_LIMITS = {'eyebrow': 40, 'heading_1': 32, 'heading_2': 32, 'note': 110}
@@ -24,7 +27,18 @@ def validate_records(records):
     for name, source in records.items():
         identifier(name)
         require(isinstance(source, dict) and source.get('id') == name, 'Visual ID differs from its key')
-        require(source.get('kind') in PRODUCTION_KINDS, 'Visual kind is not qualified for production yet')
+        kind = source.get('kind')
+        if isinstance(kind, str) and kind.startswith(WAVE02_PREFIX):
+            # Wave 02 components share the record envelope; the prefix keeps their kinds apart from the chart kinds.
+            require(kind in WAVE02_KINDS, 'Unknown wave 02 component kind')
+            base = copy.deepcopy(source)
+            base['kind'] = kind[len(WAVE02_PREFIX):]
+            validated = wave02_schema.validate_component(base, icons)
+            validated['kind'] = kind
+            validated['library'] = 'wave02'
+            result[name] = validated
+            continue
+        require(kind in PRODUCTION_KINDS, 'Visual kind is not qualified for production yet')
         result[name] = kit.validate_chart(copy.deepcopy(source), icons)
     return result
 
@@ -100,6 +114,7 @@ def payload(data, brand):
 def install_assets(output, data, brand):
     content = payload(data, brand)
     selected = {'visual-options.js': kit.HOME / 'options.js',
+                'wave02.js': kit.HOME / 'expansion/wave02/wave02.js',
                 'echarts.min.js': kit.HOME / 'vendor/echarts/dist/echarts.min.js'}
     for name, source in selected.items():
         target = output / 'assets' / name
@@ -123,4 +138,4 @@ def scripts(data, brand):
     content = json.dumps(payload(data, brand), ensure_ascii=True, allow_nan=False).replace('<', '\\u003c')
     return (f'<script type="application/json" id="visual-scene-data">{content}</script>'
             '<script src="assets/echarts.min.js"></script><script src="assets/visual-options.js"></script>'
-            '<script src="assets/visual-scenes.js"></script>')
+            '<script src="assets/wave02.js"></script><script src="assets/visual-scenes.js"></script>')

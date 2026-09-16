@@ -22,6 +22,10 @@ from tools.regression import new_root
 from tools.visual_library.kit import workspace_path
 
 
+WAVE02_SETS = {'wave02-a': ('terminal', 'confusion', 'steps'), 'wave02-b': ('quote', 'ranking', 'heatmap'),
+               'wave02-c': ('sequence', 'dag', 'stat'), 'wave02-d': ('timeline', 'pros-cons', 'checklist')}
+
+
 def chart_episode(seed, group, count=4):
     data = visual_episode(seed, count)
     examples = read_json(workflow.HOME / 'tools/visual_library/demo.json')['charts']
@@ -45,6 +49,26 @@ def chart_episode(seed, group, count=4):
         scene['content']['heading_2'] = 'Keep its meaning.'
         scene['presentation'] = {'reveal':presets[i], 'exit':'fade', 'exit_duration':.3,
                                  'chart_style':'stacked' if record['id']=='stacked-latency' else 'standard'}
+    return data
+
+
+def wave02_episode(seed, count=4, kinds=('terminal', 'confusion', 'steps')):
+    """Three wave 02 components in visual scenes plus one classic scene."""
+    data = visual_episode(seed, count)
+    examples = {c['kind']: c for c in read_json(workflow.HOME / 'tools/visual_library/expansion/wave02/examples.json')['components']}
+    data['visuals'] = {}
+    presets = ('wipe-right', 'scale-settle', 'wipe-down')
+    for i, scene in enumerate(data['scenes'][:-1]):
+        record = copy.deepcopy(examples[kinds[i]])
+        record['id'] = 'w02-' + kinds[i]
+        record['kind'] = 'wave02:' + kinds[i]
+        data['visuals'][record['id']] = record
+        scene['name'] = 'wave02-' + kinds[i]
+        scene['visual_id'] = record['id']
+        scene['symbol'] = 'icon:' + record['icon']
+        scene['content']['heading_1'] = 'One idea per scene.'
+        scene['content']['heading_2'] = 'Any subject.'
+        scene['presentation'] = {'reveal': presets[i], 'exit': 'fade', 'exit_duration': .3, 'chart_style': 'standard'}
     return data
 
 
@@ -85,7 +109,7 @@ def main():
     parser.add_argument('--palette', choices=tuple(branding.PALETTES), default='violet')
     parser.add_argument('--render', action='store_true')
     parser.add_argument('--backend', choices=('native', 'ffmpeg'), default='native')
-    parser.add_argument('--set', choices=('widgets','charts-a','charts-b','charts-c','charts-d','charts-e'), default='widgets')
+    parser.add_argument('--set', choices=('widgets','charts-a','charts-b','charts-c','charts-d','charts-e', *WAVE02_SETS), default='widgets')
     parser.add_argument('--approve-write', action='store_true')
     args = parser.parse_args()
     require(args.approve_write, 'Synthetic fixture writes require --approve-write')
@@ -98,6 +122,7 @@ def main():
     with patch('test_workflow.brand_record', return_value=brand):
         seed = fixture(root, args.duration)
     data = (visual_episode(read_json(seed), args.scenes) if args.set == 'widgets' else
+            wave02_episode(read_json(seed), args.scenes, WAVE02_SETS[args.set]) if args.set in WAVE02_SETS else
             chart_episode(read_json(seed), args.set, args.scenes))
     data['id'] = 'widget-fixture'
     data['youtube']['title'] = 'TEST SIGNAL: widget qualification'

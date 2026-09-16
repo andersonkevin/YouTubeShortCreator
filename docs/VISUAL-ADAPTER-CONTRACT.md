@@ -33,6 +33,20 @@ episode hash. Source references remain inert provenance text, never fetch target
 Reject caller-supplied `derived`, options, styles, callbacks, SVG or HTML. Compute
 derived statistics inside the adapter from validated raw observations.
 
+The development tree accepts all eleven library kinds. Since 2026-09-16 it also
+accepts the 55 wave 02 components as records whose `kind` carries the `wave02:`
+prefix (for example `wave02:confusion`, `wave02:quote`, `wave02:heatmap`). The
+prefix keeps them apart from the chart kinds that share a name. Their envelope is
+the same (`id`, `kind`, `title`, `insight`, `source`, `icon`, `data`, optional
+`variant` and `state`); validation runs the wave 02 schema, derived values are
+computed inside the adapter, and the component draws the whole 824x820 slot with
+its own provenance line using tokens derived from the approved brand (background,
+accent, second accent; white ink, the template's muted and warning colors). The
+scene's title, symbol, detail, insight and source nodes are hidden for these
+records; the caption note remains. Reveal presets and exits apply unchanged. Human
+review of each component in a real episode is still pending; the catalog cards
+record `production_scene_available: true` with `human_review: pending`.
+
 The development tree accepts all eleven library kinds. B02 qualifies the three
 widgets; B03 tracks the chart and motion matrix before final technical sign-off.
 Unknown kinds fail with an explicit unsupported-production-kind error, not a fallback.

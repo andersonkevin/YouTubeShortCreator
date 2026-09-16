@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- The 55 wave 02 components are production scene records: a version 2 episode
+  can reference `wave02:<kind>` in `visuals`, validated by the wave 02 schema and
+  drawn into the full 824x820 slot with brand-derived tokens. The renderer is now
+  a factory shared by the study and production; wrapped bold text uses 1.5x line
+  spacing so heavy display faces never touch. Four synthetic fixture sets qualify
+  twelve components in real scenes; catalog cards record production availability
+  with human review pending.
 - Four more chart entrances for visual scenes, reduced from the wave 03 motion
   study to container-level presets: `wipe-left`, `wipe-down`, `wipe-up` and
   `scale-settle`. Ten reveal presets in total; the synthetic chart fixtures gain

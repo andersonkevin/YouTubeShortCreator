@@ -223,3 +223,60 @@ class AdapterTests(unittest.TestCase):
 
 
 if __name__ == '__main__': unittest.main()
+
+
+class Wave02RecordTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name).resolve() / 'channel'
+        old = workflow.ROOT, workflow.RUNS
+        self.addCleanup(lambda: (setattr(workflow, 'ROOT', old[0]), setattr(workflow, 'RUNS', old[1])))
+        workflow.ROOT, workflow.RUNS = self.root, self.root / 'runs'
+        self.episode = fixture(self.root)
+        self.seed = read_json(self.episode)
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+        from widget_smoke import wave02_episode
+        self.data = wave02_episode(self.seed)
+
+    def validate(self, data=None):
+        self.episode.write_text(json.dumps(self.data if data is None else data))
+        return workflow.validate(self.episode)
+
+    def test_prefixed_kinds_validate_with_derived_values(self):
+        data, _, _, scenes = self.validate()
+        records = visual_adapter.validate_records(data['visuals'])
+        self.assertEqual(len(scenes), 4)
+        self.assertEqual({r['library'] for r in records.values()}, {'wave02'})
+        self.assertEqual(records['w02-confusion']['kind'], 'wave02:confusion')
+        self.assertIn('precision', records['w02-confusion']['derived'])
+
+    def test_unknown_or_unprefixed_wave02_kind_rejected(self):
+        record = self.data['visuals']['w02-terminal']
+        record['kind'] = 'wave02:nope'
+        with self.assertRaises(ValueError): self.validate()
+        record['kind'] = 'terminal'
+        with self.assertRaises(ValueError): self.validate()
+
+    def test_prefixed_heatmap_is_the_component_not_the_chart(self):
+        from widget_smoke import wave02_episode
+        data = wave02_episode(self.seed, 4, ('heatmap', 'quote', 'steps'))
+        records = visual_adapter.validate_records(data['visuals'])
+        self.assertEqual(records['w02-heatmap']['library'], 'wave02')
+        self.assertIn('low', records['w02-heatmap']['derived'])
+        with self.assertRaises(ValueError):
+            visual_adapter.validate_records({'x': {**data['visuals']['w02-heatmap'], 'id': 'x', 'data': {'rows': [], 'columns': [], 'values': [], 'unit': ''}}})
+
+    def test_scripts_and_assets_include_the_component_renderer(self):
+        brand = read_json(self.root / 'brand/brand.json')
+        html = visual_adapter.scripts(self.data, brand)
+        self.assertIn('assets/wave02.js', html)
+        self.assertIn('"library": "wave02"', html)
+        output = self.root / 'runs' / 'x' / 'y'
+        (output / 'assets').mkdir(parents=True)
+        for name in ('visual-scenes.css', 'visual-scenes.js'):
+            (output / 'assets' / name).write_text((workflow.TEMPLATE / 'assets' / name).read_text())
+        visual_adapter.install_assets(output, self.data, brand)
+        evidence = read_json(output / 'visual-evidence.json')
+        self.assertIn('wave02.js', evidence['asset_hashes'])
+        self.assertTrue((output / 'assets' / 'wave02.js').is_file())
