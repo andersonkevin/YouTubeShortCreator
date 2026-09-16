@@ -23,6 +23,11 @@ Version 1 top-level keys must be exactly:
 | `scenes` | Three or four scene records |
 | `timing_adjustments` | Measured caption-start notes indexed by cue number, or `{}` |
 
+Batch membership is not an episode field. `new --batch NAME` writes a separate
+`batch.json` beside the episode with exactly `batch`, `episode`, `sequence` and
+`picked_layouts`; it is written once, never updated, and the picker rereads the
+current `episode.json` of each member rather than trusting the recorded pick.
+
 Version 2 keeps `template: "v1"` and all existing timing/media rules, and adds an
 exact `visuals` object. It enables mixed classic and visual-library scenes. Flow,
 metric and comparison passed B02; analytical charts and selectable motion are

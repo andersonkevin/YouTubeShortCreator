@@ -76,7 +76,7 @@ YouTubeShortCreator/
       assets/            # fonts, logo and generated CSS; private
     runtime.json         # local executable paths and version snapshot
     intake/              # imported recordings/artwork and timed JSON
-    episodes/<id>/       # episode contract and copied inputs
+    episodes/<id>/       # episode contract, copied inputs, optional batch membership
     runs/<id>/<run-id>/   # immutable-by-convention render/review outputs
 ```
 

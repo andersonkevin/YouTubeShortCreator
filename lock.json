@@ -6,6 +6,7 @@
     "capture.mjs": "3aec473e9ebba37d81d6f35b23f8f5b5c0bdfb0d61f68ad2e5d26327ef5d51d5",
     "chart-qa.mjs": "5068819ebbb1bc96364f9b06e574176b6bc3740fa7da8e02b48a857596818d2e",
     "decode-audio.swift": "b47397ca80c52638b8c597508452f1eb0464828aa06e8cdfac016bb55a381dab",
+    "diversity.py": "3af0deab50f2a59c51ef8087cce4ec14c27a76a6cba9e5ba6467c1696e0cb4ec",
     "encode.swift": "3f119d083c739090ea2ae96e2a75cc796eee131c1dd920acc2934a1f114f3539",
     "ffmpeg_backend.py": "0d38f4938b867acd8626a0f0a8d95046a2d25af9ade072c4b0ef861eec6901ec",
     "frame_qa.py": "72f832305a22a0dbddf2b0466c231cfdfd550f4f394d85222dd7ad4d96d5fb46",
@@ -96,6 +97,6 @@
     "transcribe.swift": "7f229c23785ca2b80f3a8fe5a32c88d7bc30656b4e70eda630c65edc0e326df5",
     "visual_adapter.py": "5d7b75bcc0d8ab84eb70460607ce32dba0d1f17febc4428d4d08151758677f29",
     "workflow.py": "1473830ae02c31834cbd74d263dbf3af1c0727eb20292cb2b18ecda7aa7c0ca3",
-    "ysc.py": "5edcdc4902c890fa9dba8d3e572400fb2e0156c724c00e7826478ab4ccabef5a"
+    "ysc.py": "856076631dc30cb09ba98bb8394989a584b5c44af0eeef0d6eed12b0f0ddc176"
   }
 }

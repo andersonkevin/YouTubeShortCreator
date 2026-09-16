@@ -27,13 +27,25 @@ not exist. For an existing workspace it prints the available commands.
 | `doctor` | Approved brand and configured runtime | Verifies implementation, brand and version drift | Read-only |
 | `layouts` | None | Lists the 18 layout identifiers | Read-only |
 | `palettes` | None | Lists the 15 palette presets with their contrast ratios | Read-only |
+| `batch NAME` | Episodes created with `new --batch NAME` | Prints the layouts, families, reveals and visual kinds the batch has used, the repeats, and the next pick | Read-only |
 | `import SOURCE --name NAME` | External file and intake filename | Copies bytes into a new intake file | `--approve-write` |
 | `transcribe AUDIO OUTPUT` | Workspace audio; new intake JSON | Runs local speech transcription and records source hash | `--approve-write` |
 | `caption-draft TRANSCRIPT OUTPUT` | Timed transcript; new intake JSON | Groups transcript segments into reviewable cues | `--approve-write` |
-| `new ID` | `--audio`, `--transcript`, `--captions`, `--graphic` | Copies inputs and creates an editable episode draft | `--approve-write` |
+| `new ID` | `--audio`, `--transcript`, `--captions`, `--graphic`; optional `--batch NAME` or `--layouts a,b,c` | Copies inputs and creates an editable episode draft whose layouts avoid what the batch already used | `--approve-write` |
 | `validate EPISODE` | Approved brand and episode JSON | Validates input hashes, scene/caption contracts and copy | Read-only |
 | `build EPISODE --run-id ID` | Valid episode and runtime | Writes HTML, cover, handoff data, screenshots and visual QA | `--approve-write` |
 | `render EPISODE --run-id ID` | Valid non-placeholder metadata and runtime | Builds, encodes, muxes and checks the MP4 | `--approve-write` |
+
+`new` picks one layout per scene from the 18 production layouts, grouped into
+eight visual families (code, evidence, automation, gate, quote, steps, stat and
+compare). Without `--batch`, every draft starts from the same classic opening.
+With `--batch NAME`, the picker reads the current `episode.json` of every episode
+that carries a `batch.json` naming that batch, so edits count, and chooses layouts
+the batch has not used, then the family used longest ago, never two layouts of one
+family in an episode, with a gate layout last. The choice is deterministic; a
+twelve-episode batch of three scenes uses every layout and repeats none more than
+three times. `--layouts` takes an explicit comma-separated list, one per scene,
+validated against the template. `batch NAME` reports the same history read-only.
 
 `configure` supports `--backend native` (the default) or `--backend ffmpeg`,
 `--node`, `--playwright`, `--chrome`, `--swift`, `--ffmpeg`, `--ffprobe`; see
