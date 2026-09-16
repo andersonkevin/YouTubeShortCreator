@@ -5,8 +5,10 @@
 ## Scope of This Guide
 
 The repository can be prepared locally without signing into GitHub. No remote,
-account integration, hosted documentation, CI pipeline or publishing automation is
-configured by the application. Creating a public repository is a separate operator
+account integration, hosted documentation or publishing automation is configured
+by the application. A GitHub Actions workflow (`.github/workflows/tests.yml`) runs
+the unit tests, documentation checks and release audit on pushes and pull
+requests; it is excluded from the source archive. Creating a public repository is a separate operator
 action, after reviewing source and rights.
 
 Suggested repository name: `YouTubeShortCreator`.
