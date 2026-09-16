@@ -3,7 +3,7 @@
   "kind": "quote",
   "family": "general",
   "status": "implemented",
-  "production_scene_available": false,
+  "production_scene_available": true,
   "human_review": "pending",
   "renderer": "tools/visual_library/expansion/wave02/wave02.js",
   "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
@@ -35,5 +35,11 @@
   ],
   "states": [],
   "example": "quote",
-  "stress": "quote-long"
+  "stress": "quote-long",
+  "production": {
+    "episode_version": 2,
+    "scene_layout": "visual-library",
+    "record_kind": "wave02:quote",
+    "human_review": "pending"
+  }
 }

@@ -31,6 +31,9 @@
     const theme = {icons:data.icons, colors:[data.colors.accent,data.colors.secondary,'#ef9cab','#d4cce3'],
       background:data.colors.background, surface:mixWhite(data.colors.background,.07), font:'BrandSans',
       scene:true, width:824, height:560};
+    const wave02Tokens = {background:data.colors.background, surface:mixWhite(data.colors.background,.07), line:mixWhite(data.colors.background,.28),
+      ink:'#ffffff', muted:'#d4cce3', accent:data.colors.accent, accent2:data.colors.secondary, warn:'#ef9cab', extra:mixWhite(data.colors.secondary,.35),
+      font:'BrandSans', mono:'BrandMono'};
     if (data.world) echarts.registerMap('natural-earth',data.world);
     for (const spec of data.scenes) {
       const scene = [...document.querySelectorAll('.visual-library-scene')].find(node=>node.dataset.visualId===spec.id);
@@ -52,6 +55,19 @@
       await symbol.decode();
       const chartNode = scene.querySelector('.visual-chart');
       chartNode.setAttribute('aria-label',record.title+'. '+record.insight);
+      if (record.library === 'wave02') {
+        // Wave 02 components draw the whole 824x820 slot, provenance line included, with brand-derived tokens.
+        scene.querySelector('.library-visual').classList.add('wave02-visual');
+        const renderer = window.ShortCreatorWave02(wave02Tokens, data.icons);
+        const component = {...record, kind: record.kind.slice('wave02:'.length)};
+        const items = renderer.draw[component.kind](component);
+        const offset = Math.max(0, Math.floor((renderer.DRAW - Math.min(renderer.DRAW, items.height || renderer.DRAW)) / 2));
+        const chart = echarts.init(chartNode,null,{renderer:'svg',width:824,height:820});
+        chart.setOption({animation:false, backgroundColor:data.colors.background, textStyle:{fontFamily:'BrandSans'}, aria:{enabled:true}, tooltip:{show:false},
+          graphic:[{type:'group', silent:true, x:0, y:offset, children:items}, ...renderer.provenance(component)]},{notMerge:true,lazyUpdate:false});
+        mounted.push({scene, chartNode, chart, motion:spec.motion, presentation:spec.presentation});
+        continue;
+      }
       const chart = echarts.init(chartNode,null,{renderer:'svg',width:824,height:560});
       chart.setOption(window.ShortCreatorVisualOptions(record,{...theme,chartStyle:spec.presentation.chart_style}),{notMerge:true,lazyUpdate:false});
       mounted.push({scene, chartNode, chart, motion:spec.motion, presentation:spec.presentation});

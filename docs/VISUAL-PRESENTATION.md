@@ -95,7 +95,10 @@ python3 -B tools/widget_smoke.py --workspace workspaces/chart-review-c --set cha
 
 Set A contains line/bar/donut; B contains scatter/heatmap/correlation; C contains
 timeline/map/stacked bars; D and E repeat charts with the wipe-down, wipe-up,
-wipe-left and scale-settle entrances. Each includes a classic fourth scene and synthetic
+wipe-left and scale-settle entrances. Sets `wave02-a` to `wave02-d` build three
+wave 02 components each (terminal, confusion and steps; quote, ranking and
+heatmap; sequence, dag and stat; timeline, pros-cons and checklist) through the
+same scene contract. Each includes a classic fourth scene and synthetic
 audio, not a publishable voiceover. `--scenes 3` uses only the first two charts and
 a classic scene. `--palette graphite` exercises a second approved test palette.
 Browser QA checks fitting and deterministic mid-entrance/exit seeks as well as

@@ -22,7 +22,7 @@ from tools.visual_library import kit  # noqa: E402
 from tools.visual_library.expansion.wave02 import schema  # noqa: E402
 
 EXAMPLES = ('examples.json', 'stress.json')
-CARD_FIELDS = ('id kind family status purpose use_when not_when parameters defaults limits variants states example stress '
+CARD_FIELDS = 'production ' + ('id kind family status purpose use_when not_when parameters defaults limits variants states example stress '
                'provenance licenses renderer qa production_scene_available human_review')
 
 
@@ -69,7 +69,9 @@ def index():
             card = kit.read_json(card_file)
             kit.fields(card, CARD_FIELDS)
             kit.require(card['id'] == asset['id'] and card['kind'] == kind and card['family'] == asset['family'], 'Card identity mismatch')
-            kit.require(card['status'] == 'implemented' and card['production_scene_available'] is False, 'Card must be implemented and not production')
+            kit.require(card['status'] == 'implemented' and card['production_scene_available'] is True, 'Card must be implemented and record production availability')
+            kit.fields(card['production'], 'episode_version scene_layout record_kind human_review')
+            kit.require(card['production']['record_kind'] == 'wave02:' + kind and card['production']['human_review'] == 'pending', 'Production record kind or review state drifted')
             kit.require(card['human_review'] == 'pending', 'Human review is never recorded by the agent')
             for ref in (card['example'], card['stress']):
                 kit.require(ref in known and known[ref]['kind'] == kind, 'Card fixture must exist with the same kind')

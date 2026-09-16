@@ -9,3 +9,5 @@
 .visual-insight {position:absolute;left:0;top:686px;width:824px;height:64px;font-size:25px;color:var(--lime)}
 .visual-source {position:absolute;left:0;top:753px;width:824px;height:65px;font-size:20px;color:var(--muted)}
 .visual-chart svg {display:block}
+.wave02-visual .visual-chart {top:0;height:820px}
+.wave02-visual .visual-title,.wave02-visual .visual-symbol,.wave02-visual .visual-detail,.wave02-visual .visual-insight,.wave02-visual .visual-source {display:none}

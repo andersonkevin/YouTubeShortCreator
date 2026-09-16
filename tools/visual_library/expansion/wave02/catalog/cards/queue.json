@@ -3,7 +3,7 @@
   "kind": "queue",
   "family": "systems",
   "status": "implemented",
-  "production_scene_available": false,
+  "production_scene_available": true,
   "human_review": "pending",
   "renderer": "tools/visual_library/expansion/wave02/wave02.js",
   "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
@@ -38,5 +38,11 @@
   ],
   "states": [],
   "example": "queue",
-  "stress": "queue-full"
+  "stress": "queue-full",
+  "production": {
+    "episode_version": 2,
+    "scene_layout": "visual-library",
+    "record_kind": "wave02:queue",
+    "human_review": "pending"
+  }
 }

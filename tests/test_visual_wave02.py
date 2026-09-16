@@ -101,7 +101,8 @@ class Wave02CatalogTests(unittest.TestCase):
         for asset in implemented:
             card = build.card(asset['id'])
             self.assertEqual(card['id'], asset['id'])
-            self.assertFalse(card['production_scene_available'])
+            self.assertTrue(card['production_scene_available'])
+            self.assertEqual(card['production']['record_kind'], 'wave02:' + asset['kind'])
             self.assertEqual(card['human_review'], 'pending')
             for key in ('purpose', 'use_when', 'not_when', 'limits', 'provenance', 'licenses'):
                 self.assertTrue(card[key].strip(), key)
