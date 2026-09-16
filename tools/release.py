@@ -13,7 +13,7 @@ sys.path.insert(0, str(HOME))
 from safety import require
 
 DIRECTORIES = {'templates', 'tests', 'tools', 'docs', 'examples'}
-PRIVATE = {'workspace', 'workspaces', 'node_modules', '.venv', '.git', '.claude', 'dist', '__pycache__'}
+PRIVATE = {'workspace', 'workspaces', 'node_modules', '.venv', '.git', '.claude', '.github', 'dist', '__pycache__'}
 EXTENSIONS = {'.py', '.mjs', '.swift', '.json', '.md', '.css', '.js', '.txt', '.png', '.jpg'}
 ROOT_FILES = {'LICENSE', '.gitignore', '.gitattributes', 'requirements.txt', 'package.json', 'package-lock.json', 'lock.json',
               'ysc.py', 'workflow.py', 'branding.py', 'safety.py', 'runtime.py', 'audio_qa.py', 'capture.mjs',
