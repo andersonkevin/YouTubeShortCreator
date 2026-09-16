@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 (2026-09-16)
 
 - Added asset library wave 02: 45 design-review components across widgets, data,
   systems, AI and software, with a searchable catalog, cards, fixtures and an own

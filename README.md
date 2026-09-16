@@ -12,7 +12,7 @@ Set up your channel once. For every episode, bring a script, a final voice recor
 and thumbnail artwork. Get back a branded 1080x1920 video with word-timed captions,
 a cover and a publishing handoff, without redesigning anything.
 
-**Version 0.1.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
+**Version 0.2.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
 
 | Explain the tools | Show the contract | Make approval visible |
 | :---: | :---: | :---: |
