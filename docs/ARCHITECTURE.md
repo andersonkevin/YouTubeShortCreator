@@ -46,7 +46,7 @@ flowchart TD
 | `tools/visual_library/options.js` | Shared gallery and production option construction | Production geometry and typography are adapter-owned |
 | `capture.mjs` | Headless Chrome, viewport QA, deterministic seeking and PNG capture | Local page with page-level network blocking |
 | `chart-qa.mjs` | Chart label bounds and pairwise collision checks | Normalized production pixels; no hidden-label workaround |
-| `templates/v1/scenes/` | Twelve fixed HTML trees and editable text/motion contracts | Only declared slots are variable |
+| `templates/v1/scenes/` | Eighteen fixed HTML trees and editable text/motion contracts | Only declared slots are variable |
 | `templates/v1/assets/` | Scene geometry, design treatment and shared capture clock | Template code, not episode input |
 | `transcribe.swift` | Installed Apple speech model and timestamped segments | No model installation or cloud fallback |
 | `encode.swift` | 1080x1920 H.264 from captured PNGs at 30 fps | Generated frames only |

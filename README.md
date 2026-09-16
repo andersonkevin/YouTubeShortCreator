@@ -21,7 +21,8 @@ the subject is up to the channel.
 | <a href="docs/images/prompt-tools.png"><img src="docs/images/prompt-tools.png" alt="Rendered scene showing a prompt connected to tools" width="260"></a> | <a href="docs/images/code-policy.png"><img src="docs/images/code-policy.png" alt="Rendered agent policy with allow, deny and review outcomes" width="260"></a> | <a href="docs/images/approval-gate.png"><img src="docs/images/approval-gate.png" alt="Rendered human approval gate before an action" width="260"></a> |
 
 *Actual renders of the fixed template with the illustrative Signal Lab brand, not
-editor mockups. [See all 12 layouts](docs/GALLERY.md).*
+editor mockups. [See all 18 layouts](docs/GALLERY.md), including six general-purpose
+scenes for any subject.*
 
 ## How It Works
 

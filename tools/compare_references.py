@@ -42,8 +42,8 @@ def evidence(root):
         for name, expected in run['outputs'].items():
             require(digest(inside(output, name)) == expected, 'Output drift: ' + name)
         cases[case['episode']] = case
-    require(len(cases) == 7 and sum(len(case['samples']) for case in cases.values()) == 24,
-            'Complete seven-run, 24-scene matrix required')
+    require(len(cases) >= 7 and sum(len(case['samples']) for case in cases.values()) >= 24,
+            'Complete seven-run, 24-scene legacy matrix required')
     return root, report, cases
 
 
@@ -51,7 +51,8 @@ def compare(before_root, after_root, allow_removed_bracket=False):
     before_root, before, old = evidence(before_root)
     after_root, after, new = evidence(after_root)
     require(before['environment']['versions'] == after['environment']['versions'], 'Runtime mismatch')
-    require(old.keys() == new.keys(), 'Fixture case mismatch')
+    # A newer fixture may add cases for new layouts; every earlier case must still exist.
+    require(old.keys() <= new.keys(), 'Fixture case mismatch')
     results = []
     for name, case in old.items():
         other = new[name]

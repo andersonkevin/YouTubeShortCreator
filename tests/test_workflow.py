@@ -94,7 +94,7 @@ class WorkflowTests(unittest.TestCase):
 
     def test_all_layouts_render_escaped_slots(self):
         layouts = list(workflow.TEMPLATE.joinpath('scenes').glob('*.json'))
-        self.assertEqual(len(layouts), 12)
+        self.assertEqual(len(layouts), 18)
         for file in layouts:
             layout = read_json(file)
             sample = copy.deepcopy(layout['example'])

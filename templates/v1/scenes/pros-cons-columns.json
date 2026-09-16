@@ -1,0 +1,238 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual pros-cons-columns"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "column-box pros"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-title"
+                },
+                "children": [
+                  {
+                    "slot": "p_04"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_05"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_06"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_07"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "column-box cons"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-title"
+                },
+                "children": [
+                  {
+                    "slot": "p_08"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_09"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_10"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "column-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_11"
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "column-note"
+            },
+            "children": [
+              {
+                "slot": "p_12"
+              }
+            ],
+            "motion": "m03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_13"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "p_05",
+    "p_06",
+    "p_07",
+    "p_08",
+    "p_09",
+    "p_10",
+    "p_11",
+    "p_12",
+    "p_13"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "06 / TRADEOFF",
+      "h2_02": "Two sides",
+      "h2_03": "of one decision.",
+      "p_04": "PROS",
+      "p_05": "Publishes every day",
+      "p_06": "Same look across episodes",
+      "p_07": "Review before upload",
+      "p_08": "CONS",
+      "p_09": "Needs a Mac to render",
+      "p_10": "Fixed layouts only",
+      "p_11": "One voice per episode",
+      "p_12": "The count on each side is not the verdict.",
+      "p_13": "Lay out a decision honestly."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.6
+      },
+      "m03": {
+        "enter": 1.2
+      }
+    }
+  }
+}

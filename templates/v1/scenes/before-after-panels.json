@@ -1,0 +1,235 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual before-after-panels"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "panel-box before"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-title"
+                },
+                "children": [
+                  {
+                    "slot": "p_04"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_05"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_06"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_07"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "i",
+            "attrs": {
+              "class": "panel-arrow"
+            },
+            "children": [],
+            "motion": "m02"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "panel-box after"
+            },
+            "children": [
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-title"
+                },
+                "children": [
+                  {
+                    "slot": "p_08"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_09"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_10"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {
+                  "class": "panel-item"
+                },
+                "children": [
+                  {
+                    "slot": "p_11"
+                  }
+                ]
+              }
+            ],
+            "motion": "m03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_12"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "p_05",
+    "p_06",
+    "p_07",
+    "p_08",
+    "p_09",
+    "p_10",
+    "p_11",
+    "p_12"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "fill"
+    ],
+    "m03": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "05 / WHAT CHANGED",
+      "h2_02": "Same list,",
+      "h2_03": "before and after.",
+      "p_04": "BEFORE",
+      "p_05": "Manual uploads",
+      "p_06": "No captions",
+      "p_07": "Weekly posts",
+      "p_08": "AFTER",
+      "p_09": "Scheduled uploads",
+      "p_10": "Timed captions",
+      "p_11": "Daily posts",
+      "p_12": "Left is the starting point, right is the result."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "fill": [
+          0.6,
+          0.5
+        ]
+      },
+      "m03": {
+        "enter": 1.2
+      }
+    }
+  }
+}

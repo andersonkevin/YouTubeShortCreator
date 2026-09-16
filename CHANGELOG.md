@@ -1,5 +1,59 @@
 # Changelog
 
+## Unreleased
+
+- Added six general-purpose production layouts for any subject: quote-card,
+  numbered-steps, headline-stat, checklist-progress, before-after-panels and
+  pros-cons-columns, with their stylesheet, example content and gallery captures.
+  The regression fixture covers all eighteen layouts; the original twelve were
+  compared pixel by pixel against the previous references with zero changes.
+- The browser QA loads the checked brand faces explicitly before verifying them.
+- The implementation lock changed with the template: run `brand-approve` again
+  in existing workspaces before producing, as documented.
+- Pipeline integration batches merged from the local integration branch:
+  - Added B06 failure recovery tests, finite JSON exponent parsing and atomic
+    no-overwrite Python JSON publication. New runs hash nested assets and retain
+    diagnostic evidence after caught interrupts. Audio QA includes short final
+    windows, silent spans and unmatched tails. Shared encoded-frame QA compares
+    chroma-aware samples against original captures and checks all native frame
+    timestamps. Technical qualification and pending human gates are tracked in
+    `docs/B06-PROGRESS.md`; no design, encoder setting or publication behavior changed.
+
+  - Replaced the internal 90-second ceiling with a shared 180-second Shorts
+    contract at the operator's request. The full recording drives duration; no
+    automatic excerpt or speed change. Added long caption/frame tests and bounded
+    75 MB audio intake for three-minute PCM. B05 extended media review is pending.
+
+  - Recorded operator technical approval of B04's native backend boundary.
+  - Implemented optional FFmpeg encoding/mux/QA under B05 qualification, with
+    explicit binary configuration and no fallback. Added format/size/time fixtures.
+  - Validate actual decoded frame timestamps instead of inferring cadence from
+    average container metadata. Corrected native AAC padding and Opus pre-skip using
+    invocation-owned Apple-decoded PCM, preserving rate, channels and original audio.
+
+  - Recorded operator technical approval of all three B03 chart/motion samples.
+  - Separated PNG capture from native media dispatch. New runtime profiles record
+    an explicit native backend and capability probe; runs detect profile drift.
+    Scratch ownership and failure cleanup are Python-managed. B04 passed technical
+    review; optional FFmpeg qualification remains the separate B05 batch.
+
+  - Added chart density/palette/count qualification and explicit label-collision
+    rejection. Corrected extreme-value formatting, tiny timeline duration labels
+    and scatter/map label margins without changing source data.
+
+  - Implemented eight analytical chart forms, additive stacked bars, six selectable
+    entrance presets and optional fade exits. B03 technical qualification passed;
+    source data, brand geometry and the caption clock remain authoritative.
+
+  - Added opt-in v2 flow, metric and comparison scenes with 40 pinned icons and six
+    compositions, shared study/production rendering and source/derived-data evidence.
+    Two palettes and native three/four-scene fixtures passed B02 technical review.
+  - Added private legacy regression tools; all twelve layouts have three/four-scene
+    reference coverage and exact pixel parity after widget integration.
+  - Removed the operator-approved right-side decorative bracket without changing
+    layout geometry. Qualified the reviewed CSS lock change with 24 before/after
+    comparisons and a synthetic native media/audio test.
+
 ## 0.3.0 (2026-09-16)
 
 - Positioned the project for explainer Shorts on any subject; the technical
@@ -12,48 +66,6 @@
 - Quote and definition components wrap text by measured width, so lines never
   start with a space and heights are exact.
 - Documentation examples published as the repository wiki.
-- Added B06 failure recovery tests, finite JSON exponent parsing and atomic
-  no-overwrite Python JSON publication. New runs hash nested assets and retain
-  diagnostic evidence after caught interrupts. Audio QA includes short final
-  windows, silent spans and unmatched tails. Shared encoded-frame QA compares
-  chroma-aware samples against original captures and checks all native frame
-  timestamps. Technical qualification and pending human gates are tracked in
-  `docs/B06-PROGRESS.md`; no design, encoder setting or publication behavior changed.
-
-- Replaced the internal 90-second ceiling with a shared 180-second Shorts
-  contract at the operator's request. The full recording drives duration; no
-  automatic excerpt or speed change. Added long caption/frame tests and bounded
-  75 MB audio intake for three-minute PCM. B05 extended media review is pending.
-
-- Recorded operator technical approval of B04's native backend boundary.
-- Implemented optional FFmpeg encoding/mux/QA under B05 qualification, with
-  explicit binary configuration and no fallback. Added format/size/time fixtures.
-- Validate actual decoded frame timestamps instead of inferring cadence from
-  average container metadata. Corrected native AAC padding and Opus pre-skip using
-  invocation-owned Apple-decoded PCM, preserving rate, channels and original audio.
-
-- Recorded operator technical approval of all three B03 chart/motion samples.
-- Separated PNG capture from native media dispatch. New runtime profiles record
-  an explicit native backend and capability probe; runs detect profile drift.
-  Scratch ownership and failure cleanup are Python-managed. B04 passed technical
-  review; optional FFmpeg qualification remains the separate B05 batch.
-
-- Added chart density/palette/count qualification and explicit label-collision
-  rejection. Corrected extreme-value formatting, tiny timeline duration labels
-  and scatter/map label margins without changing source data.
-
-- Implemented eight analytical chart forms, additive stacked bars, six selectable
-  entrance presets and optional fade exits. B03 technical qualification passed;
-  source data, brand geometry and the caption clock remain authoritative.
-
-- Added opt-in v2 flow, metric and comparison scenes with 40 pinned icons and six
-  compositions, shared study/production rendering and source/derived-data evidence.
-  Two palettes and native three/four-scene fixtures passed B02 technical review.
-- Added private legacy regression tools; all twelve layouts have three/four-scene
-  reference coverage and exact pixel parity after widget integration.
-- Removed the operator-approved right-side decorative bracket without changing
-  layout geometry. Qualified the reviewed CSS lock change with 24 before/after
-  comparisons and a synthetic native media/audio test.
 
 ## 0.2.0 (2026-09-16)
 

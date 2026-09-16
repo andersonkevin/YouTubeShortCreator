@@ -195,7 +195,7 @@ def build_html(data, captions, bounds):
             continue
         tree = read_json(TEMPLATE / 'scenes' / (scene['layout'] + '.json'))['tree']
         scenes.append(scene_html(tree, scene['content'], scene['motion'], {'data-start': start, 'data-end': end, 'data-name': scene['name']}))
-    styles = ['motion.css', 'technology.css', 'code-graphics-scenes.css', 'spoken-captions.css', 'scene-extras.css', 'brand.css']
+    styles = ['motion.css', 'technology.css', 'code-graphics-scenes.css', 'general-scenes.css', 'spoken-captions.css', 'scene-extras.css', 'brand.css']
     if data['version'] == 2:
         styles.append('visual-scenes.css')
     links = ''.join(f'<link rel="stylesheet" href="assets/{name}">' for name in styles)

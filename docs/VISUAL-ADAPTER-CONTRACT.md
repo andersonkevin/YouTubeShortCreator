@@ -10,7 +10,7 @@ This capability is not release, editorial or publication approval for future epi
 ## Version Boundary
 
 Keep `templates/v1` as the fixed visual system. Episode `version: 1` keeps its exact
-existing fields and twelve layout contracts. Opt-in episode `version: 2` retains
+existing fields and its classic layout contracts. Opt-in episode `version: 2` retains
 `template: "v1"`, the existing audio/timing/thumbnail/metadata rules, and adds an
 exact `visuals` object. Do not migrate old JSON or brand approvals automatically.
 Use a new qualification workspace when the implementation lock changes.
