@@ -36,28 +36,28 @@ class DocumentationTests(unittest.TestCase):
         self.assertEqual(result['manifest_images'], 18)
 
     def test_assistant_entrypoints_share_workflow(self):
-        for name in ('AGENTS.md', 'CLAUDE.md', 'START-HERE.md'):
+        for name in ('AGENTS.md', 'START-HERE.md'):
             content = (HOME / name).read_text()
             self.assertIn('docs/ASSISTANT-WORKFLOW.md', content)
 
     def test_assistant_entrypoints_packaged(self):
         from tools.release import files
         selected = {str(path.relative_to(HOME)) for path in files()}
-        self.assertTrue({'START-HERE.md', 'CLAUDE.md',
+        self.assertTrue({'START-HERE.md', 'AGENTS.md',
                          'docs/assistant/BRIEF.md', 'docs/assistant/SESSION.md'} <= selected)
 
     def test_missing_local_link(self):
         self.append('[Broken](not-here.md)')
         self.assertTrue(any('missing local target' in e for e in check(self.root)['errors']))
 
-    def test_private_assistant_settings_excluded_from_release(self):
+    def test_hidden_settings_directories_excluded_from_release(self):
         from tools.release import files
-        private = self.root / '.claude'
+        private = self.root / '.local-settings'
         private.mkdir()
         (private / 'settings.local.json').write_text('{"private_fixture": true}')
         selected = {str(p.relative_to(self.root)) for p in files(self.root)}
-        self.assertFalse(any(name.startswith('.claude/') for name in selected))
-        (self.root / '.unknown').mkdir()
+        self.assertFalse(any(name.startswith('.local-settings/') for name in selected))
+        (self.root / 'unknown-dir').mkdir()
         with self.assertRaisesRegex(ValueError, 'Unknown public directory'):
             files(self.root)
 

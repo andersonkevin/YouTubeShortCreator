@@ -19,7 +19,7 @@
 - Added offline visual preparation: a 69-entry catalog, bounded charts/widgets,
   local SVG/PNG export, provenance and assistant selection guidance. Production
   scene integration, FFmpeg backend and marketing remain separate milestones.
-- Added shared assistant onboarding, Codex/Claude Code entry points, private brief
+- Added shared assistant onboarding, assistant entry points, private brief
   and session-handoff templates; no model API or autonomous runtime added.
 - Expanded the public README and linked installation, first-episode, branding,
   CLI, architecture, data-contract, troubleshooting, licensing and release guides.

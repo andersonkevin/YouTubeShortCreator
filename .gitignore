@@ -4,7 +4,9 @@
 /dist/
 /node_modules/
 /.venv/
-/.claude/
+# Hidden settings directories (editors, assistants); .github stays tracked.
+/.*/
+!/.github/
 __pycache__/
 *.py[cod]
 .DS_Store
