@@ -7,7 +7,7 @@ import unittest
 
 from tools.visual_library import kit
 from tools.visual_library.expansion.wave02 import build as wave02
-from tools.visual_library.expansion.wave03 import build, palettes
+from tools.visual_library.expansion.wave03 import build, layouts, palettes
 
 HOME = build.HOME
 
@@ -87,6 +87,8 @@ class Wave03BuildTests(unittest.TestCase):
             record = json.loads((output.parent / 'build.json').read_text())
             self.assertEqual(record['wave'], 3)
             self.assertEqual(len(record['recipes']), 10)
+            self.assertGreaterEqual(len(record['layouts']), 18)
+            self.assertIn('<section class="frame"', (output.parent / 'layouts.html').read_text())
             self.assertEqual(len(record['wave03_palettes']), 2 * len(palettes.FAMILIES))
             self.assertFalse(record['production_integration'])
             self.assertIn('wave02.js', record['implementation_hashes'])
@@ -114,7 +116,8 @@ class Wave03BuildTests(unittest.TestCase):
         names = {str(p.relative_to(release.HOME)) for p in release.files()}
         for name in ('tools/visual_library/expansion/wave03/palettes.py', 'tools/visual_library/expansion/wave03/palettes.json',
                      'tools/visual_library/expansion/wave03/motion.js', 'tools/visual_library/expansion/wave03/motion.json',
-                     'tools/visual_library/expansion/wave03/qa.mjs', 'tests/test_visual_wave03.py'):
+                     'tools/visual_library/expansion/wave03/qa.mjs', 'tools/visual_library/expansion/wave03/layouts.json',
+                     'tools/visual_library/expansion/wave03/layouts.py', 'tools/visual_library/expansion/wave03/layouts-qa.mjs', 'tests/test_visual_wave03.py'):
             self.assertIn(name, names)
 
     def test_qa_script_boundaries(self):
@@ -122,6 +125,49 @@ class Wave03BuildTests(unittest.TestCase):
         for needle in ("route(/^https?:/", "'--approve-write'", 'end state differs', 'non-deterministic', 'Color outside the token set', 'same frame at 0.8 s', 'render ${id} with the same colors'):
             self.assertIn(needle, qa)
         self.assertNotIn('fetch(', qa)
+        lq = (HOME / 'layouts-qa.mjs').read_text()
+        for needle in ("route(/^https?:/", "'--approve-write'", 'overflows its zone', 'leaves the safe box', 'overlap as rendered', 'does not fill the visual zone'):
+            self.assertIn(needle, lq)
+        self.assertNotIn('fetch(', lq)
+
+
+class Wave03LayoutTests(unittest.TestCase):
+    def setUp(self):
+        self.data = layouts.load()
+
+    def layout(self, id='classic'):
+        return json.loads(json.dumps(next(l for l in json.loads((HOME / 'layouts.json').read_text())['layouts'] if l['id'] == id)))
+
+    def reject(self, layout, message):
+        with self.assertRaisesRegex(ValueError, message):
+            layouts.validate_layout(layout)
+
+    def test_layout_file_passes_and_is_diverse(self):
+        self.assertGreaterEqual(len(self.data['layouts']), 18)
+        for layout in self.data['layouts']:
+            self.assertEqual(layout['status'], 'design_review')
+            self.assertFalse(layout['production_scene_available'])
+            self.assertGreaterEqual(layout['scale'], 1.0)
+        self.assertEqual(len({l['id'] for l in self.data['layouts']}), len(self.data['layouts']))
+
+    def test_layout_rejections(self):
+        layout = self.layout(); layout['zones'].append({'role': 'visual', 'x': 100, 'y': 200, 'w': 824, 'h': 820}); self.reject(layout, 'Exactly one visual')
+        layout = self.layout(); visual = next(z for z in layout['zones'] if z['role'] == 'visual'); visual['w'], visual['h'] = 700, 697; self.reject(layout, 'shorter than 820|never shrink')
+        layout = self.layout(); visual = next(z for z in layout['zones'] if z['role'] == 'visual'); visual['h'] = 900; self.reject(layout, 'slot aspect')
+        layout = self.layout(); caption = next(z for z in layout['zones'] if z['role'] == 'caption'); caption['y'] = 1750; self.reject(layout, 'safe box')
+        layout = self.layout(); title = next(z for z in layout['zones'] if z['role'] == 'title'); title['y'] = 600; self.reject(layout, 'overlap')
+        layout = self.layout(); layout['zones'] = [z for z in layout['zones'] if z['role'] != 'caption']; self.reject(layout, 'caption zone')
+        layout = self.layout(); layout['zones'][0]['role'] = 'logo'; self.reject(layout, 'Unknown zone role')
+        layout = self.layout(); layout['zones'][0]['x'] = 1.5; self.reject(layout, 'integer')
+
+    def test_layout_page_has_no_scripts_and_every_frame(self):
+        tokens, _ = build.merged_tokens()
+        page = build.layout_page(self.data, tokens['palettes']['study'])
+        self.assertNotIn('<script', page)
+        self.assertIn("default-src 'none'", page)
+        for layout in self.data['layouts']:
+            self.assertIn(f'data-layout="{layout["id"]}"', page)
+        self.assertEqual(page.count('data-role="visual-image"'), len(self.data['layouts']))
 
 
 import unittest.mock  # noqa: E402

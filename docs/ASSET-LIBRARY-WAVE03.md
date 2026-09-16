@@ -2,10 +2,11 @@
 
 [Asset library wave 02](ASSET-LIBRARY-WAVE02.md) | [Asset expansion (wave 01)](ASSET-EXPANSION.md) | [Docs index](README.md)
 
-Wave 03 adds the two axes that make a batch of Shorts look different from one
-another before any new component is drawn: palettes and motion. A batch of ten
-episodes that share one palette and one reveal reads as one piece; the same
-components across 26 palettes and 10 reveals do not. Everything here is a
+Wave 03 adds the three axes that make a batch of Shorts look different from
+one another before any new component is drawn: palettes, motion and layout. A
+batch of ten episodes that share one palette, one reveal and one frame
+arrangement reads as one piece; the same components across 26 palettes, 10
+reveals and 18 layouts do not. Everything here is a
 design_review study for the offline visual library; nothing is wired into
 production scenes, templates or captions, and `production_scene_available`
 stays `false`.
@@ -91,17 +92,61 @@ duration has elapsed, so the end state of every recipe is the static component.
 Count-up numbers were left out on purpose: intermediate frames would show
 values that are not the data.
 
+## Layout studies
+
+Eighteen zone maps for the 1080x1920 frame in `layouts.json`, validated by
+`layouts.py`. A layout is a list of zones (role, x, y, w, h). Exactly one zone
+holds the 824x820 visual, scaled between 1.0 and 1.35 and never down, so the
+component's real type sizes survive. Text zones carry the production type
+sizes as placeholders (eyebrow 27 px, title 68 px, caption 29 px), which is how
+the study proves that each zone height fits its text. Decorative zones (panel,
+band, rail, frame, header, progress) draw with the palette tokens. No template,
+scene or caption file is touched; nothing here is a logo or a brand element.
+
+Study assumption for the vertical player: content zones stay inside a safe box
+of 960x1600 at (60, 180), so the status bar, the caption area and the bottom
+controls never cover text or data.
+
+| Layout | Arrangement | Visual scale |
+| --- | --- | --- |
+| classic | eyebrow, title, visual, caption, progress (the production order) | 1.0 |
+| visual-first | visual on top, eyebrow and title below it | 1.0 |
+| title-band | full-width surface band behind the title | 1.0 |
+| card | bordered card with a header strip around an enlarged visual | 1.1 |
+| terminal-chrome | window title bar with three dots above the visual | 1.0 |
+| wide | visual scaled to the safe width | 1.165 |
+| bottom-visual | title and short caption first, visual low | 1.0 |
+| left-rail | vertical accent rail beside the classic zones | 1.0 |
+| framed | thin inset border around the classic zones | 1.0 |
+| caption-first | setup line, visual, title as the takeaway | 1.0 |
+| big-title | three-line title, no eyebrow | 1.0 |
+| quote-panel | visual and caption inside one panel | 1.0 |
+| tag-row | three tag chips between title and visual | 1.0 |
+| numbered | large index number beside the title | 1.0 |
+| dual-caption | two caption columns under the visual | 1.0 |
+| offset-visual | visual against the right safe edge, vertical label at the left | 1.0 |
+| stack-notes | three note lines instead of one caption | 1.0 |
+| hero-number | large metric above the title and visual | 1.0 |
+
+Validator rules: every zone inside the frame; text and visual zones inside the
+safe box; no two text or visual zones overlap; a title and a caption zone are
+required; minimum heights per role (a two-line title needs 155 px); the visual
+keeps the slot aspect; no two layouts share a zone map. Placeholder copy
+exists only to size the zones and must never ship.
+
 ## Study build and QA
 
 ```bash
 python3 tools/visual_library/expansion/wave03/build.py validate
 python3 tools/visual_library/expansion/wave03/build.py build --workspace workspaces/<workspace> --run <run> --approve-write
 node tools/visual_library/expansion/wave03/qa.mjs workspaces/<workspace> <run> <playwright/index.mjs> "<chrome binary>" --approve-write
+node tools/visual_library/expansion/wave03/layouts-qa.mjs workspaces/<workspace> <run> <playwright/index.mjs> "<chrome binary>" --approve-write
 ```
 
 The build renders the 35 wave 02 example components with a palette bar of 26
 entries and a recipe bar of 10, plus `palettes.html`, a swatch sheet with the
-contrast figures per palette. It refuses an existing run, a public tree or a
+contrast figures per palette, and `layouts.html`, every layout as an unscaled
+1080x1920 frame with placeholder zones in the build's palette and no scripts. It refuses an existing run, a public tree or a
 missing approval flag, and records the hashes of every implementation file.
 
 QA checks, over a fixed sample of eight components (terminal, histogram,
@@ -117,20 +162,32 @@ queue, sequence, dag, bullet, claims, tree):
   differs from every other recipe;
 - no page errors and no network requests; exports only under the private run.
 
+Layout QA (`layouts-qa.mjs`) takes three component exports from the study page
+(table, sequence, bullet), injects each into every layout's visual zone and
+checks the frame as rendered: placeholders at production type sizes do not
+overflow their zones, the visual image is the 824x820 export and fills its zone
+exactly, no text or visual zones overlap, every content zone stays inside the
+safe box, and no page error or network request occurs. It writes one PNG per
+layout and component plus a contact sheet under `qa-layouts/`.
+
 Comparisons strip the per-render class and clip-path counters that zrender
 adds to its SVG output; rasters use the raw SVG.
 
 ## Observed results
 
-| Run | Palettes | Recipes | Sample | Palette exports | Motion frames | Errors | Network | Result |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `m-03` | 26 | 10 | 8 | 52 | 80 | 0 | 0 | PASS |
+| Run | Check | Result |
+| --- | --- | --- |
+| `l-06` | palettes and motion: 26 palettes, 10 recipes, 8 sample components | PASS, 52 palette exports, 80 motion frames, 0 errors, 0 network |
+| `l-06` | layouts: 18 layouts x 3 components at 1080x1920 | PASS, 54 frames, 0 errors, 0 network |
 
 Browser: Chrome 153.0.8010.48 via Playwright 1.62.1, Node 24.19.0. Earlier
-runs `m-01` and `m-02` are the iteration history (SVG counters and an
-accent-pulse entrance identical to clip, both fixed). The palette sheet,
-palette contact sheet and motion filmstrip were inspected by the
-implementation reviewer; that is not operator approval.
+runs (`m-01` to `m-03`, `l-01` to `l-05`) are the iteration history: SVG
+counters in comparisons, an accent-pulse entrance identical to clip, a visual
+zone border that shrank the image box, a tag chip one line too tall, a rotated
+label measured unrotated, and a two-line title in a 150 px zone; all fixed and
+covered by rules or checks. The palette sheet, palette contact sheet, motion
+filmstrip and layout sheet were inspected by the implementation reviewer; that
+is not operator approval.
 
 ## Counts
 
@@ -138,8 +195,9 @@ implementation reviewer; that is not operator approval.
 | --- | --- |
 | Palettes generated and validated | 24 (12 families, dark and light) |
 | Motion recipes implemented and validated | 10 |
+| Layout studies validated | 18 |
 | Components available in the study | 35 (wave 02) |
-| Combinations of component, palette and recipe in the study | 9,100 |
+| Combinations of component, palette, recipe and layout | 163,800 |
 | Approved by a human reviewer | 0 |
 
 ## Limitations
@@ -157,6 +215,11 @@ implementation reviewer; that is not operator approval.
 - Recipes run in the study through ECharts `setOption` per frame; production
   playback needs the integration owner to decide whether to keep that or to
   pre-render frames.
+- The safe box is a study assumption, not a measurement of any player.
+- `wide` scales the visual to the safe width; a component whose right edge
+  carries data can still sit under player controls on some devices.
+- Layout placeholders use the palette font, not the production brand font;
+  zone heights were verified with Arial at the production sizes.
 
 ## Integration checklist (not executed)
 
@@ -166,8 +229,11 @@ implementation reviewer; that is not operator approval.
    `(items, t, ctx)` contract, or pre-render the frames with the QA raster
    path.
 3. Add a batch diversity rule in the episode picker: no two episodes in a
-   batch share the same palette, recipe and component family.
-4. Extend production QA with the end-state identity and determinism checks
-   above.
-5. Record human approval in the production catalog; nothing in wave 03
+   batch share the same palette, recipe, layout and component family.
+4. Port the layout zone maps into template scenes only after the brand font
+   is measured in the same zones; the safe box must be confirmed against the
+   target player.
+5. Extend production QA with the end-state identity, determinism and
+   layout-overflow checks above.
+6. Record human approval in the production catalog; nothing in wave 03
    records it.

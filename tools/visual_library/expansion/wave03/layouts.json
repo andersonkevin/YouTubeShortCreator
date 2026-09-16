@@ -1,0 +1,919 @@
+{
+  "version": 1,
+  "wave": 3,
+  "design_status": "design_review",
+  "frame": [
+    1080,
+    1920
+  ],
+  "slot": [
+    824,
+    820
+  ],
+  "safe": {
+    "x": 60,
+    "y": 180,
+    "w": 960,
+    "h": 1600
+  },
+  "note": "Layout studies for the vertical frame. Zones are positions only; text zones use the production type sizes as placeholders. Not templates, scenes or captions.",
+  "layouts": [
+    {
+      "id": "classic",
+      "label": "Classic: title, visual, caption",
+      "purpose": "The production order: eyebrow and title above, visual in the middle, caption and progress below.",
+      "use_when": "Any episode; the reference against which the other layouts vary.",
+      "not_when": "A batch where every episode already uses it.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 278,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 368,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 650,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1550,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "visual-first",
+      "label": "Visual first, title below",
+      "purpose": "The graphic opens the frame; the title reads as its conclusion.",
+      "use_when": "Episodes where the picture is the hook and the words explain it.",
+      "not_when": "Titles longer than two lines.",
+      "zones": [
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 260,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 1130,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 1190,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1400,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "title-band",
+      "label": "Title in a full-width band",
+      "purpose": "A surface band carries the title edge to edge; the visual sits under it.",
+      "use_when": "Strong one-line claims; series with a recurring band color.",
+      "not_when": "Three-line titles; the band grows past the safe top.",
+      "zones": [
+        {
+          "role": "band",
+          "x": 0,
+          "y": 220,
+          "w": 1080,
+          "h": 300
+        },
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 300,
+          "w": 840,
+          "h": 200
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 600,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1470,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "card",
+      "label": "Visual inside a card",
+      "purpose": "A bordered card with a header strip frames the graphic, slightly enlarged.",
+      "use_when": "Data widgets that benefit from a container: tables, payloads, matrices.",
+      "not_when": "Full-bleed graphics; components that already draw their own panel.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 300,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "panel",
+          "x": 60,
+          "y": 520,
+          "w": 960,
+          "h": 1010
+        },
+        {
+          "role": "header",
+          "x": 60,
+          "y": 520,
+          "w": 960,
+          "h": 70
+        },
+        {
+          "role": "visual",
+          "x": 90,
+          "y": 620,
+          "w": 906,
+          "h": 902
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1560,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "terminal-chrome",
+      "label": "Window chrome around the visual",
+      "purpose": "A window title bar with three dots above the graphic, like a terminal or editor window.",
+      "use_when": "Terminal, logs, diff, payload and code-like widgets.",
+      "not_when": "Charts and diagrams that are not screen-like.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 300,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "panel",
+          "x": 100,
+          "y": 560,
+          "w": 824,
+          "h": 900
+        },
+        {
+          "role": "header",
+          "x": 100,
+          "y": 560,
+          "w": 824,
+          "h": 64
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 640,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1500,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "wide",
+      "label": "Wide visual to the safe edges",
+      "purpose": "The graphic scales to the safe width for maximum size; the title stays compact above.",
+      "use_when": "Dense charts and tables where every pixel counts.",
+      "not_when": "Components whose right edge carries data that the player controls could cover.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 200,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 60,
+          "y": 440,
+          "w": 960,
+          "h": 955
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1440,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "bottom-visual",
+      "label": "Visual low, text high",
+      "purpose": "Title and a short caption lead; the graphic lands at the bottom of the safe area.",
+      "use_when": "Episodes that explain first and show last.",
+      "not_when": "Long captions; the caption zone is one line high.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 300,
+          "w": 840,
+          "h": 200
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 540,
+          "w": 800,
+          "h": 90
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 700,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "left-rail",
+      "label": "Accent rail beside the text",
+      "purpose": "A vertical accent rail runs along the title and visual; the classic zones stay in place.",
+      "use_when": "Marking a series or a chapter within a batch.",
+      "not_when": "Layouts already using a band or a frame.",
+      "zones": [
+        {
+          "role": "rail",
+          "x": 40,
+          "y": 250,
+          "w": 10,
+          "h": 1230
+        },
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 278,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 368,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 650,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1550,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "framed",
+      "label": "Thin frame around the whole picture",
+      "purpose": "A thin border inset from the edges contains the classic zones.",
+      "use_when": "Formal or documentary episodes; evidence and audit themes.",
+      "not_when": "When the frame competes with a component that draws its own border.",
+      "zones": [
+        {
+          "role": "frame",
+          "x": 40,
+          "y": 160,
+          "w": 1000,
+          "h": 1640
+        },
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 278,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 368,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 650,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1550,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "caption-first",
+      "label": "Setup line above, visual, title below",
+      "purpose": "A caption-sized setup line opens, the visual answers, and the title lands as the takeaway.",
+      "use_when": "Question and answer episodes.",
+      "not_when": "Titles that need to be read before the graphic.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 310,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 480,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 1340,
+          "w": 840,
+          "h": 200
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "big-title",
+      "label": "Three-line title, no eyebrow",
+      "purpose": "The title takes three lines at the top; the visual follows without an eyebrow.",
+      "use_when": "Claims that need the full sentence; opening episodes of a series.",
+      "not_when": "Two-word titles; the empty title space reads as a mistake.",
+      "zones": [
+        {
+          "role": "title",
+          "x": 104,
+          "y": 240,
+          "w": 840,
+          "h": 330
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 640,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1540,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "quote-panel",
+      "label": "Visual and caption inside one panel",
+      "purpose": "A surface panel holds the visual with the caption directly under it, like a figure with its legend.",
+      "use_when": "Evidence and source-driven episodes.",
+      "not_when": "Captions longer than three lines.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 300,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "panel",
+          "x": 60,
+          "y": 520,
+          "w": 960,
+          "h": 1160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 560,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1420,
+          "w": 800,
+          "h": 200
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "tag-row",
+      "label": "Tag chips above the visual",
+      "purpose": "A row of three short tags sits between the title and the visual.",
+      "use_when": "Episodes that classify: stack, language, model, difficulty.",
+      "not_when": "When there are no real tags; placeholders must not ship.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 230,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 280,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "tag",
+          "x": 104,
+          "y": 470,
+          "w": 250,
+          "h": 44
+        },
+        {
+          "role": "tag",
+          "x": 384,
+          "y": 470,
+          "w": 250,
+          "h": 44
+        },
+        {
+          "role": "tag",
+          "x": 664,
+          "y": 470,
+          "w": 250,
+          "h": 44
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 560,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1440,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "numbered",
+      "label": "Big number beside the title",
+      "purpose": "A large index number at the left with the title beside it; useful for parts of a series.",
+      "use_when": "Numbered series, steps, countdowns.",
+      "not_when": "Standalone episodes without an order.",
+      "zones": [
+        {
+          "role": "number",
+          "x": 104,
+          "y": 250,
+          "w": 200,
+          "h": 130
+        },
+        {
+          "role": "title",
+          "x": 330,
+          "y": 250,
+          "w": 620,
+          "h": 240
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 560,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1440,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "dual-caption",
+      "label": "Two captions under the visual",
+      "purpose": "Two side-by-side caption columns under the visual for a before/after or a pair of readings.",
+      "use_when": "Comparisons: dumbbell, intervals, split-flow, confusion.",
+      "not_when": "One idea per episode; a single caption is clearer.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 278,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 368,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 650,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1520,
+          "w": 380,
+          "h": 160
+        },
+        {
+          "role": "caption",
+          "x": 524,
+          "y": 1520,
+          "w": 380,
+          "h": 160
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "offset-visual",
+      "label": "Visual pushed right with a side label",
+      "purpose": "The visual sits against the right safe edge; a short vertical label zone holds the left margin.",
+      "use_when": "Chapter markers; alternating with left-aligned layouts across a batch.",
+      "not_when": "Components with data on their left edge (row labels).",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 300,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "label",
+          "x": 60,
+          "y": 560,
+          "w": 80,
+          "h": 820
+        },
+        {
+          "role": "visual",
+          "x": 196,
+          "y": 560,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1440,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "stack-notes",
+      "label": "Three note lines instead of a caption",
+      "purpose": "Three short note lines stack under the visual; each is one takeaway.",
+      "use_when": "Summaries with several takeaways.",
+      "not_when": "A single sentence; use classic.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 230,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 280,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 480,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "note",
+          "x": 104,
+          "y": 1340,
+          "w": 800,
+          "h": 44
+        },
+        {
+          "role": "note",
+          "x": 104,
+          "y": 1400,
+          "w": 800,
+          "h": 44
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1460,
+          "w": 800,
+          "h": 100
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    },
+    {
+      "id": "hero-number",
+      "label": "Hero metric above the visual",
+      "purpose": "One large number with its label leads; the visual shows where it comes from.",
+      "use_when": "Episodes anchored on one figure: a percentage, a latency, a count.",
+      "not_when": "When there is no single headline number.",
+      "zones": [
+        {
+          "role": "eyebrow",
+          "x": 104,
+          "y": 200,
+          "w": 840,
+          "h": 40
+        },
+        {
+          "role": "metric",
+          "x": 104,
+          "y": 250,
+          "w": 840,
+          "h": 130
+        },
+        {
+          "role": "title",
+          "x": 104,
+          "y": 400,
+          "w": 840,
+          "h": 160
+        },
+        {
+          "role": "visual",
+          "x": 100,
+          "y": 580,
+          "w": 824,
+          "h": 820
+        },
+        {
+          "role": "caption",
+          "x": 104,
+          "y": 1460,
+          "w": 800,
+          "h": 120
+        },
+        {
+          "role": "progress",
+          "x": 100,
+          "y": 1760,
+          "w": 824,
+          "h": 5
+        }
+      ]
+    }
+  ]
+}

@@ -17,12 +17,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 from tools.visual_library import kit  # noqa: E402
 from tools.visual_library.expansion.wave02 import build as wave02  # noqa: E402
 from tools.visual_library.expansion.wave02 import schema  # noqa: E402
+from tools.visual_library.expansion.wave03 import layouts as layout_module  # noqa: E402
 from tools.visual_library.expansion.wave03 import palettes as palette_module  # noqa: E402
 
 HOME = Path(__file__).resolve().parent
 LIBRARY = kit.HOME
 WAVE = 3
-IMPLEMENTATION = ('motion.js', 'motion.json', 'palettes.json', 'palettes.py', 'wave03.css', 'build.py')
+IMPLEMENTATION = ('motion.js', 'motion.json', 'palettes.json', 'palettes.py', 'layouts.json', 'layouts.py', 'wave03.css', 'build.py')
 
 
 def recipes():
@@ -75,6 +76,61 @@ def swatch_page(extra):
             f'<title>Wave 03 palettes</title><style>{style}</style></head><body><h1>Wave 03 palettes · {len(extra["palettes"])} token sets · DESIGN REVIEW</h1>{"".join(rows)}</body></html>')
 
 
+PLACEHOLDERS = {
+    'eyebrow': 'EYEBROW · SERIES LABEL', 'title': 'A title placeholder that runs to two lines', 'caption': 'Caption placeholder: one or two sentences that say what the visual shows and why it matters.',
+    'note': 'Note placeholder: one takeaway per line', 'metric': '42.5%', 'tag': 'tag placeholder', 'number': '01', 'label': 'CHAPTER',
+}
+
+
+def layout_page(data, tokens):
+    """Every layout as an unscaled 1080x1920 frame with placeholder zones. No scripts; QA injects the visual."""
+    frames = []
+    for layout in data['layouts']:
+        zones = []
+        for i, zone in enumerate(layout['zones']):
+            role, box = zone['role'], f"left:{zone['x']}px;top:{zone['y']}px;width:{zone['w']}px;height:{zone['h']}px"
+            if role == 'visual':
+                zones.append(f'<div class="zone visual" data-role="visual" style="{box}"><img alt="" data-role="visual-image" width="{zone["w"]}" height="{zone["h"]}" hidden><span>visual 824x820 × {layout["scale"]}</span></div>')
+            elif role == 'header':
+                zones.append(f'<div class="zone header" data-role="{role}" style="{box}"><i></i><i></i><i></i></div>')
+            elif role == 'progress':
+                zones.append(f'<div class="zone progress" data-role="{role}" style="{box}"><span></span></div>')
+            elif role in PLACEHOLDERS:
+                text = PLACEHOLDERS[role]
+                if role == 'title' and zone['h'] >= 300:
+                    text = 'A title placeholder that runs to three full lines of text'
+                if role == 'label':
+                    zones.append(f'<div class="zone text label" data-role="{role}" style="{box}"><span>{text}</span></div>')
+                else:
+                    zones.append(f'<div class="zone text {role}" data-role="{role}" style="{box}">{text}</div>')
+            else:
+                zones.append(f'<div class="zone {role}" data-role="{role}" style="{box}"></div>')
+        frames.append(f'<section class="frame" data-layout="{layout["id"]}" data-scale="{layout["scale"]}"><h2>{layout["id"]} · {layout["label"]}</h2>{"".join(zones)}</section>')
+    T = tokens
+    style = (
+        f"body{{margin:0;background:{T['background']};color:{T['ink']};font-family:{T['font']}}}"
+        ".frame{position:relative;width:1080px;height:1920px;overflow:hidden;margin:0 0 40px;background:" + T['background'] + "}"
+        f".frame h2{{position:absolute;left:0;top:0;margin:0;padding:8px 16px;font:600 22px {T['mono']};color:{T['muted']};z-index:3}}"
+        ".zone{position:absolute;box-sizing:border-box;margin:0}"
+        f".text{{overflow:hidden;font-weight:800;line-height:1.12;color:{T['ink']}}}"
+        f".eyebrow{{font-size:27px;line-height:1.3;color:{T['accent']}}}.title{{font-size:68px}}.caption{{font-size:29px;line-height:1.35;font-weight:400;color:{T['muted']}}}"
+        f".note{{font-size:27px;line-height:1.3;font-weight:600;color:{T['muted']};border-left:6px solid {T['accent2']};padding-left:16px}}"
+        f".metric{{font-size:96px;line-height:1.1;font-family:{T['mono']};color:{T['accent']}}}.number{{font-size:120px;line-height:1;font-family:{T['mono']};color:{T['accent2']}}}"
+        f".tag{{font-size:24px;line-height:40px;text-align:center;border:2px solid {T['line']};border-radius:22px;color:{T['muted']};font-weight:600}}"
+        f".label{{display:flex;align-items:center;justify-content:center}}.label span{{display:block;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:27px;letter-spacing:4px;color:{T['muted']}}}"
+        f".visual{{outline:2px dashed {T['line']};outline-offset:-2px;display:flex;align-items:center;justify-content:center;font:600 24px {T['mono']};color:{T['muted']}}}.visual img{{position:absolute;inset:0;display:block}}.visual img:not([hidden])+span{{display:none}}"
+        f".panel{{background:{T['surface']};border:2px solid {T['line']};border-radius:16px}}.band{{background:{T['surface']}}}.rail{{background:{T['accent']};border-radius:5px}}.frame-zone{{}}"
+        f".zone.frame{{border:2px solid {T['line']};border-radius:8px;width:auto;height:auto;margin:0;background:none}}"
+        f".header{{border-bottom:2px solid {T['line']};display:flex;align-items:center;gap:12px;padding:0 24px}}.header i{{width:18px;height:18px;border-radius:50%;background:{T['muted']};display:block}}"
+        f".progress{{background:{T['line']};overflow:hidden}}.progress span{{display:block;height:100%;width:35%;background:{T['accent']}}}"
+    )
+    # The frame decor zone shares the class name with the outer section; scope it by data-role instead.
+    style = style.replace(".zone.frame{", "[data-role=frame]{").replace(".frame-zone{}", "")
+    head = ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'">'
+            f'<title>Wave 03 layouts</title><style>{style}</style></head><body>')
+    return head + ''.join(frames) + '</body></html>'
+
+
 def build(run_id, approved, workspace, palette='study', components='examples.json'):
     kit.require(approved, 'Explicit --approve-write required')
     kit.require(isinstance(run_id, str) and re.fullmatch(r'[a-z][a-z0-9-]{0,47}', run_id or ''), 'Invalid run ID')
@@ -82,6 +138,7 @@ def build(run_id, approved, workspace, palette='study', components='examples.jso
     validated, source, manifest = wave02.validate(components, example=True)
     tokens, extra = merged_tokens()
     motion = recipes()
+    layouts = layout_module.load()
     kit.require(palette in tokens['palettes'], 'Unknown palette')
     previews = root / 'visuals'
     kit.require(not previews.is_symlink(), 'Symlink output blocked')
@@ -105,10 +162,12 @@ def build(run_id, approved, workspace, palette='study', components='examples.jso
         stream.write(page)
     with (output / 'palettes.html').open('x') as stream:
         stream.write(swatch_page(extra))
+    with (output / 'layouts.html').open('x') as stream:
+        stream.write(layout_page(layouts, tokens['palettes'][palette]))
     hashes = {name: hashlib.sha256(kit.safe_file(HOME, name).read_bytes()).hexdigest() for name in IMPLEMENTATION}
     hashes['wave02.js'] = hashlib.sha256(kit.safe_file(wave02.HOME, 'wave02.js').read_bytes()).hexdigest()
     report = {'status': 'preview_built', 'wave': WAVE, 'design_status': schema.STATUS, 'production_integration': False, 'publication_performed': False,
-              'palette': palette, 'palettes': sorted(tokens['palettes']), 'wave03_palettes': sorted(extra['palettes']), 'recipes': [r['name'] for r in motion['recipes']],
+              'palette': palette, 'palettes': sorted(tokens['palettes']), 'wave03_palettes': sorted(extra['palettes']), 'recipes': [r['name'] for r in motion['recipes']], 'layouts': [l['id'] for l in layouts['layouts']],
               'slot': list(schema.SLOT), 'input_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
               'vendor_manifest_sha256': hashlib.sha256((kit.HOME / 'vendor/manifest.json').read_bytes()).hexdigest(),
               'components': len(validated), 'index_sha256': hashlib.sha256(page.encode()).hexdigest(), 'implementation_hashes': hashes}
@@ -121,7 +180,7 @@ def build(run_id, approved, workspace, palette='study', components='examples.jso
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('validate', 'build', 'palettes', 'recipes'))
+    parser.add_argument('command', choices=('validate', 'build', 'palettes', 'recipes', 'layouts'))
     parser.add_argument('--workspace')
     parser.add_argument('--run', dest='run_id')
     parser.add_argument('--palette', default='study')
@@ -132,11 +191,14 @@ def main(argv=None):
         if args.command == 'validate':
             tokens, extra = merged_tokens()
             motion = recipes()
-            print(json.dumps({'status': 'PASS', 'palettes': len(tokens['palettes']), 'wave03_palettes': len(extra['palettes']), 'recipes': len(motion['recipes'])}, indent=2))
+            layouts = layout_module.load()
+            print(json.dumps({'status': 'PASS', 'palettes': len(tokens['palettes']), 'wave03_palettes': len(extra['palettes']), 'recipes': len(motion['recipes']), 'layouts': len(layouts['layouts'])}, indent=2))
         elif args.command == 'palettes':
             print(json.dumps(palette_module.report(palette_module.load()), indent=2))
         elif args.command == 'recipes':
             print(json.dumps(recipes()['recipes'], indent=2))
+        elif args.command == 'layouts':
+            print(json.dumps([{k: l[k] for k in ('id', 'label', 'purpose', 'use_when', 'not_when', 'scale')} for l in layout_module.load()['layouts']], indent=2))
         else:
             kit.require(args.workspace, 'build needs --workspace')
             result = {'output': str(build(args.run_id, args.approve_write, args.workspace, args.palette, args.components)), 'production_integration': False}
