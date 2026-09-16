@@ -52,7 +52,19 @@ KINDS = {
     'pyramid': ('software', ('stack',), ('highlight',)),
     'versions': ('software', ('line',), ('highlight',)),
     'trust-boundary': ('software', ('zones',), ()),
+    'memory-timeline': ('ai', ('line',), ('highlight',)),
+    'eval-scorecard': ('ai', ('rows',), ('highlight',)),
+    'tool-schema': ('ai', ('card',), ('highlight',)),
+    'latency-breakdown': ('systems', ('stacked',), ('highlight',)),
+    'sliding-window': ('systems', ('timeline',), ()),
+    'retry-budget': ('systems', ('bars',), ()),
+    'heatmap': ('data', ('grid',), ()),
+    'slope': ('data', ('lines',), ('highlight',)),
+    'state-diff': ('software', ('columns',), ()),
+    'semver-rule': ('software', ('ladder',), ('highlight',)),
 }
+MEMORY_KINDS = ('stored', 'recalled', 'updated', 'forgotten')
+PARAM_TYPES = ('string', 'number', 'boolean', 'array', 'object', 'enum')
 MESSAGE_KINDS = ('request', 'response', 'tool', 'note')
 CONTEXT_KINDS = ('system', 'history', 'retrieved', 'tool', 'input', 'output')
 VERDICTS = ('supported', 'unsupported', 'partial')
@@ -601,6 +613,142 @@ def validate_component(record, icons):
             kit.label(crossing['label'], 22)
             kit.require(crossing['direction'] in ('in', 'out'), 'direction must be in or out')
             kit.require(type(crossing['guarded']) is bool, 'guarded must be boolean')
+    elif kind == 'memory-timeline':
+        kit.fields(data, 'turns events')
+        kit.require(type(data['turns']) is int and 3 <= data['turns'] <= 12, 'turns must be 3-12')
+        kit.items(data['events'], 2, 8)
+        last = 0
+        for event in data['events']:
+            kit.fields(event, 'turn kind label')
+            kit.require(type(event['turn']) is int and 1 <= event['turn'] <= data['turns'] and event['turn'] >= last, 'Events must be ordered by turn within range')
+            last = event['turn']
+            kit.require(event['kind'] in MEMORY_KINDS, 'kind must be stored, recalled, updated or forgotten')
+            kit.label(event['label'], 18)
+        _index_state(state, 'highlight', len(data['events']))
+    elif kind == 'eval-scorecard':
+        kit.fields(data, 'threshold suites')
+        kit.number(data['threshold'], 0, 100)
+        kit.items(data['suites'], 2, 6)
+        passed = []
+        for suite in data['suites']:
+            kit.fields(suite, 'label score previous')
+            kit.label(suite['label'], 16)
+            kit.number(suite['score'], 0, 100)
+            if suite['previous'] is not None:
+                kit.number(suite['previous'], 0, 100)
+            passed.append(suite['score'] >= data['threshold'])
+        derived = {'passed': passed, 'deltas': [None if s['previous'] is None else round(s['score'] - s['previous'], 3) for s in data['suites']]}
+        _index_state(state, 'highlight', len(data['suites']))
+    elif kind == 'tool-schema':
+        kit.fields(data, 'name description params')
+        kit.label(data['name'], 20)
+        kit.label(data['description'], 44)
+        kit.items(data['params'], 1, 6)
+        names = []
+        for param in data['params']:
+            kit.fields(param, 'name type required note')
+            kit.label(param['name'], 14)
+            kit.require(param['type'] in PARAM_TYPES, 'Unknown parameter type')
+            kit.require(type(param['required']) is bool, 'required must be boolean')
+            kit.label(param['note'], 22)
+            names.append(param['name'])
+        kit.require(len(set(names)) == len(names), 'Duplicate parameter names')
+        derived = {'required': sum(p['required'] for p in data['params'])}
+        _index_state(state, 'highlight', len(data['params']))
+    elif kind == 'latency-breakdown':
+        kit.fields(data, 'unit stages')
+        kit.label(data['unit'], 6)
+        kit.items(data['stages'], 2, 6)
+        total = 0
+        for stage in data['stages']:
+            kit.fields(stage, 'label value')
+            kit.label(stage['label'], 14)
+            kit.number(stage['value'], 0)
+            total += stage['value']
+        kit.require(total > 0, 'Stages must add up to a positive total')
+        derived = {'total': total, 'share': [stage['value'] / total for stage in data['stages']]}
+        _index_state(state, 'highlight', len(data['stages']))
+    elif kind == 'sliding-window':
+        kit.fields(data, 'window limit now unit events')
+        kit.number(data['window'], 0.001)
+        kit.require(type(data['limit']) is int and 1 <= data['limit'] <= 999, 'limit must be 1-999')
+        kit.number(data['now'], 0)
+        kit.label(data['unit'], 8)
+        kit.items(data['events'], 1, 24)
+        last = None
+        for t in data['events']:
+            kit.number(t, 0)
+            kit.require(t <= data['now'] and (last is None or t >= last), 'Events must be ordered and not in the future')
+            last = t
+        inside = [t for t in data['events'] if t > data['now'] - data['window']]
+        derived = {'in_window': len(inside), 'allowed': len(inside) < data['limit'], 'start': data['now'] - data['window']}
+    elif kind == 'retry-budget':
+        kit.fields(data, 'window requests retries budget_percent')
+        kit.label(data['window'], 14)
+        kit.require(type(data['requests']) is int and data['requests'] > 0, 'requests must be a positive integer')
+        kit.require(type(data['retries']) is int and data['retries'] >= 0, 'retries must be a nonnegative integer')
+        kit.number(data['budget_percent'], 0, 100)
+        allowed = data['requests'] * data['budget_percent'] / 100
+        derived = {'allowed': allowed, 'ratio': data['retries'] / data['requests'], 'within': data['retries'] <= allowed,
+                   'load_factor': (data['requests'] + data['retries']) / data['requests']}
+    elif kind == 'heatmap':
+        kit.fields(data, 'rows columns values unit')
+        kit.labels(data['rows'], high=6)
+        kit.labels(data['columns'], high=6)
+        kit.require(all(len(x) <= 12 for x in data['rows']) and all(len(x) <= 10 for x in data['columns']), 'Row or column label too long')
+        kit.label(data['unit'], 8)
+        kit.require(isinstance(data['values'], list) and len(data['values']) == len(data['rows']), 'One value row per row label')
+        flat = []
+        for row in data['values']:
+            kit.require(isinstance(row, list) and len(row) == len(data['columns']), 'Row width must match the columns')
+            for value in row:
+                kit.number(value)
+                flat.append(value)
+        derived = {'low': min(flat), 'high': max(flat)}
+    elif kind == 'slope':
+        kit.fields(data, 'left right unit items')
+        kit.label(data['left'], 10)
+        kit.label(data['right'], 10)
+        kit.label(data['unit'], 8)
+        kit.items(data['items'], 2, 6)
+        for item in data['items']:
+            kit.fields(item, 'label start end')
+            kit.label(item['label'], 12)
+            kit.number(item['start'])
+            kit.number(item['end'])
+        values = [v for item in data['items'] for v in (item['start'], item['end'])]
+        kit.require(max(values) > min(values), 'Slope values need a nonzero range')
+        derived = {'low': min(values), 'high': max(values)}
+        _index_state(state, 'highlight', len(data['items']))
+    elif kind == 'state-diff':
+        kit.fields(data, 'record fields')
+        kit.label(data['record'], 20)
+        kit.items(data['fields'], 2, 8)
+        keys = []
+        for field in data['fields']:
+            kit.fields(field, 'key before after')
+            kit.label(field['key'], 12)
+            _text(field['before'], 16)
+            _text(field['after'], 16)
+            keys.append(field['key'])
+        kit.require(len(set(keys)) == len(keys), 'Duplicate field keys')
+        derived = {'changed': [f['before'] != f['after'] for f in data['fields']]}
+    elif kind == 'semver-rule':
+        kit.fields(data, 'version changes')
+        match = re.fullmatch(r'(\d{1,3})\.(\d{1,3})\.(\d{1,3})', data['version'])
+        kit.require(match, 'version must be MAJOR.MINOR.PATCH')
+        major, minor, patch = (int(x) for x in match.groups())
+        kit.items(data['changes'], 1, 3)
+        kinds = []
+        nxt = {'major': f'{major + 1}.0.0', 'minor': f'{major}.{minor + 1}.0', 'patch': f'{major}.{minor}.{patch + 1}'}
+        for change in data['changes']:
+            kit.fields(change, 'kind example')
+            kit.require(change['kind'] in VERSION_KINDS, 'kind must be major, minor or patch')
+            kit.label(change['example'], 30)
+            kinds.append(change['kind'])
+        kit.require(len(set(kinds)) == len(kinds), 'One change per kind')
+        derived = {'next': {k: nxt[k] for k in kinds}}
+        _index_state(state, 'highlight', len(data['changes']))
     return {**base, 'family': family(kind), 'data': data, 'variant': variant, 'state': state, 'derived': derived, 'status': STATUS}
 
 

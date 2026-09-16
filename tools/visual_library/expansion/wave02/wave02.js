@@ -3,8 +3,11 @@
   // Wave 02 renderer. Draws components into the 824x820 production slot with
   // the pinned ECharts graphic API. Every color comes from the active token
   // set (no literals), every number renders exactly as supplied, and the only
-  // motion is the study's deterministic clip reveal driven by renderAt(seconds).
-  const {components, icons, tokens, palette: initialPalette} = window.visualLibraryData;
+  // motion is the study's deterministic clip reveal driven by renderAt(seconds),
+  // or a wave 03 recipe when window.VisualMotion is present.
+  const {components, icons, tokens, palette: initialPalette, wave = 2} = window.visualLibraryData;
+  const motion = window.VisualMotion || null;
+  let recipe = motion ? motion.names[0] : null, current = null;
   const $ = id => document.getElementById(id);
   const W = 824, H = 820, RESERVE = 74, DRAW = H - RESERVE;
   let palette = initialPalette;
@@ -748,12 +751,223 @@
     return g;
   };
 
+
+  // ---- batch 4: the ten kinds proposed in the catalog ----------------------
+  const memoryTone = {stored: () => T.accent, recalled: () => T.accent2, updated: () => T.extra, forgotten: () => T.warn};
+  const memoryIcon = {stored: 'database', recalled: 'search', updated: 'activity', forgotten: 'x'};
+  const typeTone = {string: () => T.accent2, number: () => T.accent, boolean: () => T.extra, array: () => T.accent2, object: () => T.extra, enum: () => T.warn};
+
+  draw['memory-timeline'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), left = 40, right = W - 40, y = 300, sx = t => left + (right - left) * (t - 1) / Math.max(1, d.turns - 1);
+    g.push(line(left, y, right, y, {stroke: T.line, lineWidth: 3}));
+    for (let t = 1; t <= d.turns; t++) g.push(line(sx(t), y - 8, sx(t), y + 8, {stroke: T.line, lineWidth: 2}), txt(sx(t), y + 30, d.turns > 8 ? String(t) : 'turn ' + t, {size: 19, mono: true, align: 'center', color: T.muted}));
+    // Labels alternate above and below the line; stacked when several events share a turn.
+    const used = {};
+    d.events.forEach((ev, i) => {
+      const on = hi === i, o = fade(hi, i), color = memoryTone[ev.kind](), x = sx(ev.turn), slot = (used[ev.turn] = (used[ev.turn] || 0) + 1);
+      const above = i % 2 === 0, level = Math.floor((i % 4) / 2) + (slot - 1), dy = 70 + level * 64, ly = above ? y - dy : y + dy + 30;
+      g.push(line(x, y, x, above ? ly + 26 : ly - 26, {stroke: color, lineWidth: 2, dash: [4, 4], opacity: o}));
+      g.push(...dot(x, y, memoryIcon[ev.kind], color, on ? 18 : 14, o));
+      const lx = Math.min(Math.max(x, 130), W - 130);
+      g.push(txt(lx, ly, ev.label, {size: 21, weight: 'bold', align: 'center', width: 250, color: on ? T.accent : T.ink, opacity: o}));
+      g.push(txt(lx, ly + (above ? 24 : -24), ev.kind, {size: 19, mono: true, align: 'center', color, opacity: o}));
+    });
+    let lx = 0; const ly = 560;
+    Object.keys(memoryTone).forEach(k => { g.push(...dot(lx + 12, ly, memoryIcon[k], memoryTone[k](), 12), txt(lx + 34, ly, k, {size: 20, color: T.muted})); lx += 200; });
+    g.push(txt(0, ly + 34, (d.turns > 8 ? 'Axis numbers are turns. ' : '') + 'What the agent kept between turns; forgotten items are gone from later turns.', {size: 20, color: T.muted, width: W, wrap: true, vAlign: 'top'}));
+    g.height = ly + 90;
+    return g;
+  };
+
+  draw['eval-scorecard'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.suites.length, rowH = Math.min(96, (DRAW - 120) / n), left = 230, right = W - 230, sx = v => left + (right - left) * v / 100;
+    g.push(txt(0, 20, 'SUITE', {size: 19, weight: 'bold', color: T.muted}), txt(right, 20, `threshold ${fmt(d.threshold)}`, {size: 19, mono: true, align: 'right', color: T.warn}));
+    d.suites.forEach((s, i) => {
+      const y = 60 + i * rowH, on = hi === i, o = fade(hi, i), pass = c.derived.passed[i], delta = c.derived.deltas[i], color = pass ? T.accent : T.warn;
+      g.push(txt(0, y + rowH / 2, s.label, {size: 22, weight: 'bold', width: left - 20, color: on ? T.accent : T.ink, opacity: o}));
+      g.push(box(left, y + rowH / 2 - 16, right - left, 32, {fill: T.surface, stroke: T.line, r: 6, opacity: o}));
+      g.push(box(left, y + rowH / 2 - 16, Math.max(2, sx(s.score) - left), 32, {fill: color, stroke: 'none', lineWidth: 0, r: 6, opacity: o}));
+      g.push(txt(right + 12, y + rowH / 2, fmt(s.score), {size: 22, mono: true, weight: 'bold', color, opacity: o}));
+      if (delta !== null) g.push(...chip(W, y + rowH / 2, (delta > 0 ? '+' : '') + fmt(delta), delta >= 0 ? T.accent2 : T.warn, {align: 'right', opacity: o}));
+      else g.push(txt(W, y + rowH / 2, 'no prior run', {size: 19, mono: true, align: 'right', color: T.muted, opacity: o}));
+    });
+    const ty = sx(d.threshold);
+    g.push(line(ty, 50, ty, 60 + n * rowH, {stroke: T.warn, lineWidth: 3, dash: [8, 6]}));
+    g.push(txt(0, 60 + n * rowH + 30, `${c.derived.passed.filter(Boolean).length} of ${n} suites at or above the threshold; chips show the change from the previous run.`, {size: 20, color: T.muted, width: W, wrap: true, vAlign: 'top'}));
+    g.height = 60 + n * rowH + 90;
+    return g;
+  };
+
+  draw['tool-schema'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.params.length, rowH = 76;
+    g.push(...panel(110 + n * rowH + 60, d.name + '(...)', `${fmt(c.derived.required)} required`));
+    g.push(txt(24, 86, d.description, {size: 21, color: T.muted, width: W - 48}));
+    d.params.forEach((p, i) => {
+      const y = 120 + i * rowH, on = hi === i, o = fade(hi, i);
+      if (on) g.push(box(3, y - 4, W - 6, rowH - 4, {fill: T.surface, stroke: T.accent, r: 4}));
+      g.push(line(24, y + rowH - 6, W - 24, y + rowH - 6, {stroke: T.line, lineWidth: 1}));
+      g.push(circle(36, y + rowH / 2 - 2, 7, {fill: p.required ? T.warn : T.line}));
+      g.push(txt(60, y + rowH / 2 - 2, p.name, {size: 23, mono: true, weight: 'bold', width: 220, opacity: o}));
+      g.push(...chip(300, y + rowH / 2 - 2, p.type, typeTone[p.type](), {opacity: o}));
+      g.push(txt(430, y + rowH / 2 - 2, p.note, {size: 20, color: T.muted, width: W - 454, opacity: o}));
+    });
+    const ly = 120 + n * rowH + 20;
+    g.push(circle(36, ly, 7, {fill: T.warn}), txt(52, ly, 'required', {size: 19, color: T.muted}), circle(170, ly, 7, {fill: T.line}), txt(186, ly, 'optional', {size: 19, color: T.muted}));
+    g.height = 110 + n * rowH + 60;
+    return g;
+  };
+
+  draw['latency-breakdown'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), total = c.derived.total, y = 60, h = 72;
+    g.push(txt(0, 20, 'ONE REQUEST, STAGE BY STAGE', {size: 19, weight: 'bold', color: T.muted}), txt(W, 20, `${fmt(total)} ${d.unit} total`, {size: 22, mono: true, align: 'right'}));
+    let x = 0;
+    d.stages.forEach((s, i) => {
+      const w = W * c.derived.share[i], on = hi === i, o = fade(hi, i);
+      if (w > 0) g.push(box(x, y, Math.max(1, w - 2), h, {fill: series()[i % 4], stroke: on ? T.ink : 'none', lineWidth: on ? 3 : 0, r: 4, opacity: o}));
+      if (w > 120) g.push(txt(x + w / 2, y + h / 2, s.label, {size: 20, weight: 'bold', align: 'center', color: T.background, width: w - 12, opacity: o}));
+      x += w;
+    });
+    d.stages.forEach((s, i) => {
+      const ry = y + h + 50 + i * 46, on = hi === i, o = fade(hi, i);
+      g.push(box(0, ry - 12, 24, 24, {fill: series()[i % 4], stroke: 'none', lineWidth: 0, r: 5, opacity: o}));
+      g.push(txt(38, ry, s.label, {size: 22, width: 330, color: on ? T.accent : T.ink, opacity: o}), txt(520, ry, `${fmt(s.value)} ${d.unit}`, {size: 21, mono: true, align: 'right', opacity: o}));
+      g.push(txt(W, ry, `${fmt(Math.round(c.derived.share[i] * 1000) / 10)}%`, {size: 21, mono: true, align: 'right', color: T.muted, opacity: o}));
+    });
+    const ly = y + h + 50 + d.stages.length * 46;
+    g.push(txt(0, ly + 6, 'Stages run in sequence; the widest segment is where the time goes. Small stages keep their real width.', {size: 20, color: T.muted, width: W, wrap: true, vAlign: 'top'}));
+    g.height = ly + 62;
+    return g;
+  };
+
+  draw['sliding-window'] = c => {
+    const g = [], d = c.data, start = c.derived.start, span = d.window * 1.6, left = 20, right = W - 20, y = 300;
+    const sx = t => left + (right - left) * (t - (d.now - span)) / span;
+    const wx = Math.max(left, sx(start));
+    g.push(box(wx, y - 90, sx(d.now) - wx, 180, {fill: T.surface, stroke: T.accent2, dash: [8, 6], r: 8}));
+    g.push(txt(wx + 12, y - 66, `window · last ${fmt(d.window)} ${d.unit}`, {size: 19, mono: true, color: T.accent2}));
+    g.push(line(left, y, right, y, {stroke: T.line, lineWidth: 3}));
+    [0, 0.5, 1].forEach(f => { const t = d.now - span + span * f, x = sx(t); g.push(line(x, y + 8, x, y + 16, {stroke: T.line, lineWidth: 2}), txt(x, y + 40, f === 1 ? 'now' : `-${fmt(Math.round((d.now - t) * 100) / 100)} ${d.unit}`, {size: 19, mono: true, align: f === 1 ? 'right' : f === 0 ? 'left' : 'center', color: T.muted})); });
+    let lastX = -99, stack = 0;
+    d.events.forEach(t => {
+      if (t < d.now - span) return;
+      const x = sx(t), inside = t > start; stack = x - lastX < 18 ? stack + 1 : 0; lastX = x;
+      g.push(circle(x, y - stack * 22, 9, {fill: inside ? T.accent : T.muted, stroke: T.background, lineWidth: 2}));
+    });
+    const okay = c.derived.allowed;
+    g.push(txt(0, 430, `${fmt(c.derived.in_window)} of ${fmt(d.limit)} allowed in the window`, {size: 26, weight: 'bold', color: okay ? T.accent : T.warn}));
+    g.push(...chip(W, 430, okay ? 'NEXT REQUEST ALLOWED' : 'NEXT REQUEST DENIED', okay ? T.accent : T.warn, {align: 'right', width: 290}));
+    g.push(txt(0, 490, 'Only events inside the window count; older events drop out as the window slides forward.', {size: 20, color: T.muted, width: W, wrap: true, vAlign: 'top'}));
+    g.height = 540;
+    return g;
+  };
+
+  draw['retry-budget'] = c => {
+    const g = [], d = c.data, maxv = Math.max(d.requests, d.retries, c.derived.allowed) || 1, left = 200, right = W - 40, sx = v => left + (right - left) * v / maxv;
+    g.push(txt(0, 20, `window · ${d.window}`, {size: 19, mono: true, color: T.muted}));
+    const row = (y, label, value, color) => {
+      g.push(txt(0, y + 24, label, {size: 22, weight: 'bold', width: left - 16}));
+      g.push(box(left, y, right - left, 48, {fill: T.surface, stroke: T.line, r: 6}), box(left, y, Math.max(2, sx(value) - left), 48, {fill: color, stroke: 'none', lineWidth: 0, r: 6}));
+      g.push(txt(right, y + 24, fmt(value), {size: 22, mono: true, weight: 'bold', align: 'right', color: T.background}));
+      if (sx(value) - left < 90) g.push(txt(sx(value) + 10, y + 24, fmt(value), {size: 22, mono: true, weight: 'bold', color: T.ink}));
+    };
+    row(70, 'requests', d.requests, T.accent2);
+    row(150, 'retries', d.retries, c.derived.within ? T.accent : T.warn);
+    const bx = sx(c.derived.allowed);
+    g.push(line(bx, 136, bx, 212, {stroke: T.warn, lineWidth: 3, dash: [6, 5]}), txt(Math.min(Math.max(bx, 90), W - 100), 236, `budget ${fmt(d.budget_percent)}% = ${fmt(Math.round(c.derived.allowed * 10) / 10)}`, {size: 19, mono: true, align: 'center', color: T.warn}));
+    const ratio = Math.round(c.derived.ratio * 1000) / 10, load = Math.round(c.derived.load_factor * 100) / 100;
+    g.push(box(0, 290, W, 140, {stroke: c.derived.within ? T.accent : T.warn, lineWidth: 3}));
+    g.push(txt(24, 322, c.derived.within ? 'Within budget' : 'Over budget', {size: 26, weight: 'bold', color: c.derived.within ? T.accent : T.warn}));
+    g.push(txt(24, 352, `retries are ${fmt(ratio)}% of requests · the service sees ${fmt(load)}x the client load`, {size: 21, mono: true, width: W - 48, wrap: true, vAlign: 'top'}));
+    g.push(txt(0, 460, 'A retry budget caps retries as a share of requests so a slow dependency is not amplified into an outage.', {size: 20, color: T.muted, width: W, wrap: true, vAlign: 'top'}));
+    g.height = 520;
+    return g;
+  };
+
+  draw['heatmap'] = c => {
+    const g = [], d = c.data, rows = d.rows.length, cols = d.columns.length, left = 170, top = 70, cw = Math.min(120, (W - left) / cols), ch = Math.min(96, (DRAW - top - 90) / rows), low = c.derived.low, high = c.derived.high, span = high - low || 1;
+    d.columns.forEach((label, j) => g.push(txt(left + j * cw + cw / 2, top - 30, label, {size: 20, weight: 'bold', align: 'center', width: cw - 8, color: T.muted})));
+    d.rows.forEach((label, i) => {
+      g.push(txt(left - 16, top + i * ch + ch / 2, label, {size: 21, weight: 'bold', align: 'right', width: left - 24}));
+      d.values[i].forEach((v, j) => {
+        const f = (v - low) / span, x = left + j * cw, y = top + i * ch;
+        g.push(box(x + 2, y + 2, cw - 4, ch - 4, {fill: T.accent, stroke: 'none', lineWidth: 0, r: 6, opacity: 0.12 + 0.88 * f}));
+        g.push(txt(x + cw / 2, y + ch / 2, fmt(v), {size: 22, mono: true, weight: 'bold', align: 'center', color: f > 0.55 ? T.background : T.ink}));
+      });
+    });
+    const ly = top + rows * ch + 40;
+    g.push(box(0, ly - 12, 24, 24, {fill: T.accent, stroke: 'none', lineWidth: 0, r: 5, opacity: 0.12}), txt(34, ly, `${fmt(low)} ${d.unit}`, {size: 20, mono: true, color: T.muted}));
+    g.push(box(240, ly - 12, 24, 24, {fill: T.accent, stroke: 'none', lineWidth: 0, r: 5}), txt(274, ly, `${fmt(high)} ${d.unit}`, {size: 20, mono: true, color: T.muted}));
+    g.push(txt(W, ly, 'shade = magnitude, numbers are the data', {size: 20, align: 'right', color: T.muted}));
+    g.height = ly + 24;
+    return g;
+  };
+
+  draw['slope'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), low = c.derived.low, high = c.derived.high, top = 70, bottom = 560, lx = 250, rx = W - 250, sy = v => bottom - (bottom - top) * (v - low) / (high - low);
+    g.push(line(lx, top - 20, lx, bottom + 20, {stroke: T.line, lineWidth: 2}), line(rx, top - 20, rx, bottom + 20, {stroke: T.line, lineWidth: 2}));
+    g.push(txt(lx, top - 44, d.left, {size: 21, weight: 'bold', align: 'center', color: T.muted}), txt(rx, top - 44, d.right, {size: 21, weight: 'bold', align: 'center', color: T.muted}));
+    // Labels are pushed apart vertically so clustered values stay readable.
+    const spread = (values, keyFn) => { const order = values.map((v, i) => [keyFn(v), i]).sort((a, b) => a[0] - b[0]); const out = []; let last = -99; order.forEach(([y, i]) => { const yy = Math.max(y, last + 30); out[i] = yy; last = yy; }); const over = Math.max(0, last - (bottom + 12)); return out.map(v => v - over); };
+    const leftY = spread(d.items, it => sy(it.start)), rightY = spread(d.items, it => sy(it.end));
+    d.items.forEach((it, i) => {
+      const on = hi === i, o = fade(hi, i), up = it.end > it.start, same = it.end === it.start, color = on ? T.accent : same ? T.muted : up ? T.accent2 : T.warn;
+      g.push(line(lx, sy(it.start), rx, sy(it.end), {stroke: color, lineWidth: on ? 4 : 3, opacity: o}));
+      g.push(circle(lx, sy(it.start), 7, {fill: color, opacity: o}), circle(rx, sy(it.end), 7, {fill: color, opacity: o}));
+      g.push(txt(lx - 16, leftY[i], `${it.label} · ${fmt(it.start)}`, {size: 20, align: 'right', width: 230, color: on ? T.accent : T.ink, opacity: o}));
+      g.push(txt(rx + 16, rightY[i], `${fmt(it.end)} · ${it.label}`, {size: 20, width: 230, color: on ? T.accent : T.ink, opacity: o}));
+    });
+    g.push(txt(0, bottom + 60, `Values in ${d.unit}. Rising lines are the second color, falling lines the warning color.`, {size: 20, color: T.muted, width: W}));
+    g.height = bottom + 80;
+    return g;
+  };
+
+  draw['state-diff'] = c => {
+    const g = [], d = c.data, n = d.fields.length, rowH = Math.min(70, (DRAW - 140) / n), mid = W / 2;
+    g.push(...panel(76 + n * rowH + 40, d.record, `${fmt(c.derived.changed.filter(Boolean).length)} changed`));
+    g.push(txt(196, 90, 'BEFORE', {size: 19, weight: 'bold', color: T.muted}), txt(mid + 110, 90, 'AFTER', {size: 19, weight: 'bold', color: T.muted}));
+    d.fields.forEach((f, i) => {
+      const y = 112 + i * rowH, changed = c.derived.changed[i], color = changed ? T.ink : T.muted;
+      if (changed) g.push(box(186, y, mid - 196, rowH - 8, {fill: T.warn, stroke: 'none', lineWidth: 0, r: 6, opacity: 0.18}), box(mid + 10, y, W - mid - 34, rowH - 8, {fill: T.accent, stroke: 'none', lineWidth: 0, r: 6, opacity: 0.18}));
+      g.push(txt(24, y + (rowH - 8) / 2, f.key, {size: 20, mono: true, weight: 'bold', width: 160, color: changed ? T.ink : T.muted}));
+      g.push(txt(196, y + (rowH - 8) / 2, f.before || '(empty)', {size: 20, mono: true, width: mid - 216, color}));
+      g.push(txt(mid + 20, y + (rowH - 8) / 2, f.after || '(empty)', {size: 20, mono: true, width: W - mid - 54, color}));
+      if (changed) g.push(...arrow(mid - 6, y + (rowH - 8) / 2, mid + 6, y + (rowH - 8) / 2, {stroke: T.accent, lineWidth: 2}));
+    });
+    g.height = 76 + n * rowH + 40;
+    return g;
+  };
+
+  draw['semver-rule'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), tone = {major: () => T.warn, minor: () => T.accent, patch: () => T.accent2}, parts = d.version.split('.');
+    g.push(txt(0, 20, 'CURRENT VERSION', {size: 19, weight: 'bold', color: T.muted}));
+    let x = 0;
+    ['major', 'minor', 'patch'].forEach((k, i) => {
+      g.push(txt(x, 80, parts[i], {size: 64, mono: true, weight: 'bold', color: tone[k]()}));
+      g.push(txt(x, 130, k, {size: 19, mono: true, color: tone[k]()}));
+      x += parts[i].length * 40 + 10;
+      if (i < 2) { g.push(txt(x, 80, '.', {size: 64, mono: true, weight: 'bold', color: T.muted})); x += 40; }
+    });
+    d.changes.forEach((ch, i) => {
+      const y = 190 + i * 130, on = hi === i, o = fade(hi, i), color = tone[ch.kind]();
+      g.push(box(0, y, W, 110, {stroke: on ? color : T.line, lineWidth: on ? 3 : 2, opacity: o}));
+      g.push(...chip(24, y + 32, ch.kind.toUpperCase(), color, {opacity: o}));
+      g.push(txt(140, y + 32, ch.example, {size: 22, width: 400, opacity: o}));
+      g.push(...arrow(560, y + 32, 610, y + 32, {stroke: color, opacity: o}));
+      g.push(txt(624, y + 32, c.derived.next[ch.kind], {size: 28, mono: true, weight: 'bold', color, opacity: o}));
+      g.push(txt(24, y + 78, ch.kind === 'major' ? 'breaks existing callers: the first number moves, the rest reset' : ch.kind === 'minor' ? 'adds without breaking: the second number moves, patch resets' : 'fixes only: the last number moves', {size: 20, color: T.muted, width: W - 48, opacity: o}));
+    });
+    g.height = 190 + d.changes.length * 130;
+    return g;
+  };
+
   // ---- study plumbing (same contract as the library gallery) -------------
-  function options(c) {
+  function options(c, groups) {
     const items = draw[c.kind](c);
     const offset = Math.max(0, Math.floor((DRAW - Math.min(DRAW, items.height || DRAW)) / 2));
+    current = {c, items, offset};
+    const children = groups ? groups.map(g => ({...g, x: g.x || 0, y: offset + (g.y || 0)})) : [{type: 'group', silent: true, x: 0, y: offset, children: items}];
     return {animation: false, backgroundColor: T.background, textStyle: {fontFamily: T.font}, aria: {enabled: true}, tooltip: {show: false},
-      graphic: [{type: 'group', silent: true, x: 0, y: offset, children: items}, ...provenance(c)]};
+      graphic: [...children, ...provenance(c)]};
   }
   function renderAt(t) {
     if (!Number.isFinite(t)) throw new Error('Finite timeline required');
@@ -761,8 +975,22 @@
     $('progress').style.width = seconds / 8 * 100 + '%';
     $('time').value = String(seconds);
     text('time-label', seconds.toFixed(1) + ' s');
+    if (motion && recipe) {
+      // Recipes are pure functions of time over the freshly drawn items.
+      $('chart').style.clipPath = '';
+      const {c, items, offset} = current;
+      const groups = motion.recipes[recipe].apply(items, seconds, {W, H, DRAW, offset, T});
+      chart.setOption(options(c, groups), {notMerge: true, lazyUpdate: false});
+      return;
+    }
     const reveal = Math.min(1, seconds / 1.6);
     $('chart').style.clipPath = `inset(0 ${(1 - reveal) * 100}% 0 0)`;
+  }
+  function setRecipe(name) {
+    if (!motion || !motion.recipes[name]) throw new Error('Unknown recipe');
+    recipe = name;
+    document.querySelectorAll('.recipes button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.recipe === name)));
+    renderAt(seconds);
   }
   function select(id) {
     const next = components.findIndex(c => c.id === id);
@@ -772,10 +1000,10 @@
     text('eyebrow', String(index + 1).padStart(2, '0') + ' / ' + c.family.toUpperCase() + ' · ' + c.kind.toUpperCase() + ' · ' + c.variant.toUpperCase());
     text('title', c.title);
     text('insight', c.insight);
-    text('source-kind', (c.source.kind === 'illustrative' ? 'ILLUSTRATIVE DATA' : 'SOURCE REVIEW REQUIRED') + ' · DESIGN REVIEW · WAVE 02');
+    text('source-kind', (c.source.kind === 'illustrative' ? 'ILLUSTRATIVE DATA' : 'SOURCE REVIEW REQUIRED') + ' · DESIGN REVIEW · WAVE ' + String(wave).padStart(2, '0'));
     text('source', c.source.label + ' | ' + c.source.as_of);
     text('reference', c.source.reference);
-    text('detail', `variant = ${c.variant} | state = ${c.state ? JSON.stringify(c.state) : 'none'} | palette = ${palette}`);
+    text('detail', `variant = ${c.variant} | state = ${c.state ? JSON.stringify(c.state) : 'none'} | palette = ${palette}` + (recipe ? ` | motion = ${recipe}` : ''));
     $('chart').setAttribute('aria-label', c.title + '. ' + c.insight + '. ' + JSON.stringify(c.data));
     chart.setOption(options(c), {notMerge: true, lazyUpdate: false});
     document.querySelectorAll('nav button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
@@ -794,6 +1022,14 @@
     b.addEventListener('click', () => setPalette(name)); paletteBar.append(b);
   });
   $('studies').before(paletteBar);
+  if (motion) {
+    const recipeBar = document.createElement('div'); recipeBar.className = 'recipes';
+    motion.names.forEach(name => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = name; b.dataset.recipe = name; b.setAttribute('aria-pressed', String(name === recipe));
+      b.addEventListener('click', () => setRecipe(name)); recipeBar.append(b);
+    });
+    $('studies').before(recipeBar);
+  }
   components.forEach(c => {
     const button = document.createElement('button'); button.type = 'button'; button.dataset.id = c.id;
     const small = document.createElement('small'); small.textContent = c.family + ' · ' + c.variant;
@@ -815,7 +1051,7 @@
   $('time').addEventListener('input', () => { playing = false; playState(); renderAt(Number($('time').value)); });
   const resize = () => { $('frame').style.transform = `scale(${$('frame').parentElement.clientWidth / 1080})`; };
   new ResizeObserver(resize).observe($('frame').parentElement);
-  window.VisualLibrary = {renderAt, select, setPalette, ids: components.map(c => c.id), palettes: Object.keys(tokens.palettes), tokens: () => T, svg: () => chart.renderToSVGString(), stop: () => { playing = false; playState(); }};
+  window.VisualLibrary = {renderAt, select, setPalette, setRecipe, recipes: motion ? motion.names.slice() : [], recipe: () => recipe, ids: components.map(c => c.id), palettes: Object.keys(tokens.palettes), tokens: () => T, svg: () => chart.renderToSVGString(), stop: () => { playing = false; playState(); }};
   select(components[0].id); resize(); playState();
   function tick(now) { if (playing) { renderAt(seconds + (now - last) / 1000); if (seconds >= 8) { playing = false; playState(); } } last = now; requestAnimationFrame(tick); }
   requestAnimationFrame(tick);

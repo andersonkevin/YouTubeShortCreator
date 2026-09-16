@@ -1552,6 +1552,400 @@
           }
         ]
       }
+    },
+    {
+      "id": "memory-timeline",
+      "kind": "memory-timeline",
+      "title": "What the agent remembered across turns.",
+      "insight": "The order number was stored in turn one and recalled in turn five; the guess was forgotten.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented agent memory",
+        "reference": "Turns are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "database",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "turns": 6,
+        "events": [
+          {
+            "turn": 1,
+            "kind": "stored",
+            "label": "order 4471"
+          },
+          {
+            "turn": 2,
+            "kind": "stored",
+            "label": "guess: shipping"
+          },
+          {
+            "turn": 3,
+            "kind": "forgotten",
+            "label": "guess: shipping"
+          },
+          {
+            "turn": 4,
+            "kind": "updated",
+            "label": "topic: billing"
+          },
+          {
+            "turn": 5,
+            "kind": "recalled",
+            "label": "order 4471"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval-scorecard",
+      "kind": "eval-scorecard",
+      "title": "Which suites pass the bar, and what moved.",
+      "insight": "Grounding regressed below the threshold while everything else improved.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented evaluation scores",
+        "reference": "Scores do not come from a real run",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-column",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "threshold": 85,
+        "suites": [
+          {
+            "label": "Format",
+            "score": 98,
+            "previous": 96
+          },
+          {
+            "label": "Grounding",
+            "score": 81,
+            "previous": 88
+          },
+          {
+            "label": "Refusals",
+            "score": 92,
+            "previous": 90
+          },
+          {
+            "label": "Latency",
+            "score": 87,
+            "previous": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "tool-schema",
+      "kind": "tool-schema",
+      "title": "A tool definition, parameter by parameter.",
+      "insight": "Two of four parameters are required; the model must not invent the rest.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented tool definition",
+        "reference": "Parameters are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-json",
+      "state": {
+        "highlight": 3
+      },
+      "data": {
+        "name": "search_orders",
+        "description": "Find orders for a customer in a date range.",
+        "params": [
+          {
+            "name": "customer_id",
+            "type": "string",
+            "required": true,
+            "note": "from the session"
+          },
+          {
+            "name": "from_date",
+            "type": "string",
+            "required": true,
+            "note": "ISO date"
+          },
+          {
+            "name": "to_date",
+            "type": "string",
+            "required": false,
+            "note": "defaults to today"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "required": false,
+            "note": "open, shipped, closed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "latency-breakdown",
+      "kind": "latency-breakdown",
+      "title": "Where one request spends its time.",
+      "insight": "The model call is two thirds of the total; the retrieval step is not the problem.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented request timing",
+        "reference": "Stage times are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "unit": "ms",
+        "stages": [
+          {
+            "label": "Auth",
+            "value": 12
+          },
+          {
+            "label": "Retrieval",
+            "value": 140
+          },
+          {
+            "label": "Model call",
+            "value": 620
+          },
+          {
+            "label": "Post-process",
+            "value": 48
+          },
+          {
+            "label": "Response",
+            "value": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "sliding-window",
+      "kind": "sliding-window",
+      "title": "A rate limit as a sliding window.",
+      "insight": "Nine events fall inside the last minute against a limit of ten, so the next request still passes.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented request timestamps",
+        "reference": "Timestamps are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "clock",
+      "data": {
+        "window": 60,
+        "limit": 10,
+        "now": 300,
+        "unit": "s",
+        "events": [
+          200,
+          215,
+          238,
+          246,
+          251,
+          262,
+          270,
+          274,
+          281,
+          288,
+          295,
+          299
+        ]
+      }
+    },
+    {
+      "id": "retry-budget",
+      "kind": "retry-budget",
+      "title": "Retries as a share of requests.",
+      "insight": "Retries stayed under the ten percent budget, so the dependency saw only a small extra load.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented traffic counts",
+        "reference": "Counts are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "activity",
+      "data": {
+        "window": "last 5 min",
+        "requests": 4200,
+        "retries": 310,
+        "budget_percent": 10
+      }
+    },
+    {
+      "id": "heatmap",
+      "kind": "heatmap",
+      "title": "Error rate by region and hour.",
+      "insight": "One region carries most of the errors, and only in the evening.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented error rates",
+        "reference": "Values are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "unit": "%",
+        "rows": [
+          "US East",
+          "US West",
+          "Europe",
+          "Asia"
+        ],
+        "columns": [
+          "06:00",
+          "12:00",
+          "18:00",
+          "00:00"
+        ],
+        "values": [
+          [
+            0.4,
+            0.6,
+            3.8,
+            1.1
+          ],
+          [
+            0.3,
+            0.5,
+            0.9,
+            0.4
+          ],
+          [
+            0.5,
+            0.7,
+            1.2,
+            0.6
+          ],
+          [
+            0.2,
+            0.4,
+            0.8,
+            0.3
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slope",
+      "kind": "slope",
+      "title": "Before and after, one line per item.",
+      "insight": "Three of four metrics improved; the one that fell is the one to explain.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented before/after scores",
+        "reference": "Values are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-line",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "left": "v1",
+        "right": "v2",
+        "unit": "points",
+        "items": [
+          {
+            "label": "Accuracy",
+            "start": 72,
+            "end": 84
+          },
+          {
+            "label": "Speed",
+            "start": 65,
+            "end": 80
+          },
+          {
+            "label": "Cost",
+            "start": 58,
+            "end": 51
+          },
+          {
+            "label": "Coverage",
+            "start": 40,
+            "end": 62
+          }
+        ]
+      }
+    },
+    {
+      "id": "state-diff",
+      "kind": "state-diff",
+      "title": "Which fields changed on the record.",
+      "insight": "Only status and the reviewer changed; the amount stayed the same.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented record change",
+        "reference": "Fields are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-code",
+      "data": {
+        "record": "refund 4471",
+        "fields": [
+          {
+            "key": "status",
+            "before": "pending",
+            "after": "approved"
+          },
+          {
+            "key": "amount",
+            "before": "129.00 EUR",
+            "after": "129.00 EUR"
+          },
+          {
+            "key": "reviewer",
+            "before": "",
+            "after": "ops-team"
+          },
+          {
+            "key": "updated",
+            "before": "2026-09-14",
+            "after": "2026-09-15"
+          }
+        ]
+      }
+    },
+    {
+      "id": "semver-rule",
+      "kind": "semver-rule",
+      "title": "Which number moves for which change.",
+      "insight": "Removing an endpoint is a major bump; adding a field is minor; fixing a parser is a patch.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented version example",
+        "reference": "Versions are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "version": "1.4.2",
+        "changes": [
+          {
+            "kind": "major",
+            "example": "remove the v1 endpoints"
+          },
+          {
+            "kind": "minor",
+            "example": "add an export field"
+          },
+          {
+            "kind": "patch",
+            "example": "fix the date parser"
+          }
+        ]
+      }
     }
   ]
 }

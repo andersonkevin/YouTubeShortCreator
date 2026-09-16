@@ -1,0 +1,41 @@
+{
+  "id": "wave02:sliding-window",
+  "kind": "sliding-window",
+  "family": "systems",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "A rate limit as a sliding window of timestamps with the count inside the window.",
+  "use_when": "Explain sliding-window rate limiting with real timestamps.",
+  "not_when": "Token buckets (use token-bucket); more than 24 events.",
+  "parameters": {
+    "window": "> 0",
+    "limit": "1-999",
+    "now": ">= 0",
+    "unit": "<= 8",
+    "events": "1-24 ordered timestamps <= now"
+  },
+  "defaults": {},
+  "limits": "Events older than 1.6 windows are not drawn; clustered events stack vertically.",
+  "variants": [
+    "timeline"
+  ],
+  "states": [],
+  "example": "sliding-window",
+  "stress": "window-denied"
+}
