@@ -13,6 +13,8 @@ __pycache__/
 *.local.json
 *.mp3
 *.wav
+*.onnx
+voices-*.bin
 *.m4a
 *.opus
 *.mp4

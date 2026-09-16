@@ -7,7 +7,7 @@
 | Goal | Read in this order |
 | --- | --- |
 | Operate with an AI assistant | [Start here](../START-HERE.md), [assistant workflow](ASSISTANT-WORKFLOW.md) |
-| Create your first Short | [Installation](INSTALLATION.md), [branding](BRANDING.md), [first Short](FIRST-SHORT.md) |
+| Create your first Short | [Installation](INSTALLATION.md), [branding](BRANDING.md), [first Short](FIRST-SHORT.md), [local voice synthesis](VOICE.md) (optional) |
 | Produce the next episode | [Workflow](WORKFLOW.md), [data contracts](DATA-CONTRACTS.md), [validation](VALIDATION.md) |
 | Pick or extend visual assets | [Visual director](assistant/VISUAL-DIRECTOR.md), [visual library](VISUAL-LIBRARY.md), [asset expansion](ASSET-EXPANSION.md), [asset library wave 02](ASSET-LIBRARY-WAVE02.md), [asset library wave 03](ASSET-LIBRARY-WAVE03.md) |
 | Change a layout or understand the engine | [Gallery](GALLERY.md), [architecture](ARCHITECTURE.md), [contributing](../CONTRIBUTING.md) |
@@ -24,6 +24,7 @@
 - [Visual director](assistant/VISUAL-DIRECTOR.md): supervised selection and source-review procedure.
 - [Pipeline roadmap](PIPELINE-ROADMAP.md): integration and qualification gates; marketing remains separate.
 - [CLI reference](CLI.md): every command, path base and write boundary.
+- [Local voice synthesis](VOICE.md): optional offline narration with Kokoro, its setup, records, rules and limits.
 - [Data contracts](DATA-CONTRACTS.md): episode fields, caption timing and safe examples.
 - [Branding](BRANDING.md): palettes, fonts, logo preparation and approval.
 - [Gallery](GALLERY.md): all 12 layouts with actual screenshots and source links.

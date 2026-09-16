@@ -38,6 +38,16 @@ not exist. For an existing workspace it prints the available commands.
 [runtime setup](INSTALLATION.md#4-configure-existing-runtimes). There are no in-place
 reset, delete, upload, provider-authentication or background execution commands.
 
+## Optional Tools
+
+`tools/voice.py` runs outside `ysc.py` in a separate operator-prepared Python
+environment; see [local voice synthesis](VOICE.md). Its writers follow the same
+boundaries: `synthesize SCRIPT OUTPUT` needs `--approve-write` and a new `.wav`
+under the workspace `intake/`; `audition SCRIPT --run-id ID` needs
+`--approve-write` and a new `voice/auditions/ID/`; `doctor` and `voices` are
+read-only. Model files come from `<workspace>/voice/models/` or an explicit
+`--models` directory and are verified against `tools/voice-models.json`.
+
 ## Path Rules
 
 | Argument | Base and restriction |
