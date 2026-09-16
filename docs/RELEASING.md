@@ -59,7 +59,7 @@ certified safe. Manually review the actual files you will share.
 Choose a filename that does not already exist:
 
 ```bash
-python3 -B tools/release.py zip ../YouTubeShortCreator-v0.3.0-source.zip --approve-write
+python3 -B tools/release.py zip ../YouTubeShortCreator-v0.4.0-source.zip --approve-write
 ```
 
 The ZIP contains one `YouTubeShortCreator/` root directory. It excludes `.git`,
@@ -108,8 +108,9 @@ license view in GitHub itself; local rendering is only an approximation.
 The published `main` carries the asset library waves, the optional voice tool and
 the CI workflow, released as v0.2.0 and v0.3.0. The pipeline integration batches
 (B01-B07: visual adapter, backend boundary, optional FFmpeg, reliability and
-installation qualification) are merged from the local integration branch with
-their qualification records. B05/B06 human review, the full B07 first-run
+installation qualification), the six general-purpose layouts, the palette and
+reveal presets, the wave 02 production records and the batch picker are released
+as v0.4.0 with their qualification records. B05/B06 human review, the full B07 first-run
 walkthrough and [B08 independent acceptance](B08-ACCEPTANCE.md) remain pending;
 no independent operator is currently available. Neither B00-B09 nor the marketing
 phase is complete. Reverify the source, gates and remote before a release.

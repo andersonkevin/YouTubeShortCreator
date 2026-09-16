@@ -1,5 +1,40 @@
 # Release Qualification
 
+## 0.4.0 (2026-09-16)
+
+Sanitized summary of the checks behind the 0.4.0 release. Private workspaces,
+fixture media and machine-specific paths are excluded.
+
+- `python3 -B -m unittest discover -s tests -p 'test_*.py'`: **249 tests passed**
+  locally on Python 3.14 and in GitHub Actions on Python 3.12 and 3.13; the three
+  Node test files (capture boundary, chart QA, visual options) pass locally.
+- `python3 -B tools/check_docs.py`: **PASS**. `python3 -B tools/release.py audit`:
+  **PASS**, private workspaces, hidden directories and `.github/` excluded.
+- Pipeline batches B01-B07 merged with their qualification records
+  (`docs/B01-QUALIFICATION.md` to `docs/B07-PROGRESS.md`); B05/B06 human review,
+  the B07 walkthrough and B08 independent acceptance remain pending.
+- Six general-purpose layouts: the regression fixture covers all eighteen layouts
+  with three- and four-scene cases and two negative cases; the twelve original
+  layouts were compared pixel by pixel against the previous references over 24
+  samples with **0 changed pixels**.
+- Palette presets: synthetic fixtures built with three generated presets
+  (`mint-dark`, `cobalt-dark`, `rose-dark`) passed the browser QA; a test keeps
+  the fifteen presets equal to the wave 03 palette study.
+- Reveal presets: synthetic chart fixture sets D and E exercise the four new
+  entrances with transition checks: **PASS**.
+- Wave 02 production records: four synthetic fixture sets (`wave02-a` to
+  `wave02-d`) render twelve components in real scenes with brand tokens; browser
+  QA and chart label QA **PASS**; the wave 02 study QA passed again after the
+  renderer refactor (55 examples, 61 stress fixtures, 0 errors, 0 network requests).
+- Batch picker: a synthetic three-episode batch drafted with `new --batch` built
+  with browser QA, nine distinct layouts over seven families, every build and
+  visual QA **PASS**; a simulated twelve-episode batch uses all 18 layouts, none
+  more than three times.
+- The implementation lock changed with the template and adapter; existing
+  workspaces must run `brand-approve` again. Encoding, mux and publishing
+  behavior are unchanged; the 0.1.0 media qualification below still describes
+  the production path.
+
 ## 0.3.0 (2026-09-16)
 
 Sanitized summary of the checks behind the 0.3.0 release.

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 (2026-09-16)
 
 - `new --batch NAME` picks each draft's layouts from what the batch has not used:
   the 18 production layouts are grouped into eight visual families, unused layouts

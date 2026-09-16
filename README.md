@@ -14,7 +14,7 @@ a cover and a publishing handoff, without redesigning anything. The scenes expla
 an idea with a diagram, a chart, a comparison, a list of steps or a code sample;
 the subject is up to the channel.
 
-**Version 0.3.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
+**Version 0.4.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
 
 | Explain the tools | Show the contract | Make approval visible |
 | :---: | :---: | :---: |
@@ -118,7 +118,7 @@ Native macOS remains the default. [B07](docs/B07-PROGRESS.md) records approved
 clean-install technical results. See the [remaining release gates](docs/PIPELINE-ROADMAP.md);
 neither the expansion merge nor a successful fixture constitutes a release.
 
-Beyond the 12 production layouts, the development tree includes an
+Beyond the 18 production layouts, the development tree includes an
 [offline visual library](docs/VISUAL-LIBRARY.md) with 40 icons, six compositions,
 eight chart types and three widgets, plus three design-review asset waves that
 give a batch of Shorts enough variety that no two episodes look alike. The first
@@ -133,16 +133,19 @@ palettes, motion recipes and layouts carry no subject at all.
 | 03 | 24 generated palettes with contrast rules, 10 deterministic motion recipes and 18 layout studies for the vertical frame | [Asset library wave 03](docs/ASSET-LIBRARY-WAVE03.md) |
 
 Every asset carries a validator, fixtures, browser QA evidence and an in-graphic
-provenance line. All of them are studies: discoverable, validated and exportable,
-but not yet accepted scene types in the episode contract.
+provenance line. Since 0.4.0 the wave 02 components render in production scenes
+as `wave02:<kind>` records, twelve wave 03 palettes are brand presets and four of
+its motion recipes are scene reveal presets. The wave 01 components and the wave
+03 layout studies remain studies: discoverable, validated and exportable, but not
+yet accepted scene types in the episode contract.
 
 | Agent loop | Retrieval | Validation gate | Request trace |
 | :---: | :---: | :---: | :---: |
 | <a href="docs/images/expansion-agent-loop.png"><img src="docs/images/expansion-agent-loop.png" alt="Agent loop component with four steps around an exit condition" width="200"></a> | <a href="docs/images/expansion-retrieval.png"><img src="docs/images/expansion-retrieval.png" alt="Retrieval component with a query, ranked chunks and a cited answer" width="200"></a> | <a href="docs/images/expansion-gate.png"><img src="docs/images/expansion-gate.png" alt="Validation gate component with pass and fail branches" width="200"></a> | <a href="docs/images/expansion-trace.png"><img src="docs/images/expansion-trace.png" alt="Nested request trace component drawn as a waterfall" width="200"></a> |
 
 *Exported at the 824x820 production slot with a neutral study palette and an
-in-graphic provenance line. All of these are asset studies: discoverable, validated
-and exportable, but not yet accepted scene types in the episode contract.*
+in-graphic provenance line. These wave 01 components are asset studies: discoverable,
+validated and exportable, but not yet accepted scene types in the episode contract.*
 
 ## Built for Review, Not Autopilot
 
@@ -182,7 +185,7 @@ python3 -B tools/release.py audit
 ```
 
 [Release qualification](docs/RELEASE-QA.md) records the initial test suite, the
-12-layout visual pass and the native media tests with their limits;
+18-layout visual pass and the native media tests with their limits;
 [visual-library qualification](docs/VISUAL-LIBRARY-QA.md), the
 [asset expansion](docs/ASSET-EXPANSION.md) and the wave [02](docs/ASSET-LIBRARY-WAVE02.md)
 and [03](docs/ASSET-LIBRARY-WAVE03.md) libraries record their own observed checks.

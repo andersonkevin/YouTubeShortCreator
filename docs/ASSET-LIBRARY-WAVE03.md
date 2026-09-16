@@ -7,9 +7,11 @@ one another before any new component is drawn: palettes, motion and layout. A
 batch of ten episodes that share one palette, one reveal and one frame
 arrangement reads as one piece; the same components across 26 palettes, 10
 reveals and 18 layouts do not. Everything here is a
-design_review study for the offline visual library; nothing is wired into
-production scenes, templates or captions, and `production_scene_available`
-stays `false`.
+design_review study for the offline visual library. Since 0.4.0 the twelve dark
+palettes are brand presets (`ysc.py palettes`) and four recipes were reduced to
+scene reveal presets; the study itself, its light palettes and the layout
+frames are not wired into production scenes, templates or captions, and
+`production_scene_available` stays `false`.
 
 Additions live under `tools/visual_library/expansion/wave03/`, in
 `tests/test_visual_wave03.py`, this document and one line in the documentation
