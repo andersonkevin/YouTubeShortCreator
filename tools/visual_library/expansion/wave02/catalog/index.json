@@ -1,0 +1,871 @@
+{
+  "version": 1,
+  "base_commit": "c0b275e07b1a399f0c75012f2bddde242f7d79dc",
+  "status": "design_review",
+  "assets": [
+    {
+      "id": "wave02:terminal",
+      "kind": "terminal",
+      "family": "widget",
+      "status": "implemented",
+      "purpose": "A shell session with prompt, output, error lines and the exit code.",
+      "tags": [
+        "terminal",
+        "shell",
+        "command",
+        "exit code",
+        "cli",
+        "output"
+      ],
+      "variants": [
+        "shell"
+      ],
+      "states": [
+        "active_line"
+      ]
+    },
+    {
+      "id": "wave02:logs",
+      "kind": "logs",
+      "family": "widget",
+      "status": "implemented",
+      "purpose": "Timestamped log lines with level badges and one highlighted line.",
+      "tags": [
+        "logs",
+        "observability",
+        "levels",
+        "error",
+        "warn",
+        "timeline"
+      ],
+      "variants": [
+        "stream"
+      ],
+      "states": [
+        "active_line"
+      ]
+    },
+    {
+      "id": "wave02:payload",
+      "kind": "payload",
+      "family": "widget",
+      "status": "implemented",
+      "purpose": "The actual key/value contents of a JSON payload with value types.",
+      "tags": [
+        "json",
+        "payload",
+        "arguments",
+        "tool call",
+        "values",
+        "types"
+      ],
+      "variants": [
+        "card",
+        "raw"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:matrix",
+      "kind": "matrix",
+      "family": "widget",
+      "status": "implemented",
+      "purpose": "A yes/no/partial matrix such as roles versus actions.",
+      "tags": [
+        "matrix",
+        "permissions",
+        "roles",
+        "capabilities",
+        "checklist",
+        "grid"
+      ],
+      "variants": [
+        "grid"
+      ],
+      "states": [
+        "highlight_row"
+      ]
+    },
+    {
+      "id": "wave02:tree",
+      "kind": "tree",
+      "family": "widget",
+      "status": "implemented",
+      "purpose": "A file or hierarchy tree with connectors and one highlighted node.",
+      "tags": [
+        "tree",
+        "files",
+        "folders",
+        "hierarchy",
+        "outline",
+        "repository"
+      ],
+      "variants": [
+        "outline"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:table",
+      "kind": "table",
+      "family": "widget",
+      "status": "implemented",
+      "purpose": "A compact text table, up to four columns and six rows.",
+      "tags": [
+        "table",
+        "comparison",
+        "columns",
+        "rows",
+        "options",
+        "spec"
+      ],
+      "variants": [
+        "grid",
+        "clean"
+      ],
+      "states": [
+        "highlight_row"
+      ]
+    },
+    {
+      "id": "wave02:histogram",
+      "kind": "histogram",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Counts per value bin with explicit edges and an optional marker line.",
+      "tags": [
+        "histogram",
+        "distribution",
+        "bins",
+        "latency",
+        "tail",
+        "percentile"
+      ],
+      "variants": [
+        "bars"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:boxplot",
+      "kind": "boxplot",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Five-number summaries (min, quartiles, max) for one to four groups on a shared axis.",
+      "tags": [
+        "boxplot",
+        "spread",
+        "quartiles",
+        "median",
+        "variance",
+        "outliers"
+      ],
+      "variants": [
+        "horizontal"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:waffle",
+      "kind": "waffle",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Shares of a whole as a ten-by-ten grid of countable squares.",
+      "tags": [
+        "waffle",
+        "share",
+        "percent",
+        "composition",
+        "grid",
+        "proportion"
+      ],
+      "variants": [
+        "grid"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:funnel",
+      "kind": "funnel",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Non-increasing stage counts as a share of the first stage.",
+      "tags": [
+        "funnel",
+        "drop-off",
+        "conversion",
+        "pipeline",
+        "stages",
+        "share"
+      ],
+      "variants": [
+        "centered",
+        "left"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:queue",
+      "kind": "queue",
+      "family": "systems",
+      "status": "implemented",
+      "purpose": "Producers, a bounded queue with its backlog, and consumers.",
+      "tags": [
+        "queue",
+        "backlog",
+        "capacity",
+        "producers",
+        "consumers",
+        "backpressure"
+      ],
+      "variants": [
+        "lanes"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:balancer",
+      "kind": "balancer",
+      "family": "systems",
+      "status": "implemented",
+      "purpose": "A load balancer fanning out to replicas with health and share.",
+      "tags": [
+        "load balancer",
+        "replicas",
+        "health",
+        "traffic",
+        "failover"
+      ],
+      "variants": [
+        "fan"
+      ],
+      "states": [
+        "selected"
+      ]
+    },
+    {
+      "id": "wave02:breaker",
+      "kind": "breaker",
+      "family": "systems",
+      "status": "implemented",
+      "purpose": "Circuit breaker: failure meter, the three states and what happens now.",
+      "tags": [
+        "circuit breaker",
+        "failures",
+        "threshold",
+        "open",
+        "half-open",
+        "resilience"
+      ],
+      "variants": [
+        "meter"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:token-bucket",
+      "kind": "token-bucket",
+      "family": "systems",
+      "status": "implemented",
+      "purpose": "Rate limiting as a token bucket: capacity, tokens, refill and allowed or denied requests.",
+      "tags": [
+        "rate limit",
+        "token bucket",
+        "quota",
+        "throttle",
+        "refill"
+      ],
+      "variants": [
+        "bucket"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:replication",
+      "kind": "replication",
+      "family": "systems",
+      "status": "implemented",
+      "purpose": "Primary to replicas with acknowledgment status, lag and the quorum rule.",
+      "tags": [
+        "replication",
+        "quorum",
+        "lag",
+        "durability",
+        "consistency",
+        "database"
+      ],
+      "variants": [
+        "tree"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:percentiles",
+      "kind": "percentiles",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "A percentile ladder (p50, p90, p99) on one axis with an optional SLO marker.",
+      "tags": [
+        "percentiles",
+        "latency",
+        "p99",
+        "slo",
+        "tail",
+        "ladder"
+      ],
+      "variants": [
+        "ladder",
+        "ladder-log"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:dumbbell",
+      "kind": "dumbbell",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Before and after values per category as connected dots on one axis.",
+      "tags": [
+        "dumbbell",
+        "before",
+        "after",
+        "change",
+        "comparison",
+        "magnitude"
+      ],
+      "variants": [
+        "rows"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:intervals",
+      "kind": "intervals",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Point estimates with their low and high bounds on one axis.",
+      "tags": [
+        "uncertainty",
+        "interval",
+        "confidence",
+        "error bar",
+        "estimate",
+        "range"
+      ],
+      "variants": [
+        "rows"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:split-flow",
+      "kind": "split-flow",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "One source split into destinations with ribbons proportional to the values.",
+      "tags": [
+        "sankey",
+        "flow",
+        "split",
+        "routing",
+        "proportion",
+        "destinations"
+      ],
+      "variants": [
+        "ribbons"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:bullet",
+      "kind": "bullet",
+      "family": "data",
+      "status": "implemented",
+      "purpose": "Value versus target inside declared threshold bands.",
+      "tags": [
+        "bullet",
+        "kpi",
+        "target",
+        "threshold",
+        "bands",
+        "goal"
+      ],
+      "variants": [
+        "rows"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:sequence",
+      "kind": "sequence",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "Who sends what to whom, in order, as a sequence diagram.",
+      "tags": [
+        "sequence",
+        "messages",
+        "tool call",
+        "round trip",
+        "agent",
+        "protocol"
+      ],
+      "variants": [
+        "lifelines"
+      ],
+      "states": [
+        "active"
+      ]
+    },
+    {
+      "id": "wave02:context-window",
+      "kind": "context-window",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "What occupies a context window, in order, against its capacity.",
+      "tags": [
+        "context window",
+        "tokens",
+        "budget",
+        "truncation",
+        "prompt size",
+        "memory"
+      ],
+      "variants": [
+        "strip"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:confusion",
+      "kind": "confusion",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "A two-by-two confusion matrix with precision and recall computed from the four counts.",
+      "tags": [
+        "confusion matrix",
+        "precision",
+        "recall",
+        "evaluation",
+        "classifier",
+        "false positive"
+      ],
+      "variants": [
+        "grid"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:claims",
+      "kind": "claims",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "Claims with their source and a supported, partial or unsupported verdict.",
+      "tags": [
+        "grounding",
+        "citations",
+        "claims",
+        "fact check",
+        "sources",
+        "hallucination"
+      ],
+      "variants": [
+        "rows"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:guardrails",
+      "kind": "guardrails",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "A chain of output checks between the model and the user, each with what it catches.",
+      "tags": [
+        "guardrails",
+        "safety",
+        "validation",
+        "filters",
+        "policy",
+        "output checks"
+      ],
+      "variants": [
+        "chain"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:embedding-map",
+      "kind": "embedding-map",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "Points in an illustrative 2D embedding space with the k nearest neighbors to a query.",
+      "tags": [
+        "embeddings",
+        "vectors",
+        "similarity",
+        "nearest neighbors",
+        "retrieval",
+        "clusters"
+      ],
+      "variants": [
+        "scatter"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:prompt-anatomy",
+      "kind": "prompt-anatomy",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "The sections of a prompt, each labeled by kind.",
+      "tags": [
+        "prompt",
+        "system prompt",
+        "instructions",
+        "few-shot",
+        "format",
+        "structure"
+      ],
+      "variants": [
+        "document"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:orchestration",
+      "kind": "orchestration",
+      "family": "ai",
+      "status": "implemented",
+      "purpose": "An orchestrator assigning work to workers that share one state store.",
+      "tags": [
+        "orchestration",
+        "multi-agent",
+        "workers",
+        "coordination",
+        "shared state",
+        "planner"
+      ],
+      "variants": [
+        "hub"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:event-bus",
+      "kind": "event-bus",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "Publishers, a topic with its event names, and the subscribers that receive them.",
+      "tags": [
+        "events",
+        "pub/sub",
+        "topic",
+        "decoupling",
+        "messaging",
+        "subscribers"
+      ],
+      "variants": [
+        "bus"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:lanes",
+      "kind": "lanes",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "Parallel lanes of timed spans with an optional shared-lock region.",
+      "tags": [
+        "concurrency",
+        "parallel",
+        "timeline",
+        "lock",
+        "contention",
+        "threads"
+      ],
+      "variants": [
+        "swimlanes"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:dag",
+      "kind": "dag",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "A dependency graph in levels with edges from dependency to dependent.",
+      "tags": [
+        "dependencies",
+        "dag",
+        "graph",
+        "blast radius",
+        "modules",
+        "build order"
+      ],
+      "variants": [
+        "levels"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:diff",
+      "kind": "diff",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "A unified diff with added, removed and context lines and the +/- count.",
+      "tags": [
+        "diff",
+        "code review",
+        "patch",
+        "change",
+        "pull request",
+        "lines"
+      ],
+      "variants": [
+        "unified"
+      ],
+      "states": [
+        "active_line"
+      ]
+    },
+    {
+      "id": "wave02:pyramid",
+      "kind": "pyramid",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "A test pyramid with the real count and a note per layer.",
+      "tags": [
+        "testing",
+        "test pyramid",
+        "unit",
+        "integration",
+        "end to end",
+        "coverage"
+      ],
+      "variants": [
+        "stack"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:versions",
+      "kind": "versions",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "Release tags on an evenly spaced line, colored by major, minor or patch.",
+      "tags": [
+        "versioning",
+        "semver",
+        "releases",
+        "changelog",
+        "breaking change",
+        "tags"
+      ],
+      "variants": [
+        "line"
+      ],
+      "states": [
+        "highlight"
+      ]
+    },
+    {
+      "id": "wave02:trust-boundary",
+      "kind": "trust-boundary",
+      "family": "software",
+      "status": "implemented",
+      "purpose": "Two zones, the boundary between them, and every crossing marked guarded or not.",
+      "tags": [
+        "trust boundary",
+        "security",
+        "threat model",
+        "untrusted input",
+        "zones",
+        "validation"
+      ],
+      "variants": [
+        "zones"
+      ],
+      "states": []
+    },
+    {
+      "id": "wave02:memory-timeline",
+      "kind": "memory-timeline",
+      "family": "ai",
+      "status": "proposed",
+      "purpose": "What an agent remembered, forgot and retrieved across turns, on one line.",
+      "tags": [
+        "memory",
+        "agent",
+        "recall",
+        "forgetting",
+        "turns"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:eval-scorecard",
+      "kind": "eval-scorecard",
+      "family": "ai",
+      "status": "proposed",
+      "purpose": "Scores per evaluation suite with the pass threshold and the delta from the last run.",
+      "tags": [
+        "evaluation",
+        "benchmark",
+        "scorecard",
+        "threshold",
+        "regression"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:tool-schema",
+      "kind": "tool-schema",
+      "family": "ai",
+      "status": "proposed",
+      "purpose": "A tool definition as name, typed parameters and which are required.",
+      "tags": [
+        "tools",
+        "function calling",
+        "schema",
+        "parameters",
+        "json schema"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:latency-breakdown",
+      "kind": "latency-breakdown",
+      "family": "systems",
+      "status": "proposed",
+      "purpose": "One request split into its sequential stages with the share of total time.",
+      "tags": [
+        "latency",
+        "stages",
+        "waterfall",
+        "critical path",
+        "tracing"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:sliding-window",
+      "kind": "sliding-window",
+      "family": "systems",
+      "status": "proposed",
+      "purpose": "A rate limit as a sliding window of timestamps with the count inside the window.",
+      "tags": [
+        "rate limit",
+        "sliding window",
+        "timestamps",
+        "quota"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:heatmap",
+      "kind": "heatmap",
+      "family": "data",
+      "status": "proposed",
+      "purpose": "A small matrix of values shaded by magnitude with the numbers printed.",
+      "tags": [
+        "heatmap",
+        "matrix",
+        "magnitude",
+        "correlation",
+        "grid"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:slope",
+      "kind": "slope",
+      "family": "data",
+      "status": "proposed",
+      "purpose": "Rank or value change for several categories between two points as sloped lines.",
+      "tags": [
+        "slope chart",
+        "ranking",
+        "change",
+        "two periods"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:state-diff",
+      "kind": "state-diff",
+      "family": "software",
+      "status": "proposed",
+      "purpose": "Before and after values of a record with changed fields marked.",
+      "tags": [
+        "state",
+        "diff",
+        "record",
+        "fields",
+        "mutation"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:semver-rule",
+      "kind": "semver-rule",
+      "family": "software",
+      "status": "proposed",
+      "purpose": "Which part of a version number changes for a breaking, additive or fixing change.",
+      "tags": [
+        "semver",
+        "versioning",
+        "major",
+        "minor",
+        "patch"
+      ],
+      "variants": [],
+      "states": []
+    },
+    {
+      "id": "wave02:retry-budget",
+      "kind": "retry-budget",
+      "family": "systems",
+      "status": "proposed",
+      "purpose": "Retries allowed versus retries used across a window, with the point where retries amplify load.",
+      "tags": [
+        "retries",
+        "budget",
+        "amplification",
+        "backoff"
+      ],
+      "variants": [],
+      "states": []
+    }
+  ]
+}

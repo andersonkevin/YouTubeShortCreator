@@ -1,0 +1,1557 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "terminal",
+      "kind": "terminal",
+      "title": "Show the command and its exit code.",
+      "insight": "A terminal screenshot without the exit status hides the only fact that matters.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented shell session",
+        "reference": "Commands were not executed; output is a teaching example",
+        "as_of": "2026-09-15"
+      },
+      "icon": "terminal",
+      "state": {
+        "active_line": 3
+      },
+      "data": {
+        "title": "bash · deploy check",
+        "exit_code": 1,
+        "lines": [
+          {
+            "kind": "comment",
+            "text": "# run the release gate"
+          },
+          {
+            "kind": "command",
+            "text": "python3 -m pytest tests/ -q"
+          },
+          {
+            "kind": "output",
+            "text": "104 passed, 1 failed in 6.2s"
+          },
+          {
+            "kind": "error",
+            "text": "FAILED tests/test_policy.py::test_deny"
+          },
+          {
+            "kind": "command",
+            "text": "echo $?"
+          },
+          {
+            "kind": "output",
+            "text": "1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "logs",
+      "kind": "logs",
+      "title": "Read the log, not the summary.",
+      "insight": "The warning three lines before the error is where the story starts.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented log excerpt",
+        "reference": "Timestamps and messages are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-text",
+      "state": {
+        "active_line": 2
+      },
+      "data": {
+        "lines": [
+          {
+            "time": "12:00:01.204",
+            "level": "INFO",
+            "message": "request received id=8f21"
+          },
+          {
+            "time": "12:00:01.410",
+            "level": "DEBUG",
+            "message": "retrieved 3 chunks in 206 ms"
+          },
+          {
+            "time": "12:00:02.980",
+            "level": "WARN",
+            "message": "tool timeout, retrying (1/3)"
+          },
+          {
+            "time": "12:00:05.112",
+            "level": "WARN",
+            "message": "tool timeout, retrying (2/3)"
+          },
+          {
+            "time": "12:00:07.300",
+            "level": "ERROR",
+            "message": "tool unavailable, request held"
+          }
+        ]
+      }
+    },
+    {
+      "id": "payload",
+      "kind": "payload",
+      "variant": "card",
+      "title": "This is what the model actually sent.",
+      "insight": "Arguments are data. Show the values, their types and the one that matters.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented tool-call arguments",
+        "reference": "Not a real API payload",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-json",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "title": "create_refund · args",
+        "entries": [
+          {
+            "key": "order_id",
+            "value": "ord_48213",
+            "type": "string"
+          },
+          {
+            "key": "amount",
+            "value": "129.90",
+            "type": "number"
+          },
+          {
+            "key": "reason",
+            "value": "damaged_on_arrival",
+            "type": "string"
+          },
+          {
+            "key": "notify_customer",
+            "value": "true",
+            "type": "boolean"
+          },
+          {
+            "key": "note",
+            "value": "null",
+            "type": "null"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matrix",
+      "kind": "matrix",
+      "title": "Who can do what.",
+      "insight": "A permission matrix makes the missing checkmark visible before the incident does.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented permission matrix",
+        "reference": "Roles and actions are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "key-round",
+      "state": {
+        "highlight_row": 1
+      },
+      "data": {
+        "rows": [
+          "Reader",
+          "Agent",
+          "Operator",
+          "Admin"
+        ],
+        "columns": [
+          "Read",
+          "Draft",
+          "Execute",
+          "Delete"
+        ],
+        "cells": [
+          [
+            "yes",
+            "no",
+            "no",
+            "no"
+          ],
+          [
+            "yes",
+            "yes",
+            "partial",
+            "no"
+          ],
+          [
+            "yes",
+            "yes",
+            "yes",
+            "no"
+          ],
+          [
+            "yes",
+            "yes",
+            "yes",
+            "yes"
+          ]
+        ],
+        "legend": "Partial: only with a human approval"
+      }
+    },
+    {
+      "id": "tree",
+      "kind": "tree",
+      "title": "Where the guard lives.",
+      "insight": "One folder holds the policy. Everything else only calls it.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented project layout",
+        "reference": "File names are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "state": {
+        "highlight": 3
+      },
+      "data": {
+        "nodes": [
+          {
+            "label": "agent/",
+            "depth": 0,
+            "icon": null
+          },
+          {
+            "label": "policy/",
+            "depth": 1,
+            "icon": null
+          },
+          {
+            "label": "rules.yaml",
+            "depth": 2,
+            "icon": "file-text"
+          },
+          {
+            "label": "review.py",
+            "depth": 2,
+            "icon": "file-code"
+          },
+          {
+            "label": "tools/",
+            "depth": 1,
+            "icon": null
+          },
+          {
+            "label": "email.py",
+            "depth": 2,
+            "icon": "file-code"
+          },
+          {
+            "label": "refund.py",
+            "depth": 2,
+            "icon": "file-code"
+          },
+          {
+            "label": "runner.py",
+            "depth": 1,
+            "icon": "file-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table",
+      "kind": "table",
+      "variant": "grid",
+      "title": "Compare the options in one table.",
+      "insight": "Four columns, five rows, no adjectives. The reader can check every cell.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented comparison table",
+        "reference": "Values are examples, not measurements",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "state": {
+        "highlight_row": 1
+      },
+      "data": {
+        "columns": [
+          {
+            "label": "Strategy",
+            "align": "left",
+            "mono": false
+          },
+          {
+            "label": "Latency",
+            "align": "right",
+            "mono": true
+          },
+          {
+            "label": "Cost",
+            "align": "right",
+            "mono": true
+          },
+          {
+            "label": "Risk",
+            "align": "left",
+            "mono": false
+          }
+        ],
+        "rows": [
+          [
+            "Cache only",
+            "5 ms",
+            "0.00",
+            "stale data"
+          ],
+          [
+            "Small model",
+            "400 ms",
+            "0.02",
+            "misses nuance"
+          ],
+          [
+            "Large model",
+            "2.1 s",
+            "0.30",
+            "slow, costly"
+          ],
+          [
+            "Human queue",
+            "hours",
+            "n/a",
+            "doesn't scale"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "histogram",
+      "kind": "histogram",
+      "title": "Most requests are fast. Some are not.",
+      "insight": "The average hides the tail. The bins show it.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented latency distribution",
+        "reference": "Counts are examples, not a measured service",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-column",
+      "data": {
+        "unit": "ms",
+        "edges": [
+          0,
+          100,
+          200,
+          400,
+          800,
+          1600
+        ],
+        "counts": [
+          42,
+          31,
+          14,
+          6,
+          2
+        ],
+        "marker": {
+          "label": "p99",
+          "value": 1200
+        }
+      }
+    },
+    {
+      "id": "boxplot",
+      "kind": "boxplot",
+      "title": "Spread, not just the middle.",
+      "insight": "Two models with the same median can have very different worst cases.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented latency quartiles",
+        "reference": "Quartiles are examples, not benchmarks",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-scatter",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "unit": "seconds",
+        "groups": [
+          {
+            "label": "Small model",
+            "min": 0.3,
+            "q1": 0.5,
+            "median": 0.7,
+            "q3": 1.0,
+            "max": 1.6
+          },
+          {
+            "label": "Large model",
+            "min": 0.9,
+            "q1": 1.6,
+            "median": 2.2,
+            "q3": 3.4,
+            "max": 7.8
+          },
+          {
+            "label": "Cached",
+            "min": 0.01,
+            "q1": 0.02,
+            "median": 0.02,
+            "q3": 0.03,
+            "max": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "id": "waffle",
+      "kind": "waffle",
+      "title": "One hundred requests. Where did they go?",
+      "insight": "A waffle shows shares as countable squares; tiny shares are marked, not erased.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented traffic split",
+        "reference": "Percentages are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-pie",
+      "data": {
+        "parts": [
+          {
+            "label": "Cache hit",
+            "percent": 62
+          },
+          {
+            "label": "Small model",
+            "percent": 29
+          },
+          {
+            "label": "Large model",
+            "percent": 8
+          },
+          {
+            "label": "Human review",
+            "percent": 0.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "funnel",
+      "kind": "funnel",
+      "variant": "centered",
+      "title": "Where the drop-off happens.",
+      "insight": "Each stage is a share of the first. Attributing the loss is a separate question.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented pipeline counts",
+        "reference": "Counts are examples, not measured traffic",
+        "as_of": "2026-09-15"
+      },
+      "icon": "filter",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "unit": "requests",
+        "stages": [
+          {
+            "label": "Received",
+            "value": 1000
+          },
+          {
+            "label": "Validated",
+            "value": 940
+          },
+          {
+            "label": "Reviewed",
+            "value": 310
+          },
+          {
+            "label": "Executed",
+            "value": 290
+          }
+        ]
+      }
+    },
+    {
+      "id": "queue",
+      "kind": "queue",
+      "title": "A queue is a promise, not a fix.",
+      "insight": "Backlog grows when producers outrun consumers. Capacity decides what happens next.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented queue snapshot",
+        "reference": "Values are examples, not measurements",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "label": "embedding jobs",
+        "depth": 37,
+        "capacity": 100,
+        "producers": [
+          {
+            "label": "Uploads",
+            "rate": "12/min"
+          },
+          {
+            "label": "Reindex",
+            "rate": "40/min"
+          }
+        ],
+        "consumers": [
+          {
+            "label": "Worker A",
+            "rate": "20/min"
+          },
+          {
+            "label": "Worker B",
+            "rate": "20/min"
+          }
+        ]
+      }
+    },
+    {
+      "id": "balancer",
+      "kind": "balancer",
+      "title": "Traffic goes where health allows.",
+      "insight": "A balancer is only as good as its health checks. Down replicas get nothing.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented replica set",
+        "reference": "Values are examples, not measurements",
+        "as_of": "2026-09-15"
+      },
+      "icon": "network",
+      "state": {
+        "selected": 1
+      },
+      "data": {
+        "label": "api-gateway",
+        "algorithm": "weighted round robin",
+        "replicas": [
+          {
+            "label": "replica-1",
+            "health": "healthy",
+            "share": "40%"
+          },
+          {
+            "label": "replica-2",
+            "health": "healthy",
+            "share": "40%"
+          },
+          {
+            "label": "replica-3",
+            "health": "degraded",
+            "share": "20%"
+          },
+          {
+            "label": "replica-4",
+            "health": "down",
+            "share": "0%"
+          }
+        ]
+      }
+    },
+    {
+      "id": "breaker",
+      "kind": "breaker",
+      "title": "Stop calling what keeps failing.",
+      "insight": "A circuit breaker trips on a threshold, blocks, then probes before trusting again.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented breaker state",
+        "reference": "Counts are examples, not a live service",
+        "as_of": "2026-09-15"
+      },
+      "icon": "zap",
+      "data": {
+        "failures": 5,
+        "threshold": 5,
+        "window": "last 60 s",
+        "state": "open",
+        "next": "Retry one probe request in 30 s"
+      }
+    },
+    {
+      "id": "token-bucket",
+      "kind": "token-bucket",
+      "title": "Rate limits are just a bucket.",
+      "insight": "Each request costs tokens. The bucket refills over time. Empty means denied, not queued.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented token bucket",
+        "reference": "Costs and counts are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "data": {
+        "capacity": 10,
+        "tokens": 7,
+        "refill": "2 per second",
+        "requests": [
+          {
+            "label": "search",
+            "cost": 1
+          },
+          {
+            "label": "summarize",
+            "cost": 3
+          },
+          {
+            "label": "batch job",
+            "cost": 5
+          },
+          {
+            "label": "search",
+            "cost": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "replication",
+      "kind": "replication",
+      "title": "Written once. Acknowledged how many times?",
+      "insight": "A quorum decides when a write is durable. Lagging replicas still serve stale reads.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented replication snapshot",
+        "reference": "Lag values are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "database",
+      "data": {
+        "primary": "db-primary",
+        "quorum": "2 of 3 acks",
+        "replicas": [
+          {
+            "label": "replica-eu",
+            "lag": "8 ms",
+            "status": "acked"
+          },
+          {
+            "label": "replica-us",
+            "lag": "41 ms",
+            "status": "pending"
+          },
+          {
+            "label": "replica-ap",
+            "lag": "3.2 s",
+            "status": "lagging"
+          }
+        ]
+      }
+    },
+    {
+      "id": "percentiles",
+      "kind": "percentiles",
+      "title": "The median is not the experience.",
+      "insight": "p50 is what most users see. p99 is what the complaints are about.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented latency percentiles",
+        "reference": "Values are examples, not measurements",
+        "as_of": "2026-09-15"
+      },
+      "icon": "activity",
+      "data": {
+        "unit": "ms",
+        "points": [
+          {
+            "label": "p50",
+            "value": 180
+          },
+          {
+            "label": "p90",
+            "value": 420
+          },
+          {
+            "label": "p99",
+            "value": 1450
+          }
+        ],
+        "target": {
+          "label": "SLO",
+          "value": 800
+        }
+      }
+    },
+    {
+      "id": "dumbbell",
+      "kind": "dumbbell",
+      "title": "Before and after, on one axis.",
+      "insight": "The distance between the dots is the change. Same scale for every row.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented before/after values",
+        "reference": "Values are examples, not measurements",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-line",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "unit": "s",
+        "before_label": "Before",
+        "after_label": "After",
+        "rows": [
+          {
+            "label": "Retrieve",
+            "before": 1.2,
+            "after": 0.4
+          },
+          {
+            "label": "Model",
+            "before": 4.8,
+            "after": 4.6
+          },
+          {
+            "label": "Tool call",
+            "before": 2.1,
+            "after": 0.9
+          },
+          {
+            "label": "Policy check",
+            "before": 0.6,
+            "after": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "id": "intervals",
+      "kind": "intervals",
+      "title": "Report the range, not just the point.",
+      "insight": "Two estimates with overlapping intervals are not a ranking.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented estimates with intervals",
+        "reference": "Intervals are examples, not computed",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-scatter",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "unit": "% accuracy",
+        "note": "90% intervals from the evaluation",
+        "items": [
+          {
+            "label": "Model A",
+            "low": 78,
+            "mid": 84,
+            "high": 89
+          },
+          {
+            "label": "Model B",
+            "low": 80,
+            "mid": 86,
+            "high": 91
+          },
+          {
+            "label": "Baseline",
+            "low": 61,
+            "mid": 65,
+            "high": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": "split-flow",
+      "kind": "split-flow",
+      "title": "Where the requests went.",
+      "insight": "One source, several destinations. Widths are proportional to the counts.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented routing counts",
+        "reference": "Values are examples, not measurements",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "data": {
+        "source": "Requests",
+        "total": 1000,
+        "unit": "req",
+        "targets": [
+          {
+            "label": "Cache",
+            "value": 620
+          },
+          {
+            "label": "Small model",
+            "value": 290
+          },
+          {
+            "label": "Large model",
+            "value": 80
+          },
+          {
+            "label": "Human queue",
+            "value": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "bullet",
+      "kind": "bullet",
+      "title": "Value, target, and the bands you agreed on.",
+      "insight": "A bullet chart shows how far a value is from its target inside declared thresholds.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented KPI values",
+        "reference": "Targets and bands are examples",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-no-axes-combined",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "unit": "%",
+        "items": [
+          {
+            "label": "Grounded",
+            "value": 91,
+            "target": 95,
+            "max": 100,
+            "bands": [
+              70,
+              90
+            ]
+          },
+          {
+            "label": "Refusal ok",
+            "value": 72,
+            "target": 90,
+            "max": 100,
+            "bands": [
+              60,
+              85
+            ]
+          },
+          {
+            "label": "Format valid",
+            "value": 99,
+            "target": 98,
+            "max": 100,
+            "bands": [
+              80,
+              95
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "sequence",
+      "kind": "sequence",
+      "title": "Who talks to whom, in order.",
+      "insight": "A tool call is a round trip: the model waits until the result comes back.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented agent exchange",
+        "reference": "Message order is illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "workflow",
+      "state": {
+        "active": 1
+      },
+      "data": {
+        "roles": [
+          "User",
+          "Agent",
+          "Tool"
+        ],
+        "messages": [
+          {
+            "from": 0,
+            "to": 1,
+            "label": "question",
+            "kind": "request"
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "label": "search(query)",
+            "kind": "tool"
+          },
+          {
+            "from": 2,
+            "to": 1,
+            "label": "results (3 hits)",
+            "kind": "response"
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "label": "fetch(page)",
+            "kind": "tool"
+          },
+          {
+            "from": 2,
+            "to": 1,
+            "label": "page text",
+            "kind": "response"
+          },
+          {
+            "from": 1,
+            "to": 0,
+            "label": "answer with citations",
+            "kind": "response"
+          }
+        ]
+      }
+    },
+    {
+      "id": "context-window",
+      "kind": "context-window",
+      "title": "What is inside the window right now.",
+      "insight": "Retrieved text is the largest block; the actual question is the smallest.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented token budget",
+        "reference": "Segment sizes are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "capacity": 8000,
+        "unit": "tokens",
+        "segments": [
+          {
+            "label": "System",
+            "tokens": 900,
+            "kind": "system"
+          },
+          {
+            "label": "History",
+            "tokens": 2200,
+            "kind": "history"
+          },
+          {
+            "label": "Retrieved",
+            "tokens": 3100,
+            "kind": "retrieved"
+          },
+          {
+            "label": "Tool result",
+            "tokens": 800,
+            "kind": "tool"
+          },
+          {
+            "label": "Question",
+            "tokens": 120,
+            "kind": "input"
+          }
+        ]
+      }
+    },
+    {
+      "id": "confusion",
+      "kind": "confusion",
+      "title": "Precision and recall come from four counts.",
+      "insight": "A classifier that never flags anything has perfect precision and useless recall.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented evaluation counts",
+        "reference": "Counts do not come from a real run",
+        "as_of": "2026-09-15"
+      },
+      "icon": "filter",
+      "data": {
+        "positive": "Unsafe",
+        "negative": "Safe",
+        "tp": 412,
+        "fp": 38,
+        "fn": 91,
+        "tn": 2459
+      }
+    },
+    {
+      "id": "claims",
+      "kind": "claims",
+      "title": "Check each claim against its source.",
+      "insight": "Two of three claims survive; the third is the one that sounded most confident.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented grounding review",
+        "reference": "Verdicts were assigned by hand for the example",
+        "as_of": "2026-09-15"
+      },
+      "icon": "check",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "items": [
+          {
+            "claim": "Latency dropped 40% after the cache change",
+            "source": "perf report 2026-08",
+            "verdict": "supported"
+          },
+          {
+            "claim": "All regions were migrated in the same week",
+            "source": "migration log",
+            "verdict": "partial"
+          },
+          {
+            "claim": "No customer noticed the outage",
+            "source": "no source found",
+            "verdict": "unsupported"
+          }
+        ]
+      }
+    },
+    {
+      "id": "guardrails",
+      "kind": "guardrails",
+      "title": "Each layer catches a different failure.",
+      "insight": "The schema check is cheap and stops most bad outputs before the expensive review.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented guardrail chain",
+        "reference": "Layer names are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "shield-check",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "input": "Model output",
+        "output": "To user",
+        "layers": [
+          {
+            "label": "Schema check",
+            "catches": "malformed JSON"
+          },
+          {
+            "label": "Policy filter",
+            "catches": "disallowed content"
+          },
+          {
+            "label": "Fact check",
+            "catches": "unsupported claims"
+          }
+        ]
+      }
+    },
+    {
+      "id": "embedding-map",
+      "kind": "embedding-map",
+      "title": "Nearest neighbors in embedding space.",
+      "insight": "The three nearest items to the query share a topic, not a keyword.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented 2D projection",
+        "reference": "Coordinates are invented for the drawing",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-scatter",
+      "data": {
+        "groups": [
+          "Billing",
+          "Shipping",
+          "Account"
+        ],
+        "k": 3,
+        "query": {
+          "label": "refund late",
+          "x": 0.32,
+          "y": 0.62
+        },
+        "points": [
+          {
+            "label": "invoice",
+            "x": 0.18,
+            "y": 0.78,
+            "group": 0
+          },
+          {
+            "label": "refund",
+            "x": 0.28,
+            "y": 0.7,
+            "group": 0
+          },
+          {
+            "label": "chargeback",
+            "x": 0.4,
+            "y": 0.56,
+            "group": 0
+          },
+          {
+            "label": "receipt",
+            "x": 0.12,
+            "y": 0.58,
+            "group": 0
+          },
+          {
+            "label": "tracking",
+            "x": 0.72,
+            "y": 0.8,
+            "group": 1
+          },
+          {
+            "label": "delivery",
+            "x": 0.82,
+            "y": 0.64,
+            "group": 1
+          },
+          {
+            "label": "lost parcel",
+            "x": 0.64,
+            "y": 0.6,
+            "group": 1
+          },
+          {
+            "label": "password",
+            "x": 0.3,
+            "y": 0.18,
+            "group": 2
+          },
+          {
+            "label": "login",
+            "x": 0.48,
+            "y": 0.26,
+            "group": 2
+          },
+          {
+            "label": "two-factor",
+            "x": 0.66,
+            "y": 0.14,
+            "group": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prompt-anatomy",
+      "kind": "prompt-anatomy",
+      "title": "The parts of a prompt, labeled.",
+      "insight": "The format section is what makes the output parseable; it is the one people forget.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented prompt structure",
+        "reference": "Section text is illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-text",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "sections": [
+          {
+            "label": "Role",
+            "text": "You are a support triage assistant for an online store.",
+            "kind": "system"
+          },
+          {
+            "label": "Task",
+            "text": "Classify the ticket and pick the next action.",
+            "kind": "instruction"
+          },
+          {
+            "label": "Example",
+            "text": "Ticket: \"Where is my order?\" means shipping, ask order id",
+            "kind": "example"
+          },
+          {
+            "label": "Input",
+            "text": "Ticket: \"I was charged twice for one order.\"",
+            "kind": "input"
+          },
+          {
+            "label": "Format",
+            "text": "Return JSON with fields category and action.",
+            "kind": "format"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orchestration",
+      "kind": "orchestration",
+      "title": "One orchestrator, several workers, shared state.",
+      "insight": "The orchestrator never does the work; it assigns it and checks what comes back.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented agent team",
+        "reference": "Worker statuses are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "network",
+      "data": {
+        "orchestrator": "Planner",
+        "shared": "task board",
+        "workers": [
+          {
+            "label": "Researcher",
+            "task": "collect sources",
+            "status": "done"
+          },
+          {
+            "label": "Writer",
+            "task": "draft the answer",
+            "status": "working"
+          },
+          {
+            "label": "Reviewer",
+            "task": "check citations",
+            "status": "idle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "event-bus",
+      "kind": "event-bus",
+      "title": "Publishers do not know the subscribers.",
+      "insight": "Adding the audit service required no change to the checkout service.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented event topology",
+        "reference": "Service names are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "zap",
+      "data": {
+        "topic": "order.events",
+        "publishers": [
+          "Checkout",
+          "Returns"
+        ],
+        "subscribers": [
+          "Billing",
+          "Warehouse",
+          "Audit"
+        ],
+        "events": [
+          "placed",
+          "paid",
+          "refunded"
+        ]
+      }
+    },
+    {
+      "id": "lanes",
+      "kind": "lanes",
+      "title": "Parallel work and the lock that serializes it.",
+      "insight": "Both workers wait on the same lock, so the parallel plan runs mostly in series.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented timing",
+        "reference": "Durations are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "data": {
+        "unit": "ms",
+        "lanes": [
+          {
+            "label": "Worker A",
+            "spans": [
+              {
+                "label": "fetch",
+                "start": 0,
+                "end": 120
+              },
+              {
+                "label": "write",
+                "start": 200,
+                "end": 260
+              }
+            ]
+          },
+          {
+            "label": "Worker B",
+            "spans": [
+              {
+                "label": "fetch",
+                "start": 0,
+                "end": 140
+              },
+              {
+                "label": "write",
+                "start": 260,
+                "end": 330
+              }
+            ]
+          },
+          {
+            "label": "Worker C",
+            "spans": [
+              {
+                "label": "parse",
+                "start": 40,
+                "end": 190
+              }
+            ]
+          }
+        ],
+        "lock": {
+          "label": "db lock held",
+          "start": 200,
+          "end": 330
+        }
+      }
+    },
+    {
+      "id": "dag",
+      "kind": "dag",
+      "title": "What depends on what.",
+      "insight": "A change in the shared client reaches three services and both jobs.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented dependency graph",
+        "reference": "Module names are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "workflow",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "nodes": [
+          {
+            "label": "http client",
+            "level": 0
+          },
+          {
+            "label": "auth",
+            "level": 1
+          },
+          {
+            "label": "orders",
+            "level": 1
+          },
+          {
+            "label": "search",
+            "level": 1
+          },
+          {
+            "label": "nightly job",
+            "level": 2
+          },
+          {
+            "label": "api gateway",
+            "level": 2
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1
+          },
+          {
+            "from": 0,
+            "to": 2
+          },
+          {
+            "from": 0,
+            "to": 3
+          },
+          {
+            "from": 2,
+            "to": 4
+          },
+          {
+            "from": 1,
+            "to": 5
+          },
+          {
+            "from": 2,
+            "to": 5
+          },
+          {
+            "from": 3,
+            "to": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "diff",
+      "kind": "diff",
+      "title": "The change, line by line.",
+      "insight": "One removed line and two added lines: the retry now has a ceiling.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented code change",
+        "reference": "Code is illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-code",
+      "state": {
+        "active_line": 2
+      },
+      "data": {
+        "file": "retry.py",
+        "lines": [
+          {
+            "kind": "context",
+            "text": "def fetch(url, attempts=0):"
+          },
+          {
+            "kind": "removed",
+            "text": "    while True:"
+          },
+          {
+            "kind": "added",
+            "text": "    while attempts below MAX_ATTEMPTS:"
+          },
+          {
+            "kind": "added",
+            "text": "        attempts += 1"
+          },
+          {
+            "kind": "context",
+            "text": "        response = client.get(url)"
+          },
+          {
+            "kind": "context",
+            "text": "        if response.ok:"
+          },
+          {
+            "kind": "context",
+            "text": "            return response"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pyramid",
+      "kind": "pyramid",
+      "title": "Many fast tests, few slow ones.",
+      "insight": "The counts are inverted here: more end-to-end tests than unit tests.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented test counts",
+        "reference": "Counts are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "layers": [
+          {
+            "label": "Unit",
+            "count": 1240,
+            "note": "runs in 40 seconds"
+          },
+          {
+            "label": "Integration",
+            "count": 180,
+            "note": "needs a database"
+          },
+          {
+            "label": "End to end",
+            "count": 22,
+            "note": "runs in a browser"
+          }
+        ]
+      }
+    },
+    {
+      "id": "versions",
+      "kind": "versions",
+      "title": "Which releases broke the contract.",
+      "insight": "Only the major release removed something; the rest were additive.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented release history",
+        "reference": "Versions and dates are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "tags": [
+          {
+            "label": "v1.4.0",
+            "kind": "minor",
+            "date": "2026-03-02",
+            "note": "adds bulk export"
+          },
+          {
+            "label": "v1.4.1",
+            "kind": "patch",
+            "date": "2026-03-09",
+            "note": "fixes date parsing"
+          },
+          {
+            "label": "v2.0.0",
+            "kind": "major",
+            "date": "2026-06-15",
+            "note": "removes v1 endpoints"
+          },
+          {
+            "label": "v2.1.0",
+            "kind": "minor",
+            "date": "2026-08-20",
+            "note": "adds webhooks"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trust-boundary",
+      "kind": "trust-boundary",
+      "title": "What crosses the boundary, and whether it is checked.",
+      "insight": "The webhook comes in unguarded: it is the one crossing to fix first.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented system boundary",
+        "reference": "Components are illustrative",
+        "as_of": "2026-09-15"
+      },
+      "icon": "shield-alert",
+      "data": {
+        "inside": {
+          "label": "Trusted",
+          "items": [
+            "API server",
+            "Job runner",
+            "Database"
+          ]
+        },
+        "outside": {
+          "label": "Untrusted",
+          "items": [
+            "Browser",
+            "Partner webhook",
+            "Email inbox"
+          ]
+        },
+        "crossings": [
+          {
+            "label": "signed session request",
+            "direction": "in",
+            "guarded": true
+          },
+          {
+            "label": "webhook payload",
+            "direction": "in",
+            "guarded": false
+          },
+          {
+            "label": "outbound notification",
+            "direction": "out",
+            "guarded": true
+          }
+        ]
+      }
+    }
+  ]
+}

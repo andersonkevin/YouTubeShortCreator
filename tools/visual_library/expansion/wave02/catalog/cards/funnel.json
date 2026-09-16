@@ -1,0 +1,43 @@
+{
+  "id": "wave02:funnel",
+  "kind": "funnel",
+  "family": "data",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Show stage counts as shares of the first stage.",
+  "use_when": "Pipelines where each stage is a subset of the previous one.",
+  "not_when": "Stages that are not subsets, or when attributing the drop-off matters (that needs its own evidence).",
+  "parameters": {
+    "unit": "<= 12",
+    "stages": "2-6 items of {label <= 16, value >= 0}, non-increasing, first > 0"
+  },
+  "defaults": {
+    "variant": "centered"
+  },
+  "limits": "A zero stage is drawn as a dashed line; percentages are of the first stage only.",
+  "variants": [
+    "centered",
+    "left"
+  ],
+  "states": [
+    "highlight"
+  ],
+  "example": "funnel",
+  "stress": "funnel-left-six"
+}

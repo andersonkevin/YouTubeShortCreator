@@ -1,0 +1,2108 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "terminal-ten",
+      "kind": "terminal",
+      "title": "Terminal at ten lines, running.",
+      "insight": "Maximum lines, long commands, no exit code yet.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "terminal",
+      "data": {
+        "title": "zsh · long session",
+        "exit_code": null,
+        "lines": [
+          {
+            "kind": "command",
+            "text": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci"
+          },
+          {
+            "kind": "output",
+            "text": "added 1 package, audited 2 packages"
+          },
+          {
+            "kind": "command",
+            "text": "python3 ysc.py validate episodes/e1.json"
+          },
+          {
+            "kind": "output",
+            "text": "{\"status\": \"PASS\", \"scenes\": 4}"
+          },
+          {
+            "kind": "command",
+            "text": "python3 ysc.py build e1.json --run-id p1"
+          },
+          {
+            "kind": "output",
+            "text": ""
+          },
+          {
+            "kind": "comment",
+            "text": "# capture takes about forty seconds"
+          },
+          {
+            "kind": "output",
+            "text": "captured 1200 frames at 30 fps"
+          },
+          {
+            "kind": "error",
+            "text": "warning: caption 7 starts 0.13 s late"
+          },
+          {
+            "kind": "output",
+            "text": "review_required: workspace/runs/e1/p1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "logs-eight",
+      "kind": "logs",
+      "title": "Eight log lines, all levels.",
+      "insight": "Maximum rows with messages at the forty-character limit.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-text",
+      "state": {
+        "active_line": 7
+      },
+      "data": {
+        "lines": [
+          {
+            "time": "00:00:00.000",
+            "level": "DEBUG",
+            "message": "loading policy from agent/policy/rules"
+          },
+          {
+            "time": "00:00:00.031",
+            "level": "INFO",
+            "message": "policy loaded: 14 rules, 3 tool scopes"
+          },
+          {
+            "time": "00:00:00.900",
+            "level": "INFO",
+            "message": "request 8f21: propose(send_email)"
+          },
+          {
+            "time": "00:00:01.002",
+            "level": "WARN",
+            "message": "scope missing: send_email needs review"
+          },
+          {
+            "time": "00:00:01.010",
+            "level": "INFO",
+            "message": "held for human approval, queue=2"
+          },
+          {
+            "time": "00:03:44.120",
+            "level": "INFO",
+            "message": "approved by operator, executing once"
+          },
+          {
+            "time": "00:03:44.980",
+            "level": "DEBUG",
+            "message": "smtp connect 118 ms, send 402 ms"
+          },
+          {
+            "time": "00:03:45.401",
+            "level": "ERROR",
+            "message": "delivery failed: mailbox unavailable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "payload-raw-eight",
+      "kind": "payload",
+      "variant": "raw",
+      "title": "Raw JSON, eight entries.",
+      "insight": "Raw variant at maximum entries with long keys and values.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-json",
+      "state": {
+        "highlight": 5
+      },
+      "data": {
+        "title": "event.payload",
+        "entries": [
+          {
+            "key": "event_type",
+            "value": "order.refund.requested",
+            "type": "string"
+          },
+          {
+            "key": "order_identifier",
+            "value": "ord_48213_2026_09_15",
+            "type": "string"
+          },
+          {
+            "key": "amount_cents",
+            "value": "12990",
+            "type": "number"
+          },
+          {
+            "key": "currency",
+            "value": "EUR",
+            "type": "string"
+          },
+          {
+            "key": "requires_review",
+            "value": "true",
+            "type": "boolean"
+          },
+          {
+            "key": "reviewer",
+            "value": "null",
+            "type": "null"
+          },
+          {
+            "key": "line_items",
+            "value": "[3 items]",
+            "type": "array"
+          },
+          {
+            "key": "metadata",
+            "value": "{2 keys}",
+            "type": "object"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matrix-five",
+      "kind": "matrix",
+      "title": "Five by five matrix.",
+      "insight": "Maximum rows and columns with labels at the limit.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "key-round",
+      "state": {
+        "highlight_row": 4
+      },
+      "data": {
+        "rows": [
+          "Anonymous",
+          "Reader",
+          "Contributor",
+          "Maintainer",
+          "Administrator"
+        ],
+        "columns": [
+          "Read",
+          "Comment",
+          "Push",
+          "Release",
+          "Delete repo"
+        ],
+        "cells": [
+          [
+            "yes",
+            "no",
+            "no",
+            "no",
+            "no"
+          ],
+          [
+            "yes",
+            "yes",
+            "no",
+            "no",
+            "na"
+          ],
+          [
+            "yes",
+            "yes",
+            "partial",
+            "no",
+            "na"
+          ],
+          [
+            "yes",
+            "yes",
+            "yes",
+            "partial",
+            "no"
+          ],
+          [
+            "yes",
+            "yes",
+            "yes",
+            "yes",
+            "yes"
+          ]
+        ],
+        "legend": "Partial: protected branches need review"
+      }
+    },
+    {
+      "id": "tree-ten",
+      "kind": "tree",
+      "title": "Ten nodes, three levels deep.",
+      "insight": "Maximum depth and count with labels at the limit.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "state": {
+        "highlight": 6
+      },
+      "data": {
+        "nodes": [
+          {
+            "label": "workspace/",
+            "depth": 0,
+            "icon": null
+          },
+          {
+            "label": "brand/",
+            "depth": 1,
+            "icon": null
+          },
+          {
+            "label": "approval-record.json",
+            "depth": 2,
+            "icon": "file-json"
+          },
+          {
+            "label": "runs/",
+            "depth": 1,
+            "icon": null
+          },
+          {
+            "label": "first-short/",
+            "depth": 2,
+            "icon": null
+          },
+          {
+            "label": "preview-01/",
+            "depth": 3,
+            "icon": null
+          },
+          {
+            "label": "final-01/",
+            "depth": 3,
+            "icon": null
+          },
+          {
+            "label": "episodes/",
+            "depth": 1,
+            "icon": null
+          },
+          {
+            "label": "first-short-episode.json",
+            "depth": 2,
+            "icon": "file-json"
+          },
+          {
+            "label": "runtime.json",
+            "depth": 1,
+            "icon": "file-json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-clean-six",
+      "kind": "table",
+      "variant": "clean",
+      "title": "Clean table, four columns, six rows.",
+      "insight": "Maximum size; four-column cells are capped at thirteen characters.",
+      "source": {
+        "kind": "measured",
+        "label": "Measured source placeholder for label testing only",
+        "reference": "Layout test only; nothing was measured",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "state": {
+        "highlight_row": 5
+      },
+      "data": {
+        "columns": [
+          {
+            "label": "Model name",
+            "align": "left",
+            "mono": false
+          },
+          {
+            "label": "Context",
+            "align": "right",
+            "mono": true
+          },
+          {
+            "label": "Price / 1k",
+            "align": "right",
+            "mono": true
+          },
+          {
+            "label": "Best for",
+            "align": "left",
+            "mono": false
+          }
+        ],
+        "rows": [
+          [
+            "Tiny model",
+            "4k tokens",
+            "0.0001",
+            "routing"
+          ],
+          [
+            "Small model",
+            "32k tokens",
+            "0.0020",
+            "summaries"
+          ],
+          [
+            "Medium model",
+            "128k tokens",
+            "0.0150",
+            "long docs"
+          ],
+          [
+            "Large model",
+            "200k tokens",
+            "0.0600",
+            "planning"
+          ],
+          [
+            "Vision model",
+            "128k tokens",
+            "0.0200",
+            "screenshots"
+          ],
+          [
+            "Embed model",
+            "8k tokens",
+            "0.0001",
+            "retrieval"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "histogram-nine",
+      "kind": "histogram",
+      "title": "Eight bins with a zero and uneven widths.",
+      "insight": "Maximum edges, a zero bin drawn as a line, marker near the right edge.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-column",
+      "data": {
+        "unit": "tokens",
+        "edges": [
+          0,
+          250,
+          500,
+          1000,
+          1500,
+          2000,
+          3000,
+          4000,
+          8000
+        ],
+        "counts": [
+          3,
+          18,
+          40,
+          22,
+          9,
+          0,
+          1,
+          1
+        ],
+        "marker": {
+          "label": "limit",
+          "value": 7500
+        }
+      }
+    },
+    {
+      "id": "histogram-three",
+      "kind": "histogram",
+      "title": "Two bins, small counts.",
+      "insight": "Minimum edges; counts below one hundred are still labeled exactly.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-column",
+      "data": {
+        "unit": "errors",
+        "edges": [
+          0,
+          1,
+          2
+        ],
+        "counts": [
+          0.5,
+          2
+        ],
+        "marker": null
+      }
+    },
+    {
+      "id": "boxplot-four",
+      "kind": "boxplot",
+      "title": "Four groups, one very narrow.",
+      "insight": "Maximum groups including a box whose quartiles nearly coincide.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-scatter",
+      "state": {
+        "highlight": 3
+      },
+      "data": {
+        "unit": "ms",
+        "groups": [
+          {
+            "label": "Edge cache",
+            "min": 2,
+            "q1": 3,
+            "median": 3,
+            "q3": 4,
+            "max": 9
+          },
+          {
+            "label": "Vector index",
+            "min": 40,
+            "q1": 55,
+            "median": 70,
+            "q3": 95,
+            "max": 210
+          },
+          {
+            "label": "Small model",
+            "min": 300,
+            "q1": 420,
+            "median": 510,
+            "q3": 640,
+            "max": 1100
+          },
+          {
+            "label": "Large model",
+            "min": 900,
+            "q1": 1500,
+            "median": 2100,
+            "q3": 3200,
+            "max": 6400
+          }
+        ]
+      }
+    },
+    {
+      "id": "waffle-one",
+      "kind": "waffle",
+      "title": "A single part, tiny share.",
+      "insight": "Minimum parts; a 0.3 percent share is drawn as one flagged square.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-pie",
+      "data": {
+        "parts": [
+          {
+            "label": "Escalated",
+            "percent": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "id": "waffle-full",
+      "kind": "waffle",
+      "title": "Four parts filling the grid.",
+      "insight": "Parts summing to one hundred with a long label.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-pie",
+      "data": {
+        "parts": [
+          {
+            "label": "Cache answered",
+            "percent": 55.5
+          },
+          {
+            "label": "Small model",
+            "percent": 30.5
+          },
+          {
+            "label": "Large model",
+            "percent": 13
+          },
+          {
+            "label": "Human review",
+            "percent": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "funnel-left-six",
+      "kind": "funnel",
+      "variant": "left",
+      "title": "Six stages, left aligned, ending at zero.",
+      "insight": "Maximum stages with a zero final stage drawn as a dashed line.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "filter",
+      "state": {
+        "highlight": 5
+      },
+      "data": {
+        "unit": "sessions",
+        "stages": [
+          {
+            "label": "Landed",
+            "value": 12840
+          },
+          {
+            "label": "Signed up",
+            "value": 3210
+          },
+          {
+            "label": "Connected repo",
+            "value": 1980
+          },
+          {
+            "label": "First render",
+            "value": 1120
+          },
+          {
+            "label": "Published",
+            "value": 402
+          },
+          {
+            "label": "Refund requests",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "queue-empty",
+      "kind": "queue",
+      "title": "Empty queue, no capacity limit.",
+      "insight": "Zero depth and a single producer and consumer.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "label": "dead-letter queue",
+        "depth": 0,
+        "capacity": null,
+        "producers": [
+          {
+            "label": "Retry worker",
+            "rate": "0/min"
+          }
+        ],
+        "consumers": [
+          {
+            "label": "Operator",
+            "rate": "manual"
+          }
+        ]
+      }
+    },
+    {
+      "id": "queue-full",
+      "kind": "queue",
+      "title": "Full queue, four producers, four consumers.",
+      "insight": "Depth at capacity with the maximum number of nodes.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "label": "inference requests",
+        "depth": 2500,
+        "capacity": 2500,
+        "producers": [
+          {
+            "label": "Web clients",
+            "rate": "900/min"
+          },
+          {
+            "label": "Mobile app",
+            "rate": "600/min"
+          },
+          {
+            "label": "Batch export",
+            "rate": "400/min"
+          },
+          {
+            "label": "Partner API",
+            "rate": "300/min"
+          }
+        ],
+        "consumers": [
+          {
+            "label": "GPU pool A",
+            "rate": "500/min"
+          },
+          {
+            "label": "GPU pool B",
+            "rate": "500/min"
+          },
+          {
+            "label": "GPU pool C",
+            "rate": "500/min"
+          },
+          {
+            "label": "Overflow CPU",
+            "rate": "60/min"
+          }
+        ]
+      }
+    },
+    {
+      "id": "balancer-five",
+      "kind": "balancer",
+      "title": "Five replicas, two down.",
+      "insight": "Maximum replicas with long labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "network",
+      "state": {
+        "selected": 0
+      },
+      "data": {
+        "label": "inference-lb-prod",
+        "algorithm": "least connections",
+        "replicas": [
+          {
+            "label": "gpu-node-01",
+            "health": "healthy",
+            "share": "33.3%"
+          },
+          {
+            "label": "gpu-node-02",
+            "health": "healthy",
+            "share": "33.3%"
+          },
+          {
+            "label": "gpu-node-03",
+            "health": "degraded",
+            "share": "16.7%"
+          },
+          {
+            "label": "gpu-node-04",
+            "health": "down",
+            "share": "0%"
+          },
+          {
+            "label": "gpu-node-05",
+            "health": "healthy",
+            "share": "16.7%"
+          }
+        ]
+      }
+    },
+    {
+      "id": "breaker-closed",
+      "kind": "breaker",
+      "title": "Closed breaker, threshold twenty.",
+      "insight": "Maximum threshold segments with few failures.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "zap",
+      "data": {
+        "failures": 3,
+        "threshold": 20,
+        "window": "rolling 5 min",
+        "state": "closed",
+        "next": "Keep counting; trip at 20 failures"
+      }
+    },
+    {
+      "id": "breaker-half",
+      "kind": "breaker",
+      "title": "Half-open breaker.",
+      "insight": "Probe state with failures above threshold.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "zap",
+      "data": {
+        "failures": 12,
+        "threshold": 5,
+        "window": "last 60 s",
+        "state": "half-open",
+        "next": "One probe in flight; success closes"
+      }
+    },
+    {
+      "id": "bucket-sixty",
+      "kind": "token-bucket",
+      "title": "Sixty-token bucket, six requests.",
+      "insight": "Maximum capacity grid and request rows.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "data": {
+        "capacity": 60,
+        "tokens": 23,
+        "refill": "10 per minute",
+        "requests": [
+          {
+            "label": "list",
+            "cost": 1
+          },
+          {
+            "label": "export",
+            "cost": 20
+          },
+          {
+            "label": "train",
+            "cost": 60
+          },
+          {
+            "label": "list",
+            "cost": 1
+          },
+          {
+            "label": "embed",
+            "cost": 5
+          },
+          {
+            "label": "report",
+            "cost": 12
+          }
+        ]
+      }
+    },
+    {
+      "id": "bucket-empty",
+      "kind": "token-bucket",
+      "title": "Empty bucket, everything denied.",
+      "insight": "Zero tokens with a small capacity.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "data": {
+        "capacity": 3,
+        "tokens": 0,
+        "refill": "1 per second",
+        "requests": [
+          {
+            "label": "ping",
+            "cost": 1
+          },
+          {
+            "label": "ping",
+            "cost": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "replication-four",
+      "kind": "replication",
+      "title": "Four replicas, one primary.",
+      "insight": "Maximum replicas with long lag strings.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "database",
+      "data": {
+        "primary": "orders-primary",
+        "quorum": "3 of 4 acknowledgments",
+        "replicas": [
+          {
+            "label": "orders-eu-1",
+            "lag": "0 ms",
+            "status": "acked"
+          },
+          {
+            "label": "orders-eu-2",
+            "lag": "12 ms",
+            "status": "acked"
+          },
+          {
+            "label": "orders-us-1",
+            "lag": "118 ms",
+            "status": "pending"
+          },
+          {
+            "label": "orders-ap-1",
+            "lag": "14.5 s",
+            "status": "lagging"
+          }
+        ]
+      }
+    },
+    {
+      "id": "replication-one",
+      "kind": "replication",
+      "title": "Single replica.",
+      "insight": "Minimum layout.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "database",
+      "data": {
+        "primary": "kv-primary",
+        "quorum": "1 of 1 ack",
+        "replicas": [
+          {
+            "label": "kv-standby",
+            "lag": "2 ms",
+            "status": "acked"
+          }
+        ]
+      }
+    },
+    {
+      "id": "percentiles-five",
+      "kind": "percentiles",
+      "title": "Five percentiles on a log axis, no target.",
+      "insight": "Maximum points spanning orders of magnitude; the linear ladder refuses this set.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "activity",
+      "data": {
+        "unit": "ms",
+        "points": [
+          {
+            "label": "p50",
+            "value": 120
+          },
+          {
+            "label": "p75",
+            "value": 160
+          },
+          {
+            "label": "p90",
+            "value": 240
+          },
+          {
+            "label": "p95",
+            "value": 610
+          },
+          {
+            "label": "p99.9",
+            "value": 4800
+          }
+        ],
+        "target": null
+      },
+      "variant": "ladder-log"
+    },
+    {
+      "id": "dumbbell-six",
+      "kind": "dumbbell",
+      "title": "Six rows, some unchanged, one zero.",
+      "insight": "Maximum rows with equal and zero values.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-line",
+      "state": {
+        "highlight": 5
+      },
+      "data": {
+        "unit": "ms",
+        "before_label": "v1.4",
+        "after_label": "v1.5",
+        "rows": [
+          {
+            "label": "Auth",
+            "before": 40,
+            "after": 38
+          },
+          {
+            "label": "Retrieve",
+            "before": 1200,
+            "after": 380
+          },
+          {
+            "label": "Rerank",
+            "before": 0,
+            "after": 220
+          },
+          {
+            "label": "Model",
+            "before": 4800,
+            "after": 4650
+          },
+          {
+            "label": "Tools",
+            "before": 2100,
+            "after": 2100
+          },
+          {
+            "label": "Policy",
+            "before": 600,
+            "after": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "intervals-six",
+      "kind": "intervals",
+      "title": "Six intervals, one degenerate.",
+      "insight": "Maximum items; one interval collapses to a point.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-scatter",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "unit": "s",
+        "note": "95% intervals, five runs each",
+        "items": [
+          {
+            "label": "Run A",
+            "low": 1.1,
+            "mid": 1.4,
+            "high": 1.9
+          },
+          {
+            "label": "Run B",
+            "low": 0.9,
+            "mid": 1.2,
+            "high": 1.6
+          },
+          {
+            "label": "Run C",
+            "low": 2.2,
+            "mid": 2.2,
+            "high": 2.2
+          },
+          {
+            "label": "Run D",
+            "low": 0.4,
+            "mid": 0.8,
+            "high": 1.5
+          },
+          {
+            "label": "Run E",
+            "low": 3.0,
+            "mid": 3.6,
+            "high": 4.4
+          },
+          {
+            "label": "Run F",
+            "low": 1.8,
+            "mid": 2.5,
+            "high": 2.9
+          }
+        ]
+      }
+    },
+    {
+      "id": "split-unassigned",
+      "kind": "split-flow",
+      "title": "Five targets, a remainder and a zero.",
+      "insight": "Maximum targets, one zero value, remainder drawn muted.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "data": {
+        "source": "Support tickets",
+        "total": 640,
+        "unit": "tickets",
+        "targets": [
+          {
+            "label": "Auto-resolved",
+            "value": 300
+          },
+          {
+            "label": "Agent drafted",
+            "value": 180
+          },
+          {
+            "label": "Human answered",
+            "value": 90
+          },
+          {
+            "label": "Escalated",
+            "value": 30
+          },
+          {
+            "label": "Legal review",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "bullet-four",
+      "kind": "bullet",
+      "title": "Four bullets, value above max target.",
+      "insight": "Maximum items with a value at max and a target near zero.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-no-axes-combined",
+      "data": {
+        "unit": "ms",
+        "items": [
+          {
+            "label": "p50 latency",
+            "value": 180,
+            "target": 200,
+            "max": 1000,
+            "bands": [
+              250,
+              500
+            ]
+          },
+          {
+            "label": "p99 latency",
+            "value": 1000,
+            "target": 800,
+            "max": 1000,
+            "bands": [
+              600,
+              900
+            ]
+          },
+          {
+            "label": "Error rate",
+            "value": 2,
+            "target": 1,
+            "max": 10,
+            "bands": [
+              1,
+              5
+            ]
+          },
+          {
+            "label": "Queue depth",
+            "value": 37,
+            "target": 10,
+            "max": 100,
+            "bands": [
+              20,
+              60
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "sequence-seven",
+      "kind": "sequence",
+      "title": "Four roles, seven messages.",
+      "insight": "Maximum roles and messages, longest labels, a note.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "workflow",
+      "state": {
+        "active": 6
+      },
+      "data": {
+        "roles": [
+          "Customer",
+          "Front desk",
+          "Agent",
+          "Ledger API"
+        ],
+        "messages": [
+          {
+            "from": 0,
+            "to": 1,
+            "label": "refund request, order 4471",
+            "kind": "request"
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "label": "triage: billing dispute",
+            "kind": "request"
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "label": "lookup(4471)",
+            "kind": "tool"
+          },
+          {
+            "from": 3,
+            "to": 2,
+            "label": "two charges, same cart",
+            "kind": "response"
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "label": "reverse(charge_b)",
+            "kind": "tool"
+          },
+          {
+            "from": 3,
+            "to": 2,
+            "label": "reversed, settles in 3d",
+            "kind": "response"
+          },
+          {
+            "from": 2,
+            "to": 0,
+            "label": "refund confirmed by email",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "context-overflow",
+      "kind": "context-window",
+      "title": "Six segments over capacity.",
+      "insight": "Overflow with a tiny segment and long labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "capacity": 128000,
+        "unit": "tok",
+        "segments": [
+          {
+            "label": "System prompt",
+            "tokens": 4200,
+            "kind": "system"
+          },
+          {
+            "label": "Conversation",
+            "tokens": 61000,
+            "kind": "history"
+          },
+          {
+            "label": "Retrieved docs",
+            "tokens": 48000,
+            "kind": "retrieved"
+          },
+          {
+            "label": "Tool results",
+            "tokens": 22000,
+            "kind": "tool"
+          },
+          {
+            "label": "User turn",
+            "tokens": 35,
+            "kind": "input"
+          },
+          {
+            "label": "Reserved output",
+            "tokens": 8000,
+            "kind": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "confusion-degenerate",
+      "kind": "confusion",
+      "title": "No positive predictions at all.",
+      "insight": "Zero denominators and long class labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "filter",
+      "data": {
+        "positive": "Needs review",
+        "negative": "Auto-approve",
+        "tp": 0,
+        "fp": 0,
+        "fn": 314,
+        "tn": 128650
+      }
+    },
+    {
+      "id": "claims-four",
+      "kind": "claims",
+      "title": "Four claims at the length limit.",
+      "insight": "Maximum rows with wrapped claims.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "check",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "items": [
+          {
+            "claim": "Median response time improved after rebuild",
+            "source": "db metrics dashboard, wk 32",
+            "verdict": "supported"
+          },
+          {
+            "claim": "Regression hit under one percent of users",
+            "source": "incident review INC-2210",
+            "verdict": "partial"
+          },
+          {
+            "claim": "Every affected customer was contacted",
+            "source": "support ticket export",
+            "verdict": "unsupported"
+          },
+          {
+            "claim": "The fix was deployed before the alert fired",
+            "source": "deploy log and pager times",
+            "verdict": "supported"
+          }
+        ]
+      }
+    },
+    {
+      "id": "guardrails-four",
+      "kind": "guardrails",
+      "title": "Four layers with long names.",
+      "insight": "Maximum layers, wrapped labels and catches.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "shield-check",
+      "data": {
+        "input": "Raw model output",
+        "output": "Sent to user",
+        "layers": [
+          {
+            "label": "Schema validate",
+            "catches": "missing required fields"
+          },
+          {
+            "label": "PII redaction",
+            "catches": "emails and card numbers"
+          },
+          {
+            "label": "Policy classify",
+            "catches": "disallowed advice topics"
+          },
+          {
+            "label": "Human sampling",
+            "catches": "one in fifty responses"
+          }
+        ]
+      }
+    },
+    {
+      "id": "embedding-dense",
+      "kind": "embedding-map",
+      "title": "Twenty-four points, five neighbors.",
+      "insight": "Dense unlabeled cloud with four groups and k at the maximum.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-scatter",
+      "data": {
+        "groups": [
+          "Returns",
+          "Delivery",
+          "Payments",
+          "Account help"
+        ],
+        "k": 5,
+        "query": {
+          "label": "where is it",
+          "x": 0.7,
+          "y": 0.72
+        },
+        "points": [
+          {
+            "label": "refund",
+            "x": 0.15,
+            "y": 0.8,
+            "group": 0
+          },
+          {
+            "label": "",
+            "x": 0.22,
+            "y": 0.74,
+            "group": 0
+          },
+          {
+            "label": "",
+            "x": 0.11,
+            "y": 0.66,
+            "group": 0
+          },
+          {
+            "label": "",
+            "x": 0.27,
+            "y": 0.62,
+            "group": 0
+          },
+          {
+            "label": "",
+            "x": 0.19,
+            "y": 0.55,
+            "group": 0
+          },
+          {
+            "label": "exchange",
+            "x": 0.33,
+            "y": 0.82,
+            "group": 0
+          },
+          {
+            "label": "tracking",
+            "x": 0.62,
+            "y": 0.88,
+            "group": 1
+          },
+          {
+            "label": "",
+            "x": 0.74,
+            "y": 0.82,
+            "group": 1
+          },
+          {
+            "label": "",
+            "x": 0.66,
+            "y": 0.66,
+            "group": 1
+          },
+          {
+            "label": "",
+            "x": 0.8,
+            "y": 0.7,
+            "group": 1
+          },
+          {
+            "label": "",
+            "x": 0.86,
+            "y": 0.6,
+            "group": 1
+          },
+          {
+            "label": "late",
+            "x": 0.58,
+            "y": 0.75,
+            "group": 1
+          },
+          {
+            "label": "chargeback",
+            "x": 0.2,
+            "y": 0.3,
+            "group": 2
+          },
+          {
+            "label": "",
+            "x": 0.3,
+            "y": 0.22,
+            "group": 2
+          },
+          {
+            "label": "",
+            "x": 0.14,
+            "y": 0.16,
+            "group": 2
+          },
+          {
+            "label": "",
+            "x": 0.36,
+            "y": 0.34,
+            "group": 2
+          },
+          {
+            "label": "",
+            "x": 0.25,
+            "y": 0.1,
+            "group": 2
+          },
+          {
+            "label": "",
+            "x": 0.42,
+            "y": 0.12,
+            "group": 2
+          },
+          {
+            "label": "password",
+            "x": 0.7,
+            "y": 0.3,
+            "group": 3
+          },
+          {
+            "label": "",
+            "x": 0.78,
+            "y": 0.22,
+            "group": 3
+          },
+          {
+            "label": "",
+            "x": 0.62,
+            "y": 0.18,
+            "group": 3
+          },
+          {
+            "label": "",
+            "x": 0.88,
+            "y": 0.34,
+            "group": 3
+          },
+          {
+            "label": "",
+            "x": 0.74,
+            "y": 0.1,
+            "group": 3
+          },
+          {
+            "label": "two-factor",
+            "x": 0.56,
+            "y": 0.4,
+            "group": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "prompt-six",
+      "kind": "prompt-anatomy",
+      "title": "Six sections at the text limit.",
+      "insight": "Maximum sections with 60-character lines.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-text",
+      "state": {
+        "highlight": 3
+      },
+      "data": {
+        "sections": [
+          {
+            "label": "Role",
+            "text": "You are a careful assistant for an internal engineering team",
+            "kind": "system"
+          },
+          {
+            "label": "Constraints",
+            "text": "Never guess a version number; say unknown when unsure.",
+            "kind": "instruction"
+          },
+          {
+            "label": "Example A",
+            "text": "Q: which node version? A: unknown, check the lock file.",
+            "kind": "example"
+          },
+          {
+            "label": "Example B",
+            "text": "Q: is the build green? A: yes, run 4412 passed at 09:10.",
+            "kind": "example"
+          },
+          {
+            "label": "Input",
+            "text": "Q: did the release include the migration for the audit log",
+            "kind": "input"
+          },
+          {
+            "label": "Format",
+            "text": "Answer in one sentence and cite the file or run you used.",
+            "kind": "format"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orchestration-four",
+      "kind": "orchestration",
+      "title": "Four workers, one blocked.",
+      "insight": "Maximum workers with long task text and a blocked status.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "network",
+      "data": {
+        "orchestrator": "Release lead",
+        "shared": "release checklist",
+        "workers": [
+          {
+            "label": "Build agent",
+            "task": "compile and package",
+            "status": "done"
+          },
+          {
+            "label": "Test agent",
+            "task": "run the full test suit",
+            "status": "working"
+          },
+          {
+            "label": "Docs agent",
+            "task": "update the changelog",
+            "status": "blocked"
+          },
+          {
+            "label": "Deploy agent",
+            "task": "wait for a green build",
+            "status": "idle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "event-bus-max",
+      "kind": "event-bus",
+      "title": "Three publishers, four subscribers.",
+      "insight": "Maximum nodes and events with long names.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "zap",
+      "data": {
+        "topic": "inventory.changed",
+        "publishers": [
+          "Warehouse app",
+          "Returns desk",
+          "Supplier feed"
+        ],
+        "subscribers": [
+          "Storefront",
+          "Forecasting",
+          "Finance ledger",
+          "Audit trail"
+        ],
+        "events": [
+          "received",
+          "reserved",
+          "written off"
+        ]
+      }
+    },
+    {
+      "id": "lanes-four",
+      "kind": "lanes",
+      "title": "Four lanes, four spans each, no lock.",
+      "insight": "Maximum lanes and spans with short spans and no lock region.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "data": {
+        "unit": "seconds",
+        "lock": null,
+        "lanes": [
+          {
+            "label": "Ingest",
+            "spans": [
+              {
+                "label": "read",
+                "start": 0,
+                "end": 3
+              },
+              {
+                "label": "parse",
+                "start": 3,
+                "end": 5
+              },
+              {
+                "label": "write",
+                "start": 5,
+                "end": 6
+              },
+              {
+                "label": "ack",
+                "start": 6,
+                "end": 6.2
+              }
+            ]
+          },
+          {
+            "label": "Index",
+            "spans": [
+              {
+                "label": "wait",
+                "start": 0,
+                "end": 5
+              },
+              {
+                "label": "build",
+                "start": 5,
+                "end": 9
+              },
+              {
+                "label": "swap",
+                "start": 9,
+                "end": 9.3
+              },
+              {
+                "label": "warm",
+                "start": 9.5,
+                "end": 12
+              }
+            ]
+          },
+          {
+            "label": "Notify",
+            "spans": [
+              {
+                "label": "batch",
+                "start": 6,
+                "end": 8
+              },
+              {
+                "label": "send",
+                "start": 8,
+                "end": 10
+              },
+              {
+                "label": "retry",
+                "start": 10.5,
+                "end": 11
+              },
+              {
+                "label": "done",
+                "start": 11,
+                "end": 11.2
+              }
+            ]
+          },
+          {
+            "label": "Report",
+            "spans": [
+              {
+                "label": "collect",
+                "start": 2,
+                "end": 7
+              },
+              {
+                "label": "render",
+                "start": 7,
+                "end": 8.5
+              },
+              {
+                "label": "upload",
+                "start": 8.5,
+                "end": 9
+              },
+              {
+                "label": "verify",
+                "start": 9,
+                "end": 12
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "dag-eight",
+      "kind": "dag",
+      "title": "Eight nodes over four levels.",
+      "insight": "Maximum nodes, four per level at the widest, ten edges.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "workflow",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "nodes": [
+          {
+            "label": "shared types",
+            "level": 0
+          },
+          {
+            "label": "http client",
+            "level": 1
+          },
+          {
+            "label": "config loader",
+            "level": 1
+          },
+          {
+            "label": "auth service",
+            "level": 2
+          },
+          {
+            "label": "order service",
+            "level": 2
+          },
+          {
+            "label": "search index",
+            "level": 2
+          },
+          {
+            "label": "billing hooks",
+            "level": 2
+          },
+          {
+            "label": "api gateway",
+            "level": 3
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1
+          },
+          {
+            "from": 0,
+            "to": 2
+          },
+          {
+            "from": 1,
+            "to": 3
+          },
+          {
+            "from": 1,
+            "to": 4
+          },
+          {
+            "from": 2,
+            "to": 4
+          },
+          {
+            "from": 2,
+            "to": 5
+          },
+          {
+            "from": 1,
+            "to": 6
+          },
+          {
+            "from": 3,
+            "to": 7
+          },
+          {
+            "from": 4,
+            "to": 7
+          },
+          {
+            "from": 5,
+            "to": 7
+          }
+        ]
+      }
+    },
+    {
+      "id": "diff-nine",
+      "kind": "diff",
+      "title": "Nine lines, all removed or added.",
+      "insight": "Maximum lines at the width limit with no context lines.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-code",
+      "state": {
+        "active_line": 6
+      },
+      "data": {
+        "file": "services/payments.py",
+        "lines": [
+          {
+            "kind": "removed",
+            "text": "TIMEOUT_SECONDS = 30  # from v1 client"
+          },
+          {
+            "kind": "removed",
+            "text": "RETRIES = 0"
+          },
+          {
+            "kind": "added",
+            "text": "TIMEOUT_SECONDS = 8  # p99 is 2.1s"
+          },
+          {
+            "kind": "added",
+            "text": "RETRIES = 2"
+          },
+          {
+            "kind": "added",
+            "text": "BACKOFF_SECONDS = (0.5, 2.0)"
+          },
+          {
+            "kind": "removed",
+            "text": "def charge(card, amount):"
+          },
+          {
+            "kind": "added",
+            "text": "def charge(card, amount, *, idem_key):"
+          },
+          {
+            "kind": "added",
+            "text": "    if not idem_key:"
+          },
+          {
+            "kind": "added",
+            "text": "        raise ValueError(\"idem_key\")"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pyramid-four",
+      "kind": "pyramid",
+      "title": "Four layers, zero count on top.",
+      "insight": "Maximum layers with a zero and long notes.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "layers": [
+          {
+            "label": "Unit",
+            "count": 3180,
+            "note": "fast, isolated, no I/O"
+          },
+          {
+            "label": "Component",
+            "count": 420,
+            "note": "one service at a time"
+          },
+          {
+            "label": "Integration",
+            "count": 64,
+            "note": "real database, no UI"
+          },
+          {
+            "label": "Manual",
+            "count": 0,
+            "note": "none written yet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "versions-six",
+      "kind": "versions",
+      "title": "Six tags with long notes.",
+      "insight": "Maximum tags at the label limit.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "state": {
+        "highlight": 5
+      },
+      "data": {
+        "tags": [
+          {
+            "label": "v0.9.0",
+            "kind": "minor",
+            "date": "2025-11-03",
+            "note": "first public preview"
+          },
+          {
+            "label": "v1.0.0",
+            "kind": "major",
+            "date": "2026-01-12",
+            "note": "stable API contract"
+          },
+          {
+            "label": "v1.0.1",
+            "kind": "patch",
+            "date": "2026-01-14",
+            "note": "hotfix for pagination"
+          },
+          {
+            "label": "v1.1.0",
+            "kind": "minor",
+            "date": "2026-03-30",
+            "note": "adds async exports"
+          },
+          {
+            "label": "v1.2.0",
+            "kind": "minor",
+            "date": "2026-06-08",
+            "note": "adds rate headers"
+          },
+          {
+            "label": "v2.0.0",
+            "kind": "major",
+            "date": "2026-09-01",
+            "note": "drops legacy auth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trust-four",
+      "kind": "trust-boundary",
+      "title": "Four items per zone, four crossings.",
+      "insight": "Maximum items and crossings, all outbound unguarded.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "shield-alert",
+      "data": {
+        "inside": {
+          "label": "Internal network",
+          "items": [
+            "Control plane",
+            "Secrets manager",
+            "Batch scheduler",
+            "Metrics store"
+          ]
+        },
+        "outside": {
+          "label": "Public internet",
+          "items": [
+            "Mobile clients",
+            "CDN edge",
+            "Vendor callback",
+            "Status page"
+          ]
+        },
+        "crossings": [
+          {
+            "label": "mobile API, app token",
+            "direction": "in",
+            "guarded": true
+          },
+          {
+            "label": "callback without HMAC",
+            "direction": "in",
+            "guarded": false
+          },
+          {
+            "label": "metrics push to vendor",
+            "direction": "out",
+            "guarded": false
+          },
+          {
+            "label": "status page publish",
+            "direction": "out",
+            "guarded": true
+          }
+        ]
+      }
+    }
+  ]
+}
