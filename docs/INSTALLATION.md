@@ -153,6 +153,6 @@ Its synthetic tone and captions are test fixtures, not a publishable video.
 Version drift intentionally blocks production. Preserve the previous workspace,
 qualify a new one with the updated environment, and compare outputs before reuse.
 Do not delete approval records or edit stored version strings just to bypass a gate.
-There is no automatic profile migration or in-place reset command in v0.1.0.
+There is no automatic profile migration or in-place reset command in this release.
 
 [Troubleshooting](TROUBLESHOOTING.md) covers missing models, fonts, runtimes and failed runs.

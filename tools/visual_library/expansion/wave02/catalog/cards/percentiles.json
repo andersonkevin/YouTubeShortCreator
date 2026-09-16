@@ -1,0 +1,42 @@
+{
+  "id": "wave02:percentiles",
+  "kind": "percentiles",
+  "family": "data",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Show a percentile ladder on one axis with an optional target.",
+  "use_when": "Latency SLOs, tails, why the median misleads.",
+  "not_when": "Distributions with bins (use wave02:histogram) or spread per group (use wave02:boxplot).",
+  "parameters": {
+    "unit": "<= 12",
+    "points": "2-5 items of {label <= 6, value >= 0}, strictly increasing",
+    "target": "null or {label <= 12, value >= 0}"
+  },
+  "defaults": {
+    "target": null
+  },
+  "limits": "Linear ladder rejects adjacent points closer than 12% of the axis; the log variant needs positive values with at least a 1.25x ratio between neighbors.",
+  "variants": [
+    "ladder",
+    "ladder-log"
+  ],
+  "states": [],
+  "example": "percentiles",
+  "stress": "percentiles-five"
+}

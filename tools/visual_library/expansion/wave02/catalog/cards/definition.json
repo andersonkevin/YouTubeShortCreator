@@ -1,0 +1,40 @@
+{
+  "id": "wave02:definition",
+  "kind": "definition",
+  "family": "general",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "A term, its kind, a one-sentence meaning and an example.",
+  "use_when": "Define one term before using it.",
+  "not_when": "Several terms at once (use table); meanings longer than one sentence.",
+  "parameters": {
+    "term": "<= 24",
+    "kind": "<= 16 (may be empty)",
+    "meaning": "<= 120",
+    "example": "<= 80 (may be empty)"
+  },
+  "defaults": {},
+  "limits": "Meaning wraps at 26 px; the example is set off with an accent rule.",
+  "variants": [
+    "card"
+  ],
+  "states": [],
+  "example": "definition",
+  "stress": "definition-long"
+}

@@ -32,6 +32,26 @@ Their binaries are not bundled in the source release. The isolated qualification
 used npm 12.0.2 as a setup tool only; npm is not a project runtime dependency and
 its bootstrap archive is not distributed. This is not a complete binary SBOM.
 
+## Optional Voice Runtime (Not Bundled)
+
+The optional `tools/voice.py` uses packages and model files that the operator
+installs into a separate environment; none are included in this repository or
+its source archive. `tools/voice-models.json` pins the accepted model files by
+SHA-256 and lists these components:
+
+| Component | Version | License information | Source |
+| --- | --- | --- | --- |
+| Kokoro-82M weights (v1.0, ONNX release model-files-v1.1) | 1.0 | Apache-2.0 | [Model card](https://huggingface.co/hexgrad/Kokoro-82M) |
+| kokoro-onnx | 0.6.1 | MIT | [Upstream](https://github.com/thewh1teagle/kokoro-onnx) |
+| ONNX Runtime | 1.30.0 | MIT | [Upstream](https://github.com/microsoft/onnxruntime) |
+| phonemizer | 3.4.0 | GPL-3.0-or-later | [Upstream](https://github.com/bootphon/phonemizer) |
+| espeak-ng via espeakng-loader | 0.2.4 | GPL-3.0-or-later | [Upstream](https://github.com/espeak-ng/espeak-ng) |
+
+The GPL components stay in the operator's environment as separate programs
+invoked by the optional tool; they are not linked into or shipped with this
+project. Review their terms before redistributing an environment that contains
+them.
+
 No third-party license texts have been relabeled as the project's MIT license.
 Upstream links are provided for review; the notices shipped with the precise
 distribution being used remain important, especially for platform-specific wheels.

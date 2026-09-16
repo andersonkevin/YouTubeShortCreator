@@ -58,7 +58,7 @@ export still requires listening and visual review. Nothing uploads to YouTube.
 ## Assistant Entry Points
 
 - [Project instructions](AGENTS.md) define the shared contract for compatible assistants.
-- [Compatibility entry point](CLAUDE.md) directs supported clients to that same contract.
+  Clients that read a differently named instruction file should be pointed to it.
 - [Assistant workflow](docs/ASSISTANT-WORKFLOW.md) defines the stages and handoff.
 
 Client permissions and instruction precedence still apply. No claim is made

@@ -59,6 +59,16 @@ private narration. The Shorts duration limit is 180 seconds.
 frames) for synthetic visual/caption timing qualification. Default duration is
 12 seconds. This creates test signals, not speech or a real transcript.
 
+## Optional Tools
+
+`tools/voice.py` runs outside `ysc.py` in a separate operator-prepared Python
+environment; see [local voice synthesis](VOICE.md). Its writers follow the same
+boundaries: `synthesize SCRIPT OUTPUT` needs `--approve-write` and a new `.wav`
+under the workspace `intake/`; `audition SCRIPT --run-id ID` needs
+`--approve-write` and a new `voice/auditions/ID/`; `doctor` and `voices` are
+read-only. Model files come from `<workspace>/voice/models/` or an explicit
+`--models` directory and are verified against `tools/voice-models.json`.
+
 ## Path Rules
 
 | Argument | Base and restriction |

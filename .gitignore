@@ -4,7 +4,9 @@
 /dist/
 /node_modules/
 /.venv/
-/.claude/
+# Hidden settings directories (editors, assistants); .github stays tracked.
+/.*/
+!/.github/
 __pycache__/
 *.py[cod]
 .DS_Store
@@ -13,6 +15,8 @@ __pycache__/
 *.local.json
 *.mp3
 *.wav
+*.onnx
+voices-*.bin
 *.m4a
 *.opus
 *.mp4

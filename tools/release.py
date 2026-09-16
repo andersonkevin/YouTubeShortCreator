@@ -13,13 +13,13 @@ sys.path.insert(0, str(HOME))
 from safety import require
 
 DIRECTORIES = {'templates', 'tests', 'tools', 'docs', 'examples'}
-PRIVATE = {'workspace', 'workspaces', 'node_modules', '.venv', '.git', '.claude', 'dist', '__pycache__'}
+PRIVATE = {'workspace', 'workspaces', 'node_modules', '.venv', '.git', '.github', 'dist', '__pycache__'}
 EXTENSIONS = {'.py', '.mjs', '.swift', '.json', '.md', '.css', '.js', '.txt', '.png', '.jpg'}
 ROOT_FILES = {'LICENSE', '.gitignore', '.gitattributes', 'requirements.txt', 'package.json', 'package-lock.json', 'lock.json',
               'ysc.py', 'workflow.py', 'branding.py', 'safety.py', 'runtime.py', 'audio_qa.py', 'visual_adapter.py', 'capture.mjs', 'chart-qa.mjs',
               'media_backend.py', 'media_contract.py', 'frame_qa.py', 'native-capabilities.swift', 'ffmpeg_backend.py',
               'decode-audio.swift', 'encode.swift', 'mux.swift', 'media-qa.swift', 'transcribe.swift',
-              'README.md', 'START-HERE.md', 'CLAUDE.md', 'THIRD_PARTY_NOTICES.md', 'SECURITY.md', 'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md'}
+              'README.md', 'START-HERE.md', 'THIRD_PARTY_NOTICES.md', 'SECURITY.md', 'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md'}
 FORBIDDEN = [re.compile(r'/(?:Users|home)/[A-Za-z0-9_.-]+/'),
              re.compile(r'-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----'),
              re.compile(r'\b(?:sk-[A-Za-z0-9_-]{24,}|ghp_[A-Za-z0-9]{30,})\b')]
@@ -39,6 +39,9 @@ def files(home=HOME):
         relative = path.relative_to(home)
         # Only manifest-listed vendor payloads may bypass the build-output filter.
         private_parts = set(relative.parts) & PRIVATE
+        # Hidden directories at the root (editor and assistant settings) are never public.
+        if relative.parts[0].startswith('.') and (home / relative.parts[0]).is_dir():
+            private_parts.add(relative.parts[0])
         if str(relative) in vendor_files or (path.is_dir() and any(name.startswith(str(relative) + '/') for name in vendor_files)):
             private_parts.discard('dist')
         if private_parts or path.name in ('.DS_Store',) or path.suffix == '.pyc':

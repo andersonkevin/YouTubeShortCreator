@@ -1,0 +1,43 @@
+{
+  "id": "wave02:payload",
+  "kind": "payload",
+  "family": "widget",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Show the concrete values a payload carries, typed and one highlighted.",
+  "use_when": "Tool-call arguments, event payloads, API responses where the values are the point.",
+  "not_when": "Describing a schema (use expansion:contract) or nested objects deeper than one level.",
+  "parameters": {
+    "title": "<= 24 chars",
+    "entries": "2-8 items of {key <= 18 unique, value <= 26, type string|number|boolean|null|object|array}"
+  },
+  "defaults": {
+    "variant": "card"
+  },
+  "limits": "One level only; nested values are summarized as text like [3 items].",
+  "variants": [
+    "card",
+    "raw"
+  ],
+  "states": [
+    "highlight"
+  ],
+  "example": "payload",
+  "stress": "payload-raw-eight"
+}

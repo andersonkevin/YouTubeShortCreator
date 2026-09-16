@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "wave": 3,
+  "design_status": "design_review",
+  "note": "Deterministic motion recipes for the 824x820 slot. A recipe is a pure function of time; it never changes data, text or color, and returns the static component once its duration has elapsed.",
+  "timeline_seconds": 8,
+  "recipes": [
+    {
+      "name": "clip",
+      "label": "Left-to-right clip reveal",
+      "duration": 1.6,
+      "purpose": "The baseline reveal; reads as a curtain.",
+      "use_when": "Tables, lists, timelines that read left to right.",
+      "not_when": "Radial or centered compositions."
+    },
+    {
+      "name": "wipe-down",
+      "label": "Top-to-bottom wipe",
+      "duration": 1.6,
+      "purpose": "Reveals rows in reading order.",
+      "use_when": "Logs, terminals, diffs, stacked rows.",
+      "not_when": "Wide horizontal flows."
+    },
+    {
+      "name": "rise",
+      "label": "Elements rise in order",
+      "duration": 2.0,
+      "purpose": "Each element lifts into place in drawing order.",
+      "use_when": "Cards, chips, grouped boxes.",
+      "not_when": "Dense charts with hundreds of elements."
+    },
+    {
+      "name": "stagger",
+      "label": "Fade in, one element after another",
+      "duration": 2.0,
+      "purpose": "Quiet sequential fade with no movement.",
+      "use_when": "Anything; the least distracting option.",
+      "not_when": "When the reveal itself should carry meaning."
+    },
+    {
+      "name": "draw-on",
+      "label": "Strokes draw first, then fills and text",
+      "duration": 2.2,
+      "purpose": "Connectors and axes appear before the content they organize.",
+      "use_when": "Graphs, sequences, trees, flows.",
+      "not_when": "Components with no strokes."
+    },
+    {
+      "name": "scale-settle",
+      "label": "Whole graphic settles from a slight zoom",
+      "duration": 1.2,
+      "purpose": "One fast entrance for the whole slot.",
+      "use_when": "Hero numbers, single panels.",
+      "not_when": "Long lists where order matters."
+    },
+    {
+      "name": "slide-in",
+      "label": "Slides in from the left",
+      "duration": 1.4,
+      "purpose": "Lateral entrance for the whole slot.",
+      "use_when": "Alternating with wipe or clip across a batch.",
+      "not_when": "Compositions anchored to the left edge."
+    },
+    {
+      "name": "bands",
+      "label": "Reveals in four horizontal bands",
+      "duration": 1.8,
+      "purpose": "Position-ordered reveal, top band first.",
+      "use_when": "Vertically stacked layouts.",
+      "not_when": "Compositions with one tall element."
+    },
+    {
+      "name": "focus",
+      "label": "Everything appears, then the rest dims",
+      "duration": 2.4,
+      "purpose": "Shows the whole first, then draws the eye to the highlighted element.",
+      "use_when": "Components with a highlight or active state.",
+      "not_when": "Components without a highlight (nothing dims)."
+    },
+    {
+      "name": "accent-pulse",
+      "label": "Fast clip reveal, then the accent elements pulse once",
+      "duration": 2.4,
+      "purpose": "A one-second reveal, then one deterministic pulse on the accent-colored elements.",
+      "use_when": "Calling out the accent series or value.",
+      "not_when": "Components where the accent carries no meaning."
+    }
+  ]
+}

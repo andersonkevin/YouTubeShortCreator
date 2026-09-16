@@ -1,4 +1,47 @@
-# Initial Release Qualification
+# Release Qualification
+
+## 0.3.0 (2026-09-16)
+
+Sanitized summary of the checks behind the 0.3.0 release.
+
+- `python3 -B -m unittest discover -s tests -p 'test_*.py'`: **141 tests passed**
+  locally on Python 3.14 and in GitHub Actions on Python 3.12 and 3.13.
+- `python3 -B tools/check_docs.py`: **PASS**. `python3 -B tools/release.py audit`:
+  **PASS**, private workspaces, hidden directories and `.github/` excluded.
+- Asset library wave 02 with the ten general-purpose components: 55 example
+  components and 61 stress fixtures in 2 palettes and 3 viewports, token-only
+  colors, verified palette switch, design-pixel typography, collision, occlusion,
+  ellipsis and clipping checks, deterministic reveal; 110 and 122 exports, no page
+  errors, no network requests.
+- Asset library wave 03 on the updated renderer: 26 palettes and 10 motion recipes
+  over 8 sample components, 18 layouts over 3 components at 1080x1920: **PASS**.
+- No production template, capture clock, encoding, mux or publishing behavior
+  changed. The 0.1.0 media qualification below still describes the production path.
+
+## 0.2.0 (2026-09-16)
+
+Sanitized summary of the checks behind the 0.2.0 release. Private review runs,
+model files, generated audio and machine-specific paths are excluded.
+
+- `python3 -B -m unittest discover -s tests -p 'test_*.py'`: **141 tests passed**
+  locally on Python 3.14 and in GitHub Actions on Python 3.12 and 3.13.
+- `python3 -B tools/check_docs.py`: **PASS**. `python3 -B tools/release.py audit`:
+  **PASS**, 239 public files, private workspaces and `.github/` excluded.
+- Asset library wave 02: 45 example components and 51 stress fixtures rendered in
+  2 palettes and 3 viewports with token-only colors, verified palette switch,
+  design-pixel typography, collision, occlusion, ellipsis and clipping checks and
+  deterministic reveal; 90 and 102 exports, no page errors, no network requests.
+- Asset library wave 03: 26 palettes and 10 motion recipes over 8 sample
+  components (pairwise distinct palettes, end-state identity, deterministic frames,
+  distinct recipes) and 18 layouts over 3 components at 1080x1920 (no placeholder
+  overflow, visual fills its zone, no content overlap, safe box respected).
+- Optional local voice tool: `doctor` PASS with the pinned model hashes; the
+  59-word example narration synthesized in 5.3 seconds and transcribed by the
+  local speech step into 59 timed words. Listening approval remains pending.
+- No production template, capture clock, encoding, mux or publishing behavior
+  changed. The 0.1.0 media qualification below still describes the production path.
+
+## 0.1.0 (Initial Release)
 
 Date: 2026-09-14. This is a sanitized summary; test recordings, local runtime paths,
 private font copies and generated runs are intentionally excluded from the release.

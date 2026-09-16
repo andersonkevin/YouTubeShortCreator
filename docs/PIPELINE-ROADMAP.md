@@ -45,7 +45,7 @@ No version number or release tag is assigned until the maintainer approves it.
 | B05 | FFmpeg encoding, mux and verification | B04 | In progress | [22 comparisons, full-voice listening, animated exports and package checks](B05-PROGRESS.md); technical visual approval pending |
 | B06 | Full pipeline reliability and release regression | B05 technical candidate | Review pending | [182 Python/9 Node checks, 3 exports, 22 media cases and extracted package](B06-PROGRESS.md); human review deferred by operator |
 | B07 | Clean dependency installation and first run | B06 | Technical scope approved | [Operator approval, fresh installs, lock reproduction and both backend fixtures](B07-PROGRESS.md); full first-run walkthrough still unexecuted |
-| B08 | Independent operator acceptance | B07 | Not started | Another operator completes the documented workflow |
+| B08 | Independent operator acceptance | B07 | Awaiting operator | [Protocol prepared](B08-ACCEPTANCE.md); operator confirmed no independent tester is currently available |
 | B09 | Portfolio-ready release and authorized push | B08 | Not started | Audited archive, approved demo, remote commit verification |
 | M01 | Evidence-based copy procedure | B09 | Deferred | Source-backed brief, hook/solution/ending, editorial checklist |
 | M02 | Copy validation and private handoff | M01 | Deferred | Fixtures, validators, documented assistant procedure |
@@ -256,6 +256,10 @@ do not replace dependencies or download models silently.
 
 ## B08: Independent Operator
 
+The [acceptance protocol](B08-ACCEPTANCE.md) is prepared. Operator assignment,
+first-run evidence and repeat production are still pending; preparation is not
+acceptance. The first real walkthrough may also provide B07's missing evidence.
+
 | Action | Result | Definition of done |
 | --- | --- | --- |
 | Choose an operator other than the implementation author | Independent acceptance | Operator and test scope agreed; cloud-assistant privacy acknowledged |
@@ -272,8 +276,11 @@ Lack of an available operator stays a visible blocker, not a simulated pass.
 Independent documentation preparation: the public upstream and its `main` commit
 were checked on 2026-09-15, and stale first-publication instructions were corrected
 in the [release guide](RELEASING.md). This is not B09 acceptance: B05-B08 review/
-installation gates, private security contact, approved release content and an
-authorized push remain outstanding. No remote write was performed.
+installation gates, approved release content and an authorized full-pipeline push
+remain outstanding. The design-review asset PR was separately merged; that is not
+the pipeline release. Private vulnerability reporting was verified enabled on
+2026-09-15; the local security policy now records the actual route. The settings
+check was read-only and did not submit a report or change repository settings.
 
 | Action | Result | Definition of done |
 | --- | --- | --- |
@@ -300,7 +307,7 @@ Existing YouTube metadata handoff continues to work throughout pipeline work.
 
 Search tools used by the assistant require authorized access; research is not a
 new runtime network feature. The copy module does not generate voice by itself.
-ElevenLabs or another provider remains a separate user-approved step.
+An external voice provider remains a separate user-approved step.
 
 ## Evidence and Handoff
 

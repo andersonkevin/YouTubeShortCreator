@@ -10,8 +10,11 @@ Repository visibility and the default `main` branch were verified through GitHub
 on 2026-09-15. This does not mean the current development tree is published or
 release-approved. Check the actual remote commit and local changes at each handoff.
 
-The application does not configure GitHub accounts, remotes, hosted documentation,
-CI or publishing automation. It can prepare a source archive without signing in.
+The application does not configure GitHub accounts, remotes, hosted documentation
+or publishing automation. A GitHub Actions workflow (`.github/workflows/tests.yml`)
+runs the unit tests, documentation checks and release audit on pushes and pull
+requests; it is excluded from the source archive. A source archive can be prepared
+without signing in.
 Creating a separate repository or fork remains an explicit operator action; an
 existing upstream checkout does not need another repository to publish an update.
 
@@ -56,7 +59,7 @@ certified safe. Manually review the actual files you will share.
 Choose a filename that does not already exist:
 
 ```bash
-python3 -B tools/release.py zip ../YouTubeShortCreator-v0.1.0-source.zip --approve-write
+python3 -B tools/release.py zip ../YouTubeShortCreator-v0.3.0-source.zip --approve-write
 ```
 
 The ZIP contains one `YouTubeShortCreator/` root directory. It excludes `.git`,
@@ -102,15 +105,19 @@ license view in GitHub itself; local rendering is only an approximation.
 
 ## Current Delivery Boundary
 
-On 2026-09-15 the observed upstream `main` commit and local HEAD were both
-`6ffd3cb9aab6566e21d729ef7f8b963acd8f3f60`. The local tree still contained uncommitted
-pipeline, tests and documentation changes. That is the published baseline, not
-evidence that B00-B09 or the marketing batches are complete. Reverify before a
-release; this dated observation does not authorize a commit or push.
+The published `main` carries the asset library waves, the optional voice tool and
+the CI workflow, released as v0.2.0 and v0.3.0. The pipeline integration batches
+(B01-B07: visual adapter, backend boundary, optional FFmpeg, reliability and
+installation qualification) are merged from the local integration branch with
+their qualification records. B05/B06 human review, the full B07 first-run
+walkthrough and [B08 independent acceptance](B08-ACCEPTANCE.md) remain pending;
+no independent operator is currently available. Neither B00-B09 nor the marketing
+phase is complete. Reverify the source, gates and remote before a release.
 
-Private security reporting has not been verified by this handoff check. Follow
-[Security](../SECURITY.md) and obtain a confirmed private route before advertising
-one. The public repository URL and permission to push do not establish that route.
+GitHub private vulnerability reporting was verified enabled through the repository
+settings API on 2026-09-15. The read-only check submitted no report and changed no
+settings. Follow [Security](../SECURITY.md) for the private reporting route and
+recheck availability before release.
 
 ## 5. A Useful Release Note
 

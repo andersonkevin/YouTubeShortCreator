@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Unit tests, documentation and release audit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned Python dependencies
+        run: python -m pip install --no-cache-dir -r requirements.txt
+      - name: Unit tests
+        run: python -B -m unittest discover -s tests -p 'test_*.py'
+      - name: Documentation checks
+        run: python -B tools/check_docs.py
+      - name: Release audit
+        run: python -B tools/release.py audit
+      - name: Whitespace check
+        run: git diff --check HEAD~1 HEAD || true

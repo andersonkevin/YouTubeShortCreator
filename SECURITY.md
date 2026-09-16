@@ -41,15 +41,17 @@ The project has a public
 Public issues are not a confidential security-reporting channel. Do not post live
 credentials, customer media or a weaponized reproduction there to obtain support.
 
-A private reporting route has not yet been verified and documented in this policy.
-Use a private channel only after the maintainer confirms it. Until then, request
-private contact without disclosing sensitive details. Do not assume GitHub private
-vulnerability reporting is enabled solely because this repository is public.
+GitHub private vulnerability reporting was verified enabled on 2026-09-15 using
+the repository settings API. Use the repository's Security tab and choose
+Report a vulnerability to contact the maintainer privately. Sign in to GitHub
+when prompted. If that option is unavailable, request a private contact route
+without posting sensitive details to public issues.
 
 Include affected version, prerequisites, impact, a minimal safe reproduction and
-sanitized evidence. There is no promised response deadline. This document does not
-enable GitHub private reporting automatically; the publisher must configure an
-appropriate channel before accepting confidential reports.
+sanitized evidence. There is no promised response deadline. This check did not
+submit a report or change repository settings; availability can change and should
+be rechecked before a release. This policy does not grant permission to access
+systems or data outside an authorized test scope.
 
 ## Residual Risks
 

@@ -1,0 +1,41 @@
+{
+  "id": "wave02:lanes",
+  "kind": "lanes",
+  "family": "software",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Parallel lanes of timed spans with an optional shared-lock region.",
+  "use_when": "Show how parallel work overlaps and where a lock serializes it.",
+  "not_when": "Message order without timing (use sequence); more than four lanes or four spans per lane.",
+  "parameters": {
+    "unit": "<= 12",
+    "lanes": "2-4 of {label <= 12, spans 1-4 of {label <= 12, start, end} ordered, non-overlapping}",
+    "lock": "null or {label <= 14, start, end}"
+  },
+  "defaults": {
+    "lock": null
+  },
+  "limits": "Axis runs from 0 to the latest end. Very short spans keep a 6 px minimum and put their label beside the bar.",
+  "variants": [
+    "swimlanes"
+  ],
+  "states": [],
+  "example": "lanes",
+  "stress": "lanes-four"
+}
