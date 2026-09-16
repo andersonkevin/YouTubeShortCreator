@@ -3,7 +3,7 @@
 [Visual library](VISUAL-LIBRARY.md) | [Asset expansion (wave 01)](ASSET-EXPANSION.md) | [Docs index](README.md)
 
 A second design_review asset pack for the offline visual library, built beside
-the first expansion without touching it. Every component here is a study: it
+the first expansion without touching it. Every component here began as a study: it
 reuses the library's `kit.py` helpers, the pinned vendor files (Lucide 0.468.0,
 ECharts 6.0.0), the gallery template and the wave 01 palette tokens (read only).
 No production renderer, template, caption, validator, manifest, dependency,
@@ -261,7 +261,8 @@ None were required. Two observations for the maintainers, left as proposals:
    library's scene contract, keeping `renderAt(seconds)` clip-reveal semantics
    and reading colors only from production tokens.
 4. Run the production validators against the wave 02 example and stress
-   fixtures; the wave 02 schema is a study validator, not the production one.
+   fixtures; the production adapter dispatches `wave02:<kind>` records to the
+   wave 02 schema, so both paths validate the same fields.
 5. Extend the production QA with the checks listed above, then add a
    word-boundary check for wrapped text.
 6. Record human review in the production catalog; `human_review` in the wave
