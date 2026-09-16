@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Twelve generated dark palettes join the brand presets (fifteen in total) with a
+  read-only `palettes` command that prints each preset's contrast ratios; the
+  synthetic qualification tools accept every preset. A test keeps the presets
+  equal to the wave 03 palette study.
 - Added six general-purpose production layouts for any subject: quote-card,
   numbered-steps, headline-stat, checklist-progress, before-after-panels and
   pros-cons-columns, with their stylesheet, example content and gallery captures.

@@ -80,7 +80,7 @@ def main():
     parser.add_argument('--workspace', type=Path, required=True)
     parser.add_argument('--scenes', type=int, choices=(3, 4), default=4)
     parser.add_argument('--duration', type=float, default=12, help='Synthetic signal duration, 12-180 seconds on a whole frame')
-    parser.add_argument('--palette', choices=('violet', 'graphite'), default='violet')
+    parser.add_argument('--palette', choices=tuple(branding.PALETTES), default='violet')
     parser.add_argument('--render', action='store_true')
     parser.add_argument('--backend', choices=('native', 'ffmpeg'), default='native')
     parser.add_argument('--set', choices=('widgets','charts-a','charts-b','charts-c'), default='widgets')

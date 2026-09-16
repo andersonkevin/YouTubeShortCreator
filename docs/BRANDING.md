@@ -13,7 +13,7 @@ Onboarding asks the following before creating files:
 | Audience | Editorial context for the operator or assistant | Developers and AI builders |
 | Tone | Editorial context, not automated rewriting | Clear, practical, technically accurate |
 | Scene count | Initial episode scene selection | 3; choose 3 or 4 |
-| Palette | Background and primary/secondary accent colors | Violet |
+| Palette | Background and primary/secondary accent colors; 15 presets or custom | Violet |
 | Logo | Imported PNG/JPEG or local generated mark | Generated wordmark |
 | Display/body/mono fonts | Typography for text, code and covers | Available local font suggestions |
 
@@ -27,9 +27,25 @@ last confirmation, **not** the questions or the later brand approval.
 | Violet | `#140b30` | `#beda61` | `#7acbd7` |
 | Graphite | `#111315` | `#b6ee64` | `#70d7e5` |
 | Forest | `#0b2019` | `#f2ce69` | `#96d6f3` |
+| mint-dark | `#09100e` | `#aceccc` | `#acdcec` |
+| sky-dark | `#0a0e12` | `#acd1ec` | `#b2acec` |
+| amber-dark | `#14110b` | `#ecdcac` | `#ecc1ac` |
+| violet-dark | `#120c16` | `#ccacec` | `#efb9dd` |
+| coral-dark | `#100b09` | `#ecbcac` | `#ecdcac` |
+| teal-dark | `#0a1212` | `#acece6` | `#acecbc` |
+| rose-dark | `#140b0e` | `#ecacc7` | `#ecc1ac` |
+| olive-dark | `#12160c` | `#d7ecac` | `#ecd7ac` |
+| indigo-dark | `#090910` | `#acacec` | `#e5c1f0` |
+| sand-dark | `#120f0a` | `#ecd1ac` | `#d1ecac` |
+| cobalt-dark | `#0b0e14` | `#acc1ec` | `#ace1ec` |
+| magenta-dark | `#160c15` | `#ecacec` | `#cebdef` |
 | Custom | Three operator-supplied hex values | Six-digit hex only | Six-digit hex only |
 
-These are dark themes. White/background contrast must be at least 7:1; both accent
+These are dark themes. The twelve `-dark` presets are the dark families generated
+by the [wave 03 palette study](ASSET-LIBRARY-WAVE03.md), mapped onto the three
+brand roles (background, accent, second accent); a test keeps them equal to the
+study file. `python3 ysc.py palettes` prints every preset with its measured
+contrast ratios. White/background contrast must be at least 7:1; both accent
 colors need at least 4.5:1 against the background. The checks prevent obviously
 unreadable choices; they do not certify the accessibility of a finished video.
 Thumbnails retain a black type zone and use your brand's primary accent.
