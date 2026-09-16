@@ -52,7 +52,7 @@ certified safe. Manually review the actual files you will share.
 Choose a filename that does not already exist:
 
 ```bash
-python3 -B tools/release.py zip ../YouTubeShortCreator-v0.1.0-source.zip --approve-write
+python3 -B tools/release.py zip ../YouTubeShortCreator-v0.2.0-source.zip --approve-write
 ```
 
 The ZIP contains one `YouTubeShortCreator/` root directory. It excludes `.git`,
