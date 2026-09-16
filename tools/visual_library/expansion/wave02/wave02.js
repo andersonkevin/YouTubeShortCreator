@@ -3,8 +3,11 @@
   // Wave 02 renderer. Draws components into the 824x820 production slot with
   // the pinned ECharts graphic API. Every color comes from the active token
   // set (no literals), every number renders exactly as supplied, and the only
-  // motion is the study's deterministic clip reveal driven by renderAt(seconds).
-  const {components, icons, tokens, palette: initialPalette} = window.visualLibraryData;
+  // motion is the study's deterministic clip reveal driven by renderAt(seconds),
+  // or a wave 03 recipe when window.VisualMotion is present.
+  const {components, icons, tokens, palette: initialPalette, wave = 2} = window.visualLibraryData;
+  const motion = window.VisualMotion || null;
+  let recipe = motion ? motion.names[0] : null, current = null;
   const $ = id => document.getElementById(id);
   const W = 824, H = 820, RESERVE = 74, DRAW = H - RESERVE;
   let palette = initialPalette;
@@ -749,11 +752,13 @@
   };
 
   // ---- study plumbing (same contract as the library gallery) -------------
-  function options(c) {
+  function options(c, groups) {
     const items = draw[c.kind](c);
     const offset = Math.max(0, Math.floor((DRAW - Math.min(DRAW, items.height || DRAW)) / 2));
+    current = {c, items, offset};
+    const children = groups ? groups.map(g => ({...g, x: g.x || 0, y: offset + (g.y || 0)})) : [{type: 'group', silent: true, x: 0, y: offset, children: items}];
     return {animation: false, backgroundColor: T.background, textStyle: {fontFamily: T.font}, aria: {enabled: true}, tooltip: {show: false},
-      graphic: [{type: 'group', silent: true, x: 0, y: offset, children: items}, ...provenance(c)]};
+      graphic: [...children, ...provenance(c)]};
   }
   function renderAt(t) {
     if (!Number.isFinite(t)) throw new Error('Finite timeline required');
@@ -761,8 +766,22 @@
     $('progress').style.width = seconds / 8 * 100 + '%';
     $('time').value = String(seconds);
     text('time-label', seconds.toFixed(1) + ' s');
+    if (motion && recipe) {
+      // Recipes are pure functions of time over the freshly drawn items.
+      $('chart').style.clipPath = '';
+      const {c, items, offset} = current;
+      const groups = motion.recipes[recipe].apply(items, seconds, {W, H, DRAW, offset, T});
+      chart.setOption(options(c, groups), {notMerge: true, lazyUpdate: false});
+      return;
+    }
     const reveal = Math.min(1, seconds / 1.6);
     $('chart').style.clipPath = `inset(0 ${(1 - reveal) * 100}% 0 0)`;
+  }
+  function setRecipe(name) {
+    if (!motion || !motion.recipes[name]) throw new Error('Unknown recipe');
+    recipe = name;
+    document.querySelectorAll('.recipes button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.recipe === name)));
+    renderAt(seconds);
   }
   function select(id) {
     const next = components.findIndex(c => c.id === id);
@@ -772,10 +791,10 @@
     text('eyebrow', String(index + 1).padStart(2, '0') + ' / ' + c.family.toUpperCase() + ' · ' + c.kind.toUpperCase() + ' · ' + c.variant.toUpperCase());
     text('title', c.title);
     text('insight', c.insight);
-    text('source-kind', (c.source.kind === 'illustrative' ? 'ILLUSTRATIVE DATA' : 'SOURCE REVIEW REQUIRED') + ' · DESIGN REVIEW · WAVE 02');
+    text('source-kind', (c.source.kind === 'illustrative' ? 'ILLUSTRATIVE DATA' : 'SOURCE REVIEW REQUIRED') + ' · DESIGN REVIEW · WAVE ' + String(wave).padStart(2, '0'));
     text('source', c.source.label + ' | ' + c.source.as_of);
     text('reference', c.source.reference);
-    text('detail', `variant = ${c.variant} | state = ${c.state ? JSON.stringify(c.state) : 'none'} | palette = ${palette}`);
+    text('detail', `variant = ${c.variant} | state = ${c.state ? JSON.stringify(c.state) : 'none'} | palette = ${palette}` + (recipe ? ` | motion = ${recipe}` : ''));
     $('chart').setAttribute('aria-label', c.title + '. ' + c.insight + '. ' + JSON.stringify(c.data));
     chart.setOption(options(c), {notMerge: true, lazyUpdate: false});
     document.querySelectorAll('nav button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
@@ -794,6 +813,14 @@
     b.addEventListener('click', () => setPalette(name)); paletteBar.append(b);
   });
   $('studies').before(paletteBar);
+  if (motion) {
+    const recipeBar = document.createElement('div'); recipeBar.className = 'recipes';
+    motion.names.forEach(name => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = name; b.dataset.recipe = name; b.setAttribute('aria-pressed', String(name === recipe));
+      b.addEventListener('click', () => setRecipe(name)); recipeBar.append(b);
+    });
+    $('studies').before(recipeBar);
+  }
   components.forEach(c => {
     const button = document.createElement('button'); button.type = 'button'; button.dataset.id = c.id;
     const small = document.createElement('small'); small.textContent = c.family + ' · ' + c.variant;
@@ -815,7 +842,7 @@
   $('time').addEventListener('input', () => { playing = false; playState(); renderAt(Number($('time').value)); });
   const resize = () => { $('frame').style.transform = `scale(${$('frame').parentElement.clientWidth / 1080})`; };
   new ResizeObserver(resize).observe($('frame').parentElement);
-  window.VisualLibrary = {renderAt, select, setPalette, ids: components.map(c => c.id), palettes: Object.keys(tokens.palettes), tokens: () => T, svg: () => chart.renderToSVGString(), stop: () => { playing = false; playState(); }};
+  window.VisualLibrary = {renderAt, select, setPalette, setRecipe, recipes: motion ? motion.names.slice() : [], recipe: () => recipe, ids: components.map(c => c.id), palettes: Object.keys(tokens.palettes), tokens: () => T, svg: () => chart.renderToSVGString(), stop: () => { playing = false; playState(); }};
   select(components[0].id); resize(); playState();
   function tick(now) { if (playing) { renderAt(seconds + (now - last) / 1000); if (seconds >= 8) { playing = false; playState(); } } last = now; requestAnimationFrame(tick); }
   requestAnimationFrame(tick);
