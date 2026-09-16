@@ -13,7 +13,7 @@ it is not approval of future scripts or transcripts. There is no automatic uploa
 
 ## Fixed and Variable
 
-Fixed v1: 1080x1920, 30 fps, 3-4 scenes, 90-second maximum, layout geometry,
+Fixed v1: 1080x1920, 30 fps, 3-4 scenes, 180-second Shorts maximum, layout geometry,
 motion engine, logo/progress/caption zones, two-line thumbnail heading and output
 checks. Rounded panels use an 8-pixel radius at full resolution.
 
@@ -25,6 +25,11 @@ implemented. Thumbnails use a black type zone with the same accent and logo.
 Per episode: source narration, graphic, exact transcript, word-timed captions,
 3-4 layout selections, text/code slots, motion timings and YouTube metadata.
 An episode cannot override CSS, inject HTML or select executable tools.
+
+Opt-in episode version 2 adds bounded visual records and `visual-library` scenes
+for charts and widgets. It retains the v1 template geometry and existing
+audio/caption rules. See the [adapter contract](VISUAL-ADAPTER-CONTRACT.md) before
+authoring these records; check B03 qualification for charts and motion presets.
 
 ## Layouts
 
@@ -43,6 +48,13 @@ the capture-only paint-cache reset: otherwise Chromium can rasterize shadows
 differently depending on the previous viewport/seek history.
 
 ## Audio and Captions
+
+Use the complete authorized recording, not an arbitrary 90-second target. The
+180-second ceiling follows [YouTube's three-minute Shorts format](https://support.google.com/youtube/answer/15424877?hl=en)
+(checked 2026-09-15). Longer recordings are rejected with no automatic trimming or
+speed change; ordinary long-form video is not implemented by this Shorts profile.
+For a longer Short, anchor scenes to meaningful spoken sections and keep captions
+word-timed. Do not add more on-screen text merely to fill its running time.
 
 Transcript JSON requires `duration`, `audio_sha256`, and ordered `words` with
 `text`, `start`, `end`. Times are seconds against the original recording, not
@@ -74,9 +86,12 @@ change an in-progress render's source files.
 - `video.html`, `assets/`: local silent preview; assets may contain private fonts.
 - `youtube.json`, `youtube.md`: title, description, 5-8 lowercase hashtags, tags,
   pinned comment and unpublished status.
-- `scene-*.png`, `visual-qa.json`, `media-qa.json`, `audio-qa.json`, `run.json`:
+- `scene-*.png`, `visual-qa.json`, `media-qa.json`, `frame-qa.json`, `audio-qa.json`, `run.json`:
   checks, sampled frames, hashes and runtime evidence. Build-only runs have no
   encoded-media/audio QA because no MP4 was produced.
+- `audio-preparation.json`: optional native AAC/Opus preparation evidence. Records
+  original and temporary PCM hashes; the PCM remains invocation-owned scratch,
+  not another retained recording. The original input is not overwritten.
 
 YouTube thumbnail upload/selection behavior varies by product surface; the tool
 creates a cover asset and does not automate setting a Shorts thumbnail.

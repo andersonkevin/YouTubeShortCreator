@@ -46,17 +46,27 @@ bundled with another application may not include npm or be on your shell's PATH.
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt
-PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --ignore-scripts
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci --ignore-scripts --no-audit --no-fund
 ```
 
 These are explicit network-enabled installation commands. Browser download is
 disabled because the capture adapter uses local Chrome. Do not run a separate
 Playwright browser installation just to satisfy this workflow.
 
-Direct versions are pinned. This release does not include a fully locked Python
-wheel set or an npm lockfile qualified on a clean machine. An npm-generated
-`package-lock.json` is allowed by the release tool, but review it before committing.
-The initial qualification used already-installed runtimes, not a fresh installation.
+Direct versions are pinned. The npm-generated `package-lock.json` was reviewed
+and reproduced with `npm ci` in a second empty source copy and fresh cache during
+[B07](B07-PROGRESS.md). Both installations passed nine Node tests. Lifecycle
+scripts, browser downloads, audit calls and funding messages were disabled.
+The lockfile marks optional macOS `fsevents` as having an install script;
+lifecycle scripts were not run.
+Use `npm ci` only in a dedicated checkout: it replaces that checkout's existing
+`node_modules`. It does not install npm itself or change global packages.
+
+The Python packages also passed a fresh isolated installation and 182 tests.
+Python wheel hashes are recorded as observed evidence, not a portable fully
+hash-locked dependency set. These are fresh dependencies on the same qualified
+macOS host, not qualification of a new machine. The complete operator-guided
+onboarding and production walkthrough remains a separate acceptance gate.
 
 ## 3. Create and Approve a Brand
 
@@ -98,7 +108,23 @@ Each option takes a file, not a directory. Paths containing spaces must be quote
 Precedence is command-line option, then `YSC_NODE`, `YSC_PLAYWRIGHT`, `YSC_CHROME`
 or `YSC_SWIFT`, then discovery defaults.
 
-`workspace/runtime.json` stores local paths and measured versions. It is private.
+`workspace/runtime.json` stores local paths, measured versions, the explicit
+`native` backend and probed capabilities. It is private and never overwritten.
+`configure --backend native --approve-write` explicitly selects the current
+backend. Existing profiles without a backend remain native and are not migrated
+in place. A new backend or changed runtime requires a new qualified workspace.
+The optional FFmpeg backend is implemented under B05 qualification. To test it,
+use a new workspace and supply already installed binaries explicitly:
+
+```sh
+python3 ysc.py --workspace workspaces/ffmpeg-review configure --backend ffmpeg --ffmpeg /path/to/ffmpeg --ffprobe /path/to/ffprobe --approve-write
+```
+
+`YSC_FFMPEG` and `YSC_FFPROBE` also supply paths; installed PATH tools are the
+last default. Native profiles do not require either binary. Swift remains part
+of the macOS runtime for local transcription; selecting FFmpeg does not claim
+Windows/Linux support. No installation or binary download occurs at runtime.
+See [backend boundaries](MEDIA-BACKENDS.md) and [licensing](LICENSING.md).
 Executable paths are trusted operator configuration; never copy a stranger's
 runtime configuration or point it at unreviewed scripts.
 

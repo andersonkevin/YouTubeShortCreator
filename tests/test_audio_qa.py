@@ -39,6 +39,38 @@ class AudioTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.compare(np.ones(64000), np.ones(40000))
 
+    def test_short_last_window_is_checked(self):
+        signal = np.random.default_rng(8).normal(0, .1, 49600)
+        self.assertEqual(len(self.compare(signal, signal)['windows']), 2)
+        changed = signal.copy()
+        changed[48000:] *= -1
+        with self.assertRaisesRegex(ValueError, 'identity/sync'):
+            self.compare(signal, changed)
+
+    def test_one_sample_tail_has_no_aliased_lag(self):
+        signal = np.random.default_rng(8).normal(0, .1, 48001)
+        self.assertEqual(self.compare(signal, signal)['windows'][-1]['lag_ms'], 0)
+
+    def test_added_voice_in_silence_is_rejected(self):
+        voiced = np.random.default_rng(8).normal(0, .1, 48000)
+        with self.assertRaisesRegex(ValueError, 'source silence'):
+            self.compare(np.r_[voiced, np.zeros(48000)], np.r_[voiced, voiced])
+        self.assertEqual(self.compare(np.r_[voiced, np.zeros(48000)],
+                                      np.r_[voiced, np.zeros(48000)])['silent_windows_checked'], 1)
+
+    def test_short_unmatched_voice_rejected_but_padding_allowed(self):
+        voiced = np.random.default_rng(8).normal(0, .1, 48000)
+        for a, b in ((voiced, np.r_[voiced, np.ones(100)]),
+                     (np.r_[voiced, np.ones(100)], voiced)):
+            with self.assertRaisesRegex(ValueError, 'unmatched audio tail'):
+                self.compare(a, b)
+        self.assertEqual(self.compare(voiced, np.r_[voiced, np.zeros(100)])['unmatched_samples'], 100)
+
+    def test_nonfinite_samples_are_rejected(self):
+        for value in (float('inf'), float('-inf'), float('nan')):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, 'Non-finite'):
+                self.compare(np.r_[np.ones(48000), value], np.ones(48001))
+
 
 if __name__ == '__main__':
     unittest.main()

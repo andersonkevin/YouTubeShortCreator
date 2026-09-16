@@ -48,7 +48,7 @@ local model inference. See [privacy boundaries](SECURITY.md).
 | Brand | Channel name, colors, logo or a generated wordmark, licensed fonts | A preview image and a hash-locked brand approval |
 | Content | A recorded script and a vertical illustration | A recording-bound transcript and word-timed captions |
 | Episode | Three or four scenes using the fixed layout slots | A validated episode file with a storyboard that matches the narration |
-| Export | A new run ID | 1080x1920 MP4 at 30 fps with narration and burned-in captions, SRT, JPEG cover |
+| Export | A new run ID | 1080x1920 MP4 at 30 fps, up to 3 minutes, with narration and burned-in captions, SRT, JPEG cover |
 | Handoff | Your review | YouTube title, description, hashtags, tags, pinned comment and QA evidence |
 
 The approved branding and safe zones stay fixed. Choose different supported
@@ -64,7 +64,7 @@ Swift toolchain. The qualified setup is macOS 26 on Apple Silicon.
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt
-PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --ignore-scripts
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci --ignore-scripts --no-audit --no-fund
 python3 ysc.py
 ```
 
@@ -102,6 +102,18 @@ and review checkpoint. Outputs land in `workspace/runs/<episode>/<run-id>/`.
 an editor. The HTML preview is silent by design.
 
 ## Visual Library and Asset Expansion
+
+The development tree includes an [opt-in v2 scene adapter](docs/VISUAL-ADAPTER-CONTRACT.md)
+for flow, metric and comparison, with [B02 qualification](docs/B02-QUALIFICATION.md).
+Eight chart forms, stacked bars and [slide/fade presets](docs/VISUAL-PRESENTATION.md)
+have [B03 technical approval](docs/B03-PROGRESS.md). These supported visuals are
+separate from the new design-review expansion below.
+
+An [optional FFmpeg backend](docs/MEDIA-BACKENDS.md) is implemented locally;
+[B05](docs/B05-PROGRESS.md) records its qualification and pending review.
+Native macOS remains the default. [B07](docs/B07-PROGRESS.md) records approved
+clean-install technical results. See the [remaining release gates](docs/PIPELINE-ROADMAP.md);
+neither the expansion merge nor a successful fixture constitutes a release.
 
 Beyond the 12 production layouts, the development tree includes an
 [offline visual library](docs/VISUAL-LIBRARY.md) with 40 icons, six compositions,

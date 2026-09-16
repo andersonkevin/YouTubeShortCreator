@@ -169,6 +169,22 @@ exclusion while unknown public directories still fail. Public-facing prose is
 provider-neutral; compatibility filenames are retained. No dependencies or
 production-scene availability changed.
 
+## Combined Pipeline Check
+
+The reviewed asset revision `589948a` was reconciled with local pipeline checkpoint
+`b1d922f`. Only README needed manual conflict resolution; the result retains
+locked npm installation, the optional media backend, approved earlier visual
+adapters, the expansion readiness boundary and the B07 approval scope.
+
+The combined source passed 197 Python tests, nine Node tests, documentation QA
+(43 documents, 18 images) and a 207-file source audit. New private examples and
+stress runs under `workspaces/pr1-integration-01/` passed the same 198
+component/palette/viewport cases, 66 SVG/PNG exports and 12 negative font probes
+as the corrected standalone pack. Production engine files still match the
+existing implementation lock. No production video was rerendered or reapproved.
+The source merge does not enable the expansion as production scenes or close
+the remaining operator and release gates.
+
 ## Licenses and Provenance
 
 The pack adds no third-party files. It reads the pinned Lucide 0.468.0 icons,

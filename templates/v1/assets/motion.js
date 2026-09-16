@@ -56,6 +56,7 @@
       }
     }
     film.querySelector("[data-progress]").style.width = `${100 * t / duration}%`;
+    if (window.ShortCreatorVisualRenderAt) window.ShortCreatorVisualRenderAt(t);
   }
   window.ShortCreatorRenderAt = renderAt;
   window.addEventListener("resize", fit);

@@ -26,6 +26,12 @@ license files. Do not reduce a redistributed NumPy binary package's obligations 
 its core license alone. Playwright also depends on separately distributed packages;
 retain the licenses and notices from the actual installation when redistributing it.
 
+The B07 npm lockfile records Playwright Core 1.62.1 (Apache-2.0) and the optional
+macOS dependency fsevents 2.3.2 (MIT), as reported by the installed packages.
+Their binaries are not bundled in the source release. The isolated qualification
+used npm 12.0.2 as a setup tool only; npm is not a project runtime dependency and
+its bootstrap archive is not distributed. This is not a complete binary SBOM.
+
 ## Optional Voice Runtime (Not Bundled)
 
 The optional `tools/voice.py` uses packages and model files that the operator
@@ -57,6 +63,12 @@ are supplied by their respective distributions/platforms. Their licensing and up
 behavior are not controlled by this project's license. They are not part of the
 source ZIP. This document does not certify redistribution of a self-contained app
 that bundles those components.
+
+Optional FFmpeg and ffprobe executables are also separately installed, never
+included in the source ZIP. Their codec/build licenses are independent of this
+project's MIT license. The tested FFmpeg 8.1.2 build enables GPL/version-3
+components and libx264. See [licensing boundaries](docs/LICENSING.md); no permission
+to redistribute a runtime bundle or patent clearance is implied.
 
 ## Fonts and Imported Content
 

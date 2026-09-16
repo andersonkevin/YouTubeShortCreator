@@ -30,7 +30,13 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(len({e['id'] for e in entries}),69)
         self.assertEqual(len(catalog.search(kind='widget')),3)
         self.assertEqual(len(catalog.search('latency',kind='chart')),1)
-        self.assertFalse(catalog.describe('visual:flow')['production_scene_available'])
+        self.assertTrue(catalog.describe('visual:flow')['production_scene_available'])
+        self.assertTrue(catalog.describe('visual:scatter')['production_scene_available'])
+        self.assertEqual(catalog.describe('visual:scatter')['qualification'], 'B03')
+        self.assertIn('stacked',catalog.describe('visual:bar')['chart_styles'])
+        self.assertIn('slide-left',catalog.describe('visual:line')['reveals'])
+        self.assertEqual([entry['id'] for entry in catalog.search('stacked')], ['visual:bar'])
+        self.assertEqual(catalog.describe('visual:flow')['motion_qualification'], 'B03')
 
     def test_unknown_ids_and_kinds(self):
         for value in ('../private','icon:unknown','https://example.invalid/a.svg'):

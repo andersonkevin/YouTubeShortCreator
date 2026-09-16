@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 import re
 import statistics
+import xml.etree.ElementTree as ET
 
 HOME = Path(__file__).resolve().parent
 KINDS = ('line', 'bar', 'pie', 'scatter', 'heatmap', 'correlation', 'timeline', 'geo', 'flow', 'metric', 'comparison')
@@ -85,6 +86,32 @@ def validate_recipes(recipes, icons):
         require(recipe['base'] in icons and recipe['badge'] in icons, 'Recipe needs known icons')
         require(recipe['tone'] in ('lime', 'cyan', 'rose'), 'Recipe color outside palette')
     return recipes
+
+
+def symbol_svg(asset_id, color='#ffffff', background='#101214'):
+    require(isinstance(asset_id, str) and asset_id.count(':') == 1, 'Known symbol ID required')
+    require(all(isinstance(value, str) and re.fullmatch(r'#[0-9a-fA-F]{6}', value)
+                for value in (color, background)), 'Symbol colors must be hex values')
+    kind, name = asset_id.split(':')
+    manifest = verify_assets()
+    recipes = validate_recipes(read_json(safe_file(HOME, 'recipes.json')), manifest['icons'])
+    require((kind == 'icon' and name in manifest['icons']) or (kind == 'composition' and name in recipes), 'Unknown symbol ID')
+    namespace = 'http://www.w3.org/2000/svg'
+    ET.register_namespace('', namespace)
+    svg = ET.Element('{' + namespace + '}svg', {'viewBox': '0 0 96 96', 'width': '96', 'height': '96', 'role': 'img'})
+    ET.SubElement(svg, '{' + namespace + '}title').text = name.replace('-', ' ')
+    def icon(identifier, x, y, size):
+        node = ET.fromstring(safe_file(HOME / 'vendor', 'lucide-static/icons/' + identifier + '.svg').read_bytes())
+        node.attrib.update({'x': str(x), 'y': str(y), 'width': str(size), 'height': str(size), 'stroke': color})
+        svg.append(node)
+    if kind == 'icon':
+        icon(name, 8, 8, 80)
+    else:
+        recipe = recipes[name]
+        icon(recipe['base'], 4, 4, 72)
+        ET.SubElement(svg, '{' + namespace + '}circle', {'cx': '76', 'cy': '76', 'r': '19', 'fill': background, 'stroke': color, 'stroke-width': '2'})
+        icon(recipe['badge'], 63, 63, 26)
+    return ET.tostring(svg, encoding='utf-8', xml_declaration=True)
 
 
 def validate_chart(chart, icons):
@@ -251,6 +278,7 @@ def build(input_path, run_id, approved, workspace, example=False):
     page = template.replace('/*LIBRARY_DATA*/', 'window.visualLibraryData=' + payload + ';')
     page = page.replace('/*ECHARTS*/', safe_file(HOME / 'vendor', 'echarts/dist/echarts.min.js').read_text().replace('</script', '<\\/script'))
     page = page.replace('/*RENDERER*/', safe_file(HOME, 'gallery.js').read_text())
+    page = page.replace('/*OPTIONS*/', safe_file(HOME, 'options.js').read_text())
     page = page.replace('/*STYLES*/', safe_file(HOME, 'gallery.css').read_text())
     notices = '\n\n'.join(safe_file(HOME / 'vendor', name).read_text() for name in ('echarts/LICENSE', 'echarts/NOTICE', 'lucide-static/LICENSE'))
     notices += '\n\nNatural Earth 5.1.2: public domain. https://www.naturalearthdata.com/about/terms-of-use/\n'
@@ -258,7 +286,7 @@ def build(input_path, run_id, approved, workspace, example=False):
     output.mkdir()
     with (output / 'index.html').open('x') as stream:
         stream.write(page)
-    report = {'status': 'preview_built', 'production_integration': False, 'publication_performed': False, 'input_sha256': hashlib.sha256(source.read_bytes()).hexdigest(), 'vendor_manifest_sha256': hashlib.sha256((HOME / 'vendor/manifest.json').read_bytes()).hexdigest(), 'charts': len(charts), 'icons': len(icons), 'recipes': len(recipes), 'index_sha256': hashlib.sha256(page.encode()).hexdigest(), 'implementation_hashes': {name: hashlib.sha256(safe_file(HOME, name).read_bytes()).hexdigest() for name in ('kit.py', 'gallery.html', 'gallery.css', 'gallery.js', 'recipes.json')}}
+    report = {'status': 'preview_built', 'production_integration': False, 'publication_performed': False, 'input_sha256': hashlib.sha256(source.read_bytes()).hexdigest(), 'vendor_manifest_sha256': hashlib.sha256((HOME / 'vendor/manifest.json').read_bytes()).hexdigest(), 'charts': len(charts), 'icons': len(icons), 'recipes': len(recipes), 'index_sha256': hashlib.sha256(page.encode()).hexdigest(), 'implementation_hashes': {name: hashlib.sha256(safe_file(HOME, name).read_bytes()).hexdigest() for name in ('kit.py', 'gallery.html', 'gallery.css', 'gallery.js', 'options.js', 'recipes.json')}}
     with (output / 'build.json').open('x') as stream:
         json.dump(report, stream, indent=2)
     with (output / 'THIRD-PARTY-NOTICES.txt').open('x') as stream:

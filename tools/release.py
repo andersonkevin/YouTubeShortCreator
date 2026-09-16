@@ -16,7 +16,8 @@ DIRECTORIES = {'templates', 'tests', 'tools', 'docs', 'examples'}
 PRIVATE = {'workspace', 'workspaces', 'node_modules', '.venv', '.git', '.github', 'dist', '__pycache__'}
 EXTENSIONS = {'.py', '.mjs', '.swift', '.json', '.md', '.css', '.js', '.txt', '.png', '.jpg'}
 ROOT_FILES = {'LICENSE', '.gitignore', '.gitattributes', 'requirements.txt', 'package.json', 'package-lock.json', 'lock.json',
-              'ysc.py', 'workflow.py', 'branding.py', 'safety.py', 'runtime.py', 'audio_qa.py', 'capture.mjs',
+              'ysc.py', 'workflow.py', 'branding.py', 'safety.py', 'runtime.py', 'audio_qa.py', 'visual_adapter.py', 'capture.mjs', 'chart-qa.mjs',
+              'media_backend.py', 'media_contract.py', 'frame_qa.py', 'native-capabilities.swift', 'ffmpeg_backend.py',
               'decode-audio.swift', 'encode.swift', 'mux.swift', 'media-qa.swift', 'transcribe.swift',
               'README.md', 'START-HERE.md', 'THIRD_PARTY_NOTICES.md', 'SECURITY.md', 'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md'}
 FORBIDDEN = [re.compile(r'/(?:Users|home)/[A-Za-z0-9_.-]+/'),

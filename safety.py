@@ -2,8 +2,11 @@
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
+import tempfile
+import warnings
 
 
 def require(condition, message):
@@ -21,13 +24,34 @@ def read_json(path):
             require(key not in result, f'Duplicate JSON key: {key}')
             result[key] = value
         return result
-    return json.loads(path.read_text(encoding='utf-8'), parse_constant=reject, object_pairs_hook=unique)
+    def finite_float(value):
+        result = float(value)
+        require(math.isfinite(result), 'Non-finite JSON number')
+        return result
+    return json.loads(path.read_text(encoding='utf-8'), parse_constant=reject,
+                      parse_float=finite_float, object_pairs_hook=unique)
 
 
 def write_json(path, value):
-    with path.open('x', encoding='utf-8') as stream:
-        json.dump(value, stream, indent=2, ensure_ascii=True, allow_nan=False)
-        stream.write('\n')
+    payload = json.dumps(value, indent=2, ensure_ascii=True, allow_nan=False) + '\n'
+    if path.exists() or path.is_symlink():
+        raise FileExistsError(path)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent,
+                                         prefix='.' + path.name + '.', suffix='.tmp', delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(payload)
+            stream.flush()
+            os.fsync(stream.fileno())
+        # A same-directory hard link publishes complete bytes without replacing a target.
+        os.link(temporary, path)
+    finally:
+        if temporary is not None:
+            try:
+                temporary.unlink(missing_ok=True)
+            except OSError:
+                warnings.warn('Could not remove invocation-owned JSON temporary file; inspect the destination directory', RuntimeWarning)
 
 
 def digest(path):

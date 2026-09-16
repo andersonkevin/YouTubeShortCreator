@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 import re
 import sys
-import xml.etree.ElementTree as ET
 
 HOME = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(HOME))
@@ -23,24 +22,7 @@ def export_svg(asset_id, workspace, run_id, approved, color='#ffffff'):
     parent = root/'visuals'
     output = parent/run_id
     kit.require(not parent.is_symlink() and not output.exists() and not output.is_symlink(), 'New contained output required')
-    namespace = 'http://www.w3.org/2000/svg'
-    ET.register_namespace('',namespace)
-    svg = ET.Element('{'+namespace+'}svg', {'viewBox':'0 0 96 96','width':'96','height':'96','role':'img'})
-    ET.SubElement(svg,'{'+namespace+'}title').text=entry['title']
-    def icon(name,x,y,size):
-        source=kit.safe_file(kit.HOME/'vendor','lucide-static/icons/'+name+'.svg')
-        node=ET.fromstring(source.read_bytes())
-        node.set('x',str(x));node.set('y',str(y));node.set('width',str(size));node.set('height',str(size));node.set('stroke',color)
-        svg.append(node)
-    name=asset_id.split(':',1)[1]
-    if entry['kind']=='icon':
-        icon(name,8,8,80)
-    else:
-        recipe=entry['example']
-        icon(recipe['base'],4,4,72)
-        ET.SubElement(svg,'{'+namespace+'}circle',{'cx':'76','cy':'76','r':'19','fill':'#101214','stroke':color,'stroke-width':'2'})
-        icon(recipe['badge'],63,63,26)
-    data=ET.tostring(svg,encoding='utf-8',xml_declaration=True)
+    data=kit.symbol_svg(asset_id,color)
     notices=kit.safe_file(kit.HOME/'vendor','lucide-static/LICENSE').read_bytes()
     parent.mkdir(exist_ok=True);output.mkdir()
     with (output/'asset.svg').open('xb') as stream:stream.write(data)

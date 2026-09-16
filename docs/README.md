@@ -23,6 +23,17 @@
 - [Asset library wave 03](ASSET-LIBRARY-WAVE03.md): 24 generated palettes with contrast rules and 10 deterministic motion recipes for the design-review components, with their QA and integration checklist.
 - [Visual director](assistant/VISUAL-DIRECTOR.md): supervised selection and source-review procedure.
 - [Pipeline roadmap](PIPELINE-ROADMAP.md): integration and qualification gates; marketing remains separate.
+- [Visual adapter contract](VISUAL-ADAPTER-CONTRACT.md): opt-in v2 structure, enabled widgets and regression boundaries.
+- [B02 qualification](B02-QUALIFICATION.md): widget media, two palettes, technical human review and classic pixel parity.
+- [Chart and motion selection](VISUAL-PRESENTATION.md): analytical visuals, stacked bars and selectable slide/fade presets under B03 qualification.
+- [B03 qualification](B03-PROGRESS.md): three encoded chart/motion samples, density checks and operator technical approval.
+- [B03 density](B03-DENSITY.md): dense datasets, label-collision rejection and numeric extremes across palettes and scene counts.
+- [Media backend boundary](MEDIA-BACKENDS.md): explicit native dispatch, runtime capabilities, temporary ownership and failure behavior.
+- [B04 qualification](B04-PROGRESS.md): native fixture comparisons, observed raster differences and operator technical approval.
+- [B05 progress](B05-PROGRESS.md): optional FFmpeg, three-minute format matrix, full-voice listening approval and pending animated review.
+- [B06 progress](B06-PROGRESS.md): failure recovery, atomic JSON records, audio-tail checks and encoded-frame regression.
+- [B07 progress](B07-PROGRESS.md): operator-approved isolated installs, lockfile reproduction and native/FFmpeg fixtures; full first-run walkthrough remains unexecuted.
+- [B08 acceptance](B08-ACCEPTANCE.md): independent operator protocol, two-episode evidence and explicit acceptance boundaries; execution pending.
 - [CLI reference](CLI.md): every command, path base and write boundary.
 - [Local voice synthesis](VOICE.md): optional offline narration with Kokoro, its setup, records, rules and limits.
 - [Data contracts](DATA-CONTRACTS.md): episode fields, caption timing and safe examples.

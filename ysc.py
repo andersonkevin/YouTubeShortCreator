@@ -13,6 +13,7 @@ import branding
 import runtime
 import workflow
 from safety import digest, identifier, inside, read_json, require, write_json
+from media_contract import MAX_AUDIO_BYTES
 
 HOME = Path(__file__).resolve().parent
 
@@ -49,7 +50,8 @@ def onboarding(root, approved=False):
 
 def import_file(root, source, name):
     require(re.fullmatch(r'[a-z0-9][a-z0-9._-]{0,79}', name), 'Use a simple lowercase intake filename')
-    source = branding.external_file(source, ('.mp3', '.wav', '.m4a', '.opus', '.png', '.jpg', '.jpeg', '.json'))
+    maximum = MAX_AUDIO_BYTES if Path(source).suffix.lower() in ('.mp3', '.wav', '.m4a', '.opus') else 30_000_000
+    source = branding.external_file(source, ('.mp3', '.wav', '.m4a', '.opus', '.png', '.jpg', '.jpeg', '.json'), maximum)
     require(Path(name).suffix.lower() == source.suffix.lower(), 'Keep the source extension')
     dest = inside(root, 'intake/' + name, exists=False)
     require(dest.parent.is_dir(), 'Initialize a workspace first')
@@ -116,7 +118,8 @@ def parser():
         command = sub.add_parser(name)
         command.add_argument('--approve-write', action='store_true')
         if name == 'configure':
-            for key in ('node', 'playwright', 'chrome', 'swift'):
+            command.add_argument('--backend', choices=('native', 'ffmpeg'), default='native')
+            for key in ('node', 'playwright', 'chrome', 'swift', 'ffmpeg', 'ffprobe'):
                 command.add_argument('--' + key)
     sub.add_parser('doctor')
     sub.add_parser('layouts')
