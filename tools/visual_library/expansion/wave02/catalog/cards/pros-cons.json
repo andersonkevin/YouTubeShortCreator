@@ -1,0 +1,38 @@
+{
+  "id": "wave02:pros-cons",
+  "kind": "pros-cons",
+  "family": "general",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Two columns of points for and against.",
+  "use_when": "Lay out a decision honestly.",
+  "not_when": "More than four points per side; points that need numbers (use dumbbell or bullet).",
+  "parameters": {
+    "pros": "1-4 labels <= 30",
+    "cons": "1-4 labels <= 30"
+  },
+  "defaults": {},
+  "limits": "The count on each side is not a verdict; the caption says so.",
+  "variants": [
+    "columns"
+  ],
+  "states": [],
+  "example": "pros-cons",
+  "stress": "pros-cons-four"
+}

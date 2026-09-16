@@ -1,0 +1,39 @@
+{
+  "id": "wave02:checklist",
+  "kind": "checklist",
+  "family": "general",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Items marked done or not, with an optional note each.",
+  "use_when": "Show progress through a set of tasks or requirements.",
+  "not_when": "More than seven items; items without a clear done state.",
+  "parameters": {
+    "items": "2-7 of {label <= 34, done bool, note <= 22 (may be empty)}"
+  },
+  "defaults": {},
+  "limits": "The done count is derived; nothing is ranked.",
+  "variants": [
+    "rows"
+  ],
+  "states": [
+    "highlight"
+  ],
+  "example": "checklist",
+  "stress": "checklist-seven"
+}

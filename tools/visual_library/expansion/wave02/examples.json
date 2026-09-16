@@ -1946,6 +1946,322 @@
           }
         ]
       }
+    },
+    {
+      "id": "quote",
+      "kind": "quote",
+      "title": "One sentence worth remembering.",
+      "insight": "A quote lands when the attribution is real and the sentence is short.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented quotation",
+        "reference": "Wording is illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "sparkles",
+      "data": {
+        "text": "You do not rise to the level of your goals. You fall to the level of your systems.",
+        "attribution": "James Clear",
+        "role": "Atomic Habits"
+      }
+    },
+    {
+      "id": "checklist",
+      "kind": "checklist",
+      "title": "What is done and what is left.",
+      "insight": "Three of five items are done; the two open ones are the ones that need a decision.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented checklist",
+        "reference": "Items are illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "check",
+      "state": {
+        "highlight": 3
+      },
+      "data": {
+        "items": [
+          {
+            "label": "Pick the topic",
+            "done": true,
+            "note": ""
+          },
+          {
+            "label": "Write the script",
+            "done": true,
+            "note": "59 words"
+          },
+          {
+            "label": "Record the voice",
+            "done": true,
+            "note": "take 2 approved"
+          },
+          {
+            "label": "Choose the artwork",
+            "done": false,
+            "note": "two candidates"
+          },
+          {
+            "label": "Render and review",
+            "done": false,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "stat",
+      "kind": "stat",
+      "title": "One number, in context.",
+      "insight": "The number alone says nothing; the label and the context make it a fact.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented figure",
+        "reference": "Value is illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "chart-no-axes-combined",
+      "data": {
+        "value": "38",
+        "unit": "%",
+        "label": "Viewers who watched to the end",
+        "context": "Up from 31% last month across 12 episodes.",
+        "trend": "up"
+      }
+    },
+    {
+      "id": "before-after",
+      "kind": "before-after",
+      "title": "What changed, side by side.",
+      "insight": "The same four items, before and after; nothing was dropped.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented comparison",
+        "reference": "Items are illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "arrow-right",
+      "data": {
+        "before": {
+          "title": "Before",
+          "items": [
+            "Manual uploads",
+            "No captions",
+            "One voice",
+            "Weekly posts"
+          ]
+        },
+        "after": {
+          "title": "After",
+          "items": [
+            "Scheduled uploads",
+            "Timed captions",
+            "Five voices",
+            "Daily posts"
+          ]
+        }
+      }
+    },
+    {
+      "id": "steps",
+      "kind": "steps",
+      "title": "How to do it, in order.",
+      "insight": "Four steps, each with one line of detail; the order is the method.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented procedure",
+        "reference": "Steps are illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "workflow",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "items": [
+          {
+            "label": "Write one idea",
+            "note": "one sentence you could say out loud"
+          },
+          {
+            "label": "Record it",
+            "note": "keep the final file unchanged"
+          },
+          {
+            "label": "Pick three scenes",
+            "note": "problem, explanation, takeaway"
+          },
+          {
+            "label": "Review with sound",
+            "note": "words, timing, readability"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ranking",
+      "kind": "ranking",
+      "title": "Top five, by the number.",
+      "insight": "The gap between first and second is larger than the rest of the list combined.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented ranking",
+        "reference": "Values are illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "chart-column",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "unit": "views",
+        "items": [
+          {
+            "label": "Episode 12",
+            "value": 48200
+          },
+          {
+            "label": "Episode 9",
+            "value": 21900
+          },
+          {
+            "label": "Episode 14",
+            "value": 12400
+          },
+          {
+            "label": "Episode 3",
+            "value": 8100
+          },
+          {
+            "label": "Episode 7",
+            "value": 5300
+          }
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "kind": "timeline",
+      "title": "What happened, when.",
+      "insight": "Five dated events; the gap between the third and the fourth is the story.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented dates",
+        "reference": "Events are illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "clock",
+      "state": {
+        "highlight": 3
+      },
+      "data": {
+        "items": [
+          {
+            "when": "2024",
+            "label": "First upload",
+            "note": "one video a month"
+          },
+          {
+            "when": "2025 Q1",
+            "label": "Weekly schedule",
+            "note": ""
+          },
+          {
+            "when": "2025 Q3",
+            "label": "Captions on every video",
+            "note": "watch time up"
+          },
+          {
+            "when": "2026 Q1",
+            "label": "Second channel",
+            "note": "same template, new brand"
+          },
+          {
+            "when": "2026 Q3",
+            "label": "Daily Shorts",
+            "note": "assistant-operated"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pros-cons",
+      "kind": "pros-cons",
+      "title": "Two sides of a decision.",
+      "insight": "Three reasons for and two against; the count is not the verdict.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented decision",
+        "reference": "Points are illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "filter",
+      "data": {
+        "pros": [
+          "Publishes every day",
+          "Same look across episodes",
+          "Review before upload"
+        ],
+        "cons": [
+          "Needs a Mac to render",
+          "Fixed layouts only"
+        ]
+      }
+    },
+    {
+      "id": "definition",
+      "kind": "definition",
+      "title": "A term, defined once.",
+      "insight": "A definition in one sentence plus one example is easier to remember than a paragraph.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented definition",
+        "reference": "Wording is illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "file-text",
+      "data": {
+        "term": "Watch time",
+        "kind": "metric",
+        "meaning": "The total minutes viewers spent watching a video, across all views, not the length of the video.",
+        "example": "A 40-second Short watched twice by 100 people has 133 minutes of watch time."
+      }
+    },
+    {
+      "id": "cards",
+      "kind": "cards",
+      "title": "Three ideas, one card each.",
+      "insight": "Three cards read faster than three paragraphs; each holds one idea.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Invented cards",
+        "reference": "Text is illustrative",
+        "as_of": "2026-09-16"
+      },
+      "icon": "layers",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "items": [
+          {
+            "title": "Plan",
+            "text": "One idea per episode, three scenes, one takeaway.",
+            "icon": "file-text"
+          },
+          {
+            "title": "Produce",
+            "text": "Record, time the captions, render locally.",
+            "icon": "workflow"
+          },
+          {
+            "title": "Review",
+            "text": "Watch with sound before anything is published.",
+            "icon": "circle-check"
+          }
+        ]
+      }
     }
   ]
 }

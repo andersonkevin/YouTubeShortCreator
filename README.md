@@ -6,11 +6,13 @@
 [![macOS production backend](https://img.shields.io/badge/render-macOS%20%2B%20AVFoundation-555)](docs/ARCHITECTURE.md)
 [![Local-first](https://img.shields.io/badge/runtime-local--first%2C%20no%20API%20keys-1f6feb)](SECURITY.md)
 
-**A fixed visual system for code-and-graphics Shorts, operated by your assistant, reviewed by you.**
+**A fixed visual system for explainer Shorts on any topic, operated by your assistant, reviewed by you.**
 
 Set up your channel once. For every episode, bring a script, a final voice recording
 and thumbnail artwork. Get back a branded 1080x1920 video with word-timed captions,
-a cover and a publishing handoff, without redesigning anything.
+a cover and a publishing handoff, without redesigning anything. The scenes explain
+an idea with a diagram, a chart, a comparison, a list of steps or a code sample;
+the subject is up to the channel.
 
 **Version 0.2.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
 
@@ -50,7 +52,7 @@ local model inference. See [privacy boundaries](SECURITY.md).
 | Handoff | Your review | YouTube title, description, hashtags, tags, pinned comment and QA evidence |
 
 The approved branding and safe zones stay fixed. Choose different supported
-layouts to fit each story; code, timing and artwork change per episode.
+layouts to fit each story; content, timing and artwork change per episode.
 
 ## Quick Start
 
@@ -104,12 +106,15 @@ an editor. The HTML preview is silent by design.
 Beyond the 12 production layouts, the development tree includes an
 [offline visual library](docs/VISUAL-LIBRARY.md) with 40 icons, six compositions,
 eight chart types and three widgets, plus three design-review asset waves that
-give a batch of Shorts enough variety that no two episodes look alike:
+give a batch of Shorts enough variety that no two episodes look alike. The first
+wave leans toward software and AI subjects because that was the first channel;
+the data, widget and general-purpose components apply to any subject, and the
+palettes, motion recipes and layouts carry no subject at all.
 
 | Wave | What it adds | Read |
 | --- | --- | --- |
 | 01 | 14 components for AI-programming topics: agent loops, retrieval, validation gates, retries, cache tiers, model routing, API contracts, deployment stages, architecture stacks, annotated code, token budgets, state machines, deltas and traces | [Asset expansion](docs/ASSET-EXPANSION.md) |
-| 02 | 45 components across widgets, data, systems, AI and software (terminal, logs, payload, histogram, boxplot, queue, circuit breaker, sequence, confusion matrix, diff, dependency graph and more) with a searchable catalog | [Asset library wave 02](docs/ASSET-LIBRARY-WAVE02.md) |
+| 02 | 55 components across general-purpose forms (quote, checklist, headline figure, before/after, steps, ranking, timeline, pros and cons, definition, cards), widgets, data, systems, AI and software, with a searchable catalog | [Asset library wave 02](docs/ASSET-LIBRARY-WAVE02.md) |
 | 03 | 24 generated palettes with contrast rules, 10 deterministic motion recipes and 18 layout studies for the vertical frame | [Asset library wave 03](docs/ASSET-LIBRARY-WAVE03.md) |
 
 Every asset carries a validator, fixtures, browser QA evidence and an in-graphic
@@ -143,7 +148,7 @@ mishear words and timing, so listening and visual review remain part of the work
 | --- | --- |
 | Local command-line workflow and file-based authoring | A graphical editor, timeline UI or hosted service |
 | Simple local wordmark and monogram generation | AI logo design, trademark clearance or image generation |
-| Template-driven code and diagram scenes | Automatic storyboarding from audio or arbitrary layouts |
+| Template-driven diagram, chart, comparison and code scenes | Automatic storyboarding from audio or arbitrary layouts |
 | Local speech adapter and imported timed transcripts | Speech-model downloads or cloud fallback |
 | Optional offline narration synthesis in a separate environment | Voice-provider accounts, cloned voices or automatic voice approval |
 | Native macOS rendering | Qualified Windows or Linux video backends |

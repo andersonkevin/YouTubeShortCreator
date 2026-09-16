@@ -960,6 +960,143 @@
     return g;
   };
 
+
+  // ---- batch 5: general-purpose components for any subject ---------------
+  const trendTone = {up: () => T.accent, down: () => T.warn, flat: () => T.muted, none: () => T.muted};
+  const trendIcon = {up: 'chart-line', down: 'chart-line', flat: 'activity'};
+
+  draw['quote'] = c => {
+    const g = [], d = c.data;
+    g.push(txt(0, 60, '“', {size: 120, weight: 'bold', color: T.accent, vAlign: 'top', lineHeight: 100}));
+    g.push(txt(70, 110, d.text, {size: 32, weight: 'bold', width: W - 90, wrap: true, vAlign: 'top', lineHeight: 42}));
+    const lines = Math.ceil(d.text.length / 34), y = 110 + lines * 42 + 40;
+    g.push(line(70, y, 190, y, {stroke: T.accent, lineWidth: 4}));
+    g.push(txt(70, y + 36, d.attribution, {size: 24, weight: 'bold', width: W - 90}));
+    if (d.role) g.push(txt(70, y + 68, d.role, {size: 21, color: T.muted, width: W - 90}));
+    g.height = y + (d.role ? 90 : 60);
+    return g;
+  };
+
+  draw['checklist'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.items.length, rowH = Math.min(84, (DRAW - 80) / n);
+    d.items.forEach((item, i) => {
+      const y = i * rowH, on = hi === i, o = fade(hi, i), cy = y + rowH / 2 - 4;
+      if (on) g.push(box(0, y, W, rowH - 8, {fill: T.surface, stroke: T.accent, r: 8}));
+      g.push(...dot(36, cy, item.done ? 'circle-check' : 'x', item.done ? T.accent : T.line, 18, o));
+      g.push(txt(76, item.note ? cy - 12 : cy, item.label, {size: 24, weight: 'bold', width: W - 96, color: item.done ? T.ink : T.muted, opacity: o}));
+      if (item.note) g.push(txt(76, cy + 16, item.note, {size: 19, color: T.muted, width: W - 96, opacity: o}));
+    });
+    g.push(txt(0, n * rowH + 26, `${fmt(c.derived.done)} of ${fmt(n)} done`, {size: 21, mono: true, color: T.muted}));
+    g.height = n * rowH + 46;
+    return g;
+  };
+
+  draw['stat'] = c => {
+    const g = [], d = c.data, color = trendTone[d.trend]();
+    g.push(txt(0, 20, d.label.toUpperCase(), {size: 21, weight: 'bold', color: T.muted, width: W}));
+    g.push(txt(0, 130, d.value, {size: 120, weight: 'bold', mono: true, color: T.accent}));
+    if (d.unit) g.push(txt(Math.min(W - 120, d.value.length * 74 + 16), 150, d.unit, {size: 36, weight: 'bold', color: T.muted}));
+    let y = 240;
+    if (d.trend !== 'none') { g.push(...dot(20, y, trendIcon[d.trend], color, 16), txt(48, y, d.trend === 'up' ? 'trending up' : d.trend === 'down' ? 'trending down' : 'no change', {size: 21, color})); y += 44; }
+    if (d.context) { g.push(txt(0, y, d.context, {size: 24, width: W, wrap: true, vAlign: 'top', color: T.ink})); y += 70; }
+    g.push(txt(0, y + 10, 'The number is the data; the label says what it counts.', {size: 20, color: T.muted, width: W}));
+    g.height = y + 30;
+    return g;
+  };
+
+  draw['before-after'] = c => {
+    const g = [], d = c.data, pw = 372, gap = W - 2 * pw, n = Math.max(d.before.items.length, d.after.items.length), ph = 90 + n * 52;
+    [[0, d.before, T.line, T.muted], [pw + gap, d.after, T.accent, T.ink]].forEach(([x, side, stroke, color]) => {
+      g.push(box(x, 0, pw, ph, {stroke, lineWidth: stroke === T.accent ? 3 : 2}));
+      g.push(txt(x + 24, 40, side.title.toUpperCase(), {size: 21, weight: 'bold', color: stroke === T.accent ? T.accent : T.muted, width: pw - 48}));
+      side.items.forEach((item, i) => { g.push(circle(x + 30, 90 + i * 52, 5, {fill: color})); g.push(txt(x + 48, 90 + i * 52, item, {size: 22, color, width: pw - 72})); });
+    });
+    g.push(...arrow(pw + 10, ph / 2, pw + gap - 10, ph / 2, {stroke: T.accent, lineWidth: 4}));
+    g.push(txt(0, ph + 34, 'Left is the starting point, right is the result. Same list, same order.', {size: 20, color: T.muted, width: W}));
+    g.height = ph + 54;
+    return g;
+  };
+
+  draw['steps'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.items.length, rowH = Math.min(104, (DRAW - 40) / n);
+    d.items.forEach((item, i) => {
+      const y = i * rowH + 30, on = hi === i, o = fade(hi, i);
+      if (i < n - 1) g.push(line(36, y + 26, 36, y + rowH - 26, {stroke: T.line, lineWidth: 3}));
+      g.push(circle(36, y, 26, {fill: on ? T.accent : T.surface, stroke: on ? T.accent : T.line, lineWidth: 3, opacity: o}));
+      g.push(txt(36, y, String(i + 1), {size: 24, weight: 'bold', mono: true, align: 'center', color: on ? T.background : T.ink, opacity: o}));
+      g.push(txt(84, item.note ? y - 14 : y, item.label, {size: 25, weight: 'bold', width: W - 100, color: on ? T.accent : T.ink, opacity: o}));
+      if (item.note) g.push(txt(84, y + 18, item.note, {size: 20, color: T.muted, width: W - 100, opacity: o}));
+    });
+    g.height = n * rowH + 20;
+    return g;
+  };
+
+  draw['ranking'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.items.length, rowH = Math.min(96, (DRAW - 60) / n), left = 300, right = W - 200, high = c.derived.high;
+    d.items.forEach((item, i) => {
+      const y = i * rowH, on = hi === i, o = fade(hi, i), w = Math.max(4, (right - left) * item.value / high), cy = y + rowH / 2 - 6;
+      g.push(circle(24, cy, 20, {fill: i === 0 ? T.accent : i === 1 ? T.accent2 : i === 2 ? T.extra : T.surface, stroke: i > 2 ? T.line : 'none', lineWidth: 2, opacity: o}));
+      g.push(txt(24, cy, String(i + 1), {size: 21, weight: 'bold', mono: true, align: 'center', color: i > 2 ? T.ink : T.background, opacity: o}));
+      g.push(txt(60, cy, item.label, {size: 23, weight: 'bold', width: left - 72, color: on ? T.accent : T.ink, opacity: o}));
+      g.push(box(left, cy - 18, w, 36, {fill: i === 0 ? T.accent : T.accent2, stroke: on ? T.ink : 'none', lineWidth: on ? 3 : 0, r: 6, opacity: o}));
+      g.push(txt(left + w + 12, cy, `${fmt(item.value)}${d.unit ? ' ' + d.unit : ''}`, {size: 22, mono: true, opacity: o}));
+    });
+    g.push(txt(0, n * rowH + 26, 'Bars are proportional to the top value; the order is the ranking as supplied.', {size: 20, color: T.muted, width: W}));
+    g.height = n * rowH + 46;
+    return g;
+  };
+
+  draw['timeline'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.items.length, rowH = Math.min(110, (DRAW - 40) / n), x = 190;
+    g.push(line(x, 20, x, n * rowH, {stroke: T.line, lineWidth: 3}));
+    d.items.forEach((item, i) => {
+      const y = i * rowH + 40, on = hi === i, o = fade(hi, i);
+      g.push(txt(x - 24, y, item.when, {size: 21, mono: true, weight: 'bold', align: 'right', width: x - 32, color: T.muted, opacity: o}));
+      g.push(circle(x, y, on ? 13 : 9, {fill: on ? T.accent : T.accent2, stroke: T.background, lineWidth: 3, opacity: o}));
+      g.push(txt(x + 32, item.note ? y - 14 : y, item.label, {size: 24, weight: 'bold', width: W - x - 40, color: on ? T.accent : T.ink, opacity: o}));
+      if (item.note) g.push(txt(x + 32, y + 18, item.note, {size: 20, color: T.muted, width: W - x - 40, opacity: o}));
+    });
+    g.height = n * rowH + 20;
+    return g;
+  };
+
+  draw['pros-cons'] = c => {
+    const g = [], d = c.data, pw = 392, n = Math.max(d.pros.length, d.cons.length), ph = 80 + n * 56;
+    [[0, 'PROS', d.pros, T.accent, 'circle-check'], [W - pw, 'CONS', d.cons, T.warn, 'x']].forEach(([x, title, items, color, icon]) => {
+      g.push(box(x, 0, pw, ph, {stroke: color, lineWidth: 2}));
+      g.push(txt(x + 24, 38, title, {size: 21, weight: 'bold', color}));
+      items.forEach((item, i) => { const y = 88 + i * 56; g.push(...dot(x + 36, y, icon, color, 14)); g.push(txt(x + 62, y, item, {size: 22, width: pw - 84})); });
+    });
+    g.push(txt(0, ph + 34, 'Two lists as supplied; the count on each side is not a verdict.', {size: 20, color: T.muted, width: W}));
+    g.height = ph + 54;
+    return g;
+  };
+
+  draw['definition'] = c => {
+    const g = [], d = c.data;
+    g.push(box(0, 0, W, 60, {fill: T.surface, stroke: T.line}));
+    g.push(txt(24, 30, d.term, {size: 30, weight: 'bold', width: W - 220}));
+    if (d.kind) g.push(txt(W - 24, 30, d.kind, {size: 21, mono: true, align: 'right', color: T.accent2}));
+    g.push(txt(24, 96, d.meaning, {size: 26, width: W - 48, wrap: true, vAlign: 'top', lineHeight: 36}));
+    const lines = Math.ceil(d.meaning.length / 44), y = 96 + lines * 36 + 30;
+    if (d.example) { g.push(box(24, y - 12, 6, 60, {fill: T.accent, stroke: 'none', lineWidth: 0, r: 3})); g.push(txt(48, y + 18, d.example, {size: 22, color: T.muted, width: W - 72, wrap: true, vAlign: 'middle'})); }
+    g.height = d.example ? y + 70 : y;
+    return g;
+  };
+
+  draw['cards'] = c => {
+    const g = [], d = c.data, hi = stateOf(c, 'highlight'), n = d.items.length, gap = 20, cw = (W - (n - 1) * gap) / n, ch = 300;
+    d.items.forEach((item, i) => {
+      const x = i * (cw + gap), on = hi === i, o = fade(hi, i);
+      g.push(box(x, 0, cw, ch, {stroke: on ? T.accent : T.line, lineWidth: on ? 3 : 2, fill: on ? T.surface : T.background, opacity: o}));
+      g.push(...dot(x + 44, 48, item.icon, on ? T.accent : T.accent2, 22, o));
+      g.push(txt(x + 24, 110, item.title, {size: 24, weight: 'bold', width: cw - 48, wrap: true, vAlign: 'top', color: on ? T.accent : T.ink, opacity: o}));
+      g.push(txt(x + 24, 170, item.text, {size: 21, color: T.muted, width: cw - 48, wrap: true, vAlign: 'top', opacity: o}));
+    });
+    g.height = ch;
+    return g;
+  };
+
   // ---- study plumbing (same contract as the library gallery) -------------
   function options(c, groups) {
     const items = draw[c.kind](c);
