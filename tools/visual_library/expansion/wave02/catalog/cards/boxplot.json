@@ -1,0 +1,42 @@
+{
+  "id": "wave02:boxplot",
+  "kind": "boxplot",
+  "family": "data",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Show spread with five-number summaries on one shared axis.",
+  "use_when": "Comparing variability between models, tiers or releases when quartiles are known.",
+  "not_when": "Raw samples without quartiles (compute them first) or more than four groups.",
+  "parameters": {
+    "unit": "<= 12",
+    "groups": "1-4 items of {label <= 14, min <= q1 <= median <= q3 <= max, max > min}"
+  },
+  "defaults": {
+    "variant": "horizontal"
+  },
+  "limits": "The axis spans the union of all groups; narrow boxes keep a minimum 4 px width.",
+  "variants": [
+    "horizontal"
+  ],
+  "states": [
+    "highlight"
+  ],
+  "example": "boxplot",
+  "stress": "boxplot-four"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "wave02:queue",
+  "kind": "queue",
+  "family": "systems",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Show backlog: producers, a queue with its depth and capacity, and consumers.",
+  "use_when": "Explaining backpressure, why a queue fills, or what capacity means for producers.",
+  "not_when": "Ordered processing steps (use flow) or per-item timing (use trace).",
+  "parameters": {
+    "label": "<= 24",
+    "depth": "integer 0-9999",
+    "capacity": "null or integer 1-9999",
+    "producers/consumers": "1-4 items of {label <= 14, rate <= 10}"
+  },
+  "defaults": {
+    "capacity": null
+  },
+  "limits": "Ten item squares at most; the exact depth is printed. FULL is derived from depth >= capacity.",
+  "variants": [
+    "lanes"
+  ],
+  "states": [],
+  "example": "queue",
+  "stress": "queue-full"
+}

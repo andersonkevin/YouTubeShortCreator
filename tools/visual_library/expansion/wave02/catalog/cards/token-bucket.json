@@ -1,0 +1,40 @@
+{
+  "id": "wave02:token-bucket",
+  "kind": "token-bucket",
+  "family": "systems",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "Show rate limiting as tokens in a bucket and requests evaluated in order.",
+  "use_when": "Quotas, throttling, why a burst is denied while a steady rate passes.",
+  "not_when": "Queues (requests here are denied, not delayed) or billing budgets (use expansion:budget).",
+  "parameters": {
+    "capacity": "integer 1-60",
+    "tokens": "integer 0..capacity",
+    "refill": "<= 14",
+    "requests": "2-6 items of {label <= 12, cost 1-60}"
+  },
+  "defaults": {},
+  "limits": "Outcomes are computed in order from the current tokens without refill; the graphic states this.",
+  "variants": [
+    "bucket"
+  ],
+  "states": [],
+  "example": "token-bucket",
+  "stress": "bucket-sixty"
+}

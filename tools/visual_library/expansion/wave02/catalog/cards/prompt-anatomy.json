@@ -1,0 +1,39 @@
+{
+  "id": "wave02:prompt-anatomy",
+  "kind": "prompt-anatomy",
+  "family": "ai",
+  "status": "implemented",
+  "production_scene_available": false,
+  "human_review": "pending",
+  "renderer": "tools/visual_library/expansion/wave02/wave02.js",
+  "provenance": "Fixture data is invented and labeled illustrative; a measured source keeps the SOURCE REVIEW REQUIRED line. The provenance line is drawn inside the graphic.",
+  "licenses": "Project MIT for the component; pinned Lucide 0.468.0 (ISC) icons and ECharts 6.0.0 (Apache-2.0) via the existing vendor manifest; no new third-party files.",
+  "qa": {
+    "script": "tools/visual_library/expansion/wave02/qa.mjs",
+    "evidence": "workspaces/<workspace>/visuals/<run>/qa/ (private; contact-sheet.png, <id>-asset.png, report.json)",
+    "checks": [
+      "token-only colors and verified palette switch",
+      "design-pixel font size >= 19",
+      "no ellipsis, collision, occlusion or clipping",
+      "deterministic reveal and seek",
+      "no network",
+      "exports at 824x820 for every palette"
+    ]
+  },
+  "purpose": "The sections of a prompt, each labeled by kind.",
+  "use_when": "Teach prompt structure or show which section a change touched.",
+  "not_when": "Full prompts; each section is one line of at most 60 characters.",
+  "parameters": {
+    "sections": "2-6 of {label <= 14, text <= 60, kind system|instruction|example|input|format}"
+  },
+  "defaults": {},
+  "limits": "Text wraps to at most two lines; section heights shrink with six sections.",
+  "variants": [
+    "document"
+  ],
+  "states": [
+    "highlight"
+  ],
+  "example": "prompt-anatomy",
+  "stress": "prompt-six"
+}
