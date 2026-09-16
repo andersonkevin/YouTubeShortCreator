@@ -68,44 +68,44 @@ dropped (a "checklist" table, a two-tile metric, a second flow layout).
 | Software | Test pyramid with real counts | pyramid | implemented |
 | Software | Release tags by semver kind | versions | implemented |
 | Software | Trust boundary with guarded crossings | trust-boundary | implemented |
-| AI | Memory recalled and forgotten across turns | memory-timeline | proposed |
-| AI | Evaluation scorecard with threshold and delta | eval-scorecard | proposed |
-| AI | Tool definition with typed parameters | tool-schema | proposed |
-| Systems | Sequential latency breakdown | latency-breakdown | proposed |
-| Systems | Sliding-window rate limit | sliding-window | proposed |
-| Systems | Retry budget and amplification | retry-budget | proposed |
-| Data | Shaded value matrix with printed numbers | heatmap | proposed |
-| Data | Rank or value change between two points | slope | proposed |
-| Software | Before/after record with changed fields | state-diff | proposed |
-| Software | Which version part changes and why | semver-rule | proposed |
+| AI | Memory recalled and forgotten across turns | memory-timeline | implemented |
+| AI | Evaluation scorecard with threshold and delta | eval-scorecard | implemented |
+| AI | Tool definition with typed parameters | tool-schema | implemented |
+| Systems | Sequential latency breakdown | latency-breakdown | implemented |
+| Systems | Sliding-window rate limit | sliding-window | implemented |
+| Systems | Retry budget and amplification | retry-budget | implemented |
+| Data | Shaded value matrix with printed numbers | heatmap | implemented |
+| Data | Rank or value change between two points | slope | implemented |
+| Software | Before/after record with changed fields | state-diff | implemented |
+| Software | Which version part changes and why | semver-rule | implemented |
 
 ## Counts
 
 | Category | Count |
 | --- | --- |
-| Proposed (catalog entry, no renderer) | 10 |
-| Implemented (validator, renderer, card, example, stress fixture) | 35 |
-| Validated by the automated QA script (examples run) | 35 of 35 |
-| Stress fixtures validated by the automated QA script | 41 of 41 |
+| Proposed (catalog entry, no renderer) | 0 (the ten proposed in the first pass were implemented in a fourth batch) |
+| Implemented (validator, renderer, card, example, stress fixture) | 45 |
+| Validated by the automated QA script (examples run) | 45 of 45 |
+| Stress fixtures validated by the automated QA script | 51 of 51 |
 | Approved by a human reviewer | 0 (`human_review: pending` on every card) |
 
-Implemented by family: widgets 6, data 9, systems 5, AI 8, software 7. Batches
+Implemented by family: widgets 6, data 11, systems 8, AI 11, software 9. Batches
 were built and validated in order: widgets and data (10), systems and data (10),
-AI and software (15).
+AI and software (15), and the ten catalog candidates (10).
 
 ## Files
 
 | Path | Role |
 | --- | --- |
-| `tools/visual_library/expansion/wave02/schema.py` | Validators for the 35 kinds, variants, states and derived values |
+| `tools/visual_library/expansion/wave02/schema.py` | Validators for the 45 kinds, variants, states and derived values |
 | `tools/visual_library/expansion/wave02/wave02.js` | Parametrized ECharts renderer (`draw[kind]`), study gallery plumbing, deterministic `renderAt` |
 | `tools/visual_library/expansion/wave02/wave02.css` | Study overrides for the gallery template |
 | `tools/visual_library/expansion/wave02/build.py` | CLI: `validate`, `build`, `index`, `card`, `search` |
 | `tools/visual_library/expansion/wave02/qa.mjs` | Own QA script (see below); `--survey` reports every failure in one pass |
-| `tools/visual_library/expansion/wave02/examples.json` | One minimal example per implemented kind (35) |
-| `tools/visual_library/expansion/wave02/stress.json` | 41 stress fixtures: maximum counts, long labels, zero and extreme values, every variant and state |
-| `tools/visual_library/expansion/wave02/catalog/index.json` | Compact index: 45 entries with id, kind, family, status, purpose, tags, variants, states |
-| `tools/visual_library/expansion/wave02/catalog/cards/<kind>.json` | Detailed card per implemented kind (35): purpose, use_when, not_when, parameters, defaults, limits, variants, states, example, stress, provenance, licenses, renderer, qa, production_scene_available, human_review |
+| `tools/visual_library/expansion/wave02/examples.json` | One minimal example per implemented kind (45) |
+| `tools/visual_library/expansion/wave02/stress.json` | 51 stress fixtures: maximum counts, long labels, zero and extreme values, every variant and state |
+| `tools/visual_library/expansion/wave02/catalog/index.json` | Compact index: 45 entries, all implemented, with id, kind, family, status, purpose, tags, variants, states |
+| `tools/visual_library/expansion/wave02/catalog/cards/<kind>.json` | Detailed card per implemented kind (45): purpose, use_when, not_when, parameters, defaults, limits, variants, states, example, stress, provenance, licenses, renderer, qa, production_scene_available, human_review |
 | `tests/test_visual_wave02.py` | 13 unit tests (fixtures, rejections, catalog consistency, private offline build, writer preflight, release audit, QA script boundaries) |
 
 ## Using the catalog
@@ -167,11 +167,11 @@ wave 02 script was written independently and carries its own checks:
 
 | Run | Input | Components | Palettes | Viewports | Exports | Errors | Network | Result |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `w-13` | examples.json | 35 | study, graphite | 1440x1200, 390x844, 375x667 | 70 | 0 | 0 | PASS |
-| `w-stress-14` | stress.json | 41 | study, graphite | 1440x1200, 390x844, 375x667 | 82 | 0 | 0 | PASS |
+| `w-17` | examples.json | 45 | study, graphite | 1440x1200, 390x844, 375x667 | 90 | 0 | 0 | PASS |
+| `w-stress-18` | stress.json | 51 | study, graphite | 1440x1200, 390x844, 375x667 | 102 | 0 | 0 | PASS |
 
 Browser: Chrome 153.0.8010.48 via Playwright 1.62.1, Node 24.19.0. Earlier
-runs (`w-01` to `w-12`, `w-stress-01` to `w-stress-13`) are the iteration
+runs (`w-01` to `w-16`, `w-stress-01` to `w-stress-17`) are the iteration
 history; `w-10` holds a partial `qa/` directory from a run that stopped at the
 first dag failure and is kept as is because the writer never overwrites.
 
@@ -179,8 +179,10 @@ Defects found by the checks and fixed during the batches include truncated log
 timestamps, wrapped matrix headers, funnel labels over narrow bars, clustered
 percentile points (solved with the `ladder-log` variant and validator guards),
 split-flow ribbons overrunning labels, bullet label collisions, a dag caption
-colliding with the provenance line, and lane labels drawn over neighboring
-spans. Renders of every implemented kind and every stress fixture were also
+colliding with the provenance line, lane labels drawn over neighboring spans,
+scorecard chips over the score, dense memory timelines with colliding turn
+labels, slope labels pushed past the axis, and state-diff values that
+truncated at 18 characters (now 16). Renders of every implemented kind and every stress fixture were also
 inspected by the implementation reviewer on the contact sheets; that inspection
 is not operator approval.
 

@@ -2103,6 +2103,503 @@
           }
         ]
       }
+    },
+    {
+      "id": "memory-eight",
+      "kind": "memory-timeline",
+      "title": "Twelve turns, eight events, shared turns.",
+      "insight": "Maximum turns and events with two events on one turn and long labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "database",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "turns": 12,
+        "events": [
+          {
+            "turn": 1,
+            "kind": "stored",
+            "label": "customer name"
+          },
+          {
+            "turn": 1,
+            "kind": "stored",
+            "label": "order 4471 total"
+          },
+          {
+            "turn": 3,
+            "kind": "recalled",
+            "label": "customer name"
+          },
+          {
+            "turn": 5,
+            "kind": "updated",
+            "label": "delivery address"
+          },
+          {
+            "turn": 7,
+            "kind": "forgotten",
+            "label": "draft reply text"
+          },
+          {
+            "turn": 9,
+            "kind": "recalled",
+            "label": "order 4471 total"
+          },
+          {
+            "turn": 11,
+            "kind": "stored",
+            "label": "refund reference"
+          },
+          {
+            "turn": 12,
+            "kind": "recalled",
+            "label": "delivery address"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scorecard-six",
+      "kind": "eval-scorecard",
+      "title": "Six suites, zero and full scores.",
+      "insight": "Maximum suites with a zero, a hundred, no prior runs and a threshold at the top.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-column",
+      "state": {
+        "highlight": 1
+      },
+      "data": {
+        "threshold": 95,
+        "suites": [
+          {
+            "label": "Schema validity",
+            "score": 100,
+            "previous": 100
+          },
+          {
+            "label": "Grounding",
+            "score": 0,
+            "previous": 12.5
+          },
+          {
+            "label": "Refusal quality",
+            "score": 95,
+            "previous": 94.5
+          },
+          {
+            "label": "Tone",
+            "score": 61.5,
+            "previous": null
+          },
+          {
+            "label": "Latency budget",
+            "score": 99.9,
+            "previous": 100
+          },
+          {
+            "label": "Cost budget",
+            "score": 47,
+            "previous": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": "tool-six",
+      "kind": "tool-schema",
+      "title": "Six parameters at the limits.",
+      "insight": "Maximum parameters with every type and long notes.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-json",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "name": "schedule_delivery",
+        "description": "Book a delivery slot and notify the buyer.",
+        "params": [
+          {
+            "name": "order_id",
+            "type": "string",
+            "required": true,
+            "note": "existing open order"
+          },
+          {
+            "name": "slot_start",
+            "type": "string",
+            "required": true,
+            "note": "ISO timestamp, local"
+          },
+          {
+            "name": "window_hours",
+            "type": "number",
+            "required": false,
+            "note": "defaults to 2"
+          },
+          {
+            "name": "notify",
+            "type": "boolean",
+            "required": false,
+            "note": "send SMS and email"
+          },
+          {
+            "name": "items",
+            "type": "array",
+            "required": true,
+            "note": "line item ids"
+          },
+          {
+            "name": "address",
+            "type": "object",
+            "required": false,
+            "note": "overrides the order"
+          }
+        ]
+      }
+    },
+    {
+      "id": "latency-six",
+      "kind": "latency-breakdown",
+      "title": "Six stages with a tiny one.",
+      "insight": "Maximum stages including a one-millisecond stage and long labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "timer",
+      "state": {
+        "highlight": 4
+      },
+      "data": {
+        "unit": "ms",
+        "stages": [
+          {
+            "label": "TLS handshake",
+            "value": 38
+          },
+          {
+            "label": "Auth check",
+            "value": 1
+          },
+          {
+            "label": "Cache lookup",
+            "value": 4
+          },
+          {
+            "label": "Vector search",
+            "value": 210
+          },
+          {
+            "label": "Model call",
+            "value": 1480
+          },
+          {
+            "label": "Serialize",
+            "value": 27
+          }
+        ]
+      }
+    },
+    {
+      "id": "window-denied",
+      "kind": "sliding-window",
+      "title": "Window at the limit with clustered events.",
+      "insight": "Twenty-four events with a dense cluster and the limit reached, so the next request is denied.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "clock",
+      "data": {
+        "window": 10,
+        "limit": 12,
+        "now": 100,
+        "unit": "s",
+        "events": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90.5,
+          91,
+          91.2,
+          91.4,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          99.5,
+          100
+        ]
+      }
+    },
+    {
+      "id": "retry-over",
+      "kind": "retry-budget",
+      "title": "Retries far over budget.",
+      "insight": "Retries exceed requests with a small budget; the load factor is above two.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "activity",
+      "data": {
+        "window": "last 60 min",
+        "requests": 1200,
+        "retries": 1500,
+        "budget_percent": 5
+      }
+    },
+    {
+      "id": "heatmap-six",
+      "kind": "heatmap",
+      "title": "Six by six with negatives and a flat row.",
+      "insight": "Maximum grid, negative values, a constant row and long labels.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "layers",
+      "data": {
+        "unit": "ms",
+        "rows": [
+          "Checkout API",
+          "Search API",
+          "Auth service",
+          "Image CDN",
+          "Reporting",
+          "Webhooks"
+        ],
+        "columns": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri",
+          "Weekend"
+        ],
+        "values": [
+          [
+            120,
+            140,
+            160,
+            155,
+            210,
+            90
+          ],
+          [
+            80,
+            82,
+            79,
+            81,
+            84,
+            60
+          ],
+          [
+            15,
+            15,
+            15,
+            15,
+            15,
+            15
+          ],
+          [
+            -5,
+            0,
+            12,
+            30,
+            44,
+            -12
+          ],
+          [
+            400,
+            380,
+            420,
+            390,
+            610,
+            120
+          ],
+          [
+            22,
+            25,
+            31,
+            28,
+            35,
+            19
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slope-six",
+      "kind": "slope",
+      "title": "Six items with clustered values.",
+      "insight": "Maximum items with near-equal starts and one flat line.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "chart-line",
+      "state": {
+        "highlight": 2
+      },
+      "data": {
+        "left": "Baseline",
+        "right": "Candidate",
+        "unit": "ms",
+        "items": [
+          {
+            "label": "p50",
+            "start": 120,
+            "end": 118
+          },
+          {
+            "label": "p75",
+            "start": 122,
+            "end": 140
+          },
+          {
+            "label": "p90",
+            "start": 125,
+            "end": 210
+          },
+          {
+            "label": "p95",
+            "start": 128,
+            "end": 128
+          },
+          {
+            "label": "p99",
+            "start": 300,
+            "end": 260
+          },
+          {
+            "label": "max",
+            "start": 900,
+            "end": 640
+          }
+        ]
+      }
+    },
+    {
+      "id": "state-eight",
+      "kind": "state-diff",
+      "title": "Eight fields, all changed or empty.",
+      "insight": "Maximum fields with empties on both sides and long values.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "file-code",
+      "data": {
+        "record": "subscription 88120",
+        "fields": [
+          {
+            "key": "plan",
+            "before": "starter-monthly",
+            "after": "business-annual"
+          },
+          {
+            "key": "seats",
+            "before": "3",
+            "after": "25"
+          },
+          {
+            "key": "owner",
+            "before": "kim@example.test",
+            "after": "ops@example.test"
+          },
+          {
+            "key": "trial_ends",
+            "before": "2026-10-01",
+            "after": ""
+          },
+          {
+            "key": "coupon",
+            "before": "",
+            "after": "LAUNCH25"
+          },
+          {
+            "key": "region",
+            "before": "eu-west-1",
+            "after": "eu-west-1"
+          },
+          {
+            "key": "currency",
+            "before": "EUR",
+            "after": "USD"
+          },
+          {
+            "key": "notes",
+            "before": "",
+            "after": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "semver-one",
+      "kind": "semver-rule",
+      "title": "Three-digit version, one change.",
+      "insight": "Large version numbers with a single patch change.",
+      "source": {
+        "kind": "illustrative",
+        "label": "Stress fixture",
+        "reference": "Layout test only",
+        "as_of": "2026-09-15"
+      },
+      "icon": "git-branch",
+      "state": {
+        "highlight": 0
+      },
+      "data": {
+        "version": "120.45.999",
+        "changes": [
+          {
+            "kind": "patch",
+            "example": "fix a rounding error in totals"
+          }
+        ]
+      }
     }
   ]
 }

@@ -714,7 +714,7 @@
       "id": "wave02:memory-timeline",
       "kind": "memory-timeline",
       "family": "ai",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "What an agent remembered, forgot and retrieved across turns, on one line.",
       "tags": [
         "memory",
@@ -723,14 +723,18 @@
         "forgetting",
         "turns"
       ],
-      "variants": [],
-      "states": []
+      "variants": [
+        "line"
+      ],
+      "states": [
+        "highlight"
+      ]
     },
     {
       "id": "wave02:eval-scorecard",
       "kind": "eval-scorecard",
       "family": "ai",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "Scores per evaluation suite with the pass threshold and the delta from the last run.",
       "tags": [
         "evaluation",
@@ -739,14 +743,18 @@
         "threshold",
         "regression"
       ],
-      "variants": [],
-      "states": []
+      "variants": [
+        "rows"
+      ],
+      "states": [
+        "highlight"
+      ]
     },
     {
       "id": "wave02:tool-schema",
       "kind": "tool-schema",
       "family": "ai",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "A tool definition as name, typed parameters and which are required.",
       "tags": [
         "tools",
@@ -755,14 +763,18 @@
         "parameters",
         "json schema"
       ],
-      "variants": [],
-      "states": []
+      "variants": [
+        "card"
+      ],
+      "states": [
+        "highlight"
+      ]
     },
     {
       "id": "wave02:latency-breakdown",
       "kind": "latency-breakdown",
       "family": "systems",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "One request split into its sequential stages with the share of total time.",
       "tags": [
         "latency",
@@ -771,14 +783,18 @@
         "critical path",
         "tracing"
       ],
-      "variants": [],
-      "states": []
+      "variants": [
+        "stacked"
+      ],
+      "states": [
+        "highlight"
+      ]
     },
     {
       "id": "wave02:sliding-window",
       "kind": "sliding-window",
       "family": "systems",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "A rate limit as a sliding window of timestamps with the count inside the window.",
       "tags": [
         "rate limit",
@@ -786,14 +802,16 @@
         "timestamps",
         "quota"
       ],
-      "variants": [],
+      "variants": [
+        "timeline"
+      ],
       "states": []
     },
     {
       "id": "wave02:heatmap",
       "kind": "heatmap",
       "family": "data",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "A small matrix of values shaded by magnitude with the numbers printed.",
       "tags": [
         "heatmap",
@@ -802,14 +820,16 @@
         "correlation",
         "grid"
       ],
-      "variants": [],
+      "variants": [
+        "grid"
+      ],
       "states": []
     },
     {
       "id": "wave02:slope",
       "kind": "slope",
       "family": "data",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "Rank or value change for several categories between two points as sloped lines.",
       "tags": [
         "slope chart",
@@ -817,14 +837,18 @@
         "change",
         "two periods"
       ],
-      "variants": [],
-      "states": []
+      "variants": [
+        "lines"
+      ],
+      "states": [
+        "highlight"
+      ]
     },
     {
       "id": "wave02:state-diff",
       "kind": "state-diff",
       "family": "software",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "Before and after values of a record with changed fields marked.",
       "tags": [
         "state",
@@ -833,14 +857,16 @@
         "fields",
         "mutation"
       ],
-      "variants": [],
+      "variants": [
+        "columns"
+      ],
       "states": []
     },
     {
       "id": "wave02:semver-rule",
       "kind": "semver-rule",
       "family": "software",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "Which part of a version number changes for a breaking, additive or fixing change.",
       "tags": [
         "semver",
@@ -849,14 +875,18 @@
         "minor",
         "patch"
       ],
-      "variants": [],
-      "states": []
+      "variants": [
+        "ladder"
+      ],
+      "states": [
+        "highlight"
+      ]
     },
     {
       "id": "wave02:retry-budget",
       "kind": "retry-budget",
       "family": "systems",
-      "status": "proposed",
+      "status": "implemented",
       "purpose": "Retries allowed versus retries used across a window, with the point where retries amplify load.",
       "tags": [
         "retries",
@@ -864,7 +894,9 @@
         "amplification",
         "backoff"
       ],
-      "variants": [],
+      "variants": [
+        "bars"
+      ],
       "states": []
     }
   ]
