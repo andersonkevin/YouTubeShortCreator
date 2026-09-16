@@ -14,7 +14,7 @@ a cover and a publishing handoff, without redesigning anything. The scenes expla
 an idea with a diagram, a chart, a comparison, a list of steps or a code sample;
 the subject is up to the channel.
 
-**Version 0.2.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
+**Version 0.3.0** · **Assistant-operated** · **Local media pipeline** · **macOS production backend** · **MIT**
 
 | Explain the tools | Show the contract | Make approval visible |
 | :---: | :---: | :---: |
