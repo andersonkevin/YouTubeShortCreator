@@ -12,9 +12,11 @@ Choose one idea that works in three or four scenes: a clear problem, a code/diag
 explanation, and a useful conclusion. Avoid trying to fit a full tutorial into a Short.
 [examples/narration.txt](../examples/narration.txt) is a starting script, not a supplied recording.
 
-Create your final narration using your own voice or a service you are authorized
-to use. Export the actual voice file before timing scenes. The tool does not call
-ElevenLabs or generate narration. Confirm the rights and privacy of your source.
+Create your final narration using your own voice, a service you are authorized
+to use, or the optional [local voice synthesis](VOICE.md) tool, which writes a
+WAV straight into `intake/`. Export the actual voice file before timing scenes.
+`ysc.py` itself does not call ElevenLabs or generate narration. Confirm the rights
+and privacy of your source.
 
 ## 2. Import Inputs
 
