@@ -21,6 +21,8 @@ their contracts. No new provider, dependency download or alternate recorder is u
 | Which stages overlap in time? | Timeline | Slide left; explicit interval endpoints |
 | Where are the locations? | Map | Fade; equal marker sizes, no audience ranking |
 | What is the process or decision? | Flow or comparison | Slide down or fade |
+| Rows that read top to bottom | Timeline, heatmap, stacked bar | Wipe down |
+| One panel that should arrive as a whole | Metric, donut, map | Scale-settle |
 
 Use variety to clarify the story, not to cycle through effects. Keep the approved
 three/four-scene limit and one primary teaching point per scene. Do not use charts
@@ -41,8 +43,12 @@ object alongside its existing fields:
 }
 ```
 
-- `reveal`: `wipe-right`, `fade`, `slide-left`, `slide-right`, `slide-up`, or
-  `slide-down`. Slides name the direction of movement, and also fade in.
+- `reveal`: `wipe-right`, `wipe-left`, `wipe-down`, `wipe-up`, `fade`, `slide-left`,
+  `slide-right`, `slide-up`, `slide-down` or `scale-settle`. Wipes clip the settled
+  chart in from one edge without fading. Slides name the direction of movement, and
+  also fade in. `scale-settle` fades in while settling from 94% to full size around
+  the chart center. The four wipes and the settle come from the wave 03 motion
+  study, reduced to container-level entrances that never touch the data.
 - `exit`: `none` or `fade`. Fade duration is 0.15-0.6 seconds; `none` requires 0.
 - `chart_style`: `standard` or, only for bar data, `stacked`.
 - Omission keeps B02's wipe-right entrance, no exit, and standard chart style.
@@ -88,7 +94,8 @@ python3 -B tools/widget_smoke.py --workspace workspaces/chart-review-c --set cha
 ```
 
 Set A contains line/bar/donut; B contains scatter/heatmap/correlation; C contains
-timeline/map/stacked bars. Each includes a classic fourth scene and synthetic
+timeline/map/stacked bars; D and E repeat charts with the wipe-down, wipe-up,
+wipe-left and scale-settle entrances. Each includes a classic fourth scene and synthetic
 audio, not a publishable voiceover. `--scenes 3` uses only the first two charts and
 a classic scene. `--palette graphite` exercises a second approved test palette.
 Browser QA checks fitting and deterministic mid-entrance/exit seeks as well as

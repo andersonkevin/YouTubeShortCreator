@@ -13,9 +13,14 @@
       const remaining = Number(item.scene.dataset.end) - seconds;
       const exit = item.presentation.exit === 'fade' ? clamp(remaining/item.presentation.exit_duration) : 1;
       const vector = {'slide-left':[56,0], 'slide-right':[-56,0], 'slide-up':[0,42], 'slide-down':[0,-42]}[preset] || [0,0];
-      item.chartNode.style.clipPath = preset === 'wipe-right' ? `inset(0 ${(1-amount)*100}% 0 0)` : 'none';
-      item.chartNode.style.transform = `translate(${vector[0]*(1-eased)}px,${vector[1]*(1-eased)}px)`;
-      item.chartNode.style.opacity = String((local >= item.motion.enter ? 1 : 0) * (preset === 'wipe-right' ? 1 : eased) * exit);
+      // Wipes clip the settled chart from one edge; slides and fades ease opacity; scale-settle eases from 94% size.
+      const hidden = (1-amount)*100;
+      const clips = {'wipe-right':`inset(0 ${hidden}% 0 0)`, 'wipe-left':`inset(0 0 0 ${hidden}%)`, 'wipe-down':`inset(0 0 ${hidden}% 0)`, 'wipe-up':`inset(${hidden}% 0 0 0)`};
+      const wipe = preset in clips;
+      item.chartNode.style.clipPath = wipe ? clips[preset] : 'none';
+      item.chartNode.style.transformOrigin = '50% 50%';
+      item.chartNode.style.transform = preset === 'scale-settle' ? `scale(${0.94+0.06*eased})` : `translate(${vector[0]*(1-eased)}px,${vector[1]*(1-eased)}px)`;
+      item.chartNode.style.opacity = String((local >= item.motion.enter ? 1 : 0) * (wipe ? 1 : eased) * exit);
     }
   };
   window.ShortCreatorVisualReady = (async () => {
