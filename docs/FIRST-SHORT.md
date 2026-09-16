@@ -87,6 +87,12 @@ Expected location: `workspace/episodes/first-short/episode.json`, with private c
 of the four inputs beside it. The initial scene selection is based on the brand's
 3/4-scene setting. Draft anchors divide the available cues, not their semantic meaning.
 
+When you produce several Shorts in a row, add `--batch NAME` to each `new` call.
+The draft then takes layouts the batch has not used yet, so a series of ten or
+twelve episodes does not open the same way twice; `python3 ysc.py batch NAME`
+shows what the batch has used so far. `--layouts quote-card,numbered-steps,closing`
+sets the scenes explicitly instead.
+
 ## 6. Replace the Example Content
 
 Edit that `episode.json`:

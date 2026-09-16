@@ -10,6 +10,7 @@ import subprocess
 import sys
 
 import branding
+import diversity
 import runtime
 import workflow
 from safety import digest, identifier, inside, read_json, require, write_json
@@ -62,7 +63,7 @@ def import_file(root, source, name):
     return dest
 
 
-def new_episode(root, episode_id, audio, transcript, graphic, captions):
+def new_episode(root, episode_id, audio, transcript, graphic, captions, batch=None, layouts=None):
     brand = branding.verified(root, workflow.verify_lock())
     target = inside(root, 'episodes/' + identifier(episode_id), exists=False)
     require(not target.exists(), 'Episode exists; use a new ID')
@@ -74,9 +75,13 @@ def new_episode(root, episode_id, audio, transcript, graphic, captions):
     workflow.validate_captions(caption_data, transcript_data, duration, {})
     count = brand['scene_count']
     require(len(caption_data['cues']) >= count, 'Not enough timed caption cues for the selected scene count')
-    layouts = ['prompt-tools', 'code-policy', 'approval-gate']
-    if count == 4:
-        layouts.insert(2, 'code-pipeline')
+    # Layouts rotate through the batch's unused families; without a batch every draft starts the same way.
+    earlier = diversity.history(root, batch) if batch else []
+    if layouts:
+        layouts = [identifier(name) for name in layouts.split(',')]
+        require(len(layouts) == count and all(name in diversity.FAMILY_OF for name in layouts), f'Provide {count} production layouts (run: python3 ysc.py layouts)')
+    else:
+        layouts = diversity.pick_layouts(count, earlier)
     anchors = [i * len(caption_data['cues']) // count for i in range(count)]
     starts = [0] + [caption_data['cues'][i]['start'] for i in anchors[1:]]
     ends = starts[1:] + [duration]
@@ -105,6 +110,8 @@ def new_episode(root, episode_id, audio, transcript, graphic, captions):
                         'pinned_comment': 'DRAFT: Add a relevant question for viewers.'},
             'scenes': scenes, 'timing_adjustments': {}}
     write_json(target / 'episode.json', data)
+    if batch:
+        write_json(target / 'batch.json', {'batch': batch, 'episode': episode_id, 'sequence': len(earlier) + 1, 'picked_layouts': layouts})
     (target / 'REVIEW.txt').write_text('DRAFT ONLY. Replace example scene content, thumbnail copy and YouTube data.\nListen to the recording and review caption words/timestamps before rendering.\nAutomatic checks do not verify factual correctness or editorial quality.\n', encoding='utf-8')
     return target / 'episode.json'
 
@@ -124,6 +131,7 @@ def parser():
     sub.add_parser('doctor')
     sub.add_parser('layouts')
     sub.add_parser('palettes')
+    sub.add_parser('batch').add_argument('name', help='Batch name given to new --batch')
     command = sub.add_parser('import')
     command.add_argument('source')
     command.add_argument('--name', required=True)
@@ -137,6 +145,8 @@ def parser():
     command.add_argument('id')
     for value in ('audio', 'transcript', 'graphic', 'captions'):
         command.add_argument('--' + value, required=True)
+    command.add_argument('--batch', help='Batch name; layouts avoid the families this batch already used')
+    command.add_argument('--layouts', help='Comma-separated layouts, one per scene, instead of the picker')
     command.add_argument('--approve-write', action='store_true')
     for name in ('validate', 'build', 'render'):
         command = sub.add_parser(name)
@@ -156,7 +166,7 @@ def main(argv=None):
             if not root.exists():
                 onboarding(root)
             else:
-                print('Workspace exists. Commands: doctor, layouts, palettes, import, transcribe, caption-draft, new, validate, build, render.\nUse --help or COMMAND --help for arguments. For another brand, start with --workspace PATH init.')
+                print('Workspace exists. Commands: doctor, layouts, palettes, batch, import, transcribe, caption-draft, new, validate, build, render.\nUse --help or COMMAND --help for arguments. For another brand, start with --workspace PATH init.')
             return 0
         if args.command == 'init':
             onboarding(root, args.approve_write)
@@ -168,7 +178,10 @@ def main(argv=None):
             for row in branding.palette_table():
                 print(f"{row['name']:14} background {row['background']}  accent {row['accent']} ({row['accent_contrast']}:1)  secondary {row['secondary']} ({row['secondary_contrast']}:1)")
             return 0
-        if args.command not in ('doctor', 'validate', 'palettes'):
+        if args.command == 'batch':
+            print(json.dumps(diversity.report(root, args.name), indent=2))
+            return 0
+        if args.command not in ('doctor', 'validate'):
             require(args.approve_write, 'Writer requires --approve-write')
         if args.command == 'brand-approve':
             branding.approve(root, workflow.verify_lock())
@@ -184,7 +197,7 @@ def main(argv=None):
         elif args.command == 'caption-draft':
             result = workflow.caption_draft(args.transcript, args.output)
         elif args.command == 'new':
-            result = new_episode(root, args.id, args.audio, args.transcript, args.graphic, args.captions)
+            result = new_episode(root, args.id, args.audio, args.transcript, args.graphic, args.captions, args.batch, args.layouts)
         else:
             episode = inside(root, args.episode)
             if args.command == 'validate':

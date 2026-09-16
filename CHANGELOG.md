@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- `new --batch NAME` picks each draft's layouts from what the batch has not used:
+  the 18 production layouts are grouped into eight visual families, unused layouts
+  come first, then the family used longest ago, never two of one family in an
+  episode, with a gate layout last. Membership lives in a write-once `batch.json`
+  beside the episode; the picker rereads each member's current episode, so manual
+  layout edits count. `--layouts` sets the scenes explicitly, and the read-only
+  `batch NAME` command reports layouts, families, reveals, visual kinds, repeats
+  and the next pick. Without a batch, drafts start the same way as before.
 - The 55 wave 02 components are production scene records: a version 2 episode
   can reference `wave02:<kind>` in `visuals`, validated by the wave 02 schema and
   drawn into the full 824x820 slot with brand-derived tokens. The renderer is now

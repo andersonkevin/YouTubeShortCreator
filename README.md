@@ -53,7 +53,9 @@ local model inference. See [privacy boundaries](SECURITY.md).
 | Handoff | Your review | YouTube title, description, hashtags, tags, pinned comment and QA evidence |
 
 The approved branding and safe zones stay fixed. Choose different supported
-layouts to fit each story; content, timing and artwork change per episode.
+layouts to fit each story; content, timing and artwork change per episode. When
+you draft a series, `new --batch NAME` rotates through layouts the batch has not
+used yet, and `batch NAME` reports what it has.
 
 ## Quick Start
 

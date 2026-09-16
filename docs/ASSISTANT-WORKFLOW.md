@@ -50,8 +50,11 @@ Do not copy the density of technical stress fixtures into production episodes.
 
 Change content slots, code examples, authorized graphics and measured timings,
 not layout CSS, fonts, logo position or animation-engine code for each episode.
-Use the existing [12-layout gallery](GALLERY.md). Match the thumbnail's fixed
-type zone, logo and accent; only subject art and copy vary.
+Use the existing [18-layout gallery](GALLERY.md). When drafting a series, pass
+the same `--batch NAME` to every `new` call so the picker rotates through layouts
+the batch has not used, and check `batch NAME` before choosing scene layouts by
+hand. Match the thumbnail's fixed type zone, logo and accent; only subject art
+and copy vary.
 
 Use the [visual director](assistant/VISUAL-DIRECTOR.md) and
 [offline library](VISUAL-LIBRARY.md) to discover icons, charts, widgets and existing
