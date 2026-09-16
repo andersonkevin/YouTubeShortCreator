@@ -51,9 +51,29 @@ and recovery. A diagram of a rollback is not implementation of a rollback mechan
 Use one clear takeaway. Do not repeat the whole narration in the heading, diagram,
 scene note and caption simultaneously.
 
+## General-Purpose Scenes
+
+Six classic layouts for any subject, added on 2026-09-16 and qualified with the
+same browser checks as the original twelve. The example copy is illustrative.
+
+| Quote card | Numbered steps | Headline stat |
+| :---: | :---: | :---: |
+| <a href="images/quote-card.png"><img src="images/quote-card.png" alt="A short quotation with attribution and role" width="250"></a> | <a href="images/numbered-steps.png"><img src="images/numbered-steps.png" alt="Four numbered steps with one line of detail each" width="250"></a> | <a href="images/headline-stat.png"><img src="images/headline-stat.png" alt="One large figure with its label, context and trend" width="250"></a> |
+| [quote-card](../templates/v1/scenes/quote-card.json) | [numbered-steps](../templates/v1/scenes/numbered-steps.json) | [headline-stat](../templates/v1/scenes/headline-stat.json) |
+
+| Checklist progress | Before and after | Pros and cons |
+| :---: | :---: | :---: |
+| <a href="images/checklist-progress.png"><img src="images/checklist-progress.png" alt="Four items with marks and a done count" width="250"></a> | <a href="images/before-after-panels.png"><img src="images/before-after-panels.png" alt="Two panels with the same list before and after a change" width="250"></a> | <a href="images/pros-cons-columns.png"><img src="images/pros-cons-columns.png" alt="Two columns of points for and against" width="250"></a> |
+| [checklist-progress](../templates/v1/scenes/checklist-progress.json) | [before-after-panels](../templates/v1/scenes/before-after-panels.json) | [pros-cons-columns](../templates/v1/scenes/pros-cons-columns.json) |
+
+Use these when the story is not about code: a credited sentence, a method in
+order, one figure with context, progress through tasks, a change item by item,
+or a decision with both sides. Slots are text; the checklist marks are whatever
+character you supply.
+
 ## Reuse the Contract, Not Just the Picture
 
-Each linked layout JSON contains a fixed `tree`, `content_keys`, `motion_keys` and
+Each linked layout JSON (eighteen in total) contains a fixed `tree`, `content_keys`, `motion_keys` and
 an `example`. Use these records to create content; PNGs are documentation, not
 editable production templates. Re-run visual QA after any change to text, timing,
 fonts or branding. See [image provenance](images/README.md) for hashes and limitations.

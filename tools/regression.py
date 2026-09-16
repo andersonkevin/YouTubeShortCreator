@@ -16,6 +16,10 @@ from test_workflow import fixture
 from tools.visual_library.kit import workspace_path
 
 
+LEGACY_LAYOUTS = ('approval-gate', 'automation-close', 'automation-plan', 'automation-preview', 'automation-rollback', 'closing',
+                  'code-evaluation', 'code-pipeline', 'code-policy', 'evidence-comparison', 'prompt-tools', 'retrieval-checks')
+
+
 def plan_scenes(layouts, captions, count):
     require(count in (3, 4) and len(layouts) == count, 'Expected three or four layouts')
     anchors = [i * len(captions['cues']) // count for i in range(count)]
@@ -51,8 +55,11 @@ def prepare(requested, approved):
         seed = fixture(root)
         data = read_json(seed)
         captions = read_json(seed.parent / data['inputs']['captions']['path'])
-        layouts = sorted(p.stem for p in (workflow.TEMPLATE / 'scenes').glob('*.json'))
-        require(len(layouts) == 12, 'Review fixture coverage before changing the legacy layout count')
+        # The twelve legacy layouts keep their original grouping so old references stay comparable;
+        # general-purpose layouts follow them and pad the last group by wrapping to the first names.
+        names = sorted(p.stem for p in (workflow.TEMPLATE / 'scenes').glob('*.json'))
+        layouts = [n for n in names if n in LEGACY_LAYOUTS] + [n for n in names if n not in LEGACY_LAYOUTS]
+        require(len(layouts) == 18 and len([n for n in names if n in LEGACY_LAYOUTS]) == 12, 'Review fixture coverage before changing the layout count')
         cases = []
 
         def add_case(identifier, scenes, expected='PASS', error=None):
@@ -73,7 +80,9 @@ def prepare(requested, approved):
 
         for count in (3, 4):
             for offset in range(0, len(layouts), count):
-                add_case(f'legacy-{count}-{offset // count + 1}', plan_scenes(layouts[offset:offset + count], captions, count))
+                group = layouts[offset:offset + count]
+                group = group + layouts[:count - len(group)]
+                add_case(f'legacy-{count}-{offset // count + 1}', plan_scenes(group, captions, count))
         scenes = plan_scenes(layouts[:3], captions, 3)
         scenes[0]['first_cue'] = 1
         add_case('invalid-anchor', scenes, 'FAIL', 'First scene must start')

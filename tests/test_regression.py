@@ -15,13 +15,13 @@ class RegressionTests(unittest.TestCase):
             root = regression.prepare(Path(temp).resolve() / 'reference', True)
             manifest = read_json(root / 'regression-fixture.json')
             self.assertFalse(manifest['production_approval'])
-            self.assertEqual(len(manifest['cases']), 9)
+            self.assertEqual(len(manifest['cases']), 13)
             old = workflow.ROOT, workflow.RUNS
             workflow.ROOT, workflow.RUNS = root, root / 'runs'
             try:
                 for count in (3, 4):
                     valid = [case for case in manifest['cases'] if case['scene_count'] == count and case['expected'] == 'PASS']
-                    self.assertEqual(len({name for case in valid for name in case['layouts']}), 12)
+                    self.assertEqual(len({name for case in valid for name in case['layouts']}), 18)
                     for case in valid:
                         workflow.validate(root / case['episode'])
                 invalid = next(case for case in manifest['cases'] if 'invalid-anchor' in case['episode'])

@@ -1,0 +1,46 @@
+/* General-purpose classic scenes: quote, steps, stat, checklist, before/after, pros/cons. Geometry inherits from the motion base. */
+.quote-card .quote-mark{display:block;font-size:150px;line-height:.7;color:var(--lime);font-weight:800;margin:10px 0 24px}
+.quote-card .quote-text{font-size:42px;line-height:1.3;font-weight:800;margin:0 0 40px;max-width:800px}
+.quote-card .quote-rule{height:4px;width:140px;background:var(--lime);transform-origin:left;margin:0 0 30px}
+.quote-card .quote-name{display:block;font-size:31px;font-weight:800}
+.quote-card .quote-role{display:block;font-size:27px;color:var(--muted);margin-top:8px}
+.numbered-steps{counter-reset:step}
+.numbered-steps .step-row{display:flex;align-items:flex-start;gap:26px;min-height:150px;padding:18px 0;border-top:2px solid var(--line)}
+.numbered-steps .step-row:first-child{border-top:0}
+.numbered-steps .step-number{counter-increment:step;flex:0 0 68px;height:68px;border-radius:50%;border:3px solid var(--lime);color:var(--lime);display:flex;align-items:center;justify-content:center;font:600 32px/1 BrandMono,monospace}
+.numbered-steps .step-number::before{content:counter(step)}
+.numbered-steps .step-copy{display:flex;flex-direction:column;gap:10px;padding-top:12px}
+.numbered-steps .step-copy strong{font-size:35px;line-height:1.2}
+.numbered-steps .step-copy span{font-size:27px;line-height:1.3;color:var(--muted)}
+.headline-stat .stat-label{font-size:27px;font-weight:800;color:var(--muted);margin:20px 0 10px;letter-spacing:1px}
+.headline-stat .stat-figure{display:flex;align-items:baseline;gap:18px}
+.headline-stat .stat-value{font-size:190px;line-height:1;font-weight:800;color:var(--lime)}
+.headline-stat .stat-unit{font-size:64px;font-weight:800;color:var(--muted)}
+.headline-stat .stat-rule{height:4px;width:240px;background:var(--cyan);transform-origin:left;margin:30px 0}
+.headline-stat .stat-context{font-size:37px;line-height:1.3;margin:0 0 20px}
+.headline-stat .stat-trend{font-size:30px;line-height:1.3;color:var(--cyan);margin:0}
+.checklist-progress .check-item{display:flex;align-items:center;gap:24px;height:128px;border-top:2px solid var(--line)}
+.checklist-progress .check-item:first-child{border-top:0}
+.checklist-progress .check-mark{flex:0 0 60px;height:60px;border-radius:50%;background:var(--surface);border:2px solid var(--edge);display:flex;align-items:center;justify-content:center;font:600 30px/1 BrandMono,monospace;color:var(--lime)}
+.checklist-progress .check-label{font-size:36px;line-height:1.25}
+.checklist-progress .check-summary{margin:34px 0 0;font:600 30px/1.3 BrandMono,monospace;color:var(--cyan)}
+.before-after-panels{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:8px}
+.before-after-panels .panel-box{border:2px solid var(--edge);border-radius:8px;background:var(--surface);padding:30px 28px;min-height:520px}
+.before-after-panels .panel-box.after{border-color:var(--lime)}
+.before-after-panels .panel-title{font-size:27px;font-weight:800;color:var(--muted);margin:0 0 26px;letter-spacing:1px}
+.before-after-panels .after .panel-title{color:var(--lime)}
+.before-after-panels .panel-item{font-size:31px;line-height:1.3;margin:0 0 22px;padding-left:26px;position:relative}
+.before-after-panels .panel-item::before{content:"";position:absolute;left:0;top:16px;width:10px;height:10px;border-radius:50%;background:var(--cyan)}
+.before-after-panels .panel-arrow{display:block;height:4px;background:var(--lime);transform-origin:left}
+.pros-cons-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pros-cons-columns .column-box{border:2px solid var(--edge);border-radius:8px;background:var(--surface);padding:30px 28px;min-height:540px}
+.pros-cons-columns .column-box.pros{border-color:var(--lime)}
+.pros-cons-columns .column-box.cons{border-color:var(--rose)}
+.pros-cons-columns .column-title{font-size:27px;font-weight:800;margin:0 0 26px;letter-spacing:1px}
+.pros-cons-columns .pros .column-title{color:var(--lime)}
+.pros-cons-columns .cons .column-title{color:var(--rose)}
+.pros-cons-columns .column-item{font-size:31px;line-height:1.3;margin:0 0 22px;padding-left:30px;position:relative}
+.pros-cons-columns .column-item::before{position:absolute;left:0;top:0;font-weight:800}
+.pros-cons-columns .pros .column-item::before{content:"+";color:var(--lime)}
+.pros-cons-columns .cons .column-item::before{content:"\2013";color:var(--rose)}
+.pros-cons-columns .column-note{grid-column:1/-1;margin:14px 0 0;font-size:27px;line-height:1.3;color:var(--muted)}

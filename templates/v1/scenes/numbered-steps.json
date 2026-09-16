@@ -1,0 +1,292 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual numbered-steps"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "step-row"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "step-number"
+                },
+                "children": []
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "step-copy"
+                },
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_04"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "step-row"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "step-number"
+                },
+                "children": []
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "step-copy"
+                },
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_06"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_07"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "step-row"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "step-number"
+                },
+                "children": []
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "step-copy"
+                },
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_08"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_09"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "motion": "m03"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "step-row"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "step-number"
+                },
+                "children": []
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "step-copy"
+                },
+                "children": [
+                  {
+                    "tag": "strong",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "strong_10"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "slot": "span_11"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "motion": "m04"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_12"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "strong_04",
+    "span_05",
+    "strong_06",
+    "span_07",
+    "strong_08",
+    "span_09",
+    "strong_10",
+    "span_11",
+    "p_12"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "02 / HOW TO",
+      "h2_02": "Four steps,",
+      "h2_03": "in order.",
+      "strong_04": "Write one idea",
+      "span_05": "One sentence you could say out loud.",
+      "strong_06": "Record it",
+      "span_07": "Keep the final file unchanged.",
+      "strong_08": "Pick three scenes",
+      "span_09": "Problem, explanation, takeaway.",
+      "strong_10": "Review with sound",
+      "span_11": "Words, timing, readability.",
+      "p_12": "The order is the method."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.5
+      },
+      "m03": {
+        "enter": 0.9
+      },
+      "m04": {
+        "enter": 1.3
+      }
+    }
+  }
+}

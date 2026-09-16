@@ -18,9 +18,9 @@ Actual exported asset from the illustrative flow example, not a video-editor moc
 | Two-icon compositions | 6 | Fixed concept/state badges; export SVG |
 | Data charts | 8 | Validate, preview, scrub, export SVG and 880x810 PNG |
 | Widgets | 3 | Process flow, contextual metric and two-column comparison |
-| Existing video layouts | 12 | Discover exact content/motion slots and examples |
+| Existing video layouts | 18 | Discover exact content/motion slots and examples |
 
-The catalog has 69 entries, not 69 new video layouts. Icons and compositions are
+The catalog has 75 entries, not 75 new video layouts. Icons and compositions are
 not company logos. Diagrams/widgets are bounded visual forms, not arbitrary HTML.
 
 The eight charts now have a production adapter under B03 qualification. Flow, metric and comparison also have

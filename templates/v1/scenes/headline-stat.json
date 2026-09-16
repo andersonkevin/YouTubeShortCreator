@@ -1,0 +1,202 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual headline-stat"
+        },
+        "children": [
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "stat-label"
+            },
+            "children": [
+              {
+                "slot": "p_04"
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "stat-figure"
+            },
+            "children": [
+              {
+                "tag": "strong",
+                "attrs": {
+                  "class": "stat-value"
+                },
+                "children": [
+                  {
+                    "slot": "strong_05"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "stat-unit"
+                },
+                "children": [
+                  {
+                    "slot": "span_06"
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "stat-rule"
+            },
+            "children": [],
+            "motion": "m03"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "stat-context"
+            },
+            "children": [
+              {
+                "slot": "p_07"
+              }
+            ],
+            "motion": "m04"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "stat-trend"
+            },
+            "children": [
+              {
+                "slot": "p_08"
+              }
+            ],
+            "motion": "m05"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_09"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "strong_05",
+    "span_06",
+    "p_07",
+    "p_08",
+    "p_09"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "fill"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "03 / ONE NUMBER",
+      "h2_02": "The figure that",
+      "h2_03": "changed the plan.",
+      "p_04": "VIEWERS WHO WATCHED TO THE END",
+      "strong_05": "38",
+      "span_06": "%",
+      "p_07": "Up from 31% last month across 12 episodes.",
+      "p_08": "Trending up for three months in a row.",
+      "p_09": "A number needs its label and its context."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.4
+      },
+      "m03": {
+        "fill": [
+          0.9,
+          0.5
+        ]
+      },
+      "m04": {
+        "enter": 1.3
+      },
+      "m05": {
+        "enter": 1.6
+      }
+    }
+  }
+}

@@ -26,7 +26,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_discovery_and_production_boundary(self):
         entries=catalog.entries()
-        self.assertEqual(len(entries),69)
+        self.assertEqual(len(entries),75)
         self.assertEqual(len({e['id'] for e in entries}),69)
         self.assertEqual(len(catalog.search(kind='widget')),3)
         self.assertEqual(len(catalog.search('latency',kind='chart')),1)

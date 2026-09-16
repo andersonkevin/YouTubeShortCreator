@@ -33,7 +33,7 @@ class DocumentationTests(unittest.TestCase):
     def test_public_docs_pass(self):
         result = check(HOME)
         self.assertEqual(result['errors'], [])
-        self.assertEqual(result['manifest_images'], 18)
+        self.assertEqual(result['manifest_images'], 24)
 
     def test_assistant_entrypoints_share_workflow(self):
         for name in ('AGENTS.md', 'START-HERE.md'):

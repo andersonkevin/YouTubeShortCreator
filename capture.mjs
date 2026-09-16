@@ -37,6 +37,8 @@ try {
   await page.addInitScript(()=>window.__SHORTCREATOR_CAPTURE_MODE__=true);
   await page.goto(pathToFileURL(path.join(out, 'video.html')).href);
   await page.evaluate(()=>document.fonts.ready);
+  // Load the checked faces explicitly: a scene that never uses one of them would otherwise leave it unloaded.
+  await page.evaluate(()=>Promise.all([document.fonts.load('800 68px BrandSans'), document.fonts.load('32px BrandMono')]));
   await page.evaluate(()=>window.ShortCreatorVisualReady || Promise.resolve());
   assert.equal(await page.locator('.logo').evaluate(image=>image.complete && image.naturalWidth>0), true);
   assert.equal(await page.evaluate(()=>document.fonts.check('800 68px BrandSans') && document.fonts.check('32px BrandMono')), true);

@@ -38,7 +38,7 @@
 - [Local voice synthesis](VOICE.md): optional offline narration with Kokoro, its setup, records, rules and limits.
 - [Data contracts](DATA-CONTRACTS.md): episode fields, caption timing and safe examples.
 - [Branding](BRANDING.md): palettes, fonts, logo preparation and approval.
-- [Gallery](GALLERY.md): all 12 layouts with actual screenshots and source links.
+- [Gallery](GALLERY.md): all 18 layouts with actual screenshots and source links.
 - [Architecture](ARCHITECTURE.md): module responsibilities, capture clock and privacy boundaries.
 - [Release qualification](RELEASE-QA.md): tested environment and measured outcomes.
 - [Image provenance](images/README.md): origin, hashes and interpretation of documentation images.

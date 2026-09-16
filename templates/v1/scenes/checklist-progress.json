@@ -1,0 +1,268 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual checklist-progress"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "check-item"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-mark"
+                },
+                "children": [
+                  {
+                    "slot": "span_04"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-label"
+                },
+                "children": [
+                  {
+                    "slot": "span_05"
+                  }
+                ]
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "check-item"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-mark"
+                },
+                "children": [
+                  {
+                    "slot": "span_06"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-label"
+                },
+                "children": [
+                  {
+                    "slot": "span_07"
+                  }
+                ]
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "check-item"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-mark"
+                },
+                "children": [
+                  {
+                    "slot": "span_08"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-label"
+                },
+                "children": [
+                  {
+                    "slot": "span_09"
+                  }
+                ]
+              }
+            ],
+            "motion": "m03"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "check-item"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-mark"
+                },
+                "children": [
+                  {
+                    "slot": "span_10"
+                  }
+                ]
+              },
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "check-label"
+                },
+                "children": [
+                  {
+                    "slot": "span_11"
+                  }
+                ]
+              }
+            ],
+            "motion": "m04"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "check-summary"
+            },
+            "children": [
+              {
+                "slot": "p_12"
+              }
+            ],
+            "motion": "m05"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_13"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "span_04",
+    "span_05",
+    "span_06",
+    "span_07",
+    "span_08",
+    "span_09",
+    "span_10",
+    "span_11",
+    "p_12",
+    "p_13"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "enter"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "04 / PROGRESS",
+      "h2_02": "What is done,",
+      "h2_03": "what is left.",
+      "span_04": "✓",
+      "span_05": "Pick the topic",
+      "span_06": "✓",
+      "span_07": "Write the script",
+      "span_08": "✓",
+      "span_09": "Record the voice",
+      "span_10": "–",
+      "span_11": "Choose the artwork",
+      "p_12": "3 of 4 done",
+      "p_13": "A mark per item; the summary counts them."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.4
+      },
+      "m03": {
+        "enter": 0.7
+      },
+      "m04": {
+        "enter": 1.0
+      },
+      "m05": {
+        "enter": 1.5
+      }
+    }
+  }
+}

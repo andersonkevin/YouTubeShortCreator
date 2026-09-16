@@ -192,6 +192,66 @@
       "source": "2026-09-15 visual asset expansion browser SVG raster QA, run c-10, study palette",
       "brand": "Neutral illustrative asset study",
       "type": "unmodified browser SVG raster export"
+    },
+    {
+      "path": "docs/images/before-after-panels.png",
+      "layout": "before-after-panels",
+      "sha256": "c6edfbaa965ec15e20e50ce82c0fb2a124ce4ee87ae20888ffc8bad60c2d7271",
+      "width": 1080,
+      "height": 1920,
+      "source": "2026-09-16 general-layout regression capture on the synthetic Signal Lab fixture",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/checklist-progress.png",
+      "layout": "checklist-progress",
+      "sha256": "3079537ca5cb29dcc11c87bb5899f988e3e9d7f19ccf9266a9158141584d6641",
+      "width": 1080,
+      "height": 1920,
+      "source": "2026-09-16 general-layout regression capture on the synthetic Signal Lab fixture",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/headline-stat.png",
+      "layout": "headline-stat",
+      "sha256": "9a192a9e78b802417b11ece4c7938cf0dac260fc26cb20b7bbb2c80ad30a3578",
+      "width": 1080,
+      "height": 1920,
+      "source": "2026-09-16 general-layout regression capture on the synthetic Signal Lab fixture",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/numbered-steps.png",
+      "layout": "numbered-steps",
+      "sha256": "b5fb091a02ab3f62cbbf905f78faf5d67324780a72d233d1d726240a56fc7445",
+      "width": 1080,
+      "height": 1920,
+      "source": "2026-09-16 general-layout regression capture on the synthetic Signal Lab fixture",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/pros-cons-columns.png",
+      "layout": "pros-cons-columns",
+      "sha256": "c5bf83eb553a7db2f8de97b14e7de879e35b62863f5508ef7f8a8bfdcd4696c9",
+      "width": 1080,
+      "height": 1920,
+      "source": "2026-09-16 general-layout regression capture on the synthetic Signal Lab fixture",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
+    },
+    {
+      "path": "docs/images/quote-card.png",
+      "layout": "quote-card",
+      "sha256": "be266e408d7c80541a734d6e81204a54390f2234615028e889ccf3c358051c10",
+      "width": 1080,
+      "height": 1920,
+      "source": "2026-09-16 general-layout regression capture on the synthetic Signal Lab fixture",
+      "brand": "Signal Lab (illustrative)",
+      "type": "unmodified renderer screenshot"
     }
   ]
 }

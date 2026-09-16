@@ -1,0 +1,179 @@
+{
+  "tree": {
+    "tag": "section",
+    "attrs": {
+      "class": "scene"
+    },
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow"
+        },
+        "children": [
+          {
+            "slot": "p_01"
+          }
+        ]
+      },
+      {
+        "tag": "h2",
+        "attrs": {},
+        "children": [
+          {
+            "slot": "h2_02"
+          },
+          {
+            "tag": "br",
+            "attrs": {},
+            "children": []
+          },
+          {
+            "slot": "h2_03"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "visual quote-card"
+        },
+        "children": [
+          {
+            "tag": "span",
+            "attrs": {
+              "class": "quote-mark"
+            },
+            "children": [
+              {
+                "text": "“"
+              }
+            ],
+            "motion": "m01"
+          },
+          {
+            "tag": "p",
+            "attrs": {
+              "class": "quote-text"
+            },
+            "children": [
+              {
+                "slot": "p_04"
+              }
+            ],
+            "motion": "m02"
+          },
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "quote-rule"
+            },
+            "children": [],
+            "motion": "m03"
+          },
+          {
+            "tag": "strong",
+            "attrs": {
+              "class": "quote-name"
+            },
+            "children": [
+              {
+                "slot": "strong_05"
+              }
+            ],
+            "motion": "m04"
+          },
+          {
+            "tag": "span",
+            "attrs": {
+              "class": "quote-role"
+            },
+            "children": [
+              {
+                "slot": "span_06"
+              }
+            ],
+            "motion": "m05"
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "caption"
+        },
+        "children": [
+          {
+            "slot": "p_07"
+          }
+        ]
+      }
+    ]
+  },
+  "content_keys": [
+    "p_01",
+    "h2_02",
+    "h2_03",
+    "p_04",
+    "strong_05",
+    "span_06",
+    "p_07"
+  ],
+  "motion_keys": {
+    "m01": [
+      "enter"
+    ],
+    "m02": [
+      "enter"
+    ],
+    "m03": [
+      "fill"
+    ],
+    "m04": [
+      "enter"
+    ],
+    "m05": [
+      "enter"
+    ]
+  },
+  "example": {
+    "content": {
+      "p_01": "01 / ONE IDEA",
+      "h2_02": "Systems beat",
+      "h2_03": "good intentions.",
+      "p_04": "You do not rise to the level of your goals. You fall to the level of your systems.",
+      "strong_05": "James Clear",
+      "span_06": "Atomic Habits",
+      "p_07": "A short quote, credited, lands better than a long one."
+    },
+    "motion": {
+      "m01": {
+        "enter": 0.1
+      },
+      "m02": {
+        "enter": 0.4
+      },
+      "m03": {
+        "fill": [
+          1.2,
+          0.5
+        ]
+      },
+      "m04": {
+        "enter": 1.6
+      },
+      "m05": {
+        "enter": 1.9
+      }
+    }
+  }
+}
