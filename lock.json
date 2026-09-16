@@ -25,7 +25,7 @@
     "templates/v1/assets/spoken-captions.js": "81b5d124f3698e37a4db19942092eaa2f5cf9d36c2f758fbf847db07d9e93a9b",
     "templates/v1/assets/technology.css": "8035c6980a78be8eb087ccb87ecf39298c1bfa79094845428f1a5e929f53af72",
     "templates/v1/assets/visual-scenes.css": "e1241d48f4f2b6539ba4e9e0e55b19a34adc740bf1e3fb38381eb5752c441289",
-    "templates/v1/assets/visual-scenes.js": "908ba4906ef2dc0ab94adc3cac502f387f76f21bd60cf7b1adf9dd46a0966f60",
+    "templates/v1/assets/visual-scenes.js": "834ffcda6cc75b5ed2ec21210485b00eaeb5d59a743b0e1034c249b48f3d008d",
     "templates/v1/scenes/approval-gate.json": "ced5c1cbdac7abdb5bedf2d36c177b55b22eec20302aaa506b8934ddcd8e699d",
     "templates/v1/scenes/automation-close.json": "4d25b28086796bb7b96cc136bf9de26bd576e5cd1d88e4e6684a82a55baafc30",
     "templates/v1/scenes/automation-plan.json": "6c5e1f844611c0333cf667f81509c3d5e0b13470833d16bc5addd02a9d6e91eb",
@@ -94,7 +94,7 @@
     "tools/visual_library/vendor/manifest.json": "14c179a940a74ab7abc112c915495fe5da34c81bcbb921797d7d201ea45a8018",
     "tools/visual_library/vendor/natural-earth/world.json": "54b46eff26f4cdc3bfab768ac374b50f4070e98fffbf389a3ce0e22a2c3b5165",
     "transcribe.swift": "7f229c23785ca2b80f3a8fe5a32c88d7bc30656b4e70eda630c65edc0e326df5",
-    "visual_adapter.py": "730ae3522613489f4956088bc7ce14a0d2175ca70aeeadd9e46ec1381af7003f",
+    "visual_adapter.py": "3e1a1865d5e7985d101017ccf10cdae27756f3a7ae0bcb006b8ca06abfa3beaa",
     "workflow.py": "1473830ae02c31834cbd74d263dbf3af1c0727eb20292cb2b18ecda7aa7c0ca3",
     "ysc.py": "5edcdc4902c890fa9dba8d3e572400fb2e0156c724c00e7826478ab4ccabef5a"
   }

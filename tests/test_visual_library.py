@@ -35,6 +35,8 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(catalog.describe('visual:scatter')['qualification'], 'B03')
         self.assertIn('stacked',catalog.describe('visual:bar')['chart_styles'])
         self.assertIn('slide-left',catalog.describe('visual:line')['reveals'])
+        self.assertIn('wipe-down',catalog.describe('visual:line')['reveals'])
+        self.assertIn('scale-settle',catalog.describe('visual:line')['reveals'])
         self.assertEqual([entry['id'] for entry in catalog.search('stacked')], ['visual:bar'])
         self.assertEqual(catalog.describe('visual:flow')['motion_qualification'], 'B03')
 

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Four more chart entrances for visual scenes, reduced from the wave 03 motion
+  study to container-level presets: `wipe-left`, `wipe-down`, `wipe-up` and
+  `scale-settle`. Ten reveal presets in total; the synthetic chart fixtures gain
+  sets D and E that exercise them.
 - Twelve generated dark palettes join the brand presets (fifteen in total) with a
   read-only `palettes` command that prints each preset's contrast ratios; the
   synthetic qualification tools accept every preset. A test keeps the presets

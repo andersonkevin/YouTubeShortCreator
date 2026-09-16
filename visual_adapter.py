@@ -11,7 +11,7 @@ from tools.visual_library import kit
 
 HOME = Path(__file__).resolve().parent
 PRODUCTION_KINDS = kit.KINDS
-REVEALS = ('wipe-right', 'fade', 'slide-left', 'slide-right', 'slide-up', 'slide-down')
+REVEALS = ('wipe-right', 'wipe-left', 'wipe-down', 'wipe-up', 'fade', 'slide-left', 'slide-right', 'slide-up', 'slide-down', 'scale-settle')
 DEFAULT_PRESENTATION = {'reveal': 'wipe-right', 'exit': 'none', 'exit_duration': 0, 'chart_style': 'standard'}
 CONTENT_LIMITS = {'eyebrow': 40, 'heading_1': 32, 'heading_2': 32, 'note': 110}
 

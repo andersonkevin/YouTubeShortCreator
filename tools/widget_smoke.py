@@ -25,10 +25,12 @@ from tools.visual_library.kit import workspace_path
 def chart_episode(seed, group, count=4):
     data = visual_episode(seed, count)
     examples = read_json(workflow.HOME / 'tools/visual_library/demo.json')['charts']
-    indexes = {'charts-a':(0,1,2), 'charts-b':(3,4,5), 'charts-c':(6,7,1)}[group]
+    indexes = {'charts-a':(0,1,2), 'charts-b':(3,4,5), 'charts-c':(6,7,1), 'charts-d':(0,1,2), 'charts-e':(3,6,7)}[group]
     presets = {'charts-a':('slide-left','slide-up','fade'),
                'charts-b':('slide-right','slide-down','wipe-right'),
-               'charts-c':('fade','slide-up','slide-left')}[group]
+               'charts-c':('fade','slide-up','slide-left'),
+               'charts-d':('wipe-down','scale-settle','wipe-left'),
+               'charts-e':('wipe-up','scale-settle','wipe-down')}[group]
     data['visuals'] = {}
     for i, scene in enumerate(data['scenes'][:-1]):
         record = copy.deepcopy(examples[indexes[i]])
@@ -83,7 +85,7 @@ def main():
     parser.add_argument('--palette', choices=tuple(branding.PALETTES), default='violet')
     parser.add_argument('--render', action='store_true')
     parser.add_argument('--backend', choices=('native', 'ffmpeg'), default='native')
-    parser.add_argument('--set', choices=('widgets','charts-a','charts-b','charts-c'), default='widgets')
+    parser.add_argument('--set', choices=('widgets','charts-a','charts-b','charts-c','charts-d','charts-e'), default='widgets')
     parser.add_argument('--approve-write', action='store_true')
     args = parser.parse_args()
     require(args.approve_write, 'Synthetic fixture writes require --approve-write')
