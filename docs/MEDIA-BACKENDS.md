@@ -55,7 +55,7 @@ are recorded. Native profiles neither require nor invoke these tools. Selected
 FFmpeg failures never invoke Swift as a media fallback.
 
 Encoding uses libx264, medium preset, CRF 18, yuv420p and MP4 faststart at the
-existing 1080x1920/30 fps. Mux copies the picture stream and encodes the original
+selected profile: legacy 1080x1920 or explicit v3 landscape, portrait, square or 4:5, all at 30 fps. Mux copies the picture stream and encodes the original
 audio to AAC at 192 kbps, mapping exactly one video and one audio stream. It does
 not stretch, normalize, generate or mix narration. These settings differ from
 native rate control, so file size and speed must be measured rather than promised.
@@ -99,3 +99,63 @@ Tests include backend rejection, immutable/legacy profiles, capability/profile
 drift, malformed frame sequences, symlinks, no-overwrite and capture failure.
 Run `node --test tests/*.test.mjs` alongside the Python suite. These tests do not
 replace actual native rendering or human review of changed media.
+
+## Composition profile limits
+
+Every v3 composition profile permits up to 600 seconds / 18,000 frames and 250 MB
+source audio. It requires FFmpeg explicitly; native composition rendering fails before a run
+is created. A separate two-frame selected-profile probe checks actual geometry without
+rewriting the workspace runtime record. Encoding has a bounded 1,800-second
+subprocess timeout; other FFmpeg operations retain 600 seconds.
+
+Capture checks observed PNG storage needs plus a 2 GB reserve before writes and
+every 150 frames. `visual-qa.json` records capture seconds, PNG bytes, largest
+frame and minimum observed free storage. Memory is not a hard-limited sandbox.
+All original duration, timestamp, caption-boundary, pixel and waveform gates apply
+at the selected dimensions. Version 3 and opt-in version-2 `cinematic-v1` episodes use Chrome software
+rasterization for repeatable filtered layers. Classic v1 and non-cinematic v2
+retain their existing browser configuration. A long successful fixture does not establish every
+brand, scene density, codec or host combination.
+
+Long-video sample selection groups adjacent requested frames and balances the
+FFmpeg expression tree. A flat 750-term expression failed parsing on the ten-minute
+fixture. The corrected selector keeps every requested sample, avoids parser-depth
+failure and preserves the existing expression for small selections. Pixel/audio
+thresholds and sample coverage are unchanged.
+
+
+### Decoded-frame selection depth
+
+FFmpeg sample selections larger than eight frames use a balanced range expression.
+The qualified parser rejects a flat left-associated sum of 121 terms, including
+some sub-minute caption sets; the previous 128-term shortcut was too broad.
+Balancing changes only expression shape. Requested frame indices, timestamp checks,
+pixel limits and failure behavior remain unchanged. Tiny selections preserve their
+existing form. The local media-grid qualification records the original failure
+and a successful read of every one of the same 121 decoded samples.
+
+### Local shader image path
+
+Opt-in v3 screen shaders use Chrome's existing `--disable-gpu` configuration; the
+qualified host supplies software WebGL through SwiftShader. No additional browser
+flags or dependency are needed. Normal local-file images cannot be uploaded into
+WebGL after drawing them into a canvas. The asset writer therefore encodes only
+validated, copied PNG/JPEG bytes in a local script, retaining source hashes and
+original DOM image paths. CSP and HTTP blocking are unchanged. Failure to decode,
+compile, link, allocate or retain the context fails the run. The default screen
+swap does not create a WebGL context. Shader use adds rasterization cost; ten-minute
+profile support does not imply a ten-minute soak of every shader combination.
+
+### Cinematic v2 raster qualification
+
+The retained flow-trace frame-20 discrepancy was reproduced with the exact same
+before/after PNG hashes as the historical failure. It affected 30 pixels of an
+icon despite identical timing. The cinematic v2 profile now uses the same
+`--disable-gpu` raster configuration already qualified for v3. This changes capture
+policy for that explicit profile; it does not change the SVG geometry, fonts,
+brand files, cue math, captions, encoder settings or validation thresholds.
+
+The implementation lock changes with capture policy. Qualify a fresh development
+workspace; do not rewrite previous approval or runtime records. The visual report
+records the selected software raster path. See the current
+[cinematic requalification](HYPERFRAMES-PILOT.md#cinematic-v2-stability-requalification).

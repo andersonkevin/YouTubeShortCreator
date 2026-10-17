@@ -18,6 +18,10 @@ Paste this into your assistant:
 > provider or publish anything without my approval. Verify each stage and leave
 > a dated handoff with evidence and the next action.
 
+For v0.5.0 compositions, select the output profile and storyboard family using
+`compositions`; see [multiformat authoring](docs/CLI.md#landscape-episodes).
+The classic Shorts onboarding below retains its original defaults.
+
 The assistant starts with your channel, audience, language, tone, colors, logo,
 font rights and three/four-scene preference. If you have no logo, it can generate
 a local wordmark or monogram after you agree. Illustrated AI logos and artwork

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "source": {
+    "path": "registry/blocks/cuboid-carousel/",
+    "files": {
+      "cuboid-carousel.html": "2d992fc1cb5a8640f9139c5789be53ffa6c4393fc44e17792dfc9bf24bb19a5c",
+      "assets/cuboid-motion.js": "84c56fef029f5b8cd0886f56fafd7152fcc4011f75f7c4bdd192961e1afb6577",
+      "assets/addons/utils/BufferGeometryUtils.js": "38a81e5b0f5638687fbc1ff7e4e9a45d8ab8cd59b0a70a3b423bbb5ee326bf72",
+      "assets/addons/environments/RoomEnvironment.js": "f89d80912785b14e5e9979162e5ea8ed7e11ecf2bf51e5a8e845c535bff8ff59"
+    },
+    "license": "Apache-2.0; Three.js helpers MIT"
+  },
+  "files": {
+    "production-cuboid-data.js": "145c15a6df3b3c4f54bafc8648eb7a55eb15f56baba59b8ff473799e04506564",
+    "production-cuboid-motion.js": "323e3a2d3e6e0b493d65cd074401cf70798ce9a184e04ba80723c5499168b44e",
+    "production-cuboid.js": "815dbf7b5a292d2d7311095d646ba0b037a7190ab17f4a3f165e7c869e6fee4d"
+  },
+  "native_integrated": true,
+  "export_qualified": false,
+  "mechanic": "Saved Blender channels for 18 beveled tiles, 201 camera poses, travelling chain, corrected hero handoff, stable readable hero and full 50-frame departure, source PMREM studio and front-only printed faces.",
+  "changes": "Approved display/body fonts and colors replace source demo identity. Closed 1-12 card records with one-based hero selection; exact whole-word copy and readable bounds are enforced. Source metadata defaults and actual camera transforms are retained with a fixed .72 lens fit. Handheld motion is disabled during the readable hold. Two native cues drive source frames 0-150 then the original 150-200 departure. The shared local renderer owns resources; no GSAP, network, model or font download is introduced.",
+  "qualification": "Native compiler/browser checks pass four formats, 16 viewport checks and 380 event samples, caption/geometry gates and exact reverse pixels. The maximum twelve-card case passes separately. Independent original-module parity matches 890800 scalar comparisons and 2989456 geometry entries across four card/hero configurations. Cumulative workflow, cross-scene seams, audio and encoded exports remain pending.",
+  "notices": [
+    "docs/licenses/hyperframes-apache-2.0.txt",
+    "templates/v1/assets/production-three-notices.txt"
+  ]
+}

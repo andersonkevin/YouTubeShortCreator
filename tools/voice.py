@@ -88,6 +88,7 @@ def packages():
 def load_engine(paths):
     started = time.perf_counter()
     onnxruntime = importlib.import_module('onnxruntime')
+    onnxruntime.disable_telemetry_events()
     kokoro = importlib.import_module('kokoro_onnx')
     options = onnxruntime.SessionOptions()
     options.intra_op_num_threads = THREADS
@@ -139,10 +140,19 @@ def script_text(root, script):
     return source, value
 
 
+def language_for_voice(voice):
+    """Select only the explicitly supported languages; never guess a locale."""
+    if VOICE_PATTERN.fullmatch(voice or ''):
+        return LANGUAGE
+    if voice in ('ef_dora', 'em_alex', 'em_santa'):
+        return 'es'
+    raise ValueError('Use an American English or supported Spanish Kokoro voice')
+
+
 def render(engine, script, voice, speed):
     numpy = importlib.import_module('numpy')
     started = time.perf_counter()
-    samples, rate = engine.create(script, voice=voice, speed=speed, lang=LANGUAGE)
+    samples, rate = engine.create(script, voice=voice, speed=speed, lang=language_for_voice(voice))
     elapsed = time.perf_counter() - started
     samples = numpy.asarray(samples, dtype=numpy.float32)
     require(rate == SAMPLE_RATE, f'Unexpected sample rate {rate}')
@@ -171,7 +181,7 @@ def write_wav(path, pcm, rate):
 def _record(source, script, voice, speed, metrics, info, paths, data, output):
     return {
         'status': 'review_required', 'listening_approval': 'pending', 'publication_performed': False,
-        'engine': data['engine'], 'language': LANGUAGE, 'voice': voice, 'speed': speed, 'threads': info.get('threads', THREADS), 'providers': info.get('providers', []),
+        'engine': data['engine'], 'language': language_for_voice(voice), 'voice': voice, 'speed': speed, 'threads': info.get('threads', THREADS), 'providers': info.get('providers', []),
         'script': {'path': source.name, 'sha256': hashlib.sha256(script.encode('utf-8')).hexdigest(), 'characters': len(script), 'words': len(script.split())},
         'output': {'path': output.name, 'sha256': digest(output), **metrics},
         'load_seconds': info.get('load_seconds'),
@@ -183,7 +193,7 @@ def _record(source, script, voice, speed, metrics, info, paths, data, output):
 
 def synthesize(root, script, output, voice, speed, approved, models=None, engine=None):
     require(approved, 'Writer requires --approve-write')
-    require(VOICE_PATTERN.fullmatch(voice or ''), 'Use an American English Kokoro voice (af_* or am_*)')
+    language_for_voice(voice)
     require(type(speed) in (int, float) and SPEED_RANGE[0] <= speed <= SPEED_RANGE[1], 'Speed must stay between 0.8 and 1.2')
     source, value = script_text(root, script)
     target = inside(root, output, exists=False)
@@ -208,7 +218,8 @@ def audition(root, script, voices, run_id, approved, speed=1.0, models=None, eng
     identifier(run_id)
     require(isinstance(voices, list) and 1 <= len(voices) <= 12 and len(set(voices)) == len(voices), 'Give 1-12 distinct voices')
     for voice in voices:
-        require(VOICE_PATTERN.fullmatch(voice or ''), f'Use American English Kokoro voices (af_* or am_*): {voice}')
+        language_for_voice(voice)
+    require(len({language_for_voice(voice) for voice in voices}) == 1, 'Audition voices must use the same language')
     require(type(speed) in (int, float) and SPEED_RANGE[0] <= speed <= SPEED_RANGE[1], 'Speed must stay between 0.8 and 1.2')
     source, value = script_text(root, script)
     require(len(value) <= 600, 'Audition scripts stay under 600 characters')
@@ -231,7 +242,7 @@ def audition(root, script, voices, run_id, approved, speed=1.0, models=None, eng
         write_wav(target, pcm, metrics['sample_rate'])
         results.append({'voice': voice, 'file': target.name, 'sha256': digest(target), **metrics})
     write_json(output / 'audition.json', {
-        'status': 'review_required', 'listening_approval': 'pending', 'publication_performed': False, 'engine': data['engine'], 'language': LANGUAGE, 'speed': speed,
+        'status': 'review_required', 'listening_approval': 'pending', 'publication_performed': False, 'engine': data['engine'], 'language': language_for_voice(voices[0]), 'speed': speed,
         'script': {'path': source.name, 'sha256': hashlib.sha256(value.encode('utf-8')).hexdigest(), 'text': value},
         'voices': results, 'load_seconds': info.get('load_seconds'), 'providers': info.get('providers', []), 'packages': packages(), 'python': platform.python_version(),
         'note': 'Compare by listening. Metrics describe timing and level only, not naturalness or pronunciation.',

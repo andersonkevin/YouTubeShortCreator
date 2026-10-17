@@ -1,0 +1,14 @@
+/* Opt-in composition. The original brand masthead and caption zone are unchanged. */
+#film.cinema-film::before {display:none}
+.cinema-viewport {position:absolute;left:0;top:240px;width:1080px;height:1230px;overflow:hidden}
+.cinema-stage {position:absolute;left:0;top:-240px;width:1080px;height:1920px;transform-origin:540px 880px}
+.cinematic-scene .eyebrow {top:246px;font-size:18px;letter-spacing:3px}
+.cinematic-scene h2 {top:294px;font-size:42px;line-height:1.08;width:880px}
+.cinematic-scene .library-visual {top:430px;width:880px;height:1030px}
+.cinematic-scene .visual-chart {top:0;width:880px;height:900px;overflow:hidden}
+.cinematic-scene .visual-title,
+.cinematic-scene .visual-symbol,
+.cinematic-scene .visual-detail {display:none}
+.cinematic-scene .visual-insight {top:930px;width:880px;height:52px;font-size:22px}
+.cinematic-scene .visual-source {top:990px;width:880px;height:40px;font-size:17px}
+.cinematic-scene .visual-chart svg {overflow:hidden}

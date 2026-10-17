@@ -1,5 +1,32 @@
 # Chart and Motion Selection
 
+The development engine also provides seventeen bounded composition families in 16:9, 9:16, 1:1 and 4:5
+through version-3 episodes. See [the landscape contract](DATA-CONTRACTS.md#landscape-version-3)
+and [CLI authoring](CLI.md#landscape-episodes). They use the existing frame clock,
+approved brand and shared media/audio gates. The v2 fields below are unchanged.
+Variable-font substitution and native rendering of v3 compositions are not enabled.
+Version-3 title reveals offer letter cascades, per-word clips, measured line slides,
+character/whole-title impacts, one shimmer sweep, tracking contraction and word
+bursts alongside the original five modes. Choose them through `title.content.reveal`;
+all fourteen choices share the fixed cue clock and approved type. Impacts affect
+the title only, and every entrance settles before the normal scene transition.
+Version-3 `media-grid` provides solo, two-, three-, four- and six-image layouts
+and a 58% hero panel. Select box entry, a single gloss/spotlight pass on a solo
+image, or mirrored book-open cards for a pair. Every item has a caption cue, local
+image ID and label. Fixed recipes reflow across profiles and preserve the whole
+image; visible source attribution stays outside the card treatment.
+Version-3 screen swaps include `wipe`, `iris`, `curtain`, `grid`, `halftone`,
+`fade-through` and `whip-pan`. These operate inside the approved device viewport
+on supplied local images. They keep the image fit, fixed caption clock, brand
+ground and normal scene transitions; they do not move the logo or subtitles.
+Version-3 metrics can use digit wheels, one-row reels, character pop-in, circular
+usage arcs or progress bars. Gauges show the explicit maximum and source; their
+fill and count share one clock. Use these to explain a supplied value, with
+`count` retaining the existing presentation. See the metric fields in the contract.
+Evidence layouts provide text trust marks, testimonials and proof cards. Use the
+explicit source record and supplied rating/claim; the renderer does not manufacture
+credibility. Fractional star fills and bounded feature badges use the caption clock.
+
 [Visual director](assistant/VISUAL-DIRECTOR.md) | [Adapter contract](VISUAL-ADAPTER-CONTRACT.md)
 
 The development tree implements eight chart forms plus the three B02 widgets in
@@ -31,6 +58,12 @@ layout editor; the stacked option here means additive bar-chart components.
 
 ## Presentation Contract
 
+This development copy also offers [narrative story presets](HYPERFRAMES-PILOT.md#narrative-motion) for flow, bar, line, metric and comparison. They animate semantic data elements on caption cues inside the existing chart slot. The default presentation below remains unchanged.
+
+The optional [cinematic composition](HYPERFRAMES-PILOT.md#cinematic-composition)
+changes the arrangement of flow, bar and comparison scenes and adds directional
+scene transitions. It retains the existing brand assets, caption clock and gates.
+
 A `visual-library` scene can optionally include this complete `presentation`
 object alongside its existing fields:
 
@@ -61,7 +94,8 @@ the source recording, spoken captions, logo or progress clock.
 Motion derives directly from the requested timestamp, with smoothstep easing for
 slides/fades. Values, axes and data geometry do not interpolate during a reveal.
 There are no caller-supplied CSS transforms, JS callbacks, keyframes or timers.
-Transitions currently affect the central chart, not full-page scene crossfades.
+These default entrances affect the central chart. Cinematic mode instead moves
+the scene content within its clipped viewport while the logo and captions stay fixed.
 
 ## Assistant Discovery and Review
 
@@ -103,3 +137,25 @@ audio, not a publishable voiceover. `--scenes 3` uses only the first two charts 
 a classic scene. `--palette graphite` exercises a second approved test palette.
 Browser QA checks fitting and deterministic mid-entrance/exit seeks as well as
 settled views. Human review remains necessary for readability and pacing.
+
+### Shader transitions inside captured screens
+
+The v3 `screen` composition offers fourteen explicit `shader-*` swaps in all four
+profiles. Choose them with `ysc.py compositions`; use existing image and cue fields.
+They adapt the retained HyperFrames GLSL algorithms using the approved palette
+and the shared 24-frame clock. Only the local still viewport is processed; data
+labels and captions outside it remain readable. These are optional expressive
+transitions, including a bright white flash and distortion effects; they are not
+automatically selected for ordinary editorial scenes.
+
+Shader endpoints return to the original image. Intermediate motion is frame
+addressed and must pass exact reverse-seek and encoded-pixel gates. Software
+WebGL performance and noise are qualified on the recorded local runtime, not
+claimed identical across arbitrary GPU/driver combinations. Whole-page snapshots,
+upstream caches, shader scene seams, interactive shader controls and 3D are deferred.
+
+RGB-separation effects (`gravitational-lens`, `chromatic-split`, `glitch`) use a
+1.2-pixel maximum antialias filter during the transition, tapered to zero at each
+endpoint. This preserves the existing H.264 4:2:0 output without one-pixel color
+fringes; encoding quality and pixel thresholds remain unchanged. The filter does
+not affect the logo, heading, captions, toolbar, other shaders or settled images.

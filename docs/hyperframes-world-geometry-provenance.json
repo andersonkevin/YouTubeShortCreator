@@ -1,0 +1,20 @@
+{
+  "source": "tools/visual_library/vendor/natural-earth/world.json",
+  "source_sha256": "54b46eff26f4cdc3bfab768ac374b50f4070e98fffbf389a3ce0e22a2c3b5165",
+  "source_version": "Natural Earth5.1.2",
+  "license": "Public domain; existing vendor manifest and notices retained",
+  "build_tool": {
+    "source": "packages/producer/tests/spanish-empire-cdn-inline/output/compiled.html",
+    "selection": "Exactly one inline script matching the pinned SHA256; composition scripts never executed",
+    "sha256": "4532cbe107e25ffe955d109e6cce1a6bbdf36192058d2546e3430c0aee4c7861",
+    "version": "D3 7.9.0",
+    "runtime_distributed": false,
+    "network_requests": 0
+  },
+  "projection": "geoNaturalEarth1().fitExtent([[8,8],[1372,692]],Sphere); geoPath digits3, graticule10",
+  "transformation": "Retain177 named regions and their polygon holes. Reverse all rings only when spherical area exceeds a hemisphere, then require area below a hemisphere. Project antimeridian-clipped paths offline. No demo GDP values or source fonts.",
+  "rewound": [],
+  "output": "templates/v1/assets/production-world-geometry.js",
+  "output_sha256": "c8eec9df03f63b957127449601098fd0557993a2e83234dfd2620c10a0e0f970",
+  "regions": 177
+}

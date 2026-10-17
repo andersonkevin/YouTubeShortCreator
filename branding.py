@@ -91,8 +91,14 @@ def external_file(value, extensions, maximum=30_000_000):
 def create(root, brand, fonts, logo=None):
     validate_brand(brand)
     require(not root.exists() and not root.is_symlink(), 'Workspace already exists; use a new directory')
-    sources = {role: external_file(value, ('.ttf', '.otf'), 20_000_000) for role, value in fonts.items()}
-    require(set(sources) == {'display', 'body', 'mono'}, 'Three font roles are required')
+    require(isinstance(fonts, dict) and set(fonts) == {'display', 'body', 'mono'}, 'Three font roles are required')
+    from tools.font_library import kit as font_kit
+    sources, bundled = {}, {}
+    for role, value in fonts.items():
+        if isinstance(value, str) and value.startswith('font:'):
+            sources[role], bundled[role] = font_kit.resolve(value)
+        else:
+            sources[role] = external_file(value, font_kit.EXTENSIONS, 20_000_000)
     for path in sources.values():
         ImageFont.truetype(str(path), 32)
     if logo:
@@ -105,8 +111,21 @@ def create(root, brand, fonts, logo=None):
     asset = root / 'brand/assets'
     asset.mkdir(parents=True)
     for role, path in sources.items():
-        # Fonts stay private; they are never packaged in a source release.
+        # Every brand keeps its own frozen copy, including catalog selections.
         shutil.copyfile(path, asset / (role + path.suffix.lower()))
+    if bundled:
+        notices = root / 'brand/font-licenses'
+        notices.mkdir()
+        records = {}
+        for role, record in bundled.items():
+            notice = inside(font_kit.HOME / 'vendor', record['license'])
+            target = notices / notice.name
+            if not target.exists():
+                shutil.copyfile(notice, target)
+            records[role] = {'id': fonts[role], 'family': record['family'], 'style': record['style'],
+                             'sha256': digest(sources[role]), 'source': record['source'],
+                             'license': 'font-licenses/' + notice.name, 'license_sha256': digest(notice)}
+        write_json(root / 'brand/font-provenance.json', {'version': 1, 'fonts': records})
     write_json(root / 'brand/brand.json', brand)
     logo_canvas = Image.new('RGBA', (1200, 220))
     if logo:
@@ -137,7 +156,13 @@ def create(root, brand, fonts, logo=None):
 
 
 def fonts_in(asset):
-    return {role: next(p for p in asset.iterdir() if p.stem == role and p.suffix in ('.ttf', '.otf')) for role in ('display', 'body', 'mono')}
+    from tools.font_library.kit import EXTENSIONS
+    result = {}
+    for role in ('display', 'body', 'mono'):
+        matches = [p for p in asset.iterdir() if p.stem == role and p.suffix in EXTENSIONS]
+        require(len(matches) == 1, 'Exactly one font file is required for ' + role)
+        result[role] = inside(asset, matches[0].name)
+    return result
 
 
 def brand_css(brand, asset):
@@ -176,6 +201,37 @@ def brand_files(root):
     return {str(p.relative_to(directory)): digest(inside(directory, str(p.relative_to(directory)))) for p in sorted(directory.rglob('*')) if p.is_file() and p.name != 'approval.json'}
 
 
+def install_font_notices(root, output):
+    """Keep original bundled font notices with copied render assets."""
+    source = root / 'brand/font-provenance.json'
+    if not source.exists():
+        require(not source.is_symlink(), 'Symlink font provenance is not allowed')
+        return
+    record = read_json(inside(root, 'brand/font-provenance.json'))
+    keys(record, ('version', 'fonts'), 'brand font provenance')
+    require(type(record['version']) is int and record['version'] == 1 and isinstance(record['fonts'], dict),
+            'Invalid brand font provenance')
+    require(set(record['fonts']) <= {'display', 'body', 'mono'}, 'Unknown brand font role')
+    files = {}
+    for role, entry in record['fonts'].items():
+        keys(entry, ('id', 'family', 'style', 'sha256', 'source', 'license', 'license_sha256'), 'brand font source')
+        require(digest(fonts_in(root / 'brand/assets')[role]) == entry['sha256'], 'Bundled brand font changed')
+        path = inside(root / 'brand', entry['license'])
+        require(Path(entry['license']).parts[:1] == ('font-licenses',) and len(Path(entry['license']).parts) == 2,
+                'Font notice must be in font-licenses')
+        require(path.suffix == '.txt' and digest(path) == entry['license_sha256'], 'Font notice changed')
+        files[path.name] = path
+    directory = output / 'font-licenses'
+    require(not directory.exists() and not directory.is_symlink() and not (output / 'font-provenance.json').exists(),
+            'Font notice output already exists')
+    directory.mkdir()
+    for name, path in files.items():
+        with (directory / name).open('xb') as stream:
+            stream.write(path.read_bytes())
+        require(digest(directory / name) == digest(path), 'Font notice changed while copying')
+    write_json(output / 'font-provenance.json', record)
+
+
 def approve(root, template_hash):
     brand = read_json(inside(root, 'brand/brand.json'))
     validate_brand(brand)
@@ -193,13 +249,19 @@ def verified(root, template_hash):
     return brand
 
 
-def thumbnail(root, graphic, headline, label, output=None):
+def thumbnail(root, graphic, headline, label, output=None, profile='shorts'):
+    from media_contract import output_profile
+    output_profile(profile)
     require(isinstance(headline, list) and len(headline) == 2, 'Thumbnail needs exactly two headline lines')
     for line in headline:
         require(text(line, 24) == line.upper(), 'Thumbnail headline must be uppercase')
     require(text(label, 32) == label.upper(), 'Thumbnail label must be uppercase')
     asset = root / 'brand/assets'
     fonts = fonts_in(asset)
+    if profile == 'landscape':
+        return landscape_thumbnail(root, graphic, headline, label, output, fonts)
+    if profile in ('square', 'portrait-4x5'):
+        return compact_thumbnail(root, graphic, headline, label, output, fonts, profile)
     fitted = [fit_font(line, fonts['display'], 148, 110, 920) for line in headline]
     label_font = fit_font(label, fonts['body'], 42, 42, 920)
     title_bottom = 235 + sum(font.getbbox(line)[3] - font.getbbox(line)[1] + 6 for font, line in zip(fitted, headline))
@@ -222,4 +284,55 @@ def thumbnail(root, graphic, headline, label, output=None):
         y += font.getbbox(line)[3] - font.getbbox(line)[1] + 6
     draw.rectangle((80, 523, 228, 535), fill=brand['colors']['accent'])
     draw.text((80, 549), label, font=label_font, fill='white', anchor='lt')
+    canvas.save(output, 'JPEG', quality=92, subsampling=0, progressive=True)
+
+
+def landscape_thumbnail(root, graphic, headline, label, output, fonts):
+    """Separate landscape composition using the identical approved brand assets."""
+    display = [fit_font(line, fonts['display'], 108, 88, 1060) for line in headline]
+    small = fit_font(label, fonts['body'], 34, 34, 1060)
+    if output is None:
+        return
+    require(not output.exists() and not output.is_symlink(), 'No thumbnail overwrite')
+    brand = read_json(root / 'brand/brand.json')
+    canvas = Image.new('RGB', (1920, 1080), brand['colors']['background'])
+    with Image.open(graphic) as image:
+        art = ImageOps.contain(image.convert('RGB'), (700, 760), method=Image.Resampling.LANCZOS)
+        canvas.paste(art, (1180 + (700-art.width)//2, (1080-art.height)//2))
+    with Image.open(root / 'brand/assets/logo.png') as image:
+        mark = ImageOps.contain(image.convert('RGBA'), (340, 90))
+        canvas.paste(mark, (100, 80), mark)
+    draw = ImageDraw.Draw(canvas)
+    y = 340
+    for line, font in zip(headline, display):
+        draw.text((100, y), line, font=font, fill='white', anchor='lt')
+        y += 138
+    draw.rectangle((100, 660, 290, 670), fill=brand['colors']['accent'])
+    draw.text((100, 720), label, font=small, fill='white', anchor='lt')
+    canvas.save(output, 'JPEG', quality=92, subsampling=0, progressive=True)
+
+
+def compact_thumbnail(root, graphic, headline, label, output, fonts, profile):
+    """Stacked cover composition; retain exact brand files and fixed type sizes."""
+    from media_contract import output_profile
+    spec = output_profile(profile)
+    display = [fit_font(line, fonts['display'], 78, 78, 960) for line in headline]
+    small = fit_font(label, fonts['body'], 28, 28, 960)
+    if output is None:
+        return
+    require(not output.exists() and not output.is_symlink(), 'No thumbnail overwrite')
+    brand = read_json(root / 'brand/brand.json')
+    canvas = Image.new('RGB', (spec['width'], spec['height']), brand['colors']['background'])
+    with Image.open(graphic) as image:
+        art = ImageOps.contain(image.convert('RGB'), (960, spec['height'] - 560), method=Image.Resampling.LANCZOS)
+        canvas.paste(art, ((spec['width'] - art.width) // 2, 530 + (spec['height'] - 560 - art.height) // 2))
+    draw = ImageDraw.Draw(canvas)
+    draw.rectangle((0, 0, 1080, 510), fill='#000000')
+    with Image.open(root / 'brand/assets/logo.png') as image:
+        mark = ImageOps.contain(image.convert('RGBA'), (300, 70))
+        canvas.paste(mark, (60, 60), mark)
+    for i, (line, font) in enumerate(zip(headline, display)):
+        draw.text((60, 180 + 100 * i), line, font=font, fill='white', anchor='lt')
+    draw.rectangle((60, 410, 250, 420), fill=brand['colors']['accent'])
+    draw.text((60, 450), label, font=small, fill='white', anchor='lt')
     canvas.save(output, 'JPEG', quality=92, subsampling=0, progressive=True)

@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "repository": "https://github.com/heygen-com/hyperframes",
+  "commit": "d65eefad5ed351e9d36d2caeb6049878be0aba85",
+  "license": "Apache-2.0",
+  "sources": [
+    {
+      "path": "registry/components/stagger-cascade/stagger-cascade.html",
+      "git_blob_sha1": "7cc12807343f95791baa6585e18258a5c768d3bd",
+      "sha256": "e1991d5e9c8d6b93c86a52f3a50a553211ecbb795d997639c9526535cde887ff"
+    },
+    {
+      "path": "registry/components/outline-draw/outline-draw.html",
+      "git_blob_sha1": "538d6168f91a2c9baeeaf5520b632aea2088b3bf",
+      "sha256": "30674e59672253a2b1596addbc3200a012a8a88c0382158d3db2612c44efa76f"
+    },
+    {
+      "path": "registry/components/inline-highlight/inline-highlight.html",
+      "git_blob_sha1": "0bc7fe9957333fd6f10086bcf1410a408cf8ba6d",
+      "sha256": "5063977e75ef2c36ed9ce71e0f95b244504a7c489dd540b47defabbe39c09100"
+    },
+    {
+      "path": "registry/blocks/flowchart-vertical/flowchart-vertical.html",
+      "sha256": "35b54ecdd282e83beb464276483dc633c64a7e47138447b2b5642df463cfc548",
+      "git_blob_sha1": "c904fe47e45c1895ab86d0dec2e3bc983aeb8eb4",
+      "source": "inspected local source snapshot"
+    },
+    {
+      "path": "registry/components/chart-story/chart-story.html",
+      "sha256": "d65180b77637521ea98676c9af1d59395f1e70ce0d0d5e1f604d02bee2821310",
+      "git_blob_sha1": "4ae5fa38737107a00f3ac37fd5445907b5f85912",
+      "source": "inspected local source snapshot"
+    },
+    {
+      "path": "registry/components/count-up/count-up.html",
+      "sha256": "6b34b9873a243fedb060d23f4eb5cef1b61a5b169ec1ae064030b70b48beea66",
+      "git_blob_sha1": "b1861253939312f93449811124e00dcddafbb601",
+      "source": "inspected local source snapshot"
+    },
+    {
+      "path": "registry/components/comparison-split/comparison-split.html",
+      "sha256": "2637b4dd260eb9ef272fad2f3b3921fe8f282cb498b8de112ec6faa76d5ef3b8",
+      "git_blob_sha1": "080021976e793b4df339de46dc6f315c1a353f50",
+      "source": "inspected local source snapshot"
+    },
+    {
+      "path": "registry/components/kinetic-type-swap/kinetic-type-swap.html",
+      "sha256": "e98407ad72306094c3f17f25043924c5214428ef290235db0409c44865e259ba",
+      "git_blob_sha1": "80f8243d105b66d5262c33f991f0d2f184e8a167",
+      "source": "user-supplied local HyperFrames snapshot; not verified against the pinned remote commit"
+    },
+    {
+      "path": "registry/components/before-after-wipe/before-after-wipe.html",
+      "sha256": "c04e8bf1bfbcec71d0921a03a786cc09e660732428aa04bf79036a30b7755e09",
+      "git_blob_sha1": "7efe185bfd096b1d0330b5e6ec9e577faf997949",
+      "source": "user-supplied local HyperFrames snapshot; not verified against the pinned remote commit"
+    },
+    {
+      "path": "registry/components/directional-wipe/directional-wipe.html",
+      "sha256": "1630a4c974ba6d9ea9a23fdb84627ee464c1447cd7b6b963defe4c5bf9867a48",
+      "git_blob_sha1": "63c495fc81a3c0a18987159b3df4f311954dd570",
+      "source": "user-supplied local HyperFrames snapshot; not verified against the pinned remote commit"
+    },
+    {
+      "path": ".agents/skills/cut-the-curve/examples/gsap-implementation.md",
+      "sha256": "c5e523bf1404eff2ffe903bc756006fd21894e1f6c10e630485afc570a2ad72b",
+      "git_blob_sha1": "de0991db0c16432049988961046a2360dcbb7bb7",
+      "source": "user-supplied local HyperFrames snapshot; not verified against the pinned remote commit"
+    }
+  ],
+  "adaptations": [
+    "templates/v1/assets/visual-effects.css",
+    "templates/v1/assets/visual-effects.js",
+    "templates/v1/assets/visual-story.js",
+    "templates/v1/assets/visual-cinema.js",
+    "templates/v1/assets/visual-cinema.css"
+  ],
+  "changes": "Scoped styles, existing brand tokens, fixed semantic targets, existing deterministic 30fps clock, no GSAP or remote scripts. Cascade motion reimplemented for existing ECharts graphics. Story renderer ports SVG path drawing, geometry-driven bars, deterministic number rows and shared comparison progress; preserves source values, bounds, captions and brand tokens. Cinematic mode ports masked type exchange, a single-progress opaque wipe and matched-direction cut/zoom seams into an opt-in composition. Logo, brand tokens and caption safe zone are unchanged; source dimensions are newly bounded and browser-checked. No upstream hold pulses, GSAP or services are used."
+}

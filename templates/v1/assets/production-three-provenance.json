@@ -1,0 +1,18 @@
+{
+  "runtime": "Three.js r185",
+  "license": "MIT",
+  "sources": {
+    "three.core.min.js": "5881a55b70ae9082f2f8253138c9f484b024a1f6ab2cfadc87af4673481efa13",
+    "three.module.min.js": "1897d797c460a9c2d53468f5ccc92473182d81de7d186ac22ed24d36a9b3f3c7"
+  },
+  "runtime_sha256": "46f7980e0789dfe956428f6c01548a1f29e4f1d5f59fd568cd46c44aeee11caf",
+  "notices_sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+  "recipe": "python3 -B tools/vendor_three.py <hyperframes>/registry/blocks/orbit-card/assets",
+  "adaptation": "Pinned named imports/exports converted to two private closures and one frozen namespace. No runtime download or package installation.",
+  "source_template_versions": {
+    "orbiting_cards": "0.184.0",
+    "glass_hero": "0.184.0",
+    "spiral_galaxy": "0.147.0"
+  },
+  "compatibility": "Bundled module reports REVISION 185; cross-version visual qualification remains required."
+}

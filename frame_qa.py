@@ -4,7 +4,7 @@ import math
 import numpy as np
 from PIL import Image
 
-from media_contract import FPS, MAX_FRAMES, duration_seconds
+from media_contract import FPS, composition_geometry, duration_seconds, output_profile
 from safety import digest, inside, number, require
 
 REGIONS = {
@@ -18,9 +18,28 @@ REGIONS = {
 MAX_REGION_RMSE = 10
 MAX_TILE_RMSE = 24
 
+LANDSCAPE_REGIONS = {
+    'progress': (94, 38, 1826, 50), 'logo': (90, 66, 530, 156),
+    'heading': (94, 176, 1826, 340), 'visual': (94, 340, 1826, 840),
+    'note': (94, 840, 1826, 894), 'captions': (310, 910, 1610, 1040),
+}
 
-def sample_indices(captions, duration):
-    count = round(duration_seconds(duration) * FPS)
+
+def regions_for(profile):
+    if profile == 'shorts':
+        return REGIONS
+    if profile == 'landscape':
+        return LANDSCAPE_REGIONS
+    geometry = composition_geometry(profile)
+    x, y, width, height = geometry['content']
+    box = lambda values: (values[0], values[1], values[0] + values[2], values[1] + values[3])
+    return {'progress': box(geometry['progress']), 'logo': box(geometry['logo']),
+            'heading': (x, y, x + width, y + 200), 'visual': (x, y + 200, x + width, y + height - 100),
+            'note': (x, y + height - 100, x + width, y + height), 'captions': box(geometry['caption'])}
+
+
+def sample_indices(captions, duration, profile='shorts'):
+    count = round(duration_seconds(duration, profile) * FPS)
     indices = {0, count // 2, count - 1}
     for cue in captions['cues']:
         start, end = number(cue['start']), number(cue['end'])
@@ -32,14 +51,16 @@ def sample_indices(captions, duration):
     return sorted(indices)
 
 
-def pixels(path):
+def pixels(path, profile='shorts'):
+    spec = output_profile(profile)
     with Image.open(path) as image:
-        require(image.size == (1080, 1920), 'Invalid sampled frame geometry')
+        require(image.size == (spec['width'], spec['height']), 'Invalid sampled frame geometry')
         return np.asarray(image.convert('RGB'), dtype=np.float32)
 
 
-def compare(reference, decoded):
-    require(reference.shape == decoded.shape == (1920, 1080, 3), 'Invalid sampled frame geometry')
+def compare(reference, decoded, profile='shorts'):
+    spec = output_profile(profile)
+    require(reference.shape == decoded.shape == (spec['height'], spec['width'], 3), 'Invalid sampled frame geometry')
     require(np.isfinite(reference).all() and np.isfinite(decoded).all(), 'Non-finite frame pixels')
     require(float(np.max(reference) - np.min(reference)) >= 20, 'Blank reference frame')
     squared = (reference - decoded) ** 2
@@ -57,7 +78,7 @@ def compare(reference, decoded):
     chroma = chroma.reshape(height // 2, 2, width // 2, 2, 2).mean(axis=(1, 3))
     regions = {}
     luma_regions, chroma_regions = {}, {}
-    for name, (left, top, right, bottom) in REGIONS.items():
+    for name, (left, top, right, bottom) in regions_for(profile).items():
         rmse = float(np.sqrt(squared[top:bottom, left:right].mean()))
         luma_rmse = float(np.sqrt((luma[top:bottom, left:right] ** 2).mean()))
         chroma_rmse = float(np.sqrt((chroma[top // 2:bottom // 2, left // 2:right // 2] ** 2).mean()))
@@ -68,8 +89,9 @@ def compare(reference, decoded):
             'luma_region_rmse': luma_regions, 'chroma_region_rmse': chroma_regions}
 
 
-def verify(reference_dir, decoded_dir, indices):
-    require(all(type(index) is int and 0 <= index < MAX_FRAMES for index in indices), 'Invalid frame sample index')
+def verify(reference_dir, decoded_dir, indices, profile='shorts'):
+    spec = output_profile(profile)
+    require(all(type(index) is int and 0 <= index < spec['max_frames'] for index in indices), 'Invalid frame sample index')
     require(indices and indices == sorted(set(indices)), 'Ordered unique frame samples required')
     names = [f'decoded-{index:05d}.png' for index in range(len(indices))]
     require({p.name for p in decoded_dir.iterdir()} == set(names), 'Incomplete decoded frame samples')
@@ -78,7 +100,7 @@ def verify(reference_dir, decoded_dir, indices):
         reference = inside(reference_dir, f'frame-{index:05d}.png')
         decoded = inside(decoded_dir, name)
         samples.append({'index': index, 'reference_sha256': digest(reference),
-                        'decoded_sha256': digest(decoded), **compare(pixels(reference), pixels(decoded))})
+                        'decoded_sha256': digest(decoded), **compare(pixels(reference, profile), pixels(decoded, profile), profile)})
     return {'status': 'PASS', 'scope': 'sampled lossy pixel correspondence; not human approval',
             'comparison': 'full-resolution Rec.709-weighted luma; 2x2 chroma; raw RGB tiles; not colorimetric calibration',
             'region_rmse_limit': MAX_REGION_RMSE, 'tile_rmse_limit': MAX_TILE_RMSE,

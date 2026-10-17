@@ -1,0 +1,14 @@
+.spatial-object-board{position:absolute;left:0;top:150px;width:100%;height:calc(100% - 300px);overflow:hidden}
+.spatial-object-canvas,.spatial-object-leaders{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.spatial-source-bits{display:none}
+.spatial-object-label{position:absolute;left:0;top:0;display:flex;align-items:center;gap:12px;height:36px;white-space:nowrap;font:600 28px/36px BrandSans,sans-serif;color:white}
+.spatial-object-index{font:400 18px/36px BrandMono,monospace;color:var(--cyan)}
+.spatial-object-leaders line{stroke:var(--cyan);stroke-width:2}
+.spatial-object-leaders circle{fill:var(--lime)}
+.production-content .spatial-object-caption{position:absolute;left:0;bottom:60px;width:100%;max-height:80px;font:600 28px/1.3 BrandSans,sans-serif;color:white}
+.production-content .spatial-object-source{position:absolute;left:0;bottom:5px;width:100%;max-height:50px;font:400 20px/1.3 BrandMono,monospace;color:var(--cyan)}
+#film.production-film[data-profile="portrait"] .spatial-object-board{top:240px;height:calc(100% - 440px)}
+#film.production-film[data-profile="portrait"] .spatial-object-caption{bottom:100px;max-height:90px;font-size:32px}
+#film.production-film[data-profile="portrait"] .spatial-object-source{max-height:85px;font-size:23px}
+.spatial-object-board.spatial-portal-board{top:0;height:calc(100% - 100px)}
+#film.production-film[data-profile="portrait"] .spatial-object-board.spatial-portal-board{top:0;height:calc(100% - 100px)}

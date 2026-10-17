@@ -59,7 +59,7 @@ certified safe. Manually review the actual files you will share.
 Choose a filename that does not already exist:
 
 ```bash
-python3 -B tools/release.py zip ../YouTubeShortCreator-v0.4.0-source.zip --approve-write
+python3 -B tools/release.py zip ../YouTubeShortCreator-v0.5.0-source.zip --approve-write
 ```
 
 The ZIP contains one `YouTubeShortCreator/` root directory. It excludes `.git`,
@@ -104,6 +104,12 @@ After upload, verify relative links, the image gallery, Mermaid rendering and th
 license view in GitHub itself; local rendering is only an approximation.
 
 ## Current Delivery Boundary
+
+The maintainer authorized the v0.5.0 source update on 2026-10-17. Its new
+composition, format, typography and cinema capabilities are described in the
+[changelog](../CHANGELOG.md) and [qualification record](RELEASE-QA.md). Historical
+human-review and independent-operator gates remain separate from this source release.
+
 
 The published `main` carries the asset library waves, the optional voice tool and
 the CI workflow, released as v0.2.0 and v0.3.0. The pipeline integration batches

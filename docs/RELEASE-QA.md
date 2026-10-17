@@ -1,5 +1,83 @@
 # Release Qualification
 
+## 0.5.0 (2026-10-17)
+
+The release candidate contains the reusable visual engine, 35 composition
+families, four explicit output profiles, the 600-second v3 ceiling and 80 licensed
+font files. Legacy episode contracts and human publication gates remain intact.
+The checks below ran against an isolated public source candidate, using existing
+local runtimes. Private workspaces, recordings, demo identities and generated
+videos are excluded from the source release.
+
+- `python3 -B -m unittest discover -s tests -q`: **633 tests**, 626 passed and
+  seven optional checks skipped on Python 3.14.7.
+- `node --test tests/*.test.mjs`: **518 tests**, 517 passed and one optional
+  check skipped on Node 24.19.0.
+- `python3 -B tools/check_docs.py`: **PASS**, 54 documents and 24 checksummed
+  documentation images. `python3 -B tools/release.py audit`: **PASS**, 826
+  allowlisted source files in the initial candidate. The final source audit
+  includes one additional pinned geometry test fixture: 827 source files plus
+  the CI workflow, totaling 828 public files with no private data.
+- The normal `ysc.py ... render` command completed the portrait photographic
+  film: **1080x1920, 70.433333 seconds, 30 fps, 2,113 frames and 14 shots**.
+  Browser checks passed across four viewports, including caption timing,
+  geometry, camera movement and deterministic seeking. No page errors or
+  attempted network requests were recorded.
+- Encoded-media checks: one video and one audio track, all 2,113 frame timestamps
+  checked, and **147 decoded frame samples** passed pixel correspondence. Maximum
+  sampled tile RMSE was 9.911 against the existing limit of 24.
+- Audio checks: **23 waveform windows**, maximum measured lag **0 ms**, minimum
+  correlation **0.9999567**, one silent window checked and no unmatched samples.
+  Listening approval remains pending.
+- All **224 output hashes** were reverified after export. The qualified source
+  equals the implementation record, and the episode validates from the main
+  development checkout after accepting that record. Existing brand approvals
+  were not rewritten.
+- `git diff --check`: **PASS**. Package metadata and the root lockfile agree on
+  version 0.5.0. The earlier disk-space failure remains retained; the successful
+  retry used the existing exporter and its unchanged free-space gate.
+- The first full staged-diff check exposed blank-space style warnings in 37
+  qualified assets and original license notices, plus one test-file ending.
+  The test ending was corrected. Exact byte-locked asset paths declare only
+  end-of-line/end-of-file blank-space style exceptions in `.gitattributes`;
+  their contents and qualified implementation hash remain unchanged. CI also
+  verifies the full implementation lock. The aggregate diff from v0.4.0 passes
+  the resulting format check; no media, asset-hash or runtime gate was relaxed.
+
+Encoded-film implementation lock SHA-256:
+`d17576cb9d5a9dff6523f2b6f765b0c5115d073c9280654c659c43b79fd4cd72`.
+
+The first hosted Python 3.12/3.13 checks exposed a case-only alias for the Inter
+license: macOS resolved it, while Linux correctly rejected the missing spelling.
+The font manifest now uses the existing `inter-OFL.txt` filename consistently.
+A regression compares manifest names with actual directory entries even on
+case-insensitive filesystems; all 11 font-library tests pass locally. The source
+record removes the duplicate alias and updates only the font-manifest hash.
+All renderer, font and license bytes remain identical to the qualified film.
+The resulting source-release implementation lock is
+`42b08b645219d28ed28919380e5ca00bf0ce6b0a289ef1540e1ce7700866ee0e`.
+Existing private approvals and render receipts retain their original record.
+The hosted rerun also identified a format-test headline that exceeded the
+unchanged width limit with Linux's display font. The synthetic fixture now uses
+shorter copy; production geometry, minimum font size and overflow rejection are
+unchanged. These packaging/test fixes require hosted verification before merge.
+The shatter geometry regression now evaluates a hash-pinned extraction of the
+original algorithm in the same JavaScript runtime and requires exact serialized
+geometry equality in all five aspect cases, including repeated reverse-order
+evaluation. This avoids treating one V8 version's floating-point output as a
+universal fixture; numerical tolerances and production animation are unchanged.
+CI runs the independent remaining checks after a failure so one run reports all
+diagnostics; a failed check still fails its required job.
+
+The current render qualifies portrait photographic cinema on the existing macOS
+setup. Earlier four-format and 600-second exports remain separately dated
+qualification evidence; this release pass did not repeat every catalog resource
+or every duration. Square/feed photographic cinema, portrait diagram cinema,
+fresh dependency installation and Windows/Linux media rendering are not qualified
+by this run. Historical B05-B09 human acceptance gates remain separate from the
+source update. Hosted CI and the remote commit/tag must be checked after an
+authorized push; the local results above do not claim remote publication.
+
 ## 0.4.0 (2026-09-16)
 
 Sanitized summary of the checks behind the 0.4.0 release. Private workspaces,

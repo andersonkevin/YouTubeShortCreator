@@ -35,6 +35,11 @@ The table names subcommands, not complete shell invocations. Follow
 Put `--workspace` before the subcommand. Write flags express the tool's write
 gate; the assistant must also have the operator's authorization for that step.
 
+The three/four-scene defaults above describe legacy Shorts. For v3 episodes,
+choose an explicit output profile and a supported storyboard through
+`compositions`; preserve the same brand, asset, timing and review gates. Consult
+the [composition commands](CLI.md#landscape-episodes) before authoring.
+
 Interactive onboarding is intentional: use a supported terminal session to
 answer one prompt at a time, or let the operator run `init`. Do not create
 approval JSON by hand or bypass onboarding with fabricated records.

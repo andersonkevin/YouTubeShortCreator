@@ -1,0 +1,1045 @@
+{
+  "version": 1,
+  "date": "2026-10-15",
+  "scope": "Inventory-stage snapshot, followed by a separate implementation update; retained source and destination hashes describe the inventory date.",
+  "user_target": {
+    "maximum_seconds": 600,
+    "maximum_frames_at_30fps": 18000,
+    "format_order": [
+      "16:9",
+      "1:1",
+      "4:5"
+    ],
+    "retain": "Existing 9:16/180s behavior and all brand/validation gates."
+  },
+  "current_engine": {
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "fps": 30,
+    "maximum_seconds": 180,
+    "scene_count": [
+      3,
+      4
+    ],
+    "cinematic_integration": "development_only_unpublished",
+    "brand_qualification": "Signal Lab synthetic example only; actual Cognativ assets not supplied."
+  },
+  "existing_adaptations_manifest": "docs/hyperframes-adoption-inventory.json",
+  "source_license": {
+    "path": "LICENSE",
+    "sha256": "4259155fb06f127687ee7b0a8a3682d45132db0f2da26cbc0b7a2d1e796436b8",
+    "line": 1,
+    "locator": "Apache License"
+  },
+  "theme_reference": {
+    "path": "themes/CONTRACT.md",
+    "sha256": "c189c7afa0d301fc1e8facb45d8c7495b6b2b3c66245539423f024a38864952b",
+    "line": 7,
+    "locator": "Final token set"
+  },
+  "theme_decision": "Map the 18-token contract to approved channel values and renderer-owned spacing/eases. Do not import neutral/editorial/bold palettes or system-font fallback stacks.",
+  "visual_candidates": [
+    {
+      "id": "titlecard-lockup",
+      "family": "titles_and_chapters",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/titlecard-lockup/titlecard-lockup.html",
+        "sha256": "6a5e54b3819357bd264337cf16240b6a4e65e1059c08ccd82554611a60cdb072",
+        "line": 249,
+        "locator": "var KICKER_IN"
+      },
+      "retain": "Kicker, title, measured rule and label arrive in a deliberate hierarchy; still hold.",
+      "exclude_or_change": "No upstream wordmark, palette, CDN script or fixed four-second episode.",
+      "required_input": "Title, optional kicker/label, cue anchors, approved brand.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "kinetic-center-build",
+      "family": "titles_and_chapters",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/kinetic-center-build/kinetic-center-build.html",
+        "sha256": "774f75b80d82fbc0c6226b85743804fb7a2229fb038eb0d38fa2e9503072c2e0",
+        "line": 182,
+        "locator": "var positionsAt"
+      },
+      "retain": "Recenter the assembled phrase as each measured word enters.",
+      "exclude_or_change": "Replace system-font measurement and character-length fallback with loaded brand metrics; omit automatic shrink and CustomEase dependency.",
+      "required_input": "Bounded phrase and explicit word/caption anchors.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "grid-card-assemble",
+      "family": "explainers_and_data",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/grid-card-assemble/grid-card-assemble.html",
+        "sha256": "8713fc92043a353732f4d9bd8832e0023a2019472d3a9cfffc566ff6fd194042",
+        "line": 321,
+        "locator": "var columns ="
+      },
+      "retain": "Profile-specific grid/list composition, cue cascade and measured icon strokes.",
+      "exclude_or_change": "Replace character-count fitting, demo icons and fallback rhythm; reject out-of-scene cues instead of clamping them silently.",
+      "required_input": "Bounded labels/body text, existing icon IDs, cue anchors.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "testimonial-proof-card",
+      "family": "quotes_and_evidence",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/testimonial-proof-card/testimonial-proof-card.html",
+        "sha256": "b22d6ef8a02fefcccc8a48d67f6fe1bc5cc9349789733ca383d08bbf7c172ea5",
+        "line": 326,
+        "locator": "function pushWords"
+      },
+      "retain": "Group measured words into masked lines; reveal attribution and underline one phrase.",
+      "exclude_or_change": "No sample testimonial, fake avatar, inferred endorsement, font shrink or arbitrary avatar HTML.",
+      "required_input": "Exact quotation, attribution, source record and optional verified local image.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks. Attribution remains attached; quoted text unchanged."
+    },
+    {
+      "id": "browser-device-stage",
+      "family": "product_screens",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/browser-device-stage/browser-device-stage.html",
+        "sha256": "59b20814d38bf58ec1c6c7727ed954e89e9f38a7392eddf6d266ce586bad6764",
+        "line": 547,
+        "locator": "function slotContent"
+      },
+      "retain": "Brand-token browser/window/phone chrome; stage entry and one deliberate screen swap.",
+      "exclude_or_change": "Replace arbitrary HTML slots with hashed local PNG/JPEG inputs; omit CDN, demo skeleton and idle drift. Slot videos are not seek-synced upstream.",
+      "required_input": "Bounded local still-image IDs, title, fit policy and swap cue.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css",
+        "workflow.py"
+      ],
+      "acceptance": "Asset hashes/path traversal, image decode readiness, text legibility, explicit crop/contain and seek parity."
+    },
+    {
+      "id": "scroll-camera-story",
+      "family": "product_screens",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/scroll-camera-story/scroll-camera-story.html",
+        "sha256": "48c84e955f937997aeea3edce5e5393d32b9576f016cbb35eadef6cd0c8974c1",
+        "line": 662,
+        "locator": "function applyCamera"
+      },
+      "retain": "One camera writer moves through bounded sections and settles on the final section.",
+      "exclude_or_change": "Omit host HTML slots, decorative drift and unsourced mock UI; reuse existing cue validation.",
+      "required_input": "Two to four validated sections or local stills with arrival cues.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Camera bounds and readable holds in each output profile; all arrival cues sampled in both seek directions."
+    },
+    {
+      "id": "cta-lockup",
+      "family": "opening_and_closing",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/components/cta-lockup/cta-lockup.html",
+        "sha256": "126c3b7da9540230aeead700a154c36d5f205a33037083cc0cb7aaabe497ee65",
+        "line": 194,
+        "locator": "var tl = gsap.timeline"
+      },
+      "retain": "CTA hierarchy: headline, action, supporting label; controlled entrance and still end.",
+      "exclude_or_change": "No demo palette or fabricated button interaction; no click/upload behavior.",
+      "required_input": "Bounded CTA text, approved logo asset, optional display URL as text.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "lt-side-rule",
+      "family": "labels_and_attribution",
+      "status": "selected_candidate",
+      "source": {
+        "path": "registry/blocks/lt-side-rule/lt-side-rule.html",
+        "sha256": "faa20504273f478a470bb1fa99fc5ea81fb5709b279a9acee8b15b4996917527",
+        "line": 100,
+        "locator": "tl.to(bar,"
+      },
+      "retain": "Accent rule leads a name and role/source label.",
+      "exclude_or_change": "Replace fixed landscape coordinates, League Gothic, JetBrains Mono and green with profile/brand values.",
+      "required_input": "Name or source label, optional role, cue interval.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks. Captions and attribution remain readable together."
+    },
+    {
+      "id": "lt-mask-reveal",
+      "family": "labels_and_attribution",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/blocks/lt-mask-reveal/lt-mask-reveal.html",
+        "sha256": "7f348ec3124e211f7ec8e7241f21220134504ab713143e3f9dc10e016892e2e3",
+        "line": 105,
+        "locator": "tl.to(sweep,"
+      },
+      "retain": "A single sweep opens the name mask and reveals the role.",
+      "exclude_or_change": "No fixed 1920x1080 placement or upstream font/color substitution.",
+      "required_input": "Same bounded label record as lt-side-rule.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "titlecard-calm",
+      "family": "titles_and_chapters",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/components/titlecard-calm/titlecard-calm.html",
+        "sha256": "5d6833d8bf512352e67d39a7b1f4133fe1bd84a9d0c76f528c6f40eea9e950ae",
+        "line": 155,
+        "locator": "gsap.timeline"
+      },
+      "retain": "Restrained title entrance as a recipe on the shared title renderer.",
+      "exclude_or_change": "Do not create a second title engine or import external scripts.",
+      "required_input": "Shared title record.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "headline-slam",
+      "family": "titles_and_chapters",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/components/headline-slam/headline-slam.html",
+        "sha256": "b16ac28b01bf7f352d6a3f267838253de85794cd9bedd8065b48d7675e9295cd",
+        "line": 177,
+        "locator": "var SHAKE_FRAME"
+      },
+      "retain": "Strong masked title landing for a deliberate emphasis beat.",
+      "exclude_or_change": "Omit camera shake by default and keep all color/type brand-owned.",
+      "required_input": "Shared title record and emphasis cue.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "text-state-swap",
+      "family": "titles_and_chapters",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/components/text-state-swap/text-state-swap.html",
+        "sha256": "53eeedf34c11ee2f051e4efaafc0ae32e15f3f89bbcba2160ae026e4a36240fb",
+        "line": 112,
+        "locator": "tl.to('.hf-transition-text-state-swap"
+      },
+      "retain": "Exchange two text states using a shared rise/blur envelope.",
+      "exclude_or_change": "Consolidate with existing cinematic word swap; do not add another clock.",
+      "required_input": "Two bounded text states and cue.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "logo-brand-close",
+      "family": "opening_and_closing",
+      "status": "reference_only",
+      "source": {
+        "path": "registry/components/logo-brand-close/logo-brand-close.html",
+        "sha256": "afd249a6bf34702f71a9bf4464adbe8f2dd3a768f9729701ee4a57f205991089",
+        "line": 202,
+        "locator": "var letters ="
+      },
+      "retain": "Outro spacing and settle timing.",
+      "exclude_or_change": "Do not rebuild or animate the approved logo as arbitrary letter spans; reuse the exact approved image.",
+      "required_input": "Approved logo and closing text.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Logo asset hash and aspect ratio preserved."
+    },
+    {
+      "id": "cta-close",
+      "family": "opening_and_closing",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/components/cta-close/cta-close.html",
+        "sha256": "1aff42f1ddfaebcd961b64987e59ed8a3bd1961b4d40d44d24e117093801c46f",
+        "line": 209,
+        "locator": "gsap.timeline"
+      },
+      "retain": "Alternate closing composition implemented as a shared CTA recipe.",
+      "exclude_or_change": "No duplicated CTA renderer or upstream brand assets.",
+      "required_input": "Shared CTA record.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "pan-stations",
+      "family": "product_screens",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/components/pan-stations/pan-stations.html",
+        "sha256": "3d3b32584a7b969025e13a5586a6f7f66cadca311758ce6f735e523a170d6ed3",
+        "line": 314,
+        "locator": "var stations ="
+      },
+      "retain": "Horizontal navigation through a sequence of related product stations.",
+      "exclude_or_change": "Use bounded local assets, not generated HTML strings or demo product evidence.",
+      "required_input": "Local stills/validated panels and cue anchors.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Readable dwell times; image/source hashes; seam continuity."
+    },
+    {
+      "id": "screen-flow-carousel",
+      "family": "product_screens",
+      "status": "alternative_candidate",
+      "source": {
+        "path": "registry/components/screen-flow-carousel/screen-flow-carousel.html",
+        "sha256": "db49f679a66fb4505e07d395bff8188ae568fbfac36a50c94f1e58fcd925e11a",
+        "line": 482,
+        "locator": "var starts ="
+      },
+      "retain": "Screen-to-screen handoff and shared advance timing.",
+      "exclude_or_change": "Replace raw HTML slots and skeletons; consolidate with product-screen renderer.",
+      "required_input": "Local stills and explicit arrival cues.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "No two unreadable overlapping screen states; forward/backward parity."
+    },
+    {
+      "id": "device-frame-stage",
+      "family": "product_screens",
+      "status": "reference_only",
+      "source": {
+        "path": "registry/components/device-frame-stage/device-frame-stage.html",
+        "sha256": "b76ff71a349fd95ebac6b7629548d0155b0f6029fdca14e099eacb0054b21866",
+        "line": 395,
+        "locator": "function renderIn"
+      },
+      "retain": "Pure pose functions and logical screen sizing.",
+      "exclude_or_change": "Omit repeating renderHold float, SFX events and arbitrary slot content; prefer browser-device-stage for the first port.",
+      "required_input": "Approved local still and bounded device preset.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "Image geometry and all phase boundaries."
+    },
+    {
+      "id": "variable-axis-type",
+      "family": "typography",
+      "status": "conditional_candidate",
+      "source": {
+        "path": "registry/components/variable-axis-type/variable-axis-type.html",
+        "sha256": "82c362d7b82c5e50b2c3013793b7df43cec726eac4171286749572582551330e",
+        "line": 148,
+        "locator": "var fromSettings"
+      },
+      "retain": "Complete, stable axis endpoints and explicit font-ready gate.",
+      "exclude_or_change": "No Google Fonts/CDN fetch or assumption that approved static fonts have width/weight axes.",
+      "required_input": "Separately approved local variable font, actual axis ranges and bounded phrase.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css",
+        "branding.py"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "variable-font-flex",
+      "family": "typography",
+      "status": "conditional_candidate",
+      "source": {
+        "path": "registry/components/variable-font-flex/variable-font-flex.html",
+        "sha256": "296d1f8accc5e2fb255c32605c3e389dbcb19d16d87c36008e8ff295375fe41f",
+        "line": 251,
+        "locator": "function applyTime"
+      },
+      "retain": "Pure per-time numeric axis painter; optional per-character emphasis.",
+      "exclude_or_change": "Do not copy Roboto Flex ranges, fit heuristic or optical font-size compensation as universal policy.",
+      "required_input": "Same approved variable-font contract as variable-axis-type.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css",
+        "branding.py"
+      ],
+      "acceptance": "Loaded approved font; long Spanish/English labels; no clipping or automatic shrinking below approved size; repeat and reverse seeks."
+    },
+    {
+      "id": "social-proof-card",
+      "family": "quotes_and_evidence",
+      "status": "reference_only",
+      "source": {
+        "path": "registry/components/social-proof-card/social-proof-card.html",
+        "sha256": "66bf596ea2fd55b6d36902e695d047e751aff80ce16f6e006b8a5ddd57713892",
+        "line": 134,
+        "locator": "function text(v,"
+      },
+      "retain": "Card hierarchy and staggered evidence labels.",
+      "exclude_or_change": "Omit default stars/ratings and all sample claims; existing metric/comparison records remain the data source.",
+      "required_input": "Verified claim/source or explicitly illustrative data.",
+      "destination_files": [
+        "visual_adapter.py",
+        "templates/v1/assets/visual-cinema.js",
+        "templates/v1/assets/visual-cinema.css"
+      ],
+      "acceptance": "No invented endorsement, metric or source."
+    },
+    {
+      "id": "filmed-screen",
+      "family": "camera_and_backgrounds",
+      "status": "deferred",
+      "source": {
+        "path": "registry/components/filmed-screen/filmed-screen.html",
+        "sha256": "aaa79bd2dc2f85d19388795161a770304aff7aece46fd43acef66b472fbe856b",
+        "line": 323,
+        "locator": "function mount(opts)"
+      },
+      "retain": "Reference for later camera/focus work only.",
+      "exclude_or_change": "Do not port HTML-in-Canvas, WebGL, seek hooks or secondary third-party shader code in the first expansion.",
+      "required_input": "Would require separate GPU/runtime and dependency provenance qualification.",
+      "destination_files": [],
+      "acceptance": "Deferred: no support claim and no GPU dependency added."
+    }
+  ],
+  "font_candidates": [
+    {
+      "family": "Geist",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/wireframe-portal-title/assets/fonts/Geist-Regular.ttf",
+          "sha256": "09af32bab931f1ccc6e4776c5c39c8ea6c0d59b096f6f6c2959b1fdf18df0901"
+        },
+        {
+          "path": "registry/blocks/wireframe-portal-title/assets/fonts/Geist-SemiBold.ttf",
+          "sha256": "4c11a19d17e7a608f797e6a7e1f266778cc75510861f61063acaa2c0dec7c906"
+        },
+        {
+          "path": "registry/blocks/wireframe-portal-title/assets/fonts/Geist-Bold.ttf",
+          "sha256": "f032f37d12e82a37977fd1159c01e1a14415672244d2e6865d57e28c74886d03"
+        }
+      ],
+      "license_evidence": {
+        "path": "registry/blocks/wireframe-portal-title/assets/fonts/Geist-OFL.txt",
+        "sha256": "930853ee1daa68554d9e35c8a9175affb74f699fad9a5da6ee5ebe76379d9137",
+        "line": 8,
+        "locator": "SIL OPEN FONT LICENSE"
+      },
+      "license_status": "adjacent_ofl_text_found",
+      "compatibility": "TTF files load in the existing Pillow runtime; family/style metadata verified. No channel selection or glyph coverage qualification yet."
+    },
+    {
+      "family": "Archivo",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/orbit-card/assets/archivo-regular.ttf",
+          "sha256": "01170409e32e22123a354fbaa7dcb5ca5300790bb77c05d569ec8fdc394e78c9"
+        },
+        {
+          "path": "registry/blocks/orbit-card/assets/archivo-semibold.ttf",
+          "sha256": "f3a513d89abf3bf1d5aa906b15f21eefe7a7c98a6cf6463929a0a4032639d264"
+        }
+      ],
+      "license_evidence": {
+        "path": "registry/blocks/orbit-card/assets/Archivo-LICENSE.txt",
+        "sha256": "108b4e57c9c796d3d38d0428ca7ee39de47ad93187302718d9b2d8864b9b716b",
+        "line": 9,
+        "locator": "SIL OPEN FONT LICENSE"
+      },
+      "license_status": "adjacent_ofl_text_found",
+      "compatibility": "TTF files load in the existing Pillow runtime; family/style metadata verified. No channel selection or glyph coverage qualification yet."
+    },
+    {
+      "family": "Inter",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/claude-exchange/assets/fonts/inter-latin-400-normal.woff2",
+          "sha256": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc"
+        },
+        {
+          "path": "registry/blocks/claude-exchange/assets/fonts/inter-latin-500-normal.woff2",
+          "sha256": "f3779f1efccc4bdcdf9c0a02ab95bf6bd092ed09c48c08cedc725889edd1d19f"
+        },
+        {
+          "path": "registry/blocks/claude-exchange/assets/fonts/inter-latin-600-normal.woff2",
+          "sha256": "f9a06e79cd3a2a20951c0f0e28f66dd0e6d3fda73911d640a2125c8fcb78f21a"
+        }
+      ],
+      "license_evidence": {
+        "path": "registry/blocks/claude-exchange/assets/fonts/inter-LICENSE.txt",
+        "sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+        "line": 9,
+        "locator": "SIL OPEN FONT LICENSE"
+      },
+      "license_status": "adjacent_ofl_text_found",
+      "compatibility": "WOFF2 assets are not accepted by current TTF/OTF onboarding; do not just rename or substitute them. Coverage/weight provenance remains to qualify."
+    },
+    {
+      "family": "EB Garamond",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/claude-exchange/assets/fonts/eb-garamond-latin-400-normal.woff2",
+          "sha256": "b63448e2680a0dbde70ebb2f3de78f6c515122835491f938e8a8595b46f29210"
+        },
+        {
+          "path": "registry/blocks/claude-exchange/assets/fonts/eb-garamond-latin-700-normal.woff2",
+          "sha256": "5d0f8a497a48fd2a3611d07acc844f65c9fbb35419eafa4e1295f5f0f95f86e4"
+        }
+      ],
+      "license_evidence": {
+        "path": "registry/blocks/claude-exchange/assets/fonts/eb-garamond-LICENSE.txt",
+        "sha256": "f03c8eda63076cd52317dcd40aa04db8472d4cb592dfaafa385129dfdafc7f9c",
+        "line": 9,
+        "locator": "SIL OPEN FONT LICENSE"
+      },
+      "license_status": "adjacent_ofl_text_found",
+      "compatibility": "WOFF2 onboarding gap; optional editorial style only after brand review."
+    },
+    {
+      "family": "Cormorant Garamond",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/glass-shard-title/assets/fonts/cormorant-garamond.woff2",
+          "sha256": "d80df8ff5aecd299a61549f9e29ab1ed0b9b05f4ea71d50fe978e07d5240b235"
+        }
+      ],
+      "license_evidence": {
+        "path": "registry/blocks/glass-shard-title/assets/fonts/CormorantGaramond-OFL.txt",
+        "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956",
+        "line": 9,
+        "locator": "SIL OPEN FONT LICENSE"
+      },
+      "license_status": "adjacent_ofl_text_found",
+      "compatibility": "WOFF2 onboarding gap; no style or language coverage qualification."
+    },
+    {
+      "family": "Recursive",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/weight-wave/assets/fonts/Recursive-wght-slnt-latin.woff2",
+          "sha256": "7623ffd5a2a68b96227e9d7453f20b18e4d0a609b441dc5504a8235af7387450"
+        }
+      ],
+      "license_evidence": {
+        "path": "registry/blocks/weight-wave/assets/fonts/OFL.txt",
+        "sha256": "f9f539cf7549bd417159dbdb9c400943a5b60a7366c2c6fbde9f095173d82479",
+        "line": 9,
+        "locator": "SIL OPEN FONT LICENSE"
+      },
+      "license_status": "adjacent_ofl_text_found",
+      "compatibility": "WOFF2; filename indicates weight/slant subset. Read actual font axes before use; not a drop-in width-axis font."
+    },
+    {
+      "family": "Caveat",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/hw-title/assets/fonts/Caveat-700-latin.woff2",
+          "sha256": "891951df5e8b5b0f0bc760d31375405e795c666b5add70437de12d4a6482b33f"
+        }
+      ],
+      "license_evidence": null,
+      "license_status": "not_located_in_reviewed_assets",
+      "compatibility": "WOFF2; license evidence not located in reviewed adjacent assets. Optional handwritten annotation candidate only."
+    },
+    {
+      "family": "Courier Prime",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/notes-reveal/assets/courier-prime-400.woff2",
+          "sha256": "a634cb9e7783af7e66d17e1dae9c859b8748da8174641b53d68b3b05de8ebce9"
+        },
+        {
+          "path": "registry/blocks/notes-reveal/assets/courier-prime-700.woff2",
+          "sha256": "654a1d16c0b027ead89781bd3a4360d7f0af17a3ddf78c287d0e1843c6bca8d7"
+        }
+      ],
+      "license_evidence": null,
+      "license_status": "not_located_in_reviewed_assets",
+      "compatibility": "WOFF2; complete license evidence still needed before any copy."
+    },
+    {
+      "family": "Permanent Marker",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/notes-reveal/assets/permanent-marker-400.woff2",
+          "sha256": "8963f64fa28dc4aea162405d784baa23ff6499df554d9b4cdee898e28d19cca4"
+        }
+      ],
+      "license_evidence": null,
+      "license_status": "not_located_in_reviewed_assets",
+      "compatibility": "WOFF2; complete license evidence still needed before any copy."
+    },
+    {
+      "family": "Barlow Condensed",
+      "status": "candidate_not_imported_not_brand_approved",
+      "assets": [
+        {
+          "path": "registry/blocks/lower-third-bild/assets/fonts/BarlowCondensed-Bold.woff2",
+          "sha256": "75b7b8e878ea0c33be73e888d0d192df09da34af0cf428b69f8c208e0c27e688"
+        },
+        {
+          "path": "registry/blocks/lower-third-bild/assets/fonts/BarlowCondensed-ExtraBold.woff2",
+          "sha256": "2e5732c61470a890aee05ee399f6720664835efab8749dfc87d487e7882ffc44"
+        }
+      ],
+      "license_evidence": null,
+      "license_status": "not_located_in_reviewed_assets",
+      "compatibility": "WOFF2; complete license evidence still needed before any copy."
+    }
+  ],
+  "profiles": [
+    {
+      "ratio": "9:16",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "status": "existing_180s_legacy",
+      "layout": "Retain old geometry. New long-duration mode requires independent qualification."
+    },
+    {
+      "ratio": "16:9",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "status": "target_not_implemented",
+      "layout": "Side-by-side narrative and graphic/screen; wide data views; landscape cover."
+    },
+    {
+      "ratio": "1:1",
+      "dimensions": [
+        1080,
+        1080
+      ],
+      "status": "target_not_implemented",
+      "layout": "Compact grid or centered visual with shorter labels and recomposed captions."
+    },
+    {
+      "ratio": "4:5",
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "status": "target_not_implemented",
+      "layout": "Stacked title/visual with separate density and caption fitting checks."
+    }
+  ],
+  "target_touchpoints": [
+    {
+      "file": {
+        "path": "media_contract.py",
+        "sha256": "b9b18814d96f3211afa9cdaec1d42246f31c121a1404bd9ba1a1b80890992e3c",
+        "line": 5,
+        "locator": "MAX_SECONDS ="
+      },
+      "required_change": "Introduce bounded format/duration profiles. Keep v1/v2 at 180s/5400 frames; new opt-in profile can reach 600s/18000 frames at 30fps."
+    },
+    {
+      "file": {
+        "path": "workflow.py",
+        "sha256": "956636bbc3241fda49187ca04fdd8a506a32e4022d0c8ee238ca03271cf2b008",
+        "line": 123,
+        "locator": "require(3 <= len(data['scenes'])"
+      },
+      "required_change": "Versioned episode contract, bounded scene list, profile dimensions, aspect-correct graphic/thumbnail inputs; retain cue/input/lock checks."
+    },
+    {
+      "file": {
+        "path": "ysc.py",
+        "sha256": "856076631dc30cb09ba98bb8394989a584b5c44af0eeef0d6eed12b0f0ddc176",
+        "line": 66,
+        "locator": "def new_episode"
+      },
+      "required_change": "Author reusable visual episodes and format selection through the ordinary command; chapter/cue planning instead of 3-4 scenes stretched over ten minutes."
+    },
+    {
+      "file": {
+        "path": "branding.py",
+        "sha256": "97cb0a050e98efbae1322b0657dd46266e4fbc7ef0115016185f2cb13e91bb92",
+        "line": 47,
+        "locator": "def validate_brand"
+      },
+      "required_change": "Separate channel identity from output layout and per-episode scene count; never silently rewrite existing brand approvals."
+    },
+    {
+      "file": {
+        "path": "branding.py",
+        "sha256": "97cb0a050e98efbae1322b0657dd46266e4fbc7ef0115016185f2cb13e91bb92",
+        "line": 143,
+        "locator": "def brand_css"
+      },
+      "required_change": "Keep exact approved font files/weights; explicit typography roles and token mapping. No new family by default."
+    },
+    {
+      "file": {
+        "path": "branding.py",
+        "sha256": "97cb0a050e98efbae1322b0657dd46266e4fbc7ef0115016185f2cb13e91bb92",
+        "line": 196,
+        "locator": "def thumbnail"
+      },
+      "required_change": "Profile-specific covers and branding previews; preserve existing portrait outputs."
+    },
+    {
+      "file": {
+        "path": "templates/v1/assets/motion.css",
+        "sha256": "d87f2956f9e4afe028fb32a77ab5a089debb8050827cbaa2d76d72fc89071ec4",
+        "line": 5,
+        "locator": "width:1080px"
+      },
+      "required_change": "Profile-specific composition geometry with genuine horizontal/square reflow."
+    },
+    {
+      "file": {
+        "path": "templates/v1/assets/motion.js",
+        "sha256": "415526ec2a875b0319590b550950e9dad30bea8fadbc6b6eae0d351cae2b3528",
+        "line": 17,
+        "locator": "function fit"
+      },
+      "required_change": "Use the validated logical canvas dimensions; retain deterministic clock and paint reset."
+    },
+    {
+      "file": {
+        "path": "templates/v1/assets/spoken-captions.css",
+        "sha256": "3a8e299c12a6d10d86b6d540565df69205a419a9d74c31d79ad5b8770458d8dd",
+        "line": 14,
+        "locator": ".spoken-caption"
+      },
+      "required_change": "Per-profile readable caption widths/positions; preserve exact caption text and timing."
+    },
+    {
+      "file": {
+        "path": "templates/v1/assets/visual-cinema.css",
+        "sha256": "195bad92fd62b4ab5879f927ce298c15fd8f14c30afcde307a4ec0f566c97e9b",
+        "line": 3,
+        "locator": "1080"
+      },
+      "required_change": "Profile-specific stage, hierarchy and visual bounds instead of scaling a portrait canvas."
+    },
+    {
+      "file": {
+        "path": "visual_adapter.py",
+        "sha256": "860b7867fd3ea02ffb5470abd32c4f88dfce2fe1d3c299d15504a33531058c0e",
+        "line": 117,
+        "locator": "def validate_records"
+      },
+      "required_change": "Bound the new scene/asset catalog; preserve exact keys, safe HTML, source/provenance rules and old limits by version."
+    },
+    {
+      "file": {
+        "path": "tools/visual_library/catalog.py",
+        "sha256": "8b050e73951b91f21bcc1da1d118c22b7021fda6c73133598db800a834303d72",
+        "line": 19,
+        "locator": "def entries"
+      },
+      "required_change": "Expose actual mode/profile bounds, data limits and qualification state; never label a candidate production-ready."
+    },
+    {
+      "file": {
+        "path": "capture.mjs",
+        "sha256": "f6b08022fa650999be024b1baf383a607f8e8134f2eab679e492701fdc08d40b",
+        "line": 33,
+        "locator": "1080"
+      },
+      "required_change": "Capture actual output dimensions; parameterize fitting/protected-region/seam checks and 18000-frame budget."
+    },
+    {
+      "file": {
+        "path": "media_backend.py",
+        "sha256": "22b0f320ee4a72b8d739215833b341dd6fb151f7077e55d10f37e9e95e1c3277",
+        "line": 45,
+        "locator": "def encode"
+      },
+      "required_change": "Pass validated profile to encoders/preflight/finish; check storage before run creation; keep no-overwrite and owned scratch."
+    },
+    {
+      "file": {
+        "path": "ffmpeg_backend.py",
+        "sha256": "0d38f4938b867acd8626a0f0a8d95046a2d25af9ade072c4b0ef861eec6901ec",
+        "line": 88,
+        "locator": "def inspect_record"
+      },
+      "required_change": "Validate requested output geometry and duration, frame timestamps and decode samples. Measure existing 600s process timeout before selecting bounded replacements."
+    },
+    {
+      "file": {
+        "path": "encode.swift",
+        "sha256": "3f119d083c739090ea2ae96e2a75cc796eee131c1dd920acc2934a1f114f3539",
+        "line": 17,
+        "locator": "AVVideoWidthKey"
+      },
+      "required_change": "Native dimensions/pixel buffers/image checks from a bounded profile; exact frame count retained."
+    },
+    {
+      "file": {
+        "path": "media-qa.swift",
+        "sha256": "9fcafa39bc57bf62072a0f5aea706520209bc298d3bb68a335d7b96af442cd8d",
+        "line": 8,
+        "locator": "expected <= 180"
+      },
+      "required_change": "Explicit profile duration, dimensions, decoded frames and count checks; no relaxed thresholds."
+    },
+    {
+      "file": {
+        "path": "native-capabilities.swift",
+        "sha256": "1003e3598702527ee0ed56475741c0437734e538cc44ee42ca10561c05f520e1",
+        "line": 14,
+        "locator": "AVVideoWidthKey"
+      },
+      "required_change": "Qualify requested profile and local encoder capability."
+    },
+    {
+      "file": {
+        "path": "frame_qa.py",
+        "sha256": "72f832305a22a0dbddf2b0466c231cfdfd550f4f394d85222dd7ad4d96d5fb46",
+        "line": 10,
+        "locator": "REGIONS ="
+      },
+      "required_change": "Per-profile protected regions, image shapes and frame ceiling; keep existing RMSE/luma/chroma thresholds."
+    },
+    {
+      "file": {
+        "path": "audio_qa.py",
+        "sha256": "93428fdd1d3bc7195672a94591c76753beac66a237b82cb12766a539844d00ef",
+        "line": 6,
+        "locator": "def compare_files"
+      },
+      "required_change": "Audit full-file PCM memory at ten minutes; preserve every 3-second window, tail and synchronization threshold."
+    },
+    {
+      "file": {
+        "path": "safety.py",
+        "sha256": "fca994f0a5abaf603bc4f1c3505329d3195c7eae5eed38a5a3cf838b7185b1ed",
+        "line": 17,
+        "locator": "def read_json"
+      },
+      "required_change": "Measure ten-minute transcript/episode sizes against existing 2MB JSON cap; keep generic input safety bounded."
+    },
+    {
+      "file": {
+        "path": "tools/freeze.py",
+        "sha256": "de735c86d9e1a1dfcffabdffb7bb2e7022ff7eb73801b4021f8036f17884f29a",
+        "line": 12,
+        "locator": "def record"
+      },
+      "required_change": "Include intentional profile/renderer changes in a new reviewed lock candidate."
+    },
+    {
+      "file": {
+        "path": ".github/workflows/tests.yml",
+        "sha256": "d9a680ee93a4ec24299029fa80ede07c964ff02832eb2cacc5fe7136865267a5",
+        "line": 1,
+        "locator": "name: Tests"
+      },
+      "required_change": "Add existing Node regression coverage when implementing; no new CI service required."
+    }
+  ],
+  "long_duration_constraints": [
+    "Raise neither MAX_SECONDS nor scene limits alone. Introduce an explicit bounded contract; retain legacy defaults.",
+    "Use chapter/cue-driven scene anchors with a tested cap; chapter count and scene cap remain implementation decisions, not supported input today.",
+    "Current capture retains every PNG until encoding. Ten minutes is 18000 frames; measure scratch usage and free disk before enabling the full limit. Do not add distributed rendering by default.",
+    "The 75MB source-audio cap may reject longer PCM files. Define measured input budgets without deleting size checks; preserve source audio without trimming or speed changes.",
+    "Measure caption/transcript JSON size, audio comparison memory, subprocess timeout and cumulative cue/frame QA cost.",
+    "Test exact 600s acceptance and 600s plus one frame rejection; retain 180s legacy boundaries and finite-number checks."
+  ],
+  "readiness_gates": [
+    {
+      "id": "authoring",
+      "status": "pending",
+      "evidence_required": "Normal CLI creates two unrelated episodes with different text/data/order and optional output profile; no private demo helper."
+    },
+    {
+      "id": "visuals",
+      "status": "pending",
+      "evidence_required": "Selected composition families have closed schemas, pure time rendering, source notices and browser fit/seek tests."
+    },
+    {
+      "id": "formats",
+      "status": "pending",
+      "evidence_required": "Actual MP4 dimensions, fresh cover, caption fit, protected-region/frame/media/audio QA for each exposed profile. Preview viewport tests are insufficient."
+    },
+    {
+      "id": "duration",
+      "status": "pending",
+      "evidence_required": "One full 600s narrated export with multiple meaningful scenes on the chosen backend; frame count, all cue samples, audio tail/sync and storage/runtime measurements. Native and FFmpeg support claims are qualified separately."
+    },
+    {
+      "id": "regression",
+      "status": "pending",
+      "evidence_required": "Old 9:16 v1/v2 inputs unchanged; reject unknown profiles/unsafe assets/overflow; old approvals cannot bypass a changed implementation lock."
+    },
+    {
+      "id": "cognativ",
+      "status": "pending",
+      "evidence_required": "Actual approved Cognativ logo/fonts/colors supplied and preserved; new format/type previews reviewed. Synthetic Signal Lab approval does not approve Cognativ."
+    },
+    {
+      "id": "release",
+      "status": "pending",
+      "evidence_required": "Tests, docs, source audit and lock qualification pass; human visual/listening review remains required. Commit/push/publication still require explicit user instruction."
+    }
+  ],
+  "pass_safety": {
+    "runtime_changed": false,
+    "fonts_copied": false,
+    "fonts_installed": false,
+    "dependencies_added": false,
+    "network_calls": 0,
+    "new_video_rendered": false,
+    "production_changed": false,
+    "commit_or_push": false
+  },
+  "implementation_update": {
+    "date": "2026-10-15",
+    "status": "development_automated_qualification_passed_assets_accepted",
+    "asset_acceptance": {
+      "date": "2026-10-15",
+      "source": "Direct operator message in the implementation conversation",
+      "scope": "Visual assets added to the development engine, including the eight composition families and integrated cut-left/zoom-through transitions",
+      "accepted": true,
+      "video_purpose": "Internal progress test",
+      "publication_approved": false,
+      "brand_approval_or_render_manifest_changed": false
+    },
+    "profile": {
+      "id": "landscape",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "maximum_seconds": 600,
+      "maximum_scenes": 120,
+      "backend": "ffmpeg"
+    },
+    "compositions": [
+      "title",
+      "kinetic",
+      "grid",
+      "quote",
+      "screen",
+      "walkthrough",
+      "lower-third",
+      "cta"
+    ],
+    "authoring": "ysc.py new --format landscape --storyboard",
+    "rendering": "ysc.py render; shared orchestration and existing validation gates",
+    "provenance": "docs/hyperframes-production-provenance.json",
+    "qualification_document": "docs/HYPERFRAMES-PILOT.md",
+    "retained_font_logo_palette_files": true,
+    "new_dependencies": false,
+    "production_changed": false,
+    "git_commit_or_push": false,
+    "pending": [
+      "Actual Cognativ brand qualification",
+      "Episode-specific editorial and listening review before publication; reusable visual assets accepted",
+      "Native landscape, square/4:5 and other candidates",
+      "Earlier cinematic portrait reverse-seek raster stability remains unqualified"
+    ],
+    "validation": {
+      "python_tests": 286,
+      "node_tests": 21,
+      "landscape_exports_seconds": [
+        48,
+        600
+      ],
+      "long_frames": 18000,
+      "long_decoded_pixel_samples": 750,
+      "long_scene_count": 80,
+      "classic_portrait_export_seconds": 12,
+      "original_brand_and_artifacts_unchanged": true,
+      "human_approval": false,
+      "human_approval_scope": "Publication approval for the test episodes; reusable asset acceptance is recorded separately"
+    }
+  },
+  "focus_data_headline_extension": {
+    "date": "2026-10-15",
+    "scope": "Development engine, reusable version-3 landscape features",
+    "features": {
+      "screen_focus": "1-3 image-space regions, clamped zoom/pan, narrated emphasis",
+      "chart": "Existing bar, line, metric and comparison data/source contracts",
+      "text_match": "Non-overlapping adjacent title pairs, shared carrier curve"
+    },
+    "authoring": "ysc.py new --format landscape --storyboard",
+    "contracts": "docs/DATA-CONTRACTS.md#landscape-version-3",
+    "provenance": "docs/hyperframes-production-provenance.json",
+    "qualification": "docs/HYPERFRAMES-PILOT.md#focus-data-and-headline-extension",
+    "new_dependencies": false,
+    "production_changed": false,
+    "brand_files_changed": false,
+    "git_commit_or_push": false,
+    "video_purpose": "Internal progress test",
+    "limits": [
+      "One still per focused screen",
+      "One series, 2-6 categories for animated bar/line",
+      "Headline pairs use one line at the existing type size; no consecutive text-match chain",
+      "No additional qualification of the older cinematic portrait mode"
+    ]
+  }
+}

@@ -311,6 +311,12 @@ class BoundaryTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 release.files(root)
 
+    def test_release_includes_required_seek_qa_module(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'seek-qa.mjs').write_text('export const checked = true;\n')
+            self.assertEqual([p.name for p in release.files(root)], ['seek-qa.mjs'])
+
     def test_release_no_overwrite(self):
         with tempfile.TemporaryDirectory() as temp:
             base = Path(temp)

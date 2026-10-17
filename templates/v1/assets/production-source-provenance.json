@@ -1,0 +1,67 @@
+{
+  "source_pins": {
+    "registry/blocks/glass-shard-title/assets/glass-main.mjs": "221a49d92d15372aa446a1b7f327985d1f61066f778766689d18733831c3dd34",
+    "registry/blocks/glass-shard-title/assets/glass-main.js": "6d411a955eaee6a0fd26a77e84411e1dcb2a01c7b87bbcb3e87354d652f09a52",
+    "registry/blocks/frost-sequence-camera-orbit/frost-sequence-camera-orbit.html": "7b895065f177ba0d3e3837712724b5d4eaa9cdf775e2bc6309478b50fed84694",
+    "registry/blocks/frost-sequence-camera-orbit/assets/frost.js": "d9585488efbc91f93bd7baed463b5f07a25f688c1d89132cdd9ac0311afb0801",
+    "registry/blocks/frost-sequence-camera-orbit/assets/gsap-3.14.2.min.js": "7b2c91e3bff9022bef50054413b365a945c93f87285dcf8bdfb92076c4c56304"
+  },
+  "resources": [
+    {
+      "key": "textures/ice-inclusions-generated.png",
+      "source_sha256": "4bea3a8ab90c952736ff78fcea4b57ec96a881f26c548c6baeea0d00d5174f33",
+      "encoding": "lossless WebP, identical RGBA pixels",
+      "license_evidence": "HyperFrames repository Apache-2.0; no item-specific creator declaration"
+    },
+    {
+      "key": "shards-atlas.png",
+      "source_sha256": "122961c82d240e47d643af9a3ccf340cbede742169e8c5de495904ae95439760",
+      "encoding": "lossless WebP, identical RGBA pixels",
+      "license_evidence": "HyperFrames repository Apache-2.0; no item-specific creator declaration"
+    },
+    {
+      "key": "matcap",
+      "source_sha256": "8a4ba0deaf2bafb4ffe60d5685850b6b9174e58ce6cfd29bf026e060812961a0",
+      "encoding": "lossless WebP, identical RGBA pixels",
+      "license_evidence": "HyperFrames repository Apache-2.0; no item-specific creator declaration"
+    },
+    {
+      "key": "textures/bluenoise64.png",
+      "source_sha256": "cd061e31f2ac7cc580c3819e96b9f567bf309939e699fe162860cf58ca610417",
+      "encoding": "lossless WebP, identical RGBA pixels",
+      "license_evidence": "HyperFrames repository Apache-2.0; no item-specific creator declaration"
+    },
+    {
+      "key": "hdr",
+      "source_sha256": "e76abcf0e02675ec3ec49a608e94742f1e9cb47069f99a31cc95233d29ca2745",
+      "encoding": "exact original HDR",
+      "license_evidence": "HyperFrames repository; item-specific evidence under review"
+    }
+  ],
+  "qualification": "pending cumulative engine validation",
+  "adaptations": [
+    "Native four-format canvas and cue clock",
+    "Approved fonts, explicit text and brand colors",
+    "No runtime downloads, persistent cache or demo identity",
+    "Lossless WebP packaging: exact decoded RGBA verification",
+    "Frost first shape is an explicit approved-font word, not the upstream logo",
+    "Temporal antialiasing replaced with four-sample spatial antialiasing for exact reverse-seek pixels",
+    "Fixed local external scripts preserve the native CSP; payload loaders reject all unlisted bytes"
+  ],
+  "outputs": {
+    "production-shard-runtime.js": "e2ebf11eedfb0f3040569e4f36641ec86bbd6d11627159a81ae6bfd1869fb80c",
+    "production-frost-runtime.js": "51db153f74b8d05c908ee77809766e62a2e6ce91b8a3d96493da8f56d0604198",
+    "production-source-templates.js": "c2d9a195fa09fade200a15967acc33ecb10ab22373b22f8cde1b5af82dd61102",
+    "production-source-gsap.js": "7b2c91e3bff9022bef50054413b365a945c93f87285dcf8bdfb92076c4c56304",
+    "production-frost-scene-1.js": "6e70b1f6ec83811e561f2ac34eeaebba9ba0bedbe5aa02941e90d6580be2c46e",
+    "production-frost-scene-2.js": "add4255c4fea8c05238c4bd36be5da3d8a48f558308801b0ee316aa1da3ce0b8",
+    "production-frost-scene-3.js": "872c46e9f8cf3cfe80a39bd0cf74877af3852d0f66c28ca63bbf32796040b53a",
+    "production-source-delaunay.js": "efc726aa8aea0897f6dda19874709d09fd791781208ed5847ef1fd36f9886b18",
+    "production-source-ice.js": "099f953b38088b74f351a27a54edd47195884093db61e9683e322f722ecc21f2",
+    "production-source-atlas.js": "ce7ab35d5a765cdc00b3641da1fd2ee4c446b17bd1757dc393c913f889b8be5f",
+    "production-source-matcap.js": "4bf3b70298db84869d915f5f00410bdbd3a660d796ab65fc6b501ff55624df35",
+    "production-source-noise.js": "c48789936767072f8b9c38c35bcd6ef28b9c01a5f0309e22e736c19e2d2ebf84",
+    "production-source-hdr.js": "2b625c37d2b6fd35993cfc42c79cb0ba5056aed1c5bb60f86a9d04c3360cdbf9",
+    "production-source-notices.txt": "9da9c198965ee50559761fa1b464f6021401f74c4b658589084fe531cd2165d8"
+  }
+}

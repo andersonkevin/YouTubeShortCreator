@@ -1,0 +1,7 @@
+.lettering-board{position:absolute;inset:0;isolation:isolate;--std-accent:var(--lime);--fg:var(--cyan)}
+.lettering-layer{position:absolute;inset:0}
+.lettering-svg{position:absolute;left:5%;top:20%;width:90%;height:46%;overflow:visible}
+.lettering-note{position:absolute;left:7%;top:74%;width:86%;text-align:center;color:var(--cyan);font:400 26px/1.5 BrandMono,monospace}
+.difference-stage{position:absolute;left:4%;top:22%;width:92%;height:40%;isolation:isolate;overflow:hidden;background:#000;display:grid;place-items:center}
+.difference-field{position:absolute;inset:0;background:#fff;transform-origin:left}
+.difference-copy{position:relative;white-space:pre;mix-blend-mode:difference;color:#fff;font:800 calc(var(--content-w)/13)/1.5 BrandSans,sans-serif;text-align:center}

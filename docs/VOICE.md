@@ -61,8 +61,9 @@ factor, peak level, package versions, `listening_approval: pending`,
 `word_alignment: not measured` and `publication_performed: false`. Existing
 files are never overwritten; use a new name for a new take.
 
-Rules: American English voices only (`af_*` and `am_*`), speed between 0.8 and
-1.2, `lang` fixed to `en-us`. Silent, clipped or non-finite audio fails before
+Rules: American English voices (`af_*` and `am_*`, `en-us`) and Spanish voices
+(`ef_dora`, `em_alex`, `em_santa`, `es`), speed between 0.8 and
+1.2. The voice selects the explicit supported language. Silent, clipped or non-finite audio fails before
 anything is written. No equalization, normalization, denoising or time stretch
 is applied.
 
@@ -113,9 +114,13 @@ ignored paths (`workspaces/`, `.venv/`, `*.onnx`, `*.bin`, `*.wav`).
 
 ## Limitations
 
+- Native phoneme timing can be mapped with the bounded helper documented in
+  [Cinema direction](CINEMA-DIRECTION.md); ambiguous word mappings are rejected.
+
 - CPU inference only through ONNX Runtime; no GPU path is configured.
-- No word timings from the engine are used; timing comes from the existing
-  local transcription step, which remains the caption source of truth.
+- The standard voice CLI does not write word timings. Its existing workflow
+  uses local transcription. The separate native-timing helper above is an
+  alternative authoring path, with measured audio and transcript checks intact.
 - Long scripts are synthesized in one call; for more than about 3,000 characters
   split the script and generate separate takes.
 - The pronunciation of brand names and acronyms varies by voice; audition them.

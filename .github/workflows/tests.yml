@@ -18,6 +18,8 @@ jobs:
         python: ["3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
@@ -25,9 +27,22 @@ jobs:
         run: python -m pip install --no-cache-dir -r requirements.txt
       - name: Unit tests
         run: python -B -m unittest discover -s tests -p 'test_*.py'
+      - uses: actions/setup-node@v4
+        if: ${{ !cancelled() }}
+        with:
+          node-version: "22"
+      - name: Deterministic visual unit tests
+        if: ${{ !cancelled() }}
+        run: node --test tests/*.test.mjs
       - name: Documentation checks
+        if: ${{ !cancelled() }}
         run: python -B tools/check_docs.py
       - name: Release audit
+        if: ${{ !cancelled() }}
         run: python -B tools/release.py audit
+      - name: Qualified asset integrity
+        if: ${{ !cancelled() }}
+        run: python -B -c "import workflow; print(workflow.verify_lock())"
       - name: Whitespace check
-        run: git diff --check HEAD~1 HEAD || true
+        if: ${{ !cancelled() }}
+        run: git diff --check HEAD~1 HEAD

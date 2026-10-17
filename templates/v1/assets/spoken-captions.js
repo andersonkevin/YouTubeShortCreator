@@ -9,16 +9,9 @@
   }
   // Capture uses the same time for scenes and captions, including backwards seeks.
   window.ShortCreatorRenderAt = seconds => {
-    baseRender(seconds);
+    const completed = baseRender(seconds);
     renderCaption(seconds);
+    return completed;
   };
   renderCaption(0);
-  if (!window.__SHORTCREATOR_CAPTURE_MODE__) {
-    const started = performance.now();
-    function tick(now) {
-      renderCaption(((now - started) / 1000) % data.duration);
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
 })();

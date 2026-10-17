@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "source": {
+    "path": "registry/blocks/vfx-iphone-device/",
+    "files": {
+      "vfx-iphone-device.html": "62eee0ecca585e708b32b747b6ea5251619fdf5a46fc7d868c32abc364950ba7",
+      "models/iphone.glb": "20b926be3ab68ad773af8ef83949561f1f93bc22777688efd89bc38f0840614e",
+      "models/macbook.glb": "12749c742f3bf67d14650eb831ab6c02104fba59074034c8ed42ce2c5c37c02b"
+    },
+    "license": "Repository Apache-2.0; Three.js runtime MIT. Model-specific authorship/license metadata absent; publisher rights/trademark review pending."
+  },
+  "files": {
+    "production-device-iphone-data.js": "0b78c55b881bf28beec02744907372429363c0da2946a1ff117c2da901572924",
+    "production-device-macbook-data.js": "23534c817ccb87cd0fbd51437907461cf94ddb6dc7ff6a06f3ec54a4bda2107f",
+    "production-device-models.js": "8e376b4284847b85320020113a3bbbef912f6aa307a143983a181a2a9e428fd5",
+    "production-device-motion.js": "4c90d9a908ae10bf540cbd182247d9bd5d462eebc3459c94a3c72b4749dd0da6",
+    "production-device-review.js": "8f8452c1ff7dfeb5951c410bf7105df6babf5e0cca13590b7d194f38aa76397c"
+  },
+  "native_integrated": true,
+  "export_qualified": false,
+  "mechanic": "Original embedded phone/laptop geometry and hardware textures, planar screen UVs, six-act device/camera motion, six glass lens shapes, studio environment and paired 360-degree turntable.",
+  "changes": "Two verified local screen images replace source demo HTML, app icons and claims. Approved palette and native typography/captions are retained. Absolute sampling preserves forward source motion independently of seek direction; tiny idle device drift is omitted. The original 34-degree lens is retained; actual mesh bounds drive a smooth paired-reveal camera dolly and per-pose closing fit in all formats. Shared local Three.js owns resources; no loaders, remote decoders or runtime network are added. Shared screen/model helpers also serve the two glass styles. Before both devices arrive, the closing dolly uses the first complete paired pose; subsequent framing uses actual closing poses.",
+  "qualification": "Four-format native compiler/browser gates pass, including 16 viewport checks, 372 event samples, exact reverse pixels, camera/geometry/screen/caption checks and four negative cases. Source forward parity compares 22525 state values at 901 instants, with maximum visual arithmetic error about 1e-6. Original overlapping laptop tweens are direction-dependent; native sampling intentionally fixes that behavior. Cumulative workflow, seams, audio and encoded exports remain pending. Exact event-crossing regression passes four formats, 16 viewports and 372 samples after the handoff repair; native-rig tests retain the original fit bound and confirm continuity at 11 and 12.5 seconds.",
+  "notices": [
+    "docs/licenses/hyperframes-apache-2.0.txt",
+    "templates/v1/assets/production-three-notices.txt"
+  ],
+  "model_rights": {
+    "evidence": "Repository license only; GLB asset metadata names Khronos glTF Blender I/O v5.2.39 and contains no item-specific copyright or license.",
+    "public_distribution_cleared": false,
+    "embedded_textures": "Original normal maps and keyboard legends; source demo screens excluded."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "runtime": "Three.js r185, matching the existing pinned core bundle",
+  "license": "MIT",
+  "notice": "production-three-notices.txt",
+  "sources": [
+    {
+      "path": "postprocessing/Pass.js",
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/r185/examples/jsm/postprocessing/Pass.js",
+      "sha256": "444b409c235ead986893c472e720da1b779a56985c7d10b279c7944b52bd61c5"
+    },
+    {
+      "path": "shaders/CopyShader.js",
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/r185/examples/jsm/shaders/CopyShader.js",
+      "sha256": "a33057d5ac91c43304c186ac0e8816e62bb2ed471d3a00ff3018dfd5c0389718"
+    },
+    {
+      "path": "shaders/LuminosityHighPassShader.js",
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/r185/examples/jsm/shaders/LuminosityHighPassShader.js",
+      "sha256": "5044f780b6e6cf863947f64c36fe1587132f7fbe395ada863cd1e5f0388dcf1e"
+    },
+    {
+      "path": "postprocessing/UnrealBloomPass.js",
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/r185/examples/jsm/postprocessing/UnrealBloomPass.js",
+      "sha256": "1158bb02f6467889aba19c1a788b9107054d7f6a558498b5e2152db5873bb859"
+    }
+  ],
+  "bundle_sha256": "39db3ca0fb351f28636178c20b8a2da16079d575ab28f2070efbabba31de0ff2",
+  "changes": "Only module imports/exports are converted to isolated classic-script scopes. Original module bodies and shaders retained. Native callers own resources and pass explicit absolute animation time; no EffectComposer, Timer, network or package installation.",
+  "qualification": "Pinned conversion tests and native glass-parallax browser checks pass in four formats; explicit reuse/disposal verified. Combined workflow and encoded export remain pending."
+}
