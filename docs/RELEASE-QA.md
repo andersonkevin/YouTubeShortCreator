@@ -56,6 +56,10 @@ All renderer, font and license bytes remain identical to the qualified film.
 The resulting source-release implementation lock is
 `42b08b645219d28ed28919380e5ca00bf0ce6b0a289ef1540e1ce7700866ee0e`.
 Existing private approvals and render receipts retain their original record.
+The hosted rerun also identified a format-test headline that exceeded the
+unchanged width limit with Linux's display font. The synthetic fixture now uses
+shorter copy; production geometry, minimum font size and overflow rejection are
+unchanged. These packaging/test fixes require hosted verification before merge.
 
 The current render qualifies portrait photographic cinema on the existing macOS
 setup. Earlier four-format and 600-second exports remain separately dated

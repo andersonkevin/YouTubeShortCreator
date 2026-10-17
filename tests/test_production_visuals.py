@@ -185,7 +185,8 @@ class ProductionTests(unittest.TestCase):
             graphic = self.root / 'intake' / (name + '.png')
             Image.new('RGB', (spec['width'], spec['height']), '#140b30').save(graphic)
             board = copy.deepcopy(self.board)
-            board['thumbnail']['headline'] = ['NEW FORMATS', 'SAME BRAND']
+            # This format fixture must fit both supported platform display fonts.
+            board['thumbnail']['headline'] = ['FORMATS', 'SAME BRAND']
             write_json(self.root / 'intake' / (name + '.json'), board)
             path = ysc.new_episode(self.root, name, 'intake/voice.wav', 'intake/transcript.json',
                 'intake/' + graphic.name, 'intake/captions.json', output_format=name, storyboard='intake/' + name + '.json')
@@ -194,10 +195,10 @@ class ProductionTests(unittest.TestCase):
             self.assertIn('data-profile="' + name + '"', html)
             self.assertIn('data-height="' + str(spec['height']) + '"', html)
             cover = self.root / (name + '.jpg')
-            branding.thumbnail(self.root, graphic, ['NEW FORMATS', 'SAME BRAND'], 'EXAMPLE', cover, profile=name)
+            branding.thumbnail(self.root, graphic, board['thumbnail']['headline'], 'EXAMPLE', cover, profile=name)
             with Image.open(cover) as image: self.assertEqual(image.size, (spec['width'], spec['height']))
             with self.assertRaises(ValueError):
-                branding.thumbnail(self.root, graphic, ['NEW FORMATS', 'SAME BRAND'], 'EXAMPLE', cover, profile=name)
+                branding.thumbnail(self.root, graphic, board['thumbnail']['headline'], 'EXAMPLE', cover, profile=name)
             with self.assertRaises(ValueError):
                 ysc.new_episode(self.root, name + '-bad', 'intake/voice.wav', 'intake/transcript.json',
                     'intake/wide.png', 'intake/captions.json', output_format=name, storyboard='intake/' + name + '.json')
