@@ -43,8 +43,19 @@ videos are excluded from the source release.
   verifies the full implementation lock. The aggregate diff from v0.4.0 passes
   the resulting format check; no media, asset-hash or runtime gate was relaxed.
 
-Implementation lock SHA-256:
+Encoded-film implementation lock SHA-256:
 `d17576cb9d5a9dff6523f2b6f765b0c5115d073c9280654c659c43b79fd4cd72`.
+
+The first hosted Python 3.12/3.13 checks exposed a case-only alias for the Inter
+license: macOS resolved it, while Linux correctly rejected the missing spelling.
+The font manifest now uses the existing `inter-OFL.txt` filename consistently.
+A regression compares manifest names with actual directory entries even on
+case-insensitive filesystems; all 11 font-library tests pass locally. The source
+record removes the duplicate alias and updates only the font-manifest hash.
+All renderer, font and license bytes remain identical to the qualified film.
+The resulting source-release implementation lock is
+`42b08b645219d28ed28919380e5ca00bf0ce6b0a289ef1540e1ce7700866ee0e`.
+Existing private approvals and render receipts retain their original record.
 
 The current render qualifies portrait photographic cinema on the existing macOS
 setup. Earlier four-format and 600-second exports remain separately dated

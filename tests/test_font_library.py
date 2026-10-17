@@ -17,6 +17,15 @@ from tools.font_library import kit
 
 
 class FontLibraryTests(unittest.TestCase):
+    def test_manifest_paths_match_exact_catalog_filenames(self):
+        vendor = kit.HOME / 'vendor'
+        manifest = kit.verify_assets()
+        actual = {str(path.relative_to(vendor))
+                  for folder in ('fonts', 'licenses')
+                  for path in (vendor / folder).iterdir() if path.is_file()}
+        self.assertEqual(set(manifest['files']), actual)
+        self.assertEqual(len(actual), len({name.casefold() for name in actual}))
+
     def test_catalog_contains_readable_static_and_real_variable_faces_with_notices(self):
         manifest = kit.verify_assets()
         self.assertEqual(len(manifest['fonts']), 80)
