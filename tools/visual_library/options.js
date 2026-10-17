@@ -20,6 +20,11 @@ window.ShortCreatorVisualOptions = function(c, config = {}) {
         graphic.push(box(20,y,width-40,cardHeight,colors[i%colors.length]),{type:'circle',silent:true,shape:{cx:72,cy:center,r:27},style:{fill:colors[i%colors.length]}},{type:'image',silent:true,style:{image:icons[step.icon],x:52,y:center-20,width:40,height:40}},writeText((width+120)/2,center,step.label,30));
         if(i<d.steps.length-1)graphic.push({type:'line',silent:true,shape:{x1:width/2,y1:y+cardHeight+4,x2:width/2,y2:y+cardHeight+20},style:{stroke:colors[1],lineWidth:3}},{type:'polygon',silent:true,shape:{points:[[width/2-6,y+cardHeight+18],[width/2+6,y+cardHeight+18],[width/2,y+cardHeight+25]]},style:{fill:colors[1]}});
       });
+      if(config.motionTargets) {
+        const groups=[];
+        for(let i=0;i<d.steps.length;i++) groups.push({type:'group',silent:true,id:'step-'+i,children:graphic.slice(i*6,i*6+6)});
+        return {...common,graphic:groups};
+      }
       return {...common,graphic};
     }
     if(scene && c.kind==='metric')return {...common,graphic:[box(20,30,width-40,height-60,colors[0]),writeText(width/2,110,d.label,32),writeText(width/2,height*.45,String(d.value),72,colors[0]),writeText(width/2,height*.65,d.unit,30,colors[1]),writeText(width/2,height-100,d.context,26)]};

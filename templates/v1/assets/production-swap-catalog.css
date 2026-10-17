@@ -1,0 +1,21 @@
+.catalog-swap-view{isolation:isolate;background:var(--purple)}
+.catalog-swap-image{background:var(--purple);backface-visibility:hidden;transform-origin:50% 50%}
+.catalog-swap-overlay,.catalog-swap-burn{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;width:100%;height:100%}
+.catalog-swap-layer{position:absolute;background:var(--catalog-color);--catalog-color:var(--lime)}
+.catalog-swap-layer[data-color="secondary"]{--catalog-color:var(--cyan)}
+.catalog-swap-layer[data-color="ground"]{--catalog-color:var(--purple)}
+.catalog-swap-layer[data-layer-type="circle"]{border-radius:50%}
+.catalog-swap-layer[data-layer-type="ghost"]{background-color:transparent;background-size:100% 100%,contain;background-repeat:no-repeat;background-position:center;mix-blend-mode:screen}
+.catalog-swap-layer[data-layer-type="warm"]{background:linear-gradient(135deg,color-mix(in srgb,var(--catalog-color),transparent 40%),transparent 60%)}
+.catalog-swap-layer[data-layer-type="leak-a"]{background:radial-gradient(ellipse at 30% 40%,color-mix(in srgb,var(--catalog-color),transparent 50%),transparent 50%)}
+.catalog-swap-layer[data-layer-type="leak-b"]{background:radial-gradient(ellipse at 60% 50%,color-mix(in srgb,var(--catalog-color),transparent 60%),transparent 50%)}
+.catalog-swap-layer[data-layer-type="burn-a"]{background:radial-gradient(ellipse at 70% 40%,color-mix(in srgb,var(--catalog-color),transparent 50%),transparent 50%)}
+.catalog-swap-layer[data-layer-type="burn-b"]{background:radial-gradient(ellipse at 80% 50%,color-mix(in srgb,var(--catalog-color),transparent 60%),transparent 50%)}
+.catalog-swap-layer[data-layer-type="burn-c"]{background:radial-gradient(ellipse at 60% 60%,color-mix(in srgb,var(--catalog-color),transparent 70%),transparent 50%)}
+.catalog-swap-layer[data-layer-type="spectral-sweep"]{background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--lime),transparent 25%),transparent);mix-blend-mode:screen}
+.catalog-swap-layer[data-layer-type="spectral-fringe"]{background:linear-gradient(90deg,color-mix(in srgb,var(--lime),transparent 65%),transparent,color-mix(in srgb,var(--cyan),transparent 65%));mix-blend-mode:screen}
+.beat-freeze-outline,.beat-freeze-flash,.beat-freeze-contour,.beat-freeze-streak{position:absolute;inset:0;pointer-events:none;z-index:8;opacity:0}
+.beat-freeze-outline{inset:4.44%;border:3px solid var(--lime);border-radius:8px;box-shadow:inset 0 0 0 1px var(--lime)}
+.beat-freeze-flash{background:white}
+.beat-freeze-contour{background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--lime) 8%,transparent) 48%,transparent 52%),radial-gradient(ellipse at center,transparent 40%,color-mix(in srgb,var(--lime) 18%,transparent))}
+.beat-freeze-streak{inset:-8% -20%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--lime) 12%,transparent) 35%,#ffffff8c 50%,color-mix(in srgb,var(--lime) 12%,transparent) 65%,transparent);filter:blur(18px);transform-origin:center}

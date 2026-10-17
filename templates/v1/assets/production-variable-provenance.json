@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "Apache-2.0",
+  "sources": [
+    {
+      "path": "registry/blocks/weight-wave/weight-wave.html",
+      "sha256": "08f0a36ff2e863207a713768705534f9090db41f67a6299a37c1335b2a0f6970"
+    },
+    {
+      "path": "registry/components/variable-axis-type/variable-axis-type.html",
+      "sha256": "82c362d7b82c5e50b2c3013793b7df43cec726eac4171286749572582551330e"
+    },
+    {
+      "path": "registry/components/variable-font-flex/variable-font-flex.html",
+      "sha256": "296d1f8accc5e2fb255c32605c3e389dbcb19d16d87c36008e8ff295375fe41f"
+    },
+    {
+      "path": "registry/components/caption-weight-shift/caption-weight-shift.html",
+      "sha256": "8a5294debec3eadeb7ca0a8688c31a6e8c517ebb1c55ff410aa81df3807daa55"
+    }
+  ],
+  "native_files": [
+    "font_motion.py",
+    "templates/v1/assets/production-variable-type.js",
+    "templates/v1/assets/production-variable-type.css"
+  ],
+  "adaptation": [
+    "Exact approved local display font and measured binary axes replace remote font loading.",
+    "Variable-axis-type adopts the weight option; width is not offered because the retained fonts have no width axis.",
+    "Variable-font-flex adopts its weight option, stagger, carve ease and optical compensation.",
+    "Weight-wave keeps the per-character distance crest and slant curve, performing one finite pass per cue.",
+    "Caption-weight-shift is adapted as two explicit scene phrases; the spoken caption rail stays verbatim.",
+    "Scene entrances and settling are bounded to the normal cue envelope; no GSAP or network loader is introduced."
+  ]
+}

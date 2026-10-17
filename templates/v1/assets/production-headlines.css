@@ -1,0 +1,37 @@
+.headline-window{position:absolute;left:24px;top:130px;width:calc(var(--content-w) - 48px);height:420px;display:flex;align-items:center;overflow:hidden}
+.headline-split-panel .headline-mask{height:100%}
+.headline-circle-match .headline-mask{height:100%}
+.headline-slice-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.headline-circle-carrier{position:absolute;left:50%;top:50%;border:6px solid var(--lime);border-radius:50%;background:var(--surface);transform-origin:center;pointer-events:none}
+.headline-circle-match .headline-layer{z-index:1}
+.headline-split-panel .headline-ink{display:inline-flex;flex-wrap:nowrap;max-width:none;white-space:pre}
+.headline-half{display:inline-block;white-space:pre}
+.headline-mask{position:relative;width:100%;overflow:hidden}
+.headline-layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.headline-ink{display:inline-block;max-width:100%;font:800 90px/1.4 BrandSans,sans-serif;letter-spacing:-2px;text-align:center;white-space:normal}
+.headline-caret,.headline-cover{position:absolute;top:14%;height:72%;background:var(--lime);pointer-events:none}
+.headline-cover{background:linear-gradient(90deg,var(--purple),var(--lime))}
+.headline-rule{position:absolute;left:20%;bottom:0;width:60%;height:5px;background:var(--lime);transform-origin:left}
+#film.production-film:not(.landscape-film) .headline-window{top:160px;height:370px}
+#film.production-film:not(.landscape-film) .headline-ink{font-size:72px}
+#film.production-film[data-profile="portrait"] .headline-window{top:340px;height:700px}
+#film.production-film[data-profile="portrait"] .headline-ink{font-size:90px}
+.title-marker{display:inline-block;position:relative;white-space:nowrap;transform-origin:center}
+.title-marker-text{position:relative;z-index:1}
+.title-marker svg{position:absolute;left:0;top:4%;width:100%;height:92%;overflow:hidden;pointer-events:none}
+.title-marker path{stroke:var(--lime)}
+.title-marker[data-marker-style="underline"] svg{top:75%;height:22%}
+.title-marker[data-marker-style="rough-underline"] svg{top:75%;height:22%}
+.title-marker[data-marker-style="circle"] svg{top:0;height:100%}
+.headline-strike-rule{position:absolute;left:0;top:50%;width:100%;height:6px;background:var(--lime);transform-origin:left center;pointer-events:none}
+.headline-strike .headline-ink{position:relative}
+.headline-flap .headline-mask{perspective:900px}
+.headline-flap-leaf{position:absolute;left:0;right:0;height:50%;overflow:hidden;backface-visibility:hidden;background:var(--purple);pointer-events:none}
+.headline-flap-front{top:0;transform-origin:center bottom}
+.headline-flap-back{top:50%;transform-origin:center top}
+.headline-flap-copy{position:absolute;left:0;width:100%;height:200%;display:flex;align-items:center;justify-content:center}
+.headline-flap-copy::before{content:attr(data-copy);display:inline-block;max-width:100%;font:800 90px/1.4 BrandSans,sans-serif;letter-spacing:-2px;text-align:center;white-space:normal}
+.headline-flap-front .headline-flap-copy{top:0}
+.headline-flap-back .headline-flap-copy{top:-100%}
+#film.production-film:not(.landscape-film) .headline-flap-copy::before{font-size:72px}
+#film.production-film[data-profile="portrait"] .headline-flap-copy::before{font-size:90px}

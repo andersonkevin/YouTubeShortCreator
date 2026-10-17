@@ -1,0 +1,27 @@
+/* Adapted from HyperFrames outline-draw and inline-highlight, Apache-2.0.
+   See docs/HYPERFRAMES-PILOT.md and docs/licenses/hyperframes-apache-2.0.txt.
+   Only the checked chart slot owns these overlays; brand tokens come from its host. */
+.visual-chart > .ysc-motion-outline,
+.visual-chart > .ysc-motion-highlight {
+  position:absolute;
+  pointer-events:none;
+  box-sizing:border-box;
+  z-index:1;
+}
+.visual-chart > .ysc-motion-outline {
+  --ysc-effect-progress:0;
+  border:4px solid transparent;
+  border-radius:8px;
+  background:conic-gradient(from -90deg,var(--ysc-effect-color) 0deg calc(var(--ysc-effect-progress)*360deg),transparent calc(var(--ysc-effect-progress)*360deg + .5deg) 360deg);
+  background-clip:border-box;
+  background-origin:border-box;
+  mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0) border-box;
+  mask-composite:exclude;
+}
+.visual-chart > .ysc-motion-highlight {
+  height:5px;
+  border-radius:2px;
+  background:var(--ysc-effect-color);
+  transform:scaleX(var(--ysc-effect-progress));
+  transform-origin:left center;
+}

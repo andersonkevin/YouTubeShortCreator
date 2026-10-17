@@ -40,6 +40,8 @@ clearance is claimed. Binary redistribution is outside this project release.
 | User fonts, logos, narration and cover artwork | No | Remain private; rights depend on their source/license |
 | Generated customer videos and run assets | No | Operator-controlled output, not blanket-cleared by MIT |
 | Selected visual-library SVG/JS and map geometry | Yes | Pinned vendor files with original licenses, notices and provenance |
+| Optional WebGPU backdrop runtime | Yes | Modified pinned Shaders bundle; MIT package notices and Apache-2.0 tsover-runtime notice retained in `production-gpu-notices.txt` |
+| Optional licensed font catalog | Yes | 64 static and 16 variable font binaries, with attached OFL-1.1 or Apache-2.0 copyright/license notices and source hashes |
 | Credentials and local runtime paths | No | Never appropriate for the public source package |
 
 The source archive includes a dependency notice inventory and selected offline
@@ -77,9 +79,33 @@ Signal Lab name in documentation is not a recommendation to adopt that identity.
 - Keep the MIT notice intact; verify attribution and any contributed notices.
 - Review the dependency inventory against what is actually being distributed.
 - Inspect documentation screenshots for private information and third-party marks.
-- Exclude fonts, recordings, private workspaces, credentials and local paths.
+- Exclude customer fonts, recordings, private workspaces, credentials and local paths.
+  Only font binaries explicitly listed in the verified font catalog may be packaged.
 - Run the release audit, then manually inspect the resulting archive.
 - Review Git history separately; the ZIP audit does not examine committed history.
 
 There is no formal CLA, automated license scanner or legal approval service in this
 release. A successful test or export does not establish asset rights.
+
+The spatial presets additionally vendor the locally shipped Three.js r185 modules
+under MIT. Their complete notice and pinned source/bundle hashes accompany the
+runtime in `templates/v1/assets/production-three-*`. HyperFrames composition code
+remains covered by its separate Apache-2.0 notice. Sample fonts, logos and scene
+artwork are not imported with these presets. The fixed device models are the
+explicit exception documented below.
+
+## Embedded Device Models
+
+The development-only `device-review`, `phone-glass` and `desktop-glass` styles share the two exact GLB files
+supplied with HyperFrames `vfx-iphone-device`, also duplicated in its iOS/macOS
+blocks. Their source archive declares Apache-2.0 at repository level. The GLB
+metadata identifies Blender's glTF exporter but supplies no item-specific creator,
+copyright or license statement. Repository-level terms are the available evidence;
+this is not an independent chain-of-title or trademark clearance.
+
+Model geometry and embedded hardware textures are retained in the pinned data
+modules. Source app UI, sample screen claims, icons and wallpapers are excluded;
+operators supply their own authorized screen images. Apple product identities are
+not licensed by a code license. Preserve the Apache notice and review model rights
+before public distribution. Exact source hashes and adaptations are recorded in
+`templates/v1/assets/production-device-provenance.json`. No publication has occurred.

@@ -17,7 +17,7 @@ INTENTS = {
 
 
 def entries():
-    from visual_adapter import PRODUCTION_KINDS, REVEALS, DEFAULT_PRESENTATION
+    from visual_adapter import PRODUCTION_KINDS, REVEALS, DEFAULT_PRESENTATION, STORIES
     manifest = kit.verify_assets()
     recipes = kit.validate_recipes(kit.read_json(kit.HOME/'recipes.json'), manifest['icons'])
     result = []
@@ -43,6 +43,8 @@ def entries():
                        'scene_layout':'visual-library' if name in PRODUCTION_KINDS else None,
                        'production_dimensions':[824,560], 'reveals':list(REVEALS),
                        'presentation_default':dict(DEFAULT_PRESENTATION),
+                       'stories':[preset for preset, kinds in STORIES.items() if name in kinds],
+                       'compositions':['cinematic-v1'] if name in ('flow','bar','comparison') else [],
                        'chart_styles':['standard','stacked'] if name=='bar' else ['standard'],
                        'qualification':'B02' if name in ('flow','metric','comparison') else 'B03',
                        'motion_qualification':'B03',

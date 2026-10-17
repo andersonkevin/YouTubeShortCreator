@@ -1,0 +1,69 @@
+{
+  "output": "templates/v1/assets/production-regional-geometry.js",
+  "output_sha256": "022ba3e0318d0b1ec9cbd73ee815b5c13d5f669024c6cf7e137f9000a6dc4e34",
+  "compiler": "tools/project_regional_maps.mjs",
+  "compiler_sha256": "261449edcf040fff0250ff39a432f96fcf082c65aabe360e941c8d101eaa09c1",
+  "build_tool": {
+    "name": "D3 7.9.0",
+    "source": "packages/producer/tests/spanish-empire-cdn-inline/output/compiled.html",
+    "script_sha256": "4532cbe107e25ffe955d109e6cce1a6bbdf36192058d2546e3430c0aee4c7861",
+    "runtime_distributed": false,
+    "network_requests": 0
+  },
+  "spain": {
+    "source_url": "https://cdn.jsdelivr.net/npm/es-atlas@0.6.0/es/autonomous_regions.json",
+    "source_sha256": "c99ec36ed214619ab680de4dca8c5aefe36753f20cfe3efe10051d4d1e10b6dc",
+    "atlas_version": "es-atlas 0.6.0",
+    "code_license": "MIT",
+    "code_notice": "docs/licenses/es-atlas-mit.txt",
+    "data_producer": "Instituto Geografico Nacional, Spain",
+    "data_product": "Administrative boundaries",
+    "geometry_edition": null,
+    "date_note": "The pinned atlas does not supply the original IGN edition date. The renderer explicitly says edition unspecified; episode metric dates are independent.",
+    "data_license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "producer_terms": "https://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf",
+    "projection": "geoConicConformal().center([0,39.5]).rotate([3.5,0]).fitSize([1200,750],all20Features); geoPath digits3",
+    "regions": 19,
+    "filter": "IDs01..19; excludes20 Gibraltar, matching the source composition",
+    "attribution": [
+      "Derived IGN administrative boundaries / es-atlas 0.6.0 / edition unspecified",
+      "CC BY 4.0 / ign.es / creativecommons.org/licenses/by/4.0"
+    ]
+  },
+  "us": {
+    "source_url": "https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json",
+    "source_sha256": "d76b391ccfa8bff601d51e3e3da5d43a89fa46cd5caca72ce731b383be5596d0",
+    "atlas_version": "us-atlas 3.0.1",
+    "code_license": "ISC",
+    "code_notice": "docs/licenses/us-atlas-isc.txt",
+    "data_producer": "U.S. Census Bureau",
+    "data_product": "2017 cartographic boundaries",
+    "geometry_edition": "2017",
+    "source_readme": "https://github.com/topojson/us-atlas/tree/v3.0.1",
+    "projection": "geoAlbersUsa().fitSize([1380,800],all56Features); geoPath digits3",
+    "regions": 50,
+    "filter": "The fifty source state FIPS; DC and territories excluded, matching the source composition",
+    "attribution": [
+      "Geometry: 2017 U.S. Census boundaries / adapted via us-atlas 3.0.1",
+      "Albers USA projection / Alaska and Hawaii insets"
+    ]
+  },
+  "transformation": "Decode quantized TopoJSON arcs with reversals, joins, closed rings and degenerate-ring padding. Retain original projections, holes, islands and path centroids. Project offline, round SVG coordinates to3 decimals, and retain viewBox1400x820. No metrics, demo fonts or source branding imported.",
+  "source_review": [
+    {
+      "path": "registry/blocks/spain-map/spain-map.html",
+      "sha256": "9b3a1303ef9c9648f35c552a7fa4696040ca436581e45a339ea3e633de569201",
+      "lines": 393,
+      "complete_source_read": true
+    },
+    {
+      "path": "registry/blocks/us-map/us-map.html",
+      "sha256": "49aa2c343281624853a931cef628fc5bb4ca57fb9f56b208b2c8be93c8a00b44",
+      "lines": 402,
+      "complete_source_read": true
+    }
+  ],
+  "runtime_network": false,
+  "publication_status": "Development integration; cumulative qualification and publisher review pending. Spain original geometry edition remains unspecified."
+}

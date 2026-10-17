@@ -1,0 +1,7 @@
+/* Opt-in editorial infographics. All paint and type use approved brand roles. */
+.production-editorial{overflow:visible}
+.editorial-board{position:absolute;inset:0;width:1720px;height:690px;overflow:hidden}
+.editorial-board text{font-family:BrandSans,sans-serif;font-weight:600}
+.editorial-board .ed-display{font-weight:800;letter-spacing:-3px}
+.editorial-board .ed-mono{font-family:BrandMono,monospace;font-weight:400;letter-spacing:1px}
+.editorial-board .ed-rule{stroke-linecap:round;stroke-linejoin:round}

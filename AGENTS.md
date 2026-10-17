@@ -26,8 +26,11 @@ estimates. Review all outputs locally and hand off files without publishing.
 
 ## Maintenance
 
-Keep the fixed template geometry, three/four scene limit, original narration,
-word-timed captions, source hashes, no-overwrite rules and human review gate.
+Keep the legacy v1/v2 template geometry, three/four scene limit and 180-second
+bound. Explicit v3 composition profiles use the contracts exposed by
+`compositions`, up to 600 seconds, with per-family format and cue constraints.
+Preserve original narration, word-timed captions, source hashes, no-overwrite
+rules and the human review gate in every profile.
 Do not add publishing, provider integrations, telemetry, background execution,
 package installation, or remote calls to runtime commands.
 

@@ -1,0 +1,4 @@
+.variable-board{position:absolute;inset:0;display:grid;place-items:center;overflow:visible}
+.variable-word{position:absolute;left:5%;width:90%;top:28%;white-space:pre;text-align:center;line-height:1.5;font-family:BrandVariable,sans-serif;font-size:calc(var(--content-w)/14);font-synthesis:none;font-optical-sizing:none;color:var(--lime);letter-spacing:0}
+.variable-char{display:inline-block;position:relative;white-space:pre}
+.variable-label{position:absolute;top:67%;left:8%;width:84%;text-align:center;font:400 26px/1.5 BrandMono,monospace;color:var(--cyan)}

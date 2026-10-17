@@ -1,5 +1,53 @@
 # Release Qualification
 
+## 0.5.0 (2026-10-17)
+
+The release candidate contains the reusable visual engine, 35 composition
+families, four explicit output profiles, the 600-second v3 ceiling and 80 licensed
+font files. Legacy episode contracts and human publication gates remain intact.
+The checks below ran against an isolated public source candidate, using existing
+local runtimes. Private workspaces, recordings, demo identities and generated
+videos are excluded from the source release.
+
+- `python3 -B -m unittest discover -s tests -q`: **633 tests**, 626 passed and
+  seven optional checks skipped on Python 3.14.7.
+- `node --test tests/*.test.mjs`: **518 tests**, 517 passed and one optional
+  check skipped on Node 24.19.0.
+- `python3 -B tools/check_docs.py`: **PASS**, 54 documents and 24 checksummed
+  documentation images. `python3 -B tools/release.py audit`: **PASS**, 826
+  allowlisted source files. The Git handoff adds the existing CI workflow as the
+  827th public file; it does not include private data.
+- The normal `ysc.py ... render` command completed the portrait photographic
+  film: **1080x1920, 70.433333 seconds, 30 fps, 2,113 frames and 14 shots**.
+  Browser checks passed across four viewports, including caption timing,
+  geometry, camera movement and deterministic seeking. No page errors or
+  attempted network requests were recorded.
+- Encoded-media checks: one video and one audio track, all 2,113 frame timestamps
+  checked, and **147 decoded frame samples** passed pixel correspondence. Maximum
+  sampled tile RMSE was 9.911 against the existing limit of 24.
+- Audio checks: **23 waveform windows**, maximum measured lag **0 ms**, minimum
+  correlation **0.9999567**, one silent window checked and no unmatched samples.
+  Listening approval remains pending.
+- All **224 output hashes** were reverified after export. The qualified source
+  equals the implementation record, and the episode validates from the main
+  development checkout after accepting that record. Existing brand approvals
+  were not rewritten.
+- `git diff --check`: **PASS**. Package metadata and the root lockfile agree on
+  version 0.5.0. The earlier disk-space failure remains retained; the successful
+  retry used the existing exporter and its unchanged free-space gate.
+
+Implementation lock SHA-256:
+`d17576cb9d5a9dff6523f2b6f765b0c5115d073c9280654c659c43b79fd4cd72`.
+
+The current render qualifies portrait photographic cinema on the existing macOS
+setup. Earlier four-format and 600-second exports remain separately dated
+qualification evidence; this release pass did not repeat every catalog resource
+or every duration. Square/feed photographic cinema, portrait diagram cinema,
+fresh dependency installation and Windows/Linux media rendering are not qualified
+by this run. Historical B05-B09 human acceptance gates remain separate from the
+source update. Hosted CI and the remote commit/tag must be checked after an
+authorized push; the local results above do not claim remote publication.
+
 ## 0.4.0 (2026-09-16)
 
 Sanitized summary of the checks behind the 0.4.0 release. Private workspaces,

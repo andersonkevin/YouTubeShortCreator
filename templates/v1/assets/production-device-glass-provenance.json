@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "sources": {
+    "phone-glass": {
+      "path": "registry/blocks/ios26-liquid-glass/ios26-liquid-glass.html",
+      "sha256": "d9cc2176b84958ec83d879b1444445386e6b3a4fc5ae1856a0ff1b82b033becb"
+    },
+    "desktop-glass": {
+      "path": "registry/blocks/macos-tahoe-liquid-glass/macos-tahoe-liquid-glass.html",
+      "sha256": "2496d459511909db05c06f5cba9ae39838fca20b09074cbfd63e2b2bc58127b1"
+    }
+  },
+  "files": {
+    "production-device-glass-motion.js": "4ce61de967857dc3be1c92ac0508b3b705eb5656f1467ac397b3fed03c256988",
+    "production-device-glass.js": "97f8a02a810dd107d89a833e85b513914080d4a4cf1e127ab301df7927cdebb7"
+  },
+  "shared_files": {
+    "production-device-models.js": "8e376b4284847b85320020113a3bbbef912f6aa307a143983a181a2a9e428fd5",
+    "production-device-iphone-data.js": "0b78c55b881bf28beec02744907372429363c0da2946a1ff117c2da901572924",
+    "production-device-macbook-data.js": "23534c817ccb87cd0fbd51437907461cf94ddb6dc7ff6a06f3ec54a4bda2107f"
+  },
+  "native_integrated": true,
+  "export_qualified": false,
+  "mechanic": "Original 15-second camera and device timelines, glass panels, staggered phone notifications, desktop menu/widgets/file window/toast/dock, procedural aurora and studio lighting.",
+  "changes": "Explicit supplied copy, approved BrandSans 600/800 and pinned native icons replace source identities, fonts and product icons. One verified local image replaces each wallpaper; calendar dates are explicit and valid. Native absolute sampling matches GSAP time rounding. Whole-model framing preserves the 34-degree source lens in all formats. Full-frame backdrop fixes exposed source plane edges; defined inverse ramps replace descending smoothstep. No idle device wobble, source demo claims, remote loaders or new runtime dependency.",
+  "qualification": "Eight native style/format cases pass 32 viewport checks and 680 event samples with exact reverse pixels, geometry, captions and no browser errors/network. Strict loaded-font guard retains all 48 saved frame hashes. Seven negative cases reject empty canvas, wrong model/screen/font state, clipped bounds, missing approved face and overflowing body. Original GSAP comparison covers 99110 state values in both directions, max error about 1e-6. Cumulative workflow/audio/encoded export remains unqualified.",
+  "license": "HyperFrames composition code Apache-2.0; shared Three.js MIT. Embedded model-specific authorship/license metadata absent; publisher rights/trademark review pending.",
+  "model_distribution_rights_cleared": false,
+  "notices": [
+    "docs/licenses/hyperframes-apache-2.0.txt",
+    "templates/v1/assets/production-three-notices.txt"
+  ]
+}

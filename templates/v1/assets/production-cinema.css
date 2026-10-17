@@ -1,0 +1,28 @@
+/* Diagram-led films. Copy is placed with the graphic, not in a shared slide grid. */
+#film.cinema-film{--ink:var(--purple);--signal:var(--lime);--paper:var(--cyan)}
+#film.cinema-film .logo{z-index:4;opacity:.7}
+#film.cinema-film .progress{background:transparent;z-index:4}
+#film.cinema-film .progress span{background:var(--signal)}
+#film.cinema-film .spoken-caption{font:600 32px/1.2 BrandSans,sans-serif;text-transform:none;letter-spacing:0;text-shadow:none;z-index:5}
+#film.cinema-film .spoken-caption span{padding:8px 20px;border-radius:3px;background:var(--ink);color:var(--paper)}
+#film.cinema-film .spoken-caption span:empty{display:none}
+.production-cinema{overflow:visible}
+.cinema-backdrop{position:absolute;inset:0;background:var(--ink)}
+.cinema-board{display:block;width:1760px;height:780px;overflow:visible}
+.cinema-board text{font-family:BrandSans,sans-serif;font-weight:600;letter-spacing:-1px}
+.cinema-board .story-display{font-weight:800;letter-spacing:-5px}
+.cinema-board .story-mono{font-family:BrandMono,monospace;font-weight:400;letter-spacing:2px}
+.cinema-board path{stroke-linecap:round;stroke-linejoin:round}
+.cinema-photography{position:absolute;inset:0;overflow:hidden;background:#17110c}
+.photographic-frame{position:absolute;left:0;top:0;max-width:none;max-height:none;object-fit:fill;transform-origin:0 0}
+.cinema-atmosphere{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.cinema-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 55% 43%,transparent 36%,rgba(16,8,3,.22) 100%)}
+.cinema-title-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,10,5,.84),rgba(17,10,5,.40) 35%,transparent 65%)}
+.cinema-lens-occluder{position:absolute;inset:-80px -400px;background:linear-gradient(90deg,transparent,#130c07 13%,#130c07 87%,transparent);filter:blur(35px)}
+.photographic-board{position:relative;width:var(--content-w);height:var(--content-h);pointer-events:none}
+.cinema-shot-title{position:absolute;left:42px;top:420px;width:970px;font:800 88px/1.18 BrandSans,sans-serif!important;letter-spacing:-2px!important;color:var(--paper);margin:0;text-shadow:0 3px 28px #17110c}
+.cinema-shot-rule{position:absolute;left:46px;top:390px;width:62px;height:3px;background:var(--signal)}
+#film.cinema-film[data-profile="portrait"] .cinema-shot-title{left:0;top:1040px;width:840px;font-size:82px!important;line-height:1.25!important;text-wrap:balance}
+#film.cinema-film[data-profile="portrait"] .cinema-shot-rule{left:4px;top:1006px;width:62px}
+#film.cinema-film[data-profile="portrait"] .cinema-title-shade{background:linear-gradient(0deg,rgba(17,10,5,.88),rgba(17,10,5,.65) 32%,transparent 62%)}
+#film.cinema-film[data-profile="portrait"] .spoken-caption{font:600 46px/1.25 BrandSans,sans-serif;text-wrap:balance}

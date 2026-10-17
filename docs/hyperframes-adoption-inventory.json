@@ -1,0 +1,3154 @@
+{
+  "version": 1,
+  "date": "2026-10-15",
+  "github": {
+    "repository": "andersonkevin/YouTubeShortCreator",
+    "branch": "main",
+    "sha": "c11eb247b54b03a68553228845b1de764b094cee",
+    "verified_this_turn": true,
+    "integration_published": false
+  },
+  "coverage": {
+    "totals": {
+      "files": 9375,
+      "roles": {
+        "data_or_documentation": 2593,
+        "asset": 978,
+        "code": 3436,
+        "test": 2368
+      },
+      "lines": 1910281,
+      "symbols": 89868,
+      "packages": 15,
+      "registry": {
+        "hyperframes:example": 8,
+        "hyperframes:block": 210,
+        "hyperframes:component": 237
+      }
+    },
+    "method": "All retained files read and hashed; lexical source indexing, not a line-by-line manual or security review.",
+    "symbols": "Python AST; JS/TS/HTML lexical named-function and arrow candidates. Not an exhaustive AST call graph; comments and strings can match.",
+    "duplicates": "Includes mirrored skills and generated catalog copies; not unique-feature counts.",
+    "source_fingerprint": "bdbf738acb475bf30e27ffdcbe343531bf9efdfb3110c7c78a6a0c93baf4e2b1"
+  },
+  "adopted": [
+    {
+      "id": "stagger-cascade",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/stagger-cascade/stagger-cascade.html",
+        "line": 227,
+        "locator": "gsap.timeline",
+        "sha256": "e1991d5e9c8d6b93c86a52f3a50a553211ecbb795d997639c9526535cde887ff"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-effects.js",
+        "line": 24,
+        "locator": "function mount",
+        "sha256": "b6b535adc9b21fe04d7e21a0e0d03d1e519125ead2596c3b9c399cf611dd35c5"
+      },
+      "what": "Ordered semantic targets; reimplemented for ECharts."
+    },
+    {
+      "id": "outline-draw",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/outline-draw/outline-draw.html",
+        "line": 50,
+        "locator": "<style",
+        "sha256": "30674e59672253a2b1596addbc3200a012a8a88c0382158d3db2612c44efa76f"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-effects.js",
+        "line": 33,
+        "locator": "effect.preset === 'outline-v1'",
+        "sha256": "b6b535adc9b21fe04d7e21a0e0d03d1e519125ead2596c3b9c399cf611dd35c5"
+      },
+      "what": "Animated outline; existing chart geometry."
+    },
+    {
+      "id": "inline-highlight",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/inline-highlight/inline-highlight.html",
+        "line": 23,
+        "locator": "<style",
+        "sha256": "5063977e75ef2c36ed9ce71e0f95b244504a7c489dd540b47defabbe39c09100"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-effects.js",
+        "line": 37,
+        "locator": "effect.preset === 'highlight-v1'",
+        "sha256": "b6b535adc9b21fe04d7e21a0e0d03d1e519125ead2596c3b9c399cf611dd35c5"
+      },
+      "what": "Timed emphasis on the validated comparison heading."
+    },
+    {
+      "id": "flowchart-vertical",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/blocks/flowchart-vertical/flowchart-vertical.html",
+        "line": 218,
+        "locator": "stroke-dasharray",
+        "sha256": "35b54ecdd282e83beb464276483dc633c64a7e47138447b2b5642df463cfc548"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-story.js",
+        "line": 61,
+        "locator": "function drawnPath",
+        "sha256": "defb808de1471e206bd9abe724e1764a4cb94319a29e5e688b2e8644130293fc"
+      },
+      "what": "Connector-before-node pattern. Actual measured path length comes from chart-story; upstream flow uses a fixed dash length."
+    },
+    {
+      "id": "chart-story",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/chart-story/chart-story.html",
+        "line": 244,
+        "locator": "function dashPrepare",
+        "sha256": "d65180b77637521ea98676c9af1d59395f1e70ce0d0d5e1f604d02bee2821310"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-story.js",
+        "line": 136,
+        "locator": "story.preset==='chart-build'",
+        "sha256": "defb808de1471e206bd9abe724e1764a4cb94319a29e5e688b2e8644130293fc"
+      },
+      "what": "Measured SVG strokes and geometry-driven charts; also used by cinematic bars."
+    },
+    {
+      "id": "count-up",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/count-up/count-up.html",
+        "line": 235,
+        "locator": "var frameRows",
+        "sha256": "6b34b9873a243fedb060d23f4eb5cef1b61a5b169ec1ae064030b70b48beea66"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-story.js",
+        "line": 18,
+        "locator": "function count",
+        "sha256": "defb808de1471e206bd9abe724e1764a4cb94319a29e5e688b2e8644130293fc"
+      },
+      "what": "Frame-derived count-up; adapted to retain exact values and decimals."
+    },
+    {
+      "id": "comparison-split",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/comparison-split/comparison-split.html",
+        "line": 418,
+        "locator": "gsap.timeline",
+        "sha256": "2637b4dd260eb9ef272fad2f3b3921fe8f282cb498b8de112ec6faa76d5ef3b8"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-story.js",
+        "line": 116,
+        "locator": "story.preset==='compare-swap'",
+        "sha256": "defb808de1471e206bd9abe724e1764a4cb94319a29e5e688b2e8644130293fc"
+      },
+      "what": "Shared progress for before/after state layouts."
+    },
+    {
+      "id": "kinetic-type-swap",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/kinetic-type-swap/kinetic-type-swap.html",
+        "line": 316,
+        "locator": "swapTimes.forEach",
+        "sha256": "e98407ad72306094c3f17f25043924c5214428ef290235db0409c44865e259ba"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-cinema.js",
+        "line": 54,
+        "locator": "record.kind==='flow'",
+        "sha256": "72beabe8ef914e7d37b0067965d8d37d65e020bd09bcc4bc7e169adc46e1cc00"
+      },
+      "what": "Masked large-word and icon exchange."
+    },
+    {
+      "id": "before-after-wipe",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/before-after-wipe/before-after-wipe.html",
+        "line": 114,
+        "locator": "--baw-split",
+        "sha256": "c04e8bf1bfbcec71d0921a03a786cc09e660732428aa04bf79036a30b7755e09"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-cinema.js",
+        "line": 137,
+        "locator": "const curtain=",
+        "sha256": "72beabe8ef914e7d37b0067965d8d37d65e020bd09bcc4bc7e169adc46e1cc00"
+      },
+      "what": "Shared reveal progression; adapted as an opaque curtain, not the original slider."
+    },
+    {
+      "id": "directional-wipe",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": "registry/components/directional-wipe/directional-wipe.html",
+        "line": 145,
+        "locator": "tl.fromTo('.hf-catalog-directional-wipe",
+        "sha256": "1630a4c974ba6d9ea9a23fdb84627ee464c1447cd7b6b963defe4c5bf9867a48"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-cinema.js",
+        "line": 137,
+        "locator": "const curtain=",
+        "sha256": "72beabe8ef914e7d37b0067965d8d37d65e020bd09bcc4bc7e169adc46e1cc00"
+      },
+      "what": "Directional cover traversal; omit RGB flashes and upstream GSAP."
+    },
+    {
+      "id": "cut-the-curve",
+      "status": "integrated_development",
+      "transfer": "adapted_mechanic_not_verbatim_file_import",
+      "source": {
+        "path": ".agents/skills/cut-the-curve/examples/gsap-implementation.md",
+        "line": 95,
+        "locator": "power4",
+        "sha256": "c5e523bf1404eff2ffe903bc756006fd21894e1f6c10e630485afc570a2ad72b"
+      },
+      "target": {
+        "path": "templates/v1/assets/visual-cinema.js",
+        "line": 12,
+        "locator": "function seam",
+        "sha256": "72beabe8ef914e7d37b0067965d8d37d65e020bd09bcc4bc7e169adc46e1cc00"
+      },
+      "what": "Matched-direction cut-left and zoom-through on the existing clock."
+    }
+  ],
+  "selected_next": [
+    {
+      "id": "text-match-cut",
+      "status": "selected_for_adaptation_not_implemented",
+      "source": {
+        "path": "registry/components/text-match-cut/text-match-cut.html",
+        "line": 265,
+        "locator": "function apply()",
+        "sha256": "9bc1cc08bf75b56aa20b911d706e88755b1a6b39220f5ed5f7e70318ae184186"
+      },
+      "proposed_target": "templates/v1/assets/visual-cinema.js",
+      "what": "Headline handoff driven by one curve. Bounded text and approved fonts only."
+    },
+    {
+      "id": "iris-reveal",
+      "status": "selected_for_adaptation_not_implemented",
+      "source": {
+        "path": "registry/components/iris-reveal/iris-reveal.html",
+        "line": 407,
+        "locator": "function writeIris()",
+        "sha256": "977a7e068ebe7f547006794ee36ef4d30cd36d68edbd05acf60719e294de989e"
+      },
+      "proposed_target": "templates/v1/assets/visual-cinema.js",
+      "what": "One radius controls reveal and rim. Keep it inside the motion viewport; no SFX events."
+    },
+    {
+      "id": "focus-swap",
+      "status": "selected_for_adaptation_not_implemented",
+      "source": {
+        "path": "registry/components/focus-swap/focus-swap.html",
+        "line": 228,
+        "locator": "var targetIsB",
+        "sha256": "58943de63bf249fda57e2f9d5a6b8285053d4718e528f029073e3d6c5e13d78c"
+      },
+      "proposed_target": "templates/v1/assets/visual-cinema.js",
+      "what": "Move emphasis between semantic targets with bounded blur/scale. Captions and sources remain sharp."
+    },
+    {
+      "id": "ui-focus-zoom",
+      "status": "selected_for_adaptation_not_implemented",
+      "source": {
+        "path": "registry/components/ui-focus-zoom/ui-focus-zoom.html",
+        "line": 441,
+        "locator": "function applyCamera()",
+        "sha256": "137fca93541c222f37026c8636111a1fe0d79e459546f25050d04c35638d9981"
+      },
+      "proposed_target": "templates/v1/assets/visual-cinema.js",
+      "what": "Clamped pan/zoom toward a local graphic. Requires a bounded graphic-scene contract; no arbitrary HTML slot."
+    },
+    {
+      "id": "svg-stroke-trace",
+      "status": "selected_for_adaptation_not_implemented",
+      "source": {
+        "path": "registry/components/svg-stroke-trace/svg-stroke-trace.html",
+        "line": 162,
+        "locator": "var pathLength = strokePath.getTotalLength()",
+        "sha256": "9c57b095e28781e988a9b0ab5b077951fbe9ca2d6d46ee4ccb796502ced62ecd"
+      },
+      "proposed_target": "templates/v1/assets/visual-story.js",
+      "what": "Consolidate with drawnPath for known icons/connectors. No duplicate renderer or episode-supplied SVG."
+    }
+  ],
+  "reference_only": [
+    {
+      "source": {
+        "path": "packages/core/src/compiler/timingResolver.ts",
+        "line": 107,
+        "locator": "export function resolveTimings",
+        "sha256": "6d56cbdd22f6855a575e65263b8349336144e1882cd79a831d13580e2634cbf2"
+      },
+      "decision": "Reference only. Source explicitly says the resolver is not wired into both production consumers. Existing caption anchors already work."
+    },
+    {
+      "source": {
+        "path": "packages/core/src/runtime/adapters/gsap.ts",
+        "line": 11,
+        "locator": "export function rerenderGsapTimelineAt",
+        "sha256": "384f430617c42fb11ece38c40689b88d541d40e532b3ee41a704a1bbebeae4a0"
+      },
+      "decision": "Do not import GSAP private internals; retain ShortCreatorRenderAt/reset."
+    },
+    {
+      "source": {
+        "path": "packages/core/src/runtime/adapters/seek-dispatch.ts",
+        "line": 103,
+        "locator": "export async function waitForSeekCompletion",
+        "sha256": "d0471c651174a35475e09a06f9db45e7ca0c8f2ad8faf8963aeb4a9afa2f3325"
+      },
+      "decision": "Defer until asynchronous GPU/media work exists."
+    },
+    {
+      "source": {
+        "path": "packages/core/src/runtime/adapters/_readiness.ts",
+        "line": 3,
+        "locator": "export function createReadinessAdapter",
+        "sha256": "c5fd7b32633cc4959425f70ca2a28927f437adaa36d76f8ef1967cf18d6de9eb"
+      },
+      "decision": "Do not import allSettled readiness blindly; retain fail-closed decode checks."
+    },
+    {
+      "source": {
+        "path": "packages/core/src/text/fitTextFontSize.ts",
+        "line": 34,
+        "locator": "export function fitTextFontSize",
+        "sha256": "fb89eb70ae934ae51df09895452880a0f7b9ea0eb01575007f0973fde2fe98d1"
+      },
+      "decision": "Do not silently shrink approved typography; keep explicit fitting rejection."
+    },
+    {
+      "source": {
+        "path": "packages/producer/src/services/hyperframeRuntimeLoader.ts",
+        "line": 62,
+        "locator": "export function resolveVerifiedHyperframeRuntime",
+        "sha256": "ea59dadebd7ee3de97d4abf2df9edb317c50eb82acda449bf5f2462e069acdac"
+      },
+      "decision": "Retain the existing implementation lock, asset hashes and output evidence."
+    },
+    {
+      "source": {
+        "path": "packages/parsers/src/timingMismatches.ts",
+        "line": 170,
+        "locator": "export function timingMismatches",
+        "sha256": "4729932f85906042a021cdec294e85df811750afc86dac62473300a9a0701b6d"
+      },
+      "decision": "Reference timing-window diagnostics, not an additional GSAP parser."
+    },
+    {
+      "source": {
+        "path": "packages/lint/src/hyperframeLinter.ts",
+        "line": 128,
+        "locator": "export async function lintHyperframeHtml",
+        "sha256": "4924ecfb90c92d6edca44a14b66421a84539238e3a0906bba575bb6c85c5c214"
+      },
+      "decision": "HF HTML contract is not the Short Creator episode contract."
+    }
+  ],
+  "packages": [
+    {
+      "package": "aws-lambda",
+      "path": "packages/aws-lambda",
+      "files": 42,
+      "roles": {
+        "data_or_documentation": 5,
+        "code": 23,
+        "test": 13,
+        "asset": 1
+      },
+      "dependencies": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-sfn",
+        "@hyperframes/producer",
+        "@sparticuz/chromium",
+        "ffmpeg-static",
+        "ffprobe-static",
+        "puppeteer-core",
+        "tar"
+      ],
+      "decision": "Not selected: cloud storage, IAM and distributed infrastructure."
+    },
+    {
+      "package": "cli",
+      "path": "packages/cli",
+      "files": 813,
+      "roles": {
+        "data_or_documentation": 14,
+        "code": 420,
+        "test": 374,
+        "asset": 5
+      },
+      "dependencies": [
+        "@hono/node-server",
+        "@puppeteer/browsers",
+        "adm-zip",
+        "citty",
+        "compare-versions",
+        "css-tree",
+        "debug",
+        "esbuild",
+        "fontkit",
+        "giget",
+        "hono",
+        "ignore",
+        "open",
+        "postcss",
+        "prettier",
+        "puppeteer-core",
+        "sharp",
+        "yauzl"
+      ],
+      "decision": "Not selected: keep ysc; no installer, hooks or external media workflow."
+    },
+    {
+      "package": "core",
+      "path": "packages/core",
+      "files": 483,
+      "roles": {
+        "data_or_documentation": 13,
+        "code": 265,
+        "test": 205
+      },
+      "dependencies": [
+        "@chenglou/pretext",
+        "@hyperframes/lint",
+        "@hyperframes/parsers",
+        "@hyperframes/studio-server",
+        "acorn",
+        "bpm-detective",
+        "linkedom",
+        "postcss",
+        "wawoff2"
+      ],
+      "decision": "Reference only: timing/readiness concepts; keep the current clock, locks and font gates."
+    },
+    {
+      "package": "engine",
+      "path": "packages/engine",
+      "files": 183,
+      "roles": {
+        "data_or_documentation": 4,
+        "code": 74,
+        "test": 101,
+        "asset": 4
+      },
+      "dependencies": [
+        "@hono/node-server",
+        "@hyperframes/core",
+        "@hyperframes/parsers",
+        "hono",
+        "linkedom",
+        "puppeteer",
+        "puppeteer-core"
+      ],
+      "decision": "Reference only: capture/media diagnostics; keep existing browser and backend ownership."
+    },
+    {
+      "package": "gcp-cloud-run",
+      "path": "packages/gcp-cloud-run",
+      "files": 42,
+      "roles": {
+        "data_or_documentation": 7,
+        "code": 17,
+        "test": 12,
+        "asset": 6
+      },
+      "dependencies": [
+        "@google-cloud/storage",
+        "@google-cloud/workflows",
+        "@hono/node-server",
+        "@hyperframes/producer",
+        "hono",
+        "puppeteer-core",
+        "tar"
+      ],
+      "decision": "Not selected: Cloud Run, storage, Workflows and Terraform."
+    },
+    {
+      "package": "inspector",
+      "path": "packages/inspector",
+      "files": 40,
+      "roles": {
+        "data_or_documentation": 5,
+        "code": 17,
+        "test": 18
+      },
+      "dependencies": [
+        "@hyperframes/core",
+        "@hyperframes/parsers",
+        "@jridgewell/trace-mapping",
+        "acorn",
+        "esbuild",
+        "eslint-scope",
+        "postcss",
+        "puppeteer-core"
+      ],
+      "decision": "Not selected: no separate inspection server/browser service."
+    },
+    {
+      "package": "lint",
+      "path": "packages/lint",
+      "files": 48,
+      "roles": {
+        "data_or_documentation": 3,
+        "test": 20,
+        "code": 25
+      },
+      "dependencies": [
+        "@hyperframes/parsers",
+        "acorn",
+        "acorn-walk",
+        "htmlparser2",
+        "linkedom",
+        "postcss",
+        "postcss-selector-parser"
+      ],
+      "decision": "Reference only: keep existing exact JSON and browser checks; HF lint is tied to its HTML contract."
+    },
+    {
+      "package": "parsers",
+      "path": "packages/parsers",
+      "files": 104,
+      "roles": {
+        "data_or_documentation": 7,
+        "code": 52,
+        "test": 45
+      },
+      "dependencies": [
+        "@babel/parser",
+        "acorn",
+        "acorn-walk",
+        "entities",
+        "linkedom",
+        "magic-string",
+        "recast"
+      ],
+      "decision": "Reference only: do not introduce arbitrary HTML/GSAP authoring."
+    },
+    {
+      "package": "player",
+      "path": "packages/player",
+      "files": 69,
+      "roles": {
+        "asset": 2,
+        "data_or_documentation": 4,
+        "code": 29,
+        "test": 34
+      },
+      "dependencies": [
+        "@hyperframes/core"
+      ],
+      "decision": "Not selected: no second player protocol is needed for export."
+    },
+    {
+      "package": "producer",
+      "path": "packages/producer",
+      "files": 842,
+      "roles": {
+        "data_or_documentation": 6,
+        "code": 133,
+        "test": 526,
+        "asset": 177
+      },
+      "dependencies": [
+        "@hono/node-server",
+        "@hyperframes/core",
+        "@hyperframes/engine",
+        "@hyperframes/lint",
+        "@hyperframes/parsers",
+        "@hyperframes/studio-server",
+        "hono",
+        "linkedom",
+        "postcss",
+        "puppeteer",
+        "puppeteer-core"
+      ],
+      "decision": "Reference only: hash/parity concepts; no replacement orchestrator or distributed jobs."
+    },
+    {
+      "package": "sdk",
+      "path": "packages/sdk",
+      "files": 53,
+      "roles": {
+        "code": 26,
+        "data_or_documentation": 4,
+        "test": 23
+      },
+      "dependencies": [
+        "@hyperframes/core",
+        "@hyperframes/parsers",
+        "linkedom"
+      ],
+      "decision": "Not selected: composition persistence/editing API is outside this bounded renderer."
+    },
+    {
+      "package": "sdk-playground",
+      "path": "packages/sdk-playground",
+      "files": 11,
+      "roles": {
+        "asset": 1,
+        "data_or_documentation": 3,
+        "code": 4,
+        "test": 3
+      },
+      "dependencies": [
+        "@hyperframes/core",
+        "@hyperframes/sdk",
+        "gsap"
+      ],
+      "decision": "Not selected: demonstration UI for a different stack."
+    },
+    {
+      "package": "shader-transitions",
+      "path": "packages/shader-transitions",
+      "files": 19,
+      "roles": {
+        "data_or_documentation": 4,
+        "test": 6,
+        "code": 9
+      },
+      "dependencies": [
+        "html2canvas"
+      ],
+      "decision": "Deferred: needs GPU/canvas readiness and parity qualification."
+    },
+    {
+      "package": "studio",
+      "path": "packages/studio",
+      "files": 1768,
+      "roles": {
+        "asset": 12,
+        "data_or_documentation": 8,
+        "code": 970,
+        "test": 778
+      },
+      "dependencies": [
+        "@base-ui/react",
+        "@codemirror/autocomplete",
+        "@codemirror/commands",
+        "@codemirror/lang-css",
+        "@codemirror/lang-html",
+        "@codemirror/lang-javascript",
+        "@codemirror/lang-markdown",
+        "@codemirror/language",
+        "@codemirror/search",
+        "@codemirror/state",
+        "@codemirror/view",
+        "@hyperframes/core",
+        "@hyperframes/parsers",
+        "@hyperframes/player",
+        "@hyperframes/sdk",
+        "@hyperframes/shader-transitions",
+        "@hyperframes/studio-server",
+        "@lezer/highlight",
+        "@mcp-b/global",
+        "@phosphor-icons/react",
+        "@tanstack/react-virtual",
+        "bpm-detective",
+        "cn",
+        "dockview-react",
+        "gsap",
+        "mediabunny"
+      ],
+      "decision": "Not selected: no React editor migration."
+    },
+    {
+      "package": "studio-server",
+      "path": "packages/studio-server",
+      "files": 162,
+      "roles": {
+        "data_or_documentation": 5,
+        "code": 79,
+        "test": 73,
+        "asset": 5
+      },
+      "dependencies": [
+        "@hyperframes/core",
+        "@hyperframes/parsers",
+        "hono",
+        "linkedom",
+        "postcss",
+        "postcss-selector-parser",
+        "sharp"
+      ],
+      "decision": "Not selected: no file-mutation service or new write boundary."
+    }
+  ],
+  "registry_items": [
+    {
+      "name": "decision-tree",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "kinetic-type",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "nyt-graph",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "play-mode",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "product-promo",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "swiss-grid",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vignelli",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "warm-grain",
+      "type": "hyperframes:example",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ai-answer-rank",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ai-chat-reveal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "app-showcase",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "apple-money-count",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "aurora",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "bar-chart-race",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "beat-freeze-cut",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "blob",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "blue-sweater-intro-video",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "camcorder-hud",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "camera-dolly-zoom",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "canopy-part-title",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-circle-1",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-circle-2",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-circle-3",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-circle-4",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-circle-5",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-orbit-1",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-orbit-2",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-orbit-3",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-orbit-4",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-orbit-5",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-path-1",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-path-2",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-path-3",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-path-4",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-path-5",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-text-circle-1",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-text-circle-2",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-text-circle-3",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-text-circle-4",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-text-circle-5",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-vision-1",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-vision-2",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-vision-3",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-vision-4",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "carousel-vision-5",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "chatgpt-exchange",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "chromatic-radial-split",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "chrome-orb",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cinemagraph",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cinematic-zoom",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "claude-exchange",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-3d-extrude",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-diff",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-highlight",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-morph",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-particle-assemble",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-scroll",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-shader-dissolve",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-slice-hero",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-snippet-apple-terminal-pro",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-snippet-dark-2026",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-snippet-dark-modern",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-typing",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "color-wheel",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cosmic-orb",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cross-warp-morph",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cuboid-carousel",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "data-chart",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "domain-warp-dissolve",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "editorial-flash-overlay",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "exploded-stack",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "extruded-logo",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "falling-lines",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "flash-through-white",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "flowchart",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "flowchart-vertical",
+      "type": "hyperframes:block",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "flowing-gradient",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "fractal-noise",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "freeze-frame-dressing",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "frost",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "frost-sequence-camera-orbit",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "gabor-noise",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "gallery-tunnel",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "glass-hero",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "glass-shard-title",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "glitch",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "godrays",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "goo",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "gooey-split",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "gravitational-lens",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "halftone-field",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "heatmap",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "heygen-avatar-promo-card",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hologram",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "holographic",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-frame",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-path-text",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-pipeline",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-scribble-transition",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-text-cloud",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-title",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-write-title",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "instagram-follow",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ios26-liquid-glass",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lens-flare",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "light-edge",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "light-leak",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "liquid-glass-notification",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "liquid-glass-widgets",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "liquid-metal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "logo-outro",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lottie-character-walk",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lower-third-bild",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-accent-underline",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-bold-block",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-clean-bar",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-color-block",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-dark-card",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-kicker-name",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-mask-reveal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-neon-border",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-side-rule",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-soft-pill",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "lt-stack-bars",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "macos-notification",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "macos-tahoe-liquid-glass",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "marble",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mesh-gradient",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "message-thread-reveal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-background",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-callout-highlight",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-clone-wall-transition",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-line-graph",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-placeholder-grid",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-progress-stat",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-specs-list",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "nebula",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "news-ticker",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "north-korea-locked-down",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "notes-reveal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "notification-cascade",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "nyc-paris-flight",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "obsidian",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "orbit-card",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "organic-light-leak-overlay",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "oscilloscope-trace",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "plasma",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "plastic",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "prism",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "product-turntable",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "rack-focus",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "reddit-post",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ridged-burn",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ripple-waves",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ripples",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "sdf-iris",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "share-sheet-carousel",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "sine-wave",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "slack-notification-ad",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "snow",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spain-map",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spiral",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spiral-galaxy",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "split-flap-board",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spotify-card",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "starfield",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "strands",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "stripes",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "sun-burst",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "swirl",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "swirl-vortex",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "thermal-distortion",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "thin-film",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "thread-message-stack",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "tiktok-follow",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-3d",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-blur",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-cover",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-destruction",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-dissolve",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-distortion",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-grid",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-light",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-mechanical",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-other",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-push",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-radial",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "transitions-scale",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ui-3d-reveal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "us-map",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "us-map-bubble",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "us-map-flow",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "us-map-hex",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-anamorphic-flare",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-iphone-device",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-liquid-background",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-liquid-glass",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-magnetic",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-portal",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-shatter",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vfx-text-cursor",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "voronoi",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vpn-youtube-spot",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "water",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "waveform",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "week-in-merges",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "weight-wave",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "whip-pan",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "wireframe-portal-title",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "world-map",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "worley-noise",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "x-post",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-comment-card",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-lcd-background",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-logo-intro",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-lower-third",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-prism-title",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-vertical-fill",
+      "type": "hyperframes:block",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "agent-cursor",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "animated-bar-chart",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "arc-motion-path",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ascii-render-pass",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ascii-trail-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "aurora-drift",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "avatar-cloud",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "avatar-group-hover",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "badge-pop",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "beat-accent",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "beat-pulse-background",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "beat-timeline",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "before-after-wipe",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "blur-in",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "blur-out-up",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "bottom-up-letters",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "browser-device-stage",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "camera-rig-depth-stack",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "camera-scan-gate",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "camera-shake",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-blend-difference",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-camera-follow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-clip-wipe",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-editorial-emphasis",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-emoji-pop",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-glitch-rgb",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-gradient-fill",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-highlight",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-kinetic-slam",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-matrix-decode",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-neon-accent",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-neon-glow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-parallax-layers",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-particle-burst",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-pill-karaoke",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-texture",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caption-weight-shift",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "card-resize",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "caret-swap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "char-slam-explode",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "chart-story",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "chat-message",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "chat-thread",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "chromatic-aberration-wipe",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "code-terminal-run",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "colorama-wipe",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "comparison-split",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "confetti",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "conic-progress-ring",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "constellation-hub",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "count-up",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "cta-close",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cta-lockup",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-annotate",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-context-menu",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-drag-drop",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-glyph-trail",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-marquee-select",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-text-select",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cursor-zoom-follow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "curtain-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "cut-the-curve",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "dart-cursor",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "decline-chart",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "device-frame-stage",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "directional-wipe",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "drift-hold",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "dynamic-grid",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "echo-trail",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "extended-keyframe",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "facet-morph",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "fade-through",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "filmed-screen",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "focus-blur-resolve",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "focus-rack",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "focus-swap",
+      "type": "hyperframes:component",
+      "decision": "selected_next"
+    },
+    {
+      "name": "gesture-tap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "gloss-sweep",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "grade-split-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "grain-field",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "grain-overlay",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "grid-card-assemble",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "grid-pixelate-wipe",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "halftone-dissolve",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "headline-slam",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-arrow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-boil",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-box-label",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-callout-circle",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "hw-underline",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "icon-morph-beat",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "icon-swap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ink-bleed-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "inline-highlight",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "input-feedback",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "iris-reveal",
+      "type": "hyperframes:component",
+      "decision": "selected_next"
+    },
+    {
+      "name": "keyframe-scrub-stack",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "kinetic-center-build",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "kinetic-type-swap",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "light-sweep-pass",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "line-by-line-slide",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "line-swap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "locked-nucleus-orbit",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "logo-brand-close",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "logo-sting",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "logo-wall",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "magnetic-cursor",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "marker-checklist-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "marker-highlight",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "match-cut",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "matrix-decode",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "menu-morph",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mesh-gradient-bg",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "micro-transitions",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-emphasis-type",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "mk-usage-arc",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "modal-morph",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "morph-swap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "morph-text",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "motion-blur",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "multi-device-splay",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "multiplayer-cursors",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "native-notification-pop",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "notes-typing",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "notification-pileup",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "notification-stack",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "number-pop-in",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "number-wheel",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "offset-path-traveler",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "onboarding-stepper-flow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ordered-dither-pass",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "outline-draw",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "oversized-cursor",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "overwhelm-surround",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "page-slide",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "pan-stations",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "panel-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "paper-collage-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "parallax-device-dive",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "parallax-unzoom",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "parallax-zoom",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "particle-image-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "particle-text-dissolve",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "pendulum-swing",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "per-word-crossfade",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "per-word-rise",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "perspective-marquee",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "physical-exit",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "press-ripple",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "pull-back-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "pull-to-refresh",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "push-in",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "radial-surround",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "rgb-glitch-text",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "rubber-band-bumper",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "scan-band",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "scramble-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "screen-flow-carousel",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "scroll-camera-story",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "scroll-feed",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "segmentation-flood",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "separator",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "settings-toggle-flow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "shared-axis-y",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "shared-axis-z",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "sheet-spring-up",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "shimmer-sweep",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "shutter-slam",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "signup-flow",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "skeleton-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "slit-scan-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "slot-machine-roll",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "social-proof-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "soft-blob-touch",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "soft-blur-in",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "split-tilt-cards",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spotlight-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spring-pop",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "spring-stack-shuffle",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "stagger-cascade",
+      "type": "hyperframes:component",
+      "decision": "partly_adapted"
+    },
+    {
+      "name": "stagger-lattice",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "staggered-fade-up",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "star-rating-fill",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "state-chip-rail",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "sticky-mock-swap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "stitched-text-draw",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "stop-motion-cadence",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "store-badge-lockup",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "streaming-text",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "strikethrough-replace",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "success-check",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "svg-line-draw-loader",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "svg-mask-reveal",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "svg-stroke-trace",
+      "type": "hyperframes:component",
+      "decision": "selected_next"
+    },
+    {
+      "name": "swipe-rail",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "tabs-slide-indicator",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "telemetry-hud",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "terminal-simulator",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "testimonial-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "testimonial-proof-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "text-match-cut",
+      "type": "hyperframes:component",
+      "decision": "selected_next"
+    },
+    {
+      "name": "text-shimmer",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "text-stagger",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "text-state-swap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "texture-mask-text",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "three-orbiting-cards",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ticker-takeover",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "tilt-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "titlecard-calm",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "titlecard-lockup",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "toggle-flip",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "top-down-letters",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "torn-paper-rip",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "touch-indicator",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "tracing-beam",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "tracking-in",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "trust-strip",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "type-match-cut",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "typed-prompt",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "typewriter",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "typing-indicator",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "ui-focus-zoom",
+      "type": "hyperframes:component",
+      "decision": "selected_next"
+    },
+    {
+      "name": "variable-axis-type",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "variable-font-flex",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vector-editor-rig",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "velocity-throw-snap",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vignette",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "vox-annotate",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "whip-pan-cut",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "whiteboard-ink",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "wordmark-tiles",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "x-follow-card",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-camera-move",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-circle-pointer",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-feather-highlight",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "yt-screen-warp",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    },
+    {
+      "name": "zoom-through-transition",
+      "type": "hyperframes:component",
+      "decision": "indexed_not_selected"
+    }
+  ],
+  "carry_existing_changes": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "0ebb63d261dfbb7b47232f66ebe02136b036a0cb0941afc3326c6b9476be48ac",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "capture.mjs",
+      "sha256": "f6b08022fa650999be024b1baf383a607f8e8134f2eab679e492701fdc08d40b",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "docs/HYPERFRAMES-PILOT.md",
+      "sha256": "4014f0202146fec8bb8b7e3b142328daa4b05e796c2425b82165fced70037fb6",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "docs/HYPERFRAMES-REVIEW.md",
+      "sha256": "23c5a2a0e542ecd991014b6c25b167a716093140bcd620984bf626b4204b1729",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "80d4d8b830642f36bf58bf31a4f0417b6e3ae614bbab14322aadd5af572b11b8",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "docs/VISUAL-ADAPTER-CONTRACT.md",
+      "sha256": "175555a192a7f56f8ef80715aa4600365b74ea3822c72034fe53e38d5e9cc276",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "docs/VISUAL-PRESENTATION.md",
+      "sha256": "e534e76261dc1af68bd645eb2e15cb8b7a44bdf3faa07d071c8a6a2be0c2f578",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "docs/hyperframes-provenance.json",
+      "sha256": "056dea7c48a95444c96c8382d50221c1489c44d88c22b956df30ef6f66b0c14d",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "docs/licenses/hyperframes-apache-2.0.txt",
+      "sha256": "4259155fb06f127687ee7b0a8a3682d45132db0f2da26cbc0b7a2d1e796436b8",
+      "role": "docs_or_license"
+    },
+    {
+      "path": "lock.json",
+      "sha256": "bac1042ba7ad4461264312e905d324f572f214f7db3d268df367491999caf137",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "templates/v1/assets/visual-cinema.css",
+      "sha256": "195bad92fd62b4ab5879f927ce298c15fd8f14c30afcde307a4ec0f566c97e9b",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "templates/v1/assets/visual-cinema.js",
+      "sha256": "72beabe8ef914e7d37b0067965d8d37d65e020bd09bcc4bc7e169adc46e1cc00",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "templates/v1/assets/visual-effects.css",
+      "sha256": "b77e21fe68aaf505ac3cffff2f1112124fc0455c7fa1fa11babba45714225ff8",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "templates/v1/assets/visual-effects.js",
+      "sha256": "b6b535adc9b21fe04d7e21a0e0d03d1e519125ead2596c3b9c399cf611dd35c5",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "templates/v1/assets/visual-scenes.js",
+      "sha256": "e0e14e6641c76437a993beceac6f0959227eb4110f25739ea52c183789dabed8",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "templates/v1/assets/visual-story.js",
+      "sha256": "defb808de1471e206bd9abe724e1764a4cb94319a29e5e688b2e8644130293fc",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "tests/test_visual_cinema.py",
+      "sha256": "456526d3f9b612d5ee56342521758a91aa219b33ba288610ae0d4d9e39ac6448",
+      "role": "test"
+    },
+    {
+      "path": "tests/test_visual_effects.py",
+      "sha256": "6531808ac255845a40b4991d79925e9e41f5e6f496da27588e83b6fdcadc674b",
+      "role": "test"
+    },
+    {
+      "path": "tests/test_visual_story.py",
+      "sha256": "2502365578156035b7e2efb24ee881925491df36a65ebf2efe4b3df3c3ea9fda",
+      "role": "test"
+    },
+    {
+      "path": "tests/visual-cinema.test.mjs",
+      "sha256": "1a3dcac4a40e380a5b61bffd56e79d9f363946573099ea64bd1f527656c5b784",
+      "role": "test"
+    },
+    {
+      "path": "tests/visual-effects.test.mjs",
+      "sha256": "8c851f8d19078114a290ef54e95f4548d7e828d7ee75e969ad85f90ab8e70c43",
+      "role": "test"
+    },
+    {
+      "path": "tests/visual-story.test.mjs",
+      "sha256": "b8705d493e0abdee50e03485826add8deb8d4d2dfb4a376f87108ea1349172e2",
+      "role": "test"
+    },
+    {
+      "path": "tools/freeze.py",
+      "sha256": "de735c86d9e1a1dfcffabdffb7bb2e7022ff7eb73801b4021f8036f17884f29a",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "tools/hyperframes_pilot.py",
+      "sha256": "e11f7a3dfeab177cb7b53853b4ea994cf401329e1d32d82d3e8897ee01860514",
+      "role": "test_fixture"
+    },
+    {
+      "path": "tools/visual_library/catalog.py",
+      "sha256": "8b050e73951b91f21bcc1da1d118c22b7021fda6c73133598db800a834303d72",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "tools/visual_library/options.js",
+      "sha256": "26342f9fa6246e86fbfc7edc510fa89058b91299c7f69215a112336c7cf9ee21",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "visual_adapter.py",
+      "sha256": "860b7867fd3ea02ffb5470abd32c4f88dfce2fe1d3c299d15504a33531058c0e",
+      "role": "engine_catalog_or_lock"
+    },
+    {
+      "path": "workflow.py",
+      "sha256": "956636bbc3241fda49187ca04fdd8a506a32e4022d0c8ee238ca03271cf2b008",
+      "role": "engine_catalog_or_lock"
+    }
+  ],
+  "snapshot_note": "Carry-file hashes describe the pre-inventory engine snapshot. Inventory/docs changes in this turn are listed separately in the Markdown report.",
+  "exclude_from_github": [
+    "workspaces/",
+    "workspace/",
+    "private branding, fonts, narration, runtime profiles and approvals",
+    "generated video, previews and QA outputs",
+    "full HyperFrames source archive, node_modules, hooks and service configurations"
+  ],
+  "promotion_gaps": [
+    {
+      "file": "ysc.py",
+      "function": "new_episode",
+      "finding": "Creates version 1 fixed layouts; new visual modes require explicit v2 episode authoring."
+    },
+    {
+      "file": "tools/visual_library/catalog.py",
+      "function": "entries",
+      "finding": "Composition availability is listed, but dimensions, transitions and qualification are not separately described for cinematic mode."
+    },
+    {
+      "file": ".github/workflows/tests.yml",
+      "finding": "No Node setup or node --test step; JavaScript checks run locally only."
+    },
+    {
+      "file": "tests/test_visual_cinema.py",
+      "finding": "Contract checks exist; no committed complete cinematic browser fixture matrix for four scenes, alternate brands and dense labels."
+    },
+    {
+      "file": "workspaces/create_cinema_demo.py",
+      "finding": "Private helper depends on the previous demo. Not a reusable public onboarding command."
+    },
+    {
+      "file": "docs/WORKFLOW.md",
+      "finding": "Some general operation docs still describe fixed v2 geometry; align with the new opt-in contract before promotion."
+    }
+  ]
+}

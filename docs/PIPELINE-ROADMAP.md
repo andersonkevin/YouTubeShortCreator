@@ -20,6 +20,39 @@ logo/progress/caption zones and manual publication. Long-form videos, light them
 Windows/Linux qualification, an editor, hosting, provider APIs, automatic uploads
 and background agents are outside this plan. FFmpeg does not imply those features.
 
+Operator scope update, 2026-10-15: the next development expansion targets stronger
+visual composition, typography, 16:9 and additional aspect ratios, with a selected
+ten-minute maximum. See the [source-backed production inventory](HYPERFRAMES-INVENTORY.md#expanded-production-scope-visuals-formats-and-ten-minutes).
+Implementation update: explicit v3 16:9 episodes, eight composition families and
+the 600-second bound are now wired into the normal development engine. The
+48-second showcase and full 600-second, 80-scene fixture have passed automated
+browser, media, pixel, timestamp and audio gates. See the [integration record](HYPERFRAMES-PILOT.md#landscape-production-integration).
+The original v1/v2 9:16/180-second/three-or-four-scene contract stays unchanged.
+The later multiformat extension adds 9:16, 1:1 and 4:5 with independent engine
+exports and retained validation gates. The resource expansion adds code, screen
+carousels, process diagrams and additional bounded title/image motion. The HyperFrames development integration is technically complete on 2026-10-16:
+31 reusable composition families, 64 catalog font files and four cumulative native
+exports passed. The [engineering closeout](HYPERFRAMES-CLOSEOUT.md) records the
+exact validation scope and eight deliberate source exclusions. Actual Cognativ
+brand qualification, independent operator acceptance and publication remain pending;
+this does not close the human gates in B05-B09 or the marketing milestones below.
+
+Current resource closeout, 2026-10-17: generic YouTubeShortCreator now exposes
+35 families and 80 font files. Seven reopened typography resources passed their
+combined native qualification; 454 of 455 source definitions have bounded
+adaptations, with emoji excluded by operator instruction. This completes the
+development resource-integration scope. Cognativ branding is outside the current
+goal. Historical B05-B09 human review and release gates are unchanged; no GitHub
+promotion or publication was performed. See the current engineering closeout.
+
+Source-release preparation, 2026-10-17: version 0.5.0 collects the completed
+generic generator work and the qualified portrait photographic mode. The
+[release qualification](RELEASE-QA.md#050-2026-10-17) records the fresh public-source
+tests and full encoded Short. The operator explicitly authorized staging, commit,
+push to `main`, and the `v0.5.0` tag on 2026-10-17. Remote publication and CI must
+be verified after the push. This source update does not close historical
+independent-operator, listening or editorial acceptance gates.
+
 Operator scope update, 2026-09-15: replace the internal 90-second ceiling with
 recording-driven duration up to YouTube's three-minute Shorts format. Reuse the
 authorized 156.68-second narration whole for private B05 QA, not a 60-second

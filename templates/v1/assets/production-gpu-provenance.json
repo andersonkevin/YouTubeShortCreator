@@ -1,0 +1,74 @@
+{
+  "source": "registry/blocks/aurora/lib/shaders.iife.js",
+  "source_sha256": "6ad60b5fe00c6f092ddc9ccc6138743d89401e2886d550b275fc8ce0d0345f2d",
+  "runtime_sha256": "a43619958ca0c751a848c32dec41bc36fcf919af60d03b78d8194c631b194a90",
+  "notices_sha256": "ace6fbd142afaa20894b285ab6d4e20f164f6ec8557978d23db36197f1bc067c",
+  "source_size": 1444793,
+  "modifications": [
+    {
+      "original": "Qo=()=>{hs||ho.running||ie===null&&typeof requestAnimationFrame==\"function\"&&(ie=requestAnimationFrame(()=>{ie=null,Tl()}))}",
+      "replacement": "Qo=()=>{}",
+      "reason": "Disable scheduled invalidation renders"
+    },
+    {
+      "original": "_1=()=>{hs||ho.running||!de||(Qr.setRendering(!0),ho.start())}",
+      "replacement": "_1=()=>{}",
+      "reason": "Disable autonomous animation"
+    },
+    {
+      "original": "Pe=BT(Ce,Pe,k,performance.now());",
+      "replacement": "",
+      "reason": "Remove wall-clock and delta-based scene time"
+    },
+    {
+      "original": "ge.advance(k,ne),Ps(R,\"_animTime\",ge.value)",
+      "replacement": "ge.value=Pe*ne,Ps(R,\"_animTime\",ge.value)",
+      "reason": "Set primary animated time absolutely"
+    },
+    {
+      "original": "Ie.advance(k,ze),Ps(R,`_animTime_${V}`,Ie.value)",
+      "replacement": "Ie.value=Pe*ze,Ps(R,`_animTime_${V}`,Ie.value)",
+      "reason": "Set secondary animated time absolutely"
+    },
+    {
+      "original": "nP=async(k,R)=>{W0(k),t&&R?.waitForGpu!==!1&&await Uy(t)}",
+      "replacement": "nP=async(k,R)=>{Pe=k,W0(0),t&&R?.waitForGpu!==!1&&await Uy(t)}",
+      "reason": "Synthetic frame argument is absolute seconds"
+    },
+    {
+      "original": "viewportWidth:typeof window<\"u\"?window.innerWidth:k,viewportHeight:typeof window<\"u\"?window.innerHeight:R",
+      "replacement": "viewportWidth:k,viewportHeight:R",
+      "reason": "Native raster size is independent of preview viewport"
+    },
+    {
+      "original": "c1=()=>{let k=(typeof window<\"u\"?window.devicePixelRatio:1)||1;return Math.min(k,AT())}",
+      "replacement": "c1=()=>1",
+      "reason": "One backing pixel per native output pixel"
+    },
+    {
+      "original": "_P=k=>{if(f1(k)){Ea(k.reason,k);return}ur++,ur===1&&Vu(\"[gpu] render error:\",k),ur>=lW&&Ea(\"render-failed\",k)}",
+      "replacement": "_P=k=>{throw k}",
+      "reason": "Fail immediately instead of retrying failed frames"
+    },
+    {
+      "reason": "Both SDF fetch sites hard-fail; unused pointer-fluid wall clocks are constant."
+    },
+    {
+      "reason": "Replace source autoload/seek listener with the closed native adapter."
+    },
+    {
+      "original": "var gU=(()=>{try{return new Function(\"return true\"),!0}catch{return!1}})()",
+      "replacement": "var gU=false",
+      "reason": "Use the upstream non-eval binary writer under native CSP"
+    },
+    {
+      "original": "function oy(e){if(!gU){Ub||(fs.warn(\"fallback\",\"This environment does not allow eval - using default writer as fallback\"),Ub=!0);return}let t=Rb.get(e);if(t)return t;try{let s=Gb(e,\"offset\",\"value\",0,!1),r=`if (offset > 0 || endOffset < output.byteLength) {\n${Gb(e,\"offset\",\"value\",0,!0)}} else {\n${s}}\n`,o=new Function(\"output\",\"offset\",\"value\",\"littleEndian=true\",\"endOffset=output.byteLength\",r);return Rb.set(e,o),o}catch(s){fs.warn(\"fallback\",`Failed to compile writer for schema: ${e}\nReason: ${s instanceof Error?s.message:String(s)}\nFalling back to default writer`)}}",
+      "replacement": "function oy(e){return}",
+      "reason": "Remove dynamic binary-writer compilation; preserve default writer"
+    },
+    {
+      "reason": "Prime newly registered shader uniform handles at time zero, then render the requested absolute time before copying any visible pixels."
+    }
+  ],
+  "qualification": "Source integration; combined browser/export qualification pending."
+}

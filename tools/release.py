@@ -18,6 +18,7 @@ EXTENSIONS = {'.py', '.mjs', '.swift', '.json', '.md', '.css', '.js', '.txt', '.
 ROOT_FILES = {'LICENSE', '.gitignore', '.gitattributes', 'requirements.txt', 'package.json', 'package-lock.json', 'lock.json',
               'ysc.py', 'workflow.py', 'branding.py', 'diversity.py', 'safety.py', 'runtime.py', 'audio_qa.py', 'visual_adapter.py', 'capture.mjs', 'chart-qa.mjs',
               'media_backend.py', 'media_contract.py', 'frame_qa.py', 'native-capabilities.swift', 'ffmpeg_backend.py',
+              'production_visuals.py', 'editorial.py', 'cinema.py', 'font_motion.py', 'lettering.py', 'production-qa.mjs', 'seek-qa.mjs', 'font_outlines.py', 'font-outlines.swift',
               'decode-audio.swift', 'encode.swift', 'mux.swift', 'media-qa.swift', 'transcribe.swift',
               'README.md', 'START-HERE.md', 'THIRD_PARTY_NOTICES.md', 'SECURITY.md', 'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md'}
 FORBIDDEN = [re.compile(r'/(?:Users|home)/[A-Za-z0-9_.-]+/'),
@@ -29,12 +30,18 @@ def files(home=HOME):
     output = []
     vendor_root = home / 'tools/visual_library/vendor'
     vendor_files = set()
+    font_payloads = set()
     if vendor_root.exists():
         sys.path.insert(0, str(home))
         from tools.visual_library import kit
         require(kit.HOME.resolve() == (home/'tools/visual_library').resolve(), 'Library audit must use the selected source tree')
         manifest = kit.verify_assets()
         vendor_files = {'tools/visual_library/vendor/' + name for name in manifest['files']}
+    fonts_root = home / 'tools/font_library'
+    if fonts_root.exists():
+        from tools.font_library import kit as fonts
+        font_manifest = fonts.verify_assets(fonts_root)
+        font_payloads = {'tools/font_library/vendor/' + row['font'] for row in font_manifest['fonts'].values()}
     for path in sorted(home.rglob('*')):
         relative = path.relative_to(home)
         # Only manifest-listed vendor payloads may bypass the build-output filter.
@@ -52,9 +59,9 @@ def files(home=HOME):
             continue
         require((len(relative.parts) == 1 and path.name in ROOT_FILES) or
                 (len(relative.parts) > 1 and relative.parts[0] in DIRECTORIES and path.suffix in EXTENSIONS) or
-                str(relative) in vendor_files or str(relative) == 'tools/visual_library/gallery.html', f'Not on public allowlist: {relative}')
+                str(relative) in vendor_files or str(relative) in font_payloads or str(relative) == 'tools/visual_library/gallery.html', f'Not on public allowlist: {relative}')
         require(path.stat().st_size <= 4_000_000, f'Unexpectedly large source file: {relative}')
-        if path.suffix not in ('.png', '.jpg'):
+        if path.suffix not in ('.png', '.jpg') and str(relative) not in font_payloads:
             content = path.read_text(encoding='utf-8')
             require(not any(pattern.search(content) for pattern in FORBIDDEN), f'Private path or credential pattern: {relative}')
         output.append(path)

@@ -1,0 +1,10 @@
+{
+  "source": "registry/blocks/liquid-glass-notification/lib/liquid-glass.iife.js",
+  "source_sha256": "e960fc4e523aa639d37ebe80bebbd8da6dcb805488a77e45585e80aa9ab98e4c",
+  "identical_source_copy": "registry/blocks/liquid-glass-widgets/lib/liquid-glass.iife.js",
+  "runtime_sha256": "134193dfcc070816b5205402274a77cfd613b3dbbb6c8b1bdae36888cac96cf5",
+  "license": "Apache-2.0 repository license; no separate notice in source library",
+  "notice": "docs/licenses/hyperframes-apache-2.0.txt",
+  "recipe": "python3 -B tools/vendor_liquid_glass.py <local-source-file>",
+  "changes": "Retain pinned GPU core and shaders; exclude the experimental HTML-in-canvas wrapper and its export. Native adapter owns timing, serial capture, errors, bounded resources and separate horizontal/vertical blur uniforms. Equivalent ascending smoothstep edges replace reversed WGSL edges; one reusable upload canvas replaces per-panel/per-frame allocations."
+}

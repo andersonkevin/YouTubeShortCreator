@@ -15,8 +15,15 @@ existing fields and its classic layout contracts. Opt-in episode `version: 2` re
 exact `visuals` object. Do not migrate old JSON or brand approvals automatically.
 Use a new qualification workspace when the implementation lock changes.
 
-The template identifier names geometry; the episode version names accepted input
-structure. Version 2 is not a new brand or permission to override CSS. Unknown
+This development candidate also accepts bounded optional `presentation.effects`
+and `presentation.story` records described in the [motion pilot contract](HYPERFRAMES-PILOT.md).
+The explicit [cinematic composition](HYPERFRAMES-PILOT.md#cinematic-composition)
+opt-in changes scene geometry and transitions for flow, bar and comparison records.
+These capabilities do not extend prior B02/B03 human approval or authorize production use.
+
+The template identifier names the default geometry; the episode version names accepted input
+structure. The cinematic mode is a bounded exception, not caller-supplied CSS.
+Version 2 is not a new brand or permission to override CSS. Unknown
 versions, extra fields and v2-only records in v1 must fail before output creation.
 
 ## Visual Records
@@ -94,7 +101,9 @@ the study. Reuse bundled ECharts SVG rendering, Lucide and Natural Earth. Do not
 introduce another renderer, UI framework, server or dependency download.
 
 Production receives validated records, fixed dimensions and the approved brand's
-resolved color/font tokens. It mounts one visual in the existing central zone.
+resolved color/font tokens. The default mounts one visual in the existing central zone.
+Cinematic mode uses its fixed 880x900 visual inside a clipped motion viewport;
+the logo and caption geometry remain unchanged.
 No study UI, independent requestAnimationFrame playback, tooltip or hover-dependent
 meaning is imported into video. Decode all nested images and await fonts before
 capturing. Only local pinned assets and private approved fonts are used.

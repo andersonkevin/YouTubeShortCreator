@@ -31,6 +31,16 @@ for charts and widgets. It retains the v1 template geometry and existing
 audio/caption rules. See the [adapter contract](VISUAL-ADAPTER-CONTRACT.md) before
 authoring these records; check B03 qualification for charts and motion presets.
 
+## Explicit Composition Profiles
+
+Version 3 adds `landscape`, `portrait`, `square` and `portrait-4x5` profiles at
+30 fps, with full-recording duration up to 600 seconds and an explicitly configured
+FFmpeg workspace. Scene count, content and cue requirements follow the selected
+composition contracts rather than the legacy three/four-scene layout rule.
+Use `compositions` and the [v3 authoring reference](CLI.md#landscape-episodes).
+Specialized editorial and cinema modes retain their documented format gates.
+These profiles do not automatically migrate v1/v2 episodes or their brand approvals.
+
 ## Layouts
 
 Run `python3 ysc.py layouts`. Each JSON under `templates/v1/scenes/` has a frozen

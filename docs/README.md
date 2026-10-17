@@ -16,6 +16,17 @@
 
 ## Reference
 
+- [Drawn lettering](LETTERING.md): retained pen paths, stitched glyphs and controlled text inversion.
+
+- [Variable typography](VARIABLE-TYPOGRAPHY.md): real local font axes and four cue-driven text treatments.
+
+- [Cinema direction](CINEMA-DIRECTION.md): optional full-bleed editorial films and local Spanish voice support.
+
+- [Visual engine closeout](HYPERFRAMES-CLOSEOUT.md): engineering DoD, combined validation, available formats and remaining operator gates.
+
+- [Visual engine integration inventory](HYPERFRAMES-INVENTORY.md): reusable engine functions, visual/layout/font selection, multi-format and ten-minute change surface, and GitHub promotion gaps.
+- [Visual production inventory JSON](visual-production-inventory.json): historical initial selection with source hashes and exact code locators; use the closeout and complete census for current totals.
+- [Visual integration history](HYPERFRAMES-PILOT.md): optional effects, narrative motion, cinematic portrait and successive multiformat composition families up to ten minutes, including local-image focus, animated data, headline entrances, screen carousels, code and process diagrams; qualification scope and remaining limits.
 - [Visual library](VISUAL-LIBRARY.md): offline catalog, charts, widgets and SVG/PNG asset preparation.
 - [Visual-library qualification](VISUAL-LIBRARY-QA.md): observed tests, export checks and integration limits.
 - [Asset expansion](ASSET-EXPANSION.md): design-review components for AI-programming topics, their bounds, QA evidence and the integration checklist.
@@ -56,3 +67,9 @@ Successful automated checks are not approval to publish. `review_required` and
 
 The code is authoritative for implemented behavior. Documentation does not promise
 features that have not been implemented or qualify untested operating systems.
+
+The [complete source asset census](hyperframes-asset-census.json) records all
+455 catalog definitions, deduplicated media, font metadata, local source hashes,
+and adoption status. See [counting rules](HYPERFRAMES-INVENTORY.md#full-local-asset-census-2026-10-15).
+
+- [Editorial explainer designs](EDITORIAL-DESIGNS.md): three opt-in landscape graphic systems and their closed authoring contract.

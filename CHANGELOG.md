@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0 (2026-10-17)
+
+- Added the v3 composition workflow with explicit 16:9, 9:16, 1:1 and 4:5 profiles at 30 fps, and full-recording duration up to ten minutes. Legacy v1/v2 Shorts retain their 180-second and three/four-scene contracts.
+- Added 35 reusable scene families for animated charts, screenshot focus, code, maps, interfaces, image arrangements, editorial explainers, spatial visuals and cinema. All use closed scene records and verified local assets.
+- Added photographic cinema with 2-24 narration-anchored shots, bounded camera framing, focus cuts and foreground occlusion. Landscape and portrait have separate text geometry and full-frame image coverage checks.
+- Added 80 pinned font files, including 16 variable faces, with retained notices, onboarding selection and real-axis validation. Added lettering, title animation and variable typography.
+- Extended the optional local voice tool with Spanish voices while preserving the final recording and measured caption timing.
+- Extended browser, deterministic-seek, media, decoded-frame and audio checks. Runtime drift, asset hashes, manual review and scratch-space guards remain enabled.
+- Updated the public documentation and synchronized package versions. Private workspaces, recordings, generated videos and machine-specific runtime files are excluded.
+- The implementation lock changes. Create and qualify a new workspace/brand combination rather than overwriting existing approvals. Format availability remains composition-specific; see the catalog and release qualification for limits.
+
 ## 0.4.0 (2026-09-16)
 
 - `new --batch NAME` picks each draft's layouts from what the batch has not used:

@@ -15,7 +15,8 @@
   const ease = x => 1 - (1 - clamp(x)) ** 3;
   const interval = value => value.split(",").map(Number);
   function fit() {
-    film.style.setProperty("--scale", Math.min(innerWidth / 1080, innerHeight / 1920));
+    film.style.setProperty("--scale", Math.min(innerWidth / Number(film.dataset.width || 1080),
+      innerHeight / Number(film.dataset.height || 1920)));
   }
   // Every visual state is derived from time, so capture and seeking are identical.
   function renderAt(seconds) {
@@ -56,18 +57,30 @@
       }
     }
     film.querySelector("[data-progress]").style.width = `${100 * t / duration}%`;
-    if (window.ShortCreatorVisualRenderAt) window.ShortCreatorVisualRenderAt(t);
+    if (window.ShortCreatorVisualRenderAt) return window.ShortCreatorVisualRenderAt(t);
   }
   window.ShortCreatorRenderAt = renderAt;
   window.addEventListener("resize", fit);
   fit();
   renderAt(0);
   if (!window.__SHORTCREATOR_CAPTURE_MODE__) {
-    const start = performance.now();
-    const tick = now => {
-      renderAt(((now - start) / 1000) % duration);
+    let start;
+    const tick = async now => {
+      try {
+        await window.ShortCreatorRenderAt(((now - start) / 1000) % duration);
+        requestAnimationFrame(tick);
+      } catch (error) {
+        film.dataset.renderError = String(error);
+        console.error(error);
+      }
+    };
+    const launch = () => {
+      start = performance.now();
       requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    Promise.resolve(window.ShortCreatorVisualReady).then(launch).catch(error => {
+      film.dataset.renderError = String(error);
+      console.error(error);
+    });
   }
 })();

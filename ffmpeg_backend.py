@@ -8,14 +8,14 @@ import wave
 
 from PIL import Image
 from safety import number, read_json, require, write_json
-from media_contract import duration_seconds
+from media_contract import duration_seconds, output_profile
 from frame_qa import sample_indices
 
 FORMATS = 'wav,mp3,mov,ogg'
 
 
-def run(command):
-    result = subprocess.run(list(map(str, command)), capture_output=True, timeout=600)
+def run(command, timeout=600):
+    result = subprocess.run(list(map(str, command)), capture_output=True, timeout=timeout)
     require(result.returncode == 0,
             'FFmpeg operation failed (no fallback): ' + result.stderr.decode('utf-8', errors='replace')[-2000:])
     return result.stdout.decode('utf-8')
@@ -63,12 +63,15 @@ def audio_stream(record):
     return tracks[0]
 
 
-def encode(paths, frames, count, destination):
+def encode(paths, frames, count, destination, profile='shorts'):
+    spec = output_profile(profile)
+    require(type(count) is int and 0 < count <= spec['max_frames'], 'Invalid frame count')
     fresh(destination)
     run(command(paths) + ['-protocol_whitelist', 'file', '-f', 'image2', '-framerate', '30',
                          '-start_number', '0', '-i', str(frames / 'frame-%05d.png'),
                          '-frames:v', str(count), '-an', '-c:v', 'libx264', '-preset', 'medium',
-                         '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(destination)])
+                         '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(destination)],
+        **({'timeout': 1800} if profile != 'shorts' else {}))
 
 
 def mux(paths, picture, source, destination):
@@ -85,8 +88,9 @@ def mux(paths, picture, source, destination):
          '-movflags', '+faststart', str(destination)])
 
 
-def inspect_record(record, expected):
-    expected = duration_seconds(expected)
+def inspect_record(record, expected, profile='shorts'):
+    spec = output_profile(profile)
+    expected = duration_seconds(expected, profile)
     duration = seconds(record['format']['duration'])
     require(abs(duration - number(expected)) <= .067, 'Invalid exported duration')
     tracks = record['streams']
@@ -95,7 +99,7 @@ def inspect_record(record, expected):
     require(len(tracks) == 2 and len(videos) == len(audios) == 1, 'Expected one video and one audio track only')
     video = videos[0]
     require(video.get('codec_name') == 'h264' and audios[0].get('codec_name') == 'aac', 'Expected H.264/AAC export')
-    require((video.get('width'), video.get('height')) == (1080, 1920), 'Invalid exported dimensions')
+    require((video.get('width'), video.get('height')) == (spec['width'], spec['height']), 'Invalid exported dimensions')
     try:
         rate = Fraction(video['r_frame_rate'])
         count = int(video['nb_read_frames'])
@@ -104,7 +108,7 @@ def inspect_record(record, expected):
     require(rate == 30 and count == round(expected * 30), 'Invalid frame rate or decoded frame count')
     audio_stream(record)
     return {'status': 'PASS', 'duration': duration, 'video_tracks': 1, 'audio_tracks': 1,
-            'dimensions': [1080, 1920], 'frame_count': count, 'fps': 30,
+            'dimensions': [spec['width'], spec['height']], 'frame_count': count, 'fps': 30,
             'backend': 'ffmpeg', 'listening_approval': 'pending'}
 
 
@@ -124,12 +128,36 @@ def frame_timing(paths, video, count):
     return validate_timestamps(values, count)
 
 
-def inspect(paths, video, expected, captions, destination):
+def frame_selection(indices):
+    """Bound expression depth without dropping any requested decoded samples."""
+    require(isinstance(indices, list) and indices and
+            all(type(i) is int and 0 <= i < 18000 for i in indices) and
+            indices == sorted(set(indices)), 'Ordered unique frame indices required')
+    # Even 121 left-associated terms exceed the qualified parser's recursion
+    # budget. Keep only tiny selections flat; balance every larger selection.
+    if len(indices) <= 8:
+        return '+'.join(f'eq(n\\,{index})' for index in indices)
+    spans = []
+    for index in indices:
+        if spans and index == spans[-1][1] + 1:
+            spans[-1][1] = index
+        else:
+            spans.append([index, index])
+    terms = [f'eq(n\\,{start})' if start == end else f'between(n\\,{start}\\,{end})'
+             for start, end in spans]
+    # A long left-associated sum exceeds FFmpeg's expression-parser recursion budget.
+    while len(terms) > 1:
+        terms = [f'({terms[i]}+{terms[i+1]})' if i + 1 < len(terms) else terms[i]
+                 for i in range(0, len(terms), 2)]
+    return terms[0]
+
+
+def inspect(paths, video, expected, captions, destination, profile='shorts'):
     fresh(destination)
-    result = inspect_record(probe(paths, video, count_frames=True), expected)
+    result = inspect_record(probe(paths, video, count_frames=True), expected, profile)
     result['frame_timing'] = frame_timing(paths, video, result['frame_count'])
-    indices = sample_indices(read_json(captions), expected)
-    select = '+'.join(f'eq(n\\,{index})' for index in indices)
+    indices = sample_indices(read_json(captions), expected, profile)
+    select = frame_selection(indices)
     output = run(command(paths) + local_input(video) +
                  ['-map', '0:v:0', '-an', '-vf', 'select=' + select, '-fps_mode', 'passthrough',
                   '-frames:v', str(len(indices)), '-f', 'framemd5', '-'])
@@ -142,7 +170,7 @@ def inspect(paths, video, expected, captions, destination):
 def export_frames(paths, video, indices, destination):
     require(destination.is_dir() and not destination.is_symlink() and not any(destination.iterdir()),
             'Empty decoded-frame directory required')
-    select = '+'.join(f'eq(n\\,{index})' for index in indices)
+    select = frame_selection(indices)
     run(command(paths) + local_input(video) +
         ['-map', '0:v:0', '-an', '-vf', 'select=' + select, '-fps_mode', 'passthrough',
          '-frames:v', str(len(indices)), '-start_number', '0', str(destination / 'decoded-%05d.png')])
@@ -156,12 +184,13 @@ def decode(paths, source, destination):
          '-c:a', 'pcm_f32le', '-f', 'f32le', str(destination)])
 
 
-def preflight(paths, temporary):
+def preflight(paths, temporary, profile='shorts'):
+    spec = output_profile(profile)
     frame = temporary / 'frames/frame-00000.png'
-    Image.new('RGB', (1080, 1920), '#101010').save(frame)
+    Image.new('RGB', (spec['width'], spec['height']), '#101010').save(frame)
     (temporary / 'frames/frame-00001.png').write_bytes(frame.read_bytes())
     silent = temporary / 'silent.mp4'
-    encode(paths, temporary / 'frames', 2, silent)
+    encode(paths, temporary / 'frames', 2, silent, profile)
     source = temporary / 'probe.wav'
     with wave.open(str(source), 'wb') as stream:
         stream.setparams((1, 2, 48000, 0, 'NONE', 'not compressed'))
@@ -172,6 +201,8 @@ def preflight(paths, temporary):
     tracks = record['streams']
     require(len(tracks) == 2 and {t.get('codec_name') for t in tracks} == {'h264', 'aac'}, 'FFmpeg codec probe failed')
     require(next(t for t in tracks if t.get('codec_type') == 'video').get('nb_read_frames') == '2', 'FFprobe frame counting unavailable')
+    picture = next(t for t in tracks if t.get('codec_type') == 'video')
+    require((picture.get('width'), picture.get('height')) == (spec['width'], spec['height']), 'FFmpeg profile geometry probe failed')
     decode(paths, destination, temporary / 'probe.f32')
     require((temporary / 'probe.f32').stat().st_size > 0, 'FFmpeg PCM decoder unavailable')
     return {'backend': 'ffmpeg', 'encoder': 'libx264', 'preset': 'medium', 'crf': 18,

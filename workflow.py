@@ -14,7 +14,7 @@ import tempfile
 from contextlib import nullcontext
 
 from safety import digest, identifier, inside, keys, number, read_json, require, text, write_json
-from media_contract import MAX_AUDIO_BYTES, duration_seconds
+from media_contract import composition_geometry, duration_seconds, episode_profile
 
 HOME = Path(__file__).resolve().parent
 ROOT = HOME / 'workspace'
@@ -41,8 +41,8 @@ def words(value):
     return re.findall(r'[^\W_]+', value.casefold(), flags=re.UNICODE)
 
 
-def validate_captions(captions, transcript, duration, adjustments):
-    duration = duration_seconds(duration)
+def validate_captions(captions, transcript, duration, adjustments, profile='shorts'):
+    duration = duration_seconds(duration, profile)
     require(captions['status'] in ['local_asr_aligned_review', 'word_timed_review'], 'Estimated captions are not accepted')
     require(abs(number(captions['duration']) - duration) < 1e-6, 'Caption duration mismatch')
     timed = transcript['words']
@@ -75,27 +75,41 @@ def validate_captions(captions, transcript, duration, adjustments):
     require(used_adjustments == set(adjustments), 'Unused timing adjustment')
 
 
+def validate_metadata(meta):
+    keys(meta, ['title', 'description', 'hashtags', 'tags', 'pinned_comment'], 'YouTube')
+    text(meta['title'], 100)
+    text(meta['description'], 5000)
+    text(meta['pinned_comment'], 1000)
+    hashtags = meta['hashtags']
+    require(isinstance(hashtags, list) and all(isinstance(h, str) for h in hashtags), 'Invalid hashtags')
+    require(5 <= len(hashtags) <= 8 and len(set(hashtags)) == len(hashtags), 'Use 5-8 unique hashtags')
+    require(all(re.fullmatch(r'#[a-z0-9]+', h) for h in hashtags), 'Hashtags must be lowercase')
+    require(re.findall(r'#[A-Za-z0-9]+', meta['description']) == hashtags, 'Description hashtags differ')
+    require(isinstance(meta['tags'], list) and all(isinstance(t, str) for t in meta['tags']) and len(', '.join(meta['tags'])) <= 450, 'Invalid tags')
+
+
 def validate(path):
     import branding
     brand = branding.verified(ROOT, verify_lock())
     path = inside(ROOT, os.path.relpath(Path(path).absolute(), ROOT))
     data = read_json(path)
-    require(type(data.get('version')) is int and data['version'] in (1, 2), 'Unsupported episode version')
+    require(type(data.get('version')) is int and data['version'] in (1, 2, 3), 'Unsupported episode version')
     fields = ['version', 'id', 'template', 'language', 'duration', 'inputs', 'thumbnail', 'youtube', 'scenes', 'timing_adjustments']
-    keys(data, fields + (['visuals'] if data['version'] == 2 else []), 'episode')
+    keys(data, fields + (['visuals'] if data['version'] == 2 else ['format', 'assets'] if data['version'] == 3 else []), 'episode')
+    profile = episode_profile(data)
     identifier(data['id'])
     require(data['template'] == 'v1' and data['language'] == brand['language'], 'Unsupported contract or language differs from brand')
     visual_records = {}
     if data['version'] == 2:
         import visual_adapter
         visual_records = visual_adapter.validate_records(data['visuals'])
-    duration = duration_seconds(data['duration'])
+    duration = duration_seconds(data['duration'], profile['id'])
     keys(data['inputs'], ['audio', 'graphic', 'transcript', 'captions'], 'inputs')
     inputs = {}
     for name, item in data['inputs'].items():
         keys(item, ['path', 'sha256'], name)
         file = inside(path.parent, item['path'])
-        limit = MAX_AUDIO_BYTES if name == 'audio' else 30_000_000
+        limit = profile['max_audio_bytes'] if name == 'audio' else 30_000_000
         require(0 < file.stat().st_size <= limit, 'Input file size is outside the contract')
         require(digest(file) == item['sha256'], f'Input changed: {name}')
         inputs[name] = file
@@ -103,23 +117,20 @@ def validate(path):
     from PIL import Image, ImageFont
     with Image.open(inputs['graphic']) as graphic:
         require(graphic.format in ['PNG', 'JPEG'] and max(graphic.size) <= 4096, 'Graphic must be bounded PNG/JPG')
-        require(abs(graphic.width / graphic.height - 9 / 16) < .01, 'Graphic must be vertical 9:16')
+        require(abs(graphic.width / graphic.height - profile['width'] / profile['height']) < .01, 'Graphic must match output aspect ratio')
         graphic.verify()
     captions, transcript = read_json(inputs['captions']), read_json(inputs['transcript'])
     require(transcript.get('audio_sha256') == data['inputs']['audio']['sha256'], 'Transcript is not bound to this recording')
-    validate_captions(captions, transcript, duration, data['timing_adjustments'])
+    validate_captions(captions, transcript, duration, data['timing_adjustments'], profile['id'])
     keys(data['thumbnail'], ['headline', 'label'], 'thumbnail')
-    branding.thumbnail(ROOT, inputs['graphic'], data['thumbnail']['headline'], data['thumbnail']['label'])
-    meta = data['youtube']
-    keys(meta, ['title', 'description', 'hashtags', 'tags', 'pinned_comment'], 'YouTube')
-    text(meta['title'], 100)
-    text(meta['description'], 5000)
-    text(meta['pinned_comment'], 1000)
-    hashtags = meta['hashtags']
-    require(5 <= len(hashtags) <= 8 and len(set(hashtags)) == len(hashtags), 'Use 5-8 unique hashtags')
-    require(all(re.fullmatch(r'#[a-z0-9]+', h) for h in hashtags), 'Hashtags must be lowercase')
-    require(re.findall(r'#[A-Za-z0-9]+', meta['description']) == hashtags, 'Description hashtags differ')
-    require(isinstance(meta['tags'], list) and all(isinstance(t, str) for t in meta['tags']) and len(', '.join(meta['tags'])) <= 450, 'Invalid tags')
+    branding.thumbnail(ROOT, inputs['graphic'], data['thumbnail']['headline'], data['thumbnail']['label'], profile=profile['id'])
+    validate_metadata(data['youtube'])
+    if data['version'] == 3:
+        import production_visuals
+        production_visuals.editorial.validate_profile(data['scenes'], data['format'])
+        assets = production_visuals.validate_assets(data['assets'], path.parent)
+        bounds = production_visuals.validate_scenes(data['scenes'], assets, captions['cues'], duration)
+        return data, inputs, captions, bounds
     require(3 <= len(data['scenes']) <= 4, 'Use 3-4 scenes')
     previous = -1
     used_visuals = []
@@ -156,12 +167,16 @@ def validate(path):
                     if kind == 'active':
                         require(value[1] > value[0], 'Reversed active interval')
     require(len(used_visuals) == len(set(used_visuals)) and set(used_visuals) == set(visual_records), 'Visual records must be used exactly once')
+    if data['version'] == 2:
+        visual_adapter.validate_composition_sequence(data['scenes'])
     starts = [0] + [captions['cues'][s['first_cue']]['start'] for s in data['scenes'][1:]]
     ends = starts[1:] + [duration]
     for scene, start, end in zip(data['scenes'], starts, ends):
         require(end > start, 'Empty scene')
         if scene['layout'] == 'visual-library':
             visual_adapter.validate_duration(scene, end - start)
+            visual_adapter.validate_effect_timing(scene, captions['cues'], start, end)
+            visual_adapter.validate_story_timing(scene, captions['cues'], start, end)
         for values in scene['motion'].values():
             for kind, value in values.items():
                 limit = value if kind == 'enter' else value[1] if kind == 'active' else sum(value)
@@ -188,7 +203,12 @@ def scene_html(node, content, motion, boundary=None):
 
 def build_html(data, captions, bounds):
     scenes = []
-    for scene, (start, end) in zip(data['scenes'], bounds):
+    profile = episode_profile(data)
+    for index, (scene, (start, end)) in enumerate(zip(data['scenes'], bounds)):
+        if data['version'] == 3:
+            import production_visuals
+            scenes.append(production_visuals.scene_html(scene, index, start, end))
+            continue
         if scene['layout'] == 'visual-library':
             import visual_adapter
             scenes.append(visual_adapter.scene_html(scene, start, end))
@@ -198,6 +218,8 @@ def build_html(data, captions, bounds):
     styles = ['motion.css', 'technology.css', 'code-graphics-scenes.css', 'general-scenes.css', 'spoken-captions.css', 'scene-extras.css', 'brand.css']
     if data['version'] == 2:
         styles.append('visual-scenes.css')
+    if data['version'] == 3:
+        styles.extend(('production-scenes.css', 'production-resources.css', 'production-evidence.css', 'production-transitions.css', 'production-type.css', 'production-media.css', 'production-shaders.css', 'production-headlines.css', 'production-interface.css', 'production-data.css', 'production-carousels.css', 'production-swap-catalog.css', 'production-code.css', 'production-chart-extras.css', 'production-interactions.css', 'production-spatial-objects.css'))
     links = ''.join(f'<link rel="stylesheet" href="assets/{name}">' for name in styles)
     payload = json.dumps(captions, ensure_ascii=True).replace('<', '\\u003c')
     brand = read_json(ROOT / 'brand/brand.json')
@@ -205,11 +227,26 @@ def build_html(data, captions, bounds):
     if data['version'] == 2:
         import visual_adapter
         visual_scripts = visual_adapter.scripts(data, brand)
+    if data['version'] == 3:
+        import production_visuals
+        visual_scripts = production_visuals.scripts(data, brand)
+    profile_attributes = ''
+    if data['version'] == 3:
+        geometry = production_visuals.editorial.geometry(data['scenes'], profile['id'])
+        variables = {'frame-width': profile['width'], 'frame-height': profile['height']}
+        for slot in ('content', 'caption', 'logo', 'progress'):
+            variables.update({slot + '-' + axis: value for axis, value in zip(('x', 'y', 'w', 'h'), geometry[slot])})
+        style = ';'.join(f'--{key}:{value}px' for key, value in variables.items())
+        classes = 'production-film' + (' landscape-film' if profile['id'] == 'landscape' else '')
+        if production_visuals.cinema.selected(data['scenes']):
+            classes += ' cinema-film'
+        profile_attributes = (f' class="{classes}" data-profile="{profile["id"]}" '
+                              f'data-width="{profile["width"]}" data-height="{profile["height"]}" style="{style}"')
     return (f'<!doctype html><html lang="{html.escape(data["language"], quote=True)}"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
             '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src \'self\' data:; font-src \'self\'; style-src \'self\' \'unsafe-inline\'; script-src \'self\'; connect-src \'none\'">'
             f'<title>{html.escape(data["youtube"]["title"])}</title>{links}</head><body>'
-            f'<main id="film" data-duration="{data["duration"]}" data-scene-count="{len(scenes)}">'
+            f'<main id="film" data-duration="{data["duration"]}" data-scene-count="{len(scenes)}"{profile_attributes}>'
             f'<img class="logo" src="assets/logo.png" alt="{html.escape(brand["channel"], quote=True)}">' + ''.join(scenes) +
             '<div class="progress"><span data-progress></span></div><p class="spoken-caption" aria-label="Narration captions"><span></span></p></main>'
             f'<script type="application/json" id="spoken-captions-data">{payload}</script>'
@@ -232,6 +269,13 @@ def build(episode, run_id, render=False):
     import media_backend
     runtime, environment = doctor()
     data, inputs, captions, bounds = validate(episode)
+    profile = episode_profile(data)
+    profile_args = {'profile': profile['id']} if data['version'] == 3 else {}
+    if data['version'] == 3:
+        require(environment['backend'] == 'ffmpeg', 'Composition profiles require an explicitly configured FFmpeg workspace; no backend fallback')
+        # The configured legacy capability record remains immutable. Probe the selected output separately.
+        environment = {**environment, 'output_profile': profile,
+                       'profile_capabilities': media_backend.preflight('ffmpeg', runtime, **profile_args)}
     if render:
         require(not any('DRAFT:' in value for value in (data['youtube']['title'], data['youtube']['description'], data['youtube']['pinned_comment'])), 'Replace draft metadata before rendering; build remains available for preview')
     episode_hash = digest(Path(episode))
@@ -243,14 +287,19 @@ def build(episode, run_id, render=False):
         shutil.copytree(TEMPLATE / 'assets', output / 'assets')
         for asset in (ROOT / 'brand/assets').iterdir():
             shutil.copyfile(asset, output / 'assets' / asset.name)
+        branding.install_font_notices(ROOT, output)
         if data['version'] == 2:
             import visual_adapter
             visual_adapter.install_assets(output, data, read_json(ROOT / 'brand/brand.json'))
+        if data['version'] == 3:
+            import production_visuals
+            production_visuals.install_assets(output, data, Path(episode).parent,
+                                             brand_root=ROOT, template_hash=digest(HOME / 'lock.json'), runtime_paths=runtime)
         (output / 'video.html').write_text(build_html(data, captions, bounds), encoding='utf-8')
         (output / 'captions.srt').write_text(srt(captions), encoding='utf-8')
         write_json(output / 'captions.json', captions)
         write_json(output / 'episode.json', data)
-        branding.thumbnail(ROOT, inputs['graphic'], data['thumbnail']['headline'], data['thumbnail']['label'], output / 'thumbnail.jpg')
+        branding.thumbnail(ROOT, inputs['graphic'], data['thumbnail']['headline'], data['thumbnail']['label'], output / 'thumbnail.jpg', **profile_args)
         metadata = {**data['youtube'], 'language': data['language'], 'thumbnail': 'thumbnail.jpg', 'video': 'video.mp4' if render else None, 'status': 'review_required', 'published_url': None, 'published_at': None}
         write_json(output / 'youtube.json', metadata)
         (output / 'youtube.md').write_text('\n\n'.join(['# Title', metadata['title'], '# Description', metadata['description'], '# Tags', ', '.join(metadata['tags']), '# Pinned Comment', metadata['pinned_comment']]) + '\n', encoding='utf-8')
@@ -262,8 +311,8 @@ def build(episode, run_id, render=False):
             if render:
                 count = round(data['duration'] * 30)
                 require(read_json(output / 'visual-qa.json')['frames'] == count, 'Captured frame count differs')
-                media_backend.encode(environment['backend'], runtime, temporary, count, output / 'silent.mp4')
-                audio_report = media_backend.finish(environment['backend'], runtime, temporary, output, inputs['audio'], data['duration'])
+                media_backend.encode(environment['backend'], runtime, temporary, count, output / 'silent.mp4', **profile_args)
+                audio_report = media_backend.finish(environment['backend'], runtime, temporary, output, inputs['audio'], data['duration'], **profile_args)
                 write_json(output / 'audio-qa.json', audio_report)
         validate(episode)
         require(digest(Path(episode)) == episode_hash, 'Episode changed during production')
@@ -302,7 +351,7 @@ def transcribe(audio, output):
     return target
 
 
-def caption_draft(transcript_path, output):
+def caption_draft(transcript_path, output, profile='shorts'):
     verify_lock()
     transcript = read_json(inside(ROOT, transcript_path))
     target = inside(ROOT, output, exists=False)
@@ -319,6 +368,6 @@ def caption_draft(transcript_path, output):
             cues.append({'text': ' '.join(w['text'].strip() for w in timed[start:i + 1]), 'start': timed[start]['start'], 'end': word['end'], 'firstWord': start, 'lastWord': i})
             start = i + 1
     record = {'duration': duration, 'status': 'word_timed_review', 'source': 'Local timed transcript; automatic phrase grouping requires listening review.', 'cues': cues}
-    validate_captions(record, transcript, duration, {})
+    validate_captions(record, transcript, duration, {}, profile)
     write_json(target, record)
     return target

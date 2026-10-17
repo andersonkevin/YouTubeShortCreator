@@ -6,6 +6,7 @@
   const mixWhite = (hex, amount) => '#'+[1,3,5].map(i=>Math.round(parseInt(hex.slice(i,i+2),16)*(1-amount)+255*amount).toString(16).padStart(2,'0')).join('');
   window.ShortCreatorVisualRenderAt = seconds => {
     for (const item of mounted) {
+      if(item.cinema){item.cinema.renderAt(seconds);continue;}
       const local = seconds - Number(item.scene.dataset.start);
       const amount = clamp((local-item.motion.fill[0])/item.motion.fill[1]);
       const preset = item.presentation.reveal;
@@ -21,6 +22,8 @@
       item.chartNode.style.transformOrigin = '50% 50%';
       item.chartNode.style.transform = preset === 'scale-settle' ? `scale(${0.94+0.06*eased})` : `translate(${vector[0]*(1-eased)}px,${vector[1]*(1-eased)}px)`;
       item.chartNode.style.opacity = String((local >= item.motion.enter ? 1 : 0) * (wipe ? 1 : eased) * exit);
+      if (item.effects) item.effects.renderAt(seconds);
+      if (item.story) item.story.renderAt(seconds);
     }
   };
   window.ShortCreatorVisualReady = (async () => {
@@ -35,7 +38,8 @@
       ink:'#ffffff', muted:'#d4cce3', accent:data.colors.accent, accent2:data.colors.secondary, warn:'#ef9cab', extra:mixWhite(data.colors.secondary,.35),
       font:'BrandSans', mono:'BrandMono'};
     if (data.world) echarts.registerMap('natural-earth',data.world);
-    for (const spec of data.scenes) {
+    if(data.scenes.some(spec=>spec.presentation.composition))document.getElementById('film').classList.add('cinema-film');
+    for (const [index,spec] of data.scenes.entries()) {
       const scene = [...document.querySelectorAll('.visual-library-scene')].find(node=>node.dataset.visualId===spec.id);
       if (!scene) throw new Error('Missing visual scene: '+spec.id);
       const record = data.records[spec.id];
@@ -55,6 +59,19 @@
       await symbol.decode();
       const chartNode = scene.querySelector('.visual-chart');
       chartNode.setAttribute('aria-label',record.title+'. '+record.insight);
+      if(spec.presentation.composition) {
+        const cinema=window.ShortCreatorCinema.mount(scene,record,spec.presentation,
+          JSON.parse(document.getElementById('spoken-captions-data').textContent).cues,theme,
+          index?data.scenes[index-1].presentation.transition:null);
+        mounted.push({scene,chartNode,cinema});
+        continue;
+      }
+      if (spec.presentation.story) {
+        const story = window.ShortCreatorStory.mount(chartNode,record,spec.presentation.story,
+          JSON.parse(document.getElementById('spoken-captions-data').textContent).cues,theme);
+        mounted.push({scene,chartNode,motion:spec.motion,presentation:spec.presentation,story});
+        continue;
+      }
       if (record.library === 'wave02') {
         // Wave 02 components draw the whole 824x820 slot, provenance line included, with brand-derived tokens.
         scene.querySelector('.library-visual').classList.add('wave02-visual');
@@ -69,8 +86,14 @@
         continue;
       }
       const chart = echarts.init(chartNode,null,{renderer:'svg',width:824,height:560});
-      chart.setOption(window.ShortCreatorVisualOptions(record,{...theme,chartStyle:spec.presentation.chart_style}),{notMerge:true,lazyUpdate:false});
-      mounted.push({scene, chartNode, chart, motion:spec.motion, presentation:spec.presentation});
+      const effectSpecs = spec.presentation.effects || [];
+      const options = window.ShortCreatorVisualOptions(record,{...theme,chartStyle:spec.presentation.chart_style,
+        motionTargets:effectSpecs.some(effect=>effect.preset==='cascade-v1')});
+      chart.setOption(options,{notMerge:true,lazyUpdate:false});
+      const effects = effectSpecs.length ? window.ShortCreatorEffects.mount({chart,chartNode,options,record,
+        effects:effectSpecs,cues:JSON.parse(document.getElementById('spoken-captions-data').textContent).cues,
+        colors:data.colors}) : null;
+      mounted.push({scene, chartNode, chart, motion:spec.motion, presentation:spec.presentation, effects});
     }
     await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
     window.ShortCreatorRenderAt(0);

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "source_license": "Apache-2.0",
+  "glyph_license": "OFL-1.1",
+  "sources": [
+    {
+      "path": "registry/blocks/hw-write-title/hw-write-title.html",
+      "sha256": "da7375c1acedf86f3cf5839f6bc75ef3817d674752aaf462a9e0d0e471ac7e90"
+    },
+    {
+      "path": "registry/blocks/hw-write-title/assets/baked/caveat-pen.js",
+      "sha256": "d7fff8f92e60c6901b3db8b9c0e0f5e1ea4df81f1ea5075b4b8224bbf12b5b0a"
+    },
+    {
+      "path": "registry/components/stitched-text-draw/stitched-text-draw.html",
+      "sha256": "69b7a8525037d2edd32d57ac08099775816fd4f4eb72393e25dec7627769d1cb"
+    },
+    {
+      "path": "registry/components/caption-blend-difference/caption-blend-difference.html",
+      "sha256": "82dddc30094cfe03195485f0bf5bad686855732fdadc5a975e4da33eb6447e26"
+    }
+  ],
+  "notice_sha256": "1f9d81d094273d82f3898a1ee8b598a717d050ecbf5ff7bede105b704880157b",
+  "adaptations": [
+    "Retained baked Caveat outlines and centerlines; matching approved display-font bytes required.",
+    "Original curvature-adaptive pen ease is unchanged; stroke scheduling fits a fixed 3.2-second native cue window. Long sequences cap total pen-lift time at 0.6 seconds.",
+    "Stitched alphabet, seeded jitter, double-dash pattern, holes, needle and tail painter are retained. All characters must be supported; no silent replacement.",
+    "Difference blending is isolated to a scene graphic over controlled black and white fields. Arbitrary footage and soft/exclusion modes are not offered.",
+    "No idle boil, external font loading, GSAP or spoken-caption modification."
+  ]
+}

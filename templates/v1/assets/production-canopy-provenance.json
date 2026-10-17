@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "source": {
+    "path": "registry/blocks/canopy-part-title/canopy-part-title.html",
+    "sha256": "dd24f698d1b62ab73a85cf25bd24006b3f5f386f43f045f3a90a68629204af3a",
+    "license": "Apache-2.0"
+  },
+  "files": {
+    "production-canopy-motion.js": "71393f23b2bfc4e1d5a131bab53cadccc38bde4c6abb88d68d1f875d8c1302d2",
+    "production-canopy-bokeh.js": "7a8a352c966f94c03a5ca0e45c6ff999fc7659f84d809b2518b888dd0da8cfad",
+    "production-canopy.js": "87c4e2e5da1d2de59135bea280f2449ebdc3cfdd6bb95635037438394820eab8"
+  },
+  "native_integrated": true,
+  "export_qualified": false,
+  "adaptation": "Closed native spatial-stage composition: two verified local textures, approved normalized display outlines, 340 seeded leaves, five source species/materials, matched color/depth/shadow wind, source 41-tap bokeh followed by sharp titles, 800 dust particles and source camera. Source active interval 0\u201310.5 seconds maps to the shared two-cue clock; its final image holds without idle breeze. Native aspect fitting extends incoming leaves beyond the real frustum. The shared renderer owns all resources; no remote inputs, GSAP or runtime downloads.",
+  "remaining": [
+    "Cumulative workflow, cross-scene seams, audio and encoded-export qualification.",
+    "Two upstream photographic payloads lack item-specific provenance and remain excluded from public source."
+  ],
+  "qualification": {
+    "source_function_parity": "421 time samples in forward and reverse order;5151468 exact scalar comparisons;19880 geometry entries;five species color and bump pixels match SHA-256 of the original functions.",
+    "scope": "Source-function comparison uses original functions with rendering stubs. Native four-format smoke checks pass; full browser QA and encoded export are separate.",
+    "native": "Native compiler/browser checks pass four formats, 16 viewport checks and 380 event samples, including approved-font identity, local texture roles, actual leaf/camera/depth state, projected title bounds, caption geometry and strict reverse pixels. Exact original-source motion, geometry and texture parity also passes. Cumulative workflow, scene-to-scene seams, audio and encoded exports remain pending."
+  },
+  "unimported_photographic_inputs": [
+    {
+      "path": "assets/leaf-surface-color.webp",
+      "sha256": "c56b647034523b070d9eb1ea7cdc89b1c8d34d7fb5fcc5c805984b3fbde86f8a"
+    },
+    {
+      "path": "assets/leaf-surface-normal.webp",
+      "sha256": "c0c37fab0fdfa85d4db1b2f42e98f74b0eaaa4397bd4c072d549f0b7ec08daae"
+    }
+  ],
+  "bokeh_source": {
+    "repository": "https://github.com/mrdoob/three.js",
+    "ref": "r185",
+    "path": "examples/jsm/shaders/BokehShader.js",
+    "blob_sha": "f812757295809655f64446e45f9e4b91ef1dfa2e",
+    "sha256": "742f51ca7e6098c5189a4d6ff8c578a6c0826bee8d00bcaf89a3b5605f2cf262",
+    "license": "MIT",
+    "notice": "production-three-notices.txt",
+    "changes": "Classic local wrapper. Native caller applies source ACES exposure before sharp title compositing. Shader body matches the r170 source used by the upstream composition."
+  }
+}

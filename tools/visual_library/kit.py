@@ -114,14 +114,7 @@ def symbol_svg(asset_id, color='#ffffff', background='#101214'):
     return ET.tostring(svg, encoding='utf-8', xml_declaration=True)
 
 
-def validate_chart(chart, icons):
-    fields(chart, 'id kind title insight source icon data')
-    require(isinstance(chart['id'], str) and re.fullmatch(r'[a-z][a-z0-9-]{0,39}', chart['id']), 'Invalid chart ID')
-    require(chart['kind'] in KINDS, 'Unsupported chart kind')
-    require(chart['icon'] in icons, 'Unknown icon')
-    label(chart['title'], 54)
-    label(chart['insight'], 110)
-    source = chart['source']
+def validate_source(source):
     fields(source, 'kind label reference as_of')
     require(source['kind'] in ('illustrative', 'measured'), 'Declare data provenance')
     label(source['label'], 70)
@@ -130,6 +123,16 @@ def validate_chart(chart, icons):
         date.fromisoformat(source['as_of'])
     except (TypeError, ValueError):
         raise ValueError('Source date must be YYYY-MM-DD') from None
+
+
+def validate_chart(chart, icons):
+    fields(chart, 'id kind title insight source icon data')
+    require(isinstance(chart['id'], str) and re.fullmatch(r'[a-z][a-z0-9-]{0,39}', chart['id']), 'Invalid chart ID')
+    require(chart['kind'] in KINDS, 'Unsupported chart kind')
+    require(chart['icon'] in icons, 'Unknown icon')
+    label(chart['title'], 54)
+    label(chart['insight'], 110)
+    validate_source(chart['source'])
     data = chart['data']
     kind = chart['kind']
     derived = {}

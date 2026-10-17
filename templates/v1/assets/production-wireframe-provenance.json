@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "source": {
+    "path": "registry/blocks/wireframe-portal-title/wireframe-portal-title.html",
+    "sha256": "75a830c267bf298c5bb8a6695c462e45238f58e774ea33e797b4c7bd43c86866",
+    "license": "Apache-2.0"
+  },
+  "files": {
+    "production-wireframe-motion.js": "80467bb5868ba74a3b73aa8195ada29bc6bc68d4368265412bd24da27dcd2e63",
+    "production-wireframe-shaders.js": "823a3cdfbb19fa1225d8087995d3b8585bf370297f9a656372c843029b763a76",
+    "production-wireframe-portal.js": "e4f69cdafe3ede47112a8d46418db27534a91950a837025692fd0e87bf529ff3"
+  },
+  "adaptation": "Approved private display-font curves replace Geist. CoreGraphics nonzero normalization replaces Clipper without adding a dependency. Native screen-space segment meshes retain 1.5px title and 1.05px supporting outlines with round caps and near-plane clipping. Six original shaders retain their order; two undefined descending smoothstep calls use defined inverse ramps. Explicit local render targets replace EffectComposer. Source metadata defaults, exact copy and finite absolute timing remain; native caption cues stretch the eight-second source interval. Source white plate maps to the approved dark ground. Original glyph paths also paint the flat card; readable bounds, minimum sizes and line collisions are gated. One shared Three.js renderer owns/disposes all resources. CPU page rasterization remains enabled alongside WebGL.",
+  "native_integrated": true,
+  "export_qualified": false,
+  "remaining": [
+    "Cumulative workflow, audio and encoded-export qualification with the complete asset set."
+  ],
+  "qualification": "Native checking passes three different handoffs in four formats, 16 viewports and 1296 event samples, including captions, geometry, seams and strict reverse pixels. The independent source-function parity and six-shader probes remain recorded. Thirteen static catalog faces pass actual nonzero extraction; previous default extraction retains exact geometry parity. Final cumulative workflow/audio/encoded export remains pending.",
+  "native_qualified": true
+}
