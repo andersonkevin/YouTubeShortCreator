@@ -21,15 +21,17 @@ test('source crack shader is retained with approved colors and defined smoothste
   assert.equal(hash(original),shader.original_fragment_sha256);
 });
 test('200 seeded cells match independently extracted source geometry in all formats',()=>{
-  const references=[
-    [16/9,'1da910d9cc22ec5afecc7eae96b20ccc2bdbfae9b5528152b82d9821b73023e4'],
-    [1720/526,'437a18718551d47fef4e0b9a09242f4c875049782269ccd29b470f0ca6d7c8fd'],
-    [940/1136,'684ff180911040f3e93099f7a760e5a8291a8f73c41f643c5ef354bf835e31e2'],
-    [960/526,'69b3b881ba45e610b87189b126f274450cbf2c1df4dae2753aaccdbcc6cc519b'],
-    [960/756,'349b7aba2de788a9b5ae10e1e72b02a1a5b7234aef0c58f348675b9aa5c8a17d']];
-  for(const [aspect,expected]of references){
+  // Transcendental results can vary by V8 version. Compare the pinned source
+  // oracle in the same runtime, retaining exact equality without a tolerance.
+  const original=fs.readFileSync(new URL('./fixtures/shatter-source-geometry.js',import.meta.url),'utf8');
+  assert.equal(hash(original),'f33f67f2c4978bbd0f31f5533f7a1d970d4fbd94250110075de6995baae084f2');
+  const reference={};vm.runInNewContext(original,reference);
+  const aspects=[16/9,1720/526,940/1136,960/526,960/756],snapshots=[];
+  for(const aspect of aspects){
     const model=motion.data(aspect);assert.equal(model.shards.length,200);
+    const expected=hash(JSON.stringify(reference.sourceShards(aspect)));
     assert.equal(hash(JSON.stringify(model.shards)),expected);
+    snapshots.push(expected);
     for(const shard of model.shards){
       assert.equal(shard.triangles.length,32);
       const {positions,uvs}=motion.vertices(shard,aspect);assert.equal(positions.length,288);assert.equal(uvs.length,192);
@@ -37,6 +39,8 @@ test('200 seeded cells match independently extracted source geometry in all form
         near(positions[i/2*3],(uvs[i]-.5)*aspect);near(positions[i/2*3+1],uvs[i+1]-.5);}
     }
   }
+  for(let i=aspects.length-1;i>=0;i--)
+    assert.equal(hash(JSON.stringify(motion.data(aspects[i]).shards)),snapshots[i]);
   for(const aspect of [NaN,Infinity,0,.49,4.01])assert.throws(()=>motion.data(aspect));
 });
 test('phase boundaries preserve cracking, background reveal, fragment fade and terminal still',()=>{

@@ -15,8 +15,9 @@ videos are excluded from the source release.
   check skipped on Node 24.19.0.
 - `python3 -B tools/check_docs.py`: **PASS**, 54 documents and 24 checksummed
   documentation images. `python3 -B tools/release.py audit`: **PASS**, 826
-  allowlisted source files. The Git handoff adds the existing CI workflow as the
-  827th public file; it does not include private data.
+  allowlisted source files in the initial candidate. The final source audit
+  includes one additional pinned geometry test fixture: 827 source files plus
+  the CI workflow, totaling 828 public files with no private data.
 - The normal `ysc.py ... render` command completed the portrait photographic
   film: **1080x1920, 70.433333 seconds, 30 fps, 2,113 frames and 14 shots**.
   Browser checks passed across four viewports, including caption timing,
@@ -60,6 +61,13 @@ The hosted rerun also identified a format-test headline that exceeded the
 unchanged width limit with Linux's display font. The synthetic fixture now uses
 shorter copy; production geometry, minimum font size and overflow rejection are
 unchanged. These packaging/test fixes require hosted verification before merge.
+The shatter geometry regression now evaluates a hash-pinned extraction of the
+original algorithm in the same JavaScript runtime and requires exact serialized
+geometry equality in all five aspect cases, including repeated reverse-order
+evaluation. This avoids treating one V8 version's floating-point output as a
+universal fixture; numerical tolerances and production animation are unchanged.
+CI runs the independent remaining checks after a failure so one run reports all
+diagnostics; a failed check still fails its required job.
 
 The current render qualifies portrait photographic cinema on the existing macOS
 setup. Earlier four-format and 600-second exports remain separately dated
