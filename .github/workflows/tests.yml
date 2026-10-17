@@ -36,5 +36,7 @@ jobs:
         run: python -B tools/check_docs.py
       - name: Release audit
         run: python -B tools/release.py audit
+      - name: Qualified asset integrity
+        run: python -B -c "import workflow; print(workflow.verify_lock())"
       - name: Whitespace check
         run: git diff --check HEAD~1 HEAD

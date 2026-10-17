@@ -1,3 +1,44 @@
 * text=auto eol=lf
 *.png binary
 *.jpg binary
+
+# Preserve qualified, byte-locked assets and original license notices.
+# Exact bytes remain enforced by the implementation lock and vendor manifests.
+# Only end-of-line/end-of-file blank-space style checks are inapplicable here.
+templates/v1/assets/production-canopy-bokeh.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-canopy-motion.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-device-glass-motion.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-frost-runtime.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-frost-scene-1.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-frost-scene-2.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-frost-scene-3.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-gpu-notices.txt whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-lettering-notices.txt whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-lettering-source.js whitespace=-blank-at-eol,-blank-at-eof
+templates/v1/assets/production-scenes.css whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/anton-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/archivo-OFL.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/audiowide-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/baloo2-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/bangers-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/barlowcondensed-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/bodonimoda-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/caveat-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/chakrapetch-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/cinzel-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/cormorantgaramond-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/courierprime-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/creepster-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/fredoka-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/lxgwwenkaitc-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/monoton-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/orbitron-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/pressstart2p-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/rajdhani-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/recursive-OFL.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/roboto-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/sairastencilone-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/shipporimincho-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/sora-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/spacegrotesk-ofl.txt whitespace=-blank-at-eol,-blank-at-eof
+tools/font_library/vendor/licenses/teko-ofl.txt whitespace=-blank-at-eol,-blank-at-eof

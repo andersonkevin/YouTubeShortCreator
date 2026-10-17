@@ -54,4 +54,3 @@ class CinemaTests(unittest.TestCase):
         self.assertIn('cinema-viewport',markup)
         del scene['presentation']['composition'];del scene['presentation']['transition']
         self.assertNotIn('cinema-viewport',visual_adapter.scene_html(scene,0,4))
-

@@ -35,6 +35,13 @@ videos are excluded from the source release.
 - `git diff --check`: **PASS**. Package metadata and the root lockfile agree on
   version 0.5.0. The earlier disk-space failure remains retained; the successful
   retry used the existing exporter and its unchanged free-space gate.
+- The first full staged-diff check exposed blank-space style warnings in 37
+  qualified assets and original license notices, plus one test-file ending.
+  The test ending was corrected. Exact byte-locked asset paths declare only
+  end-of-line/end-of-file blank-space style exceptions in `.gitattributes`;
+  their contents and qualified implementation hash remain unchanged. CI also
+  verifies the full implementation lock. The aggregate diff from v0.4.0 passes
+  the resulting format check; no media, asset-hash or runtime gate was relaxed.
 
 Implementation lock SHA-256:
 `d17576cb9d5a9dff6523f2b6f765b0c5115d073c9280654c659c43b79fd4cd72`.
