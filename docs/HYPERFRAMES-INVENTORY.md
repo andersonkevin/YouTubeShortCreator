@@ -1,6 +1,11 @@
 # HyperFrames adoption inventory
 
-[Current engineering closeout and validation scope](HYPERFRAMES-CLOSEOUT.md).
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
+[Resource-integration closeout snapshot](HYPERFRAMES-CLOSEOUT.md) · [Current state](CURRENT-STATE.md).
 
 [Integration contract](HYPERFRAMES-PILOT.md) | [Integration inventory JSON](hyperframes-adoption-inventory.json) |
 [Visual production inventory JSON](visual-production-inventory.json)
@@ -12,7 +17,8 @@ engine and accepts different episode records. The exported example uses the norm
 
 At the inventory check on 2026-10-15, GitHub `andersonkevin/YouTubeShortCreator` pointed to
 `c11eb247b54b03a68553228845b1de764b094cee` on `main`, matching the development
-checkout's base. The local integration is uncommitted and unpublished.
+checkout's base. At that inventory checkpoint, the integration was uncommitted
+and unpublished. Later publication is recorded in [current state](CURRENT-STATE.md).
 
 ## Full local asset census (2026-10-15)
 

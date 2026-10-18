@@ -15,14 +15,16 @@ work or stage private workspaces. The project has no automatic commit/push behav
 ## Setup
 
 Follow [Installation](docs/INSTALLATION.md). Use the declared dependencies and
-existing local runtimes. There is no remote CI or hosted test environment configured
-by default. Native media adapters require a compatible macOS/Swift environment.
+existing local runtimes. `.github/workflows/tests.yml` runs Python 3.12/3.13 tests,
+Node tests, documentation, release, lock-integrity and whitespace checks on Linux
+for pull requests and pushes to `main`. CI does not qualify media rendering;
+full production requires the documented macOS runtime.
 
 ## Change Categories
 
 | Change | Minimum verification |
 | --- | --- |
-| Documentation | Local links, images, JSON examples and command coverage via docs checker |
+| Documentation | Docs checker, Python and Node suites, release audit and unchanged implementation lock; no media rerender unless behavior changes |
 | CLI or file boundaries | Unit tests for arguments, approvals, path containment and no-overwrite |
 | Caption logic | Word coverage, timing boundaries, wrong-input rejection and real narration QA |
 | Templates or typography | All affected layouts, desktop/mobile checks, actual screenshots |
@@ -36,8 +38,10 @@ synthetic examples clearly labeled and never fabricate performance measurements.
 
 ```bash
 python3 -B -m unittest discover -s tests -v
+node --test tests/*.test.mjs
 python3 -B tools/check_docs.py
 python3 -B tools/release.py audit
+python3 -B -c 'import workflow; print(workflow.verify_lock())'
 git diff --check
 ```
 
@@ -67,8 +71,10 @@ issues follow [Security](SECURITY.md), not a public demonstration with confident
 
 Only contribute work you may license under this project's MIT terms. Preserve
 upstream notices and identify third-party material. There is no formal CLA workflow
-or automated rights verification. Font binaries, voice recordings and customer logos
-do not belong in source control. Read [Licensing](docs/LICENSING.md) before adding assets.
+or automated rights verification. Private fonts, recordings and customer logos
+stay out of source control. The pinned licensed font catalog and four hash-verified
+public example WAVs are explicit distribution exceptions, not permission to add
+arbitrary media. Read [Licensing](docs/LICENSING.md) before adding assets.
 
 No response-time guarantee, long-term support commitment or maintainer contact
 address is invented by this document. Release decisions remain explicit maintainer actions.

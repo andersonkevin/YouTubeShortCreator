@@ -1,5 +1,10 @@
 # B07 Clean Installation Progress
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 [Pipeline plan](PIPELINE-ROADMAP.md) | [Installation](INSTALLATION.md) |
 [B06 qualification](B06-PROGRESS.md)
 

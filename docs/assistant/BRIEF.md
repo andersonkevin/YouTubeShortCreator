@@ -7,7 +7,7 @@ Fill this in only inside a private workspace. Unknown fields stay pending.
 - Channel name: pending
 - Audience and purpose: pending
 - Language and voice tone: pending
-- Default scene count (3 or 4): pending
+- Legacy onboarding scene default (3 or 4; v3 storyboard supplies its count): pending
 - Dark background, primary and secondary accents: pending
 - Existing logo or permission for local wordmark/monogram: pending
 - Licensed display, body and mono fonts: pending
@@ -16,7 +16,9 @@ Fill this in only inside a private workspace. Unknown fields stay pending.
 ## Episode
 
 - Episode ID and topic: pending
-- One takeaway and recording-driven duration (maximum 180 seconds for Shorts): pending
+- Contract/profile: legacy `shorts`, or v3 `landscape`, `portrait`, `square`, `portrait-4x5`: pending
+- One takeaway and full-recording duration (legacy maximum 180 seconds; v3 maximum 600 seconds): pending
+- Supported composition families and applicable format/scene/cue limits: pending
 - Factual sources and review date: pending
 - Narration text and script review: pending
 - Final voice file (private relative path): pending
@@ -26,14 +28,17 @@ Fill this in only inside a private workspace. Unknown fields stay pending.
 
 ## Storyboard
 
-| Scene | Spoken section | Existing layout | Code or graphic | Caption anchor |
+| Scene | Spoken section | Legacy layout or v3 family/variant | Local asset or graphic | Caption anchor / transition |
 | --- | --- | --- | --- | --- |
 | 1 | pending | pending | pending | pending |
 | 2 | pending | pending | pending | pending |
 | 3 | pending | pending | pending | pending |
 
-Add a fourth scene only when needed. Caption anchors come from reviewed timed
-audio, not draft script estimates. This brief is not an executable episode JSON.
+For legacy Shorts, add a fourth scene only when needed. For v3, use 1-120 scenes
+subject to the selected family's limits; plan a distinct visual beat for each
+required cue. Caption anchors come from reviewed timed audio, not draft script
+estimates. Record verified local asset IDs and the selected transition for each
+v3 scene. This brief is not an executable episode JSON or storyboard.
 
 ## Visual Review
 

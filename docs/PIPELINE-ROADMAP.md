@@ -1,5 +1,10 @@
 # Pipeline Completion Plan
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 [Docs index](README.md) | [Visual library](VISUAL-LIBRARY.md) |
 [Qualification](VISUAL-LIBRARY-QA.md) | [Architecture](ARCHITECTURE.md)
 
@@ -64,7 +69,8 @@ Two milestones have separate definitions of done:
 - **Marketing workflow complete:** M01-M03 pass after the pipeline, with evidence
   and manual editorial approval. Neither milestone promises audience growth.
 
-No version number or release tag is assigned until the maintainer approves it.
+At this planning baseline, a version number or release tag required separate
+maintainer approval. The later v0.5.0 source publication is recorded in current state.
 
 ## Batch Ledger
 

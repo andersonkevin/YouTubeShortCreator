@@ -104,7 +104,7 @@ New run IDs preserve previous results and failed diagnostics.
 - Every result stays `review_required`; technical checks do not replace visual, listening or factual review.
 
 The original 18-layout workflow, batch rotation and v1/v2 contracts remain
-available. See the [legacy gallery](docs/GALLERY.md) and
+available. See the [legacy gallery](docs/GALLERY.md#legacy-v1v2-layouts) and
 [first-Short walkthrough](docs/FIRST-SHORT.md).
 
 ## Updating from 0.4.0
@@ -131,7 +131,7 @@ python3 -B tools/release.py audit
 
 The release audit expects an allowlisted source tree. Keep private work under
 `workspace/` or `workspaces/`, and inspect the selected source files before sharing.
-See the [release qualification](docs/RELEASE-QA.md), [changelog](CHANGELOG.md),
+See the [current state](docs/CURRENT-STATE.md), [release qualification](docs/RELEASE-QA.md), [changelog](CHANGELOG.md),
 [release guide](docs/RELEASING.md), [documentation index](docs/README.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 

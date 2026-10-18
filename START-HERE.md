@@ -1,4 +1,4 @@
-# Your Assistant-Operated Shorts Workspace
+# Your Assistant-Operated Video Workspace
 
 [Project overview](README.md) | [Shared assistant workflow](docs/ASSISTANT-WORKFLOW.md)
 
@@ -12,15 +12,19 @@ local tools with you as the approval gate.
 Paste this into your assistant:
 
 > Read AGENTS.md, START-HERE.md and docs/ASSISTANT-WORKFLOW.md. Help me set up my
-> channel and produce a Short using the existing template. Inspect before writing.
+> channel and produce a video using a supported composition. Inspect before writing.
 > Ask only for missing preferences, show my brand preview for approval, and keep
 > my media in a private workspace. Do not install dependencies, send files to a
 > provider or publish anything without my approval. Verify each stage and leave
 > a dated handoff with evidence and the next action.
 
-For v0.5.0 compositions, select the output profile and storyboard family using
-`compositions`; see [multiformat authoring](docs/CLI.md#landscape-episodes).
-The classic Shorts onboarding below retains its original defaults.
+Choose legacy Shorts or an explicit v3 profile before drafting. Use
+`python3 ysc.py compositions` for v3 families and format constraints, or
+`python3 ysc.py layouts` for the classic workflow. Start with the
+[complete examples](examples/v0.5.0/README.md) for reproducible v3 episodes;
+see [current state](docs/CURRENT-STATE.md) for compatibility and release scope.
+Onboarding retains a three/four-scene legacy default; v3 storyboards supply
+their own supported scene counts.
 
 The assistant starts with your channel, audience, language, tone, colors, logo,
 font rights and three/four-scene preference. If you have no logo, it can generate

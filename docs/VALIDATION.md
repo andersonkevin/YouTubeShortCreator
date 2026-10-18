@@ -8,10 +8,13 @@
   JSON fields, finite numbers, exact episode fields and template/brand drift.
 - Caption words and source-audio binding, ordered coverage, cue timing and measured
   adjustment notes. No duration-only or estimated caption alignment is accepted.
-- Three/four ordered scenes, known layouts, escaped text and bounded motion.
+- Legacy v1/v2: three/four ordered scenes, known layouts, at most 180 seconds.
+  Explicit v3: 1-120 scenes, at most 600 seconds, closed family-specific content,
+  format, local-asset, cue and transition contracts. Text is escaped in both paths.
 - Headline and label fitting; metadata lengths; 5-8 unique lowercase hashtags.
-- Four browser viewports: 1080x1920, 1440x900, 390x844 and 375x667. Check frame
-  containment, text overflow, heading/graphic/note/caption overlap.
+- Four browser viewports: the selected profile's native canvas, 1440x900,
+  390x844 and 375x667; legacy native canvas is 1080x1920. Check frame containment,
+  text overflow and the selected family's text/graphic/caption geometry.
 - Actual loaded logo and fonts, every caption at its cue midpoint, central graphic
   motion, deterministic backward seeking, page errors and attempted page network.
 - MP4 codecs, dimensions, track counts, duration and every 30 fps presentation

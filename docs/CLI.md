@@ -38,7 +38,8 @@ not exist. For an existing workspace it prints the available commands.
 | `build EPISODE --run-id ID` | Valid episode and runtime | Writes HTML, cover, handoff data, screenshots and visual QA | `--approve-write` |
 | `render EPISODE --run-id ID` | Valid non-placeholder metadata and runtime | Builds, encodes, muxes and checks the MP4 | `--approve-write` |
 
-`new` picks one layout per scene from the 18 production layouts, grouped into
+The default legacy `new --format shorts` path picks one layout per scene from
+the 18 production layouts, grouped into
 eight visual families (code, evidence, automation, gate, quote, steps, stat and
 compare). Without `--batch`, every draft starts from the same classic opening.
 With `--batch NAME`, the picker reads the current `episode.json` of every episode
@@ -125,7 +126,7 @@ cannot be combined with a camera or a non-default treatment. For example,
 `{"style":"phone","cutout":"island"}` stages a verified image in a phone;
 `{"style":"feather-focus","target":{"x":0.2,"y":0.15,"width":0.5,"height":0.6}}`
 highlights an explicit region of that image. Labels, captions and brand remain
-outside the effect. These are development options with separate qualification evidence.
+outside the effect. These are supported opt-in options with separately scoped qualification evidence.
 For `title` content, `reveal` selects `rise`, `per-word-rise`, `blur-in`,
 `typewriter`, `scramble`, `bottom-up`, `top-down`, `clip-wipe`, `line-slide`,
 `char-slam`, `headline-slam`, `text-shimmer`, `tracking-in`, `streaming`, `matrix`, or `focus-resolve`.

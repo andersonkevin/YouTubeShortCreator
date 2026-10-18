@@ -1,6 +1,6 @@
 # Architecture
 
-[Docs index](README.md) · [Workflow contracts](WORKFLOW.md) · [Security](../SECURITY.md)
+[Docs index](README.md) · [Current state](CURRENT-STATE.md) · [Workflow contracts](WORKFLOW.md) · [Security](../SECURITY.md)
 
 ## Design Boundaries
 
@@ -21,7 +21,7 @@ flowchart TD
     D --> J[Validate and build]
     I --> J
     J --> K[Deterministic browser frames]
-    K --> L[Native encode and mux]
+    K --> L[Configured native or FFmpeg encode and mux]
     E --> L
     L --> M[Media and waveform QA]
     M --> N[Human export review]
@@ -33,16 +33,22 @@ flowchart TD
 | Module | Responsibility | Important boundary |
 | --- | --- | --- |
 | `ysc.py` | Onboarding, CLI routing, intake, episode draft assembly | Operator input and explicit write flags |
-| `branding.py` | Palette/font/logo validation, preview, approval hashes, covers | Private font/assets; fixed geometry |
+| `branding.py` | Palette/font/logo validation, preview, approval hashes, profile-sized covers | Approved private assets or pinned licensed catalog fonts |
 | `safety.py` | JSON parsing, paths, hashes, exact keys and scalar checks | No duplicate keys, non-finite numbers or contained traversal |
 | `runtime.py` | Existing tool discovery, configuration and measured versions | Executables are trusted operator configuration |
-| `media_backend.py` | Explicit native dispatch, frame sequence checks and temporary ownership | No episode-selected tools or silent fallback |
-| `media_contract.py` | Shared 180-second/5,400-frame Shorts contract and audio storage bound | No automatic narration trimming or unbounded rendering |
+| `media_backend.py` | Explicit native/FFmpeg dispatch, frame sequence checks and temporary ownership | No episode-selected tools or silent fallback |
+| `media_contract.py` | Legacy 180-second/5,400-frame profile and four v3 600-second/18,000-frame profiles; per-profile audio limits and geometry | No automatic narration trimming or unbounded rendering |
 | `frame_qa.py` | Cue-boundary sample selection and encoded/reference pixel comparison | Fixed lossy limits; not semantic or human approval |
 | `ffmpeg_backend.py` | Fixed optional FFmpeg/ffprobe operations and decoded timestamp checks | Local demuxer/protocol allowlist; no automatic installation |
 | `native-capabilities.swift` | H.264 settings and export-preset preflight | Temporary probe only; not a replacement for media QA |
 | `workflow.py` | Episode/caption validation, escaped HTML, run orchestration and reports | Inputs cannot supply HTML, CSS or executable commands |
 | `visual_adapter.py` | Opt-in v2 widget validation, brand mapping and asset evidence | Known symbols and bounded records only; no raw rendering options |
+| `production_visuals.py` | v3 validation, local asset intake and compilation for 35 scene families | 1-120 scenes, closed records, cue anchors and family-specific format limits |
+| `editorial.py`, `cinema.py` | Editorial designs and diagram/photographic cinema contracts | Landscape editorial/diagram scenes; photographic stills in landscape or portrait |
+| `font_motion.py`, `lettering.py`, `font_outlines.py` | Variable typography and lettering with approved font outlines | Pinned fonts, measured axes and bounded text; no episode-supplied font code |
+| `tools/font_library/kit.py` | Licensed local font catalog, binary hashes and variable-axis discovery | No runtime font downloads; retained license notices |
+| `production-qa.mjs`, `seek-qa.mjs` | v3 scene geometry, cue/seam checks and reverse-seek parity | Approved output profile and fixed checks; no tolerance bypass |
+| `tools/examples.py` | Imports public examples through normal episode authoring | Manifest hashes, approved workspace, explicit write gate and no overwrite |
 | `tools/visual_library/options.js` | Shared gallery and production option construction | Production geometry and typography are adapter-owned |
 | `capture.mjs` | Headless Chrome, viewport QA, deterministic seeking and PNG capture | Local page with page-level network blocking |
 | `chart-qa.mjs` | Chart label bounds and pairwise collision checks | Normalized production pixels; no hidden-label workaround |
@@ -55,6 +61,12 @@ flowchart TD
 | `decode-audio.swift`, `audio_qa.py` | PCM decoding and source/export comparison | Waveform identity/timing, not ASR correctness |
 | `tools/` | Smoke qualification, source packaging, docs QA and lock candidates | Maintenance commands, no remote publishing |
 
+The `templates/v1/` directory name is retained for compatibility. It contains the
+original layouts and shared assets used by newer contracts; it does not mean that
+all episodes use the v1 schema. `production-scenes.js` and specialized visual
+assets under `templates/v1/assets/` render v3 records on the selected profile.
+Legacy v1/v2 supports native or FFmpeg; v3 requires explicit FFmpeg configuration.
+
 The orchestrator sets the selected workspace for one CLI invocation. These modules
 are not a concurrency-safe multi-tenant SDK; do not import them into a shared service
 and run different channels concurrently without a separate architecture review.
@@ -64,7 +76,8 @@ and run different channels concurrently without a separate architecture review.
 ```text
 YouTubeShortCreator/
   ysc.py                 # operator entry point
-  templates/v1/          # reusable, locked implementation
+  templates/v1/          # locked layouts and shared v1/v2/v3 visual assets
+  examples/v0.5.0/        # manifest-verified public authoring inputs
   docs/                  # public documentation and illustrative screenshots
   tests/                 # temporary, synthetic fixtures
   tools/                 # local maintenance utilities
@@ -103,7 +116,7 @@ signed attestations or a fully hermetic build system.
 Builds preflight inputs before creating a new run directory. Failed runs are retained
 with diagnostic evidence when the orchestrator can write it. The initial import,
 onboarding and draft commands can also leave partial files on an unexpected failure;
-v0.1.0 does not promise filesystem transactions or automatic rollback.
+the application does not promise whole-workspace transactions or automatic rollback.
 
 The shared Python JSON writer serializes first, flushes and fsyncs a same-directory
 temporary file, then publishes complete bytes through a no-overwrite hard link.
@@ -127,3 +140,6 @@ The source packager uses an explicit allowlist and excludes known private direct
 names. It does not publish, inspect Git history or prove that arbitrary allowed text
 and images contain no private content. Manual review is still required. Dependency
 installation and optional external voice generation are separate operator actions.
+Four manifest-verified synthetic example WAVs and licensed catalog fonts are public
+source assets. They do not permit private recordings, channel fonts or generated
+video/run folders to enter source distribution.

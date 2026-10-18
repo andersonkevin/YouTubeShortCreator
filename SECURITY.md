@@ -4,9 +4,10 @@ This is a single-operator local tool, not a sandbox for hostile projects.
 Review code before running it. Runtime executable paths and template code are
 trusted operator inputs; never accept them from a downloaded episode.
 
-Version 0.1.0 is the documented release. No support SLA, external penetration test
-or security certification is claimed. See [Architecture](docs/ARCHITECTURE.md) for
-the actual process and data boundaries.
+The maintained implementation is v0.5.0; see [current state](docs/CURRENT-STATE.md)
+for the tag, later source additions and qualification limits. No support SLA,
+external penetration test or security certification is claimed. See
+[Architecture](docs/ARCHITECTURE.md) for the actual process and data boundaries.
 
 Episode JSON only fills escaped text and validated timing slots. It cannot supply
 HTML, CSS, executable commands, external URLs or runtime paths. File paths are

@@ -1,10 +1,15 @@
 # HyperFrames integration closeout
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 Development scope: reusable visual production in the existing ShortCreator engine,
 four aspect ratios, and episodes up to ten minutes. No production deployment,
 commit, push, automatic publication, editor replacement, or external service.
 
-Current status (2026-10-17): the reusable resource integration is complete with
+Resource-integration snapshot (2026-10-17): the reusable resource integration is complete with
 explicit exclusions. All seven reopened typography resources and 16 variable
 font files are integrated. The final three resources provide glyph write-on,
 fine/coarse stitched lettering and controlled text inversion. Emoji remains
@@ -13,7 +18,7 @@ This is the generic YouTubeShortCreator project. Cognativ onboarding is outside
 this goal. See [variable typography](VARIABLE-TYPOGRAPHY.md) and
 [drawn lettering](LETTERING.md).
 
-## Current acceptance
+## Acceptance snapshot (2026-10-17)
 
 | Requirement | Current evidence |
 | --- | --- |
@@ -25,7 +30,7 @@ this goal. See [variable typography](VARIABLE-TYPOGRAPHY.md) and
 | Final resource QA | Combined five-scene lettering fixture passes all four profile builds, layout, motion, captions and exact reverse seeks; landscape MP4 passes media, 1,471 timestamps, decoded-frame and audio gates. No render requests or browser errors. |
 | Scope continuity | Four aspect ratios and the 600-second contract retained. Previous four-format cumulative exports, variable-font matrix and ten-minute soak remain separately dated evidence; this final fixture is 49.0333 seconds. |
 
-Accepted implementation lock:
+Implementation lock accepted for this historical resource qualification:
 `f025c2ead206b8a23be89584ff904723dbebd7d5d6ec36cd689a582ea07360b0`.
 Private receipts are under `workspaces/resource-completion-2026-10-17/`:
 `qualification.json`, `lettering-qualification.json`, full suite logs and the

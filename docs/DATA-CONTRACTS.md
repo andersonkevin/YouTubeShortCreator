@@ -37,8 +37,8 @@ rejects these extra fields; there is no silent episode/profile migration.
 
 Each input has `path` and `sha256`. Paths are relative to the episode JSON directory,
 with containment and symlink checks. Files must be nonempty. Audio may be at most
-75,000,000 bytes (enough for 180 seconds of 48 kHz stereo float PCM); other inputs
-remain capped at 30,000,000 bytes. This is a storage bound, not a duration estimate.
+75,000,000 bytes for v1/v2 (enough for 180 seconds of 48 kHz stereo float PCM),
+or 250,000,000 bytes for a v3 profile; other inputs remain capped at 30,000,000 bytes. This is a storage bound, not a duration estimate.
 JSON parsing applies an additional 2 MB limit. Hashes must match the current bytes.
 
 Example input descriptor, with an intentionally non-production placeholder hash:
@@ -54,6 +54,8 @@ No arbitrary style/configuration field is allowed. The source of truth for exact
 validation is [workflow.py](../workflow.py), not a separately maintained JSON Schema.
 
 ## Landscape version 3
+
+This retained heading also covers the portrait, square and 4:5 v3 profiles.
 
 Version 3 retains common episode keys, `template: "v1"`, original voice,
 caption/source hashes, metadata and review gates. It adds `format` and `assets` instead of `visuals`. Allowed formats are
@@ -95,8 +97,10 @@ Scenes contain exactly `kind`, `name`, `first_cue`, `cues`, `transition`, `conte
 Names are unique. Scene anchors increase from caption zero. `cues` is ordered and
 unique, with one caption anchor per visual beat. Each beat begins 0.4 seconds
 after its anchor and settles within 0.8 seconds before the final 0.4-second seam.
-Scenes last at least two seconds. Transitions are `cut-left`, `zoom-through` and
-`text-match`. Text-match joins two adjacent title scenes in a non-overlapping pair;
+Scenes last at least two seconds. Shared transitions are `cut-left`, `cut-right`,
+`cut-up`, `cut-down`, `zoom-through`, `inverse-zoom`, `rack-focus`, `fade-through`
+and `text-match`, subject to the selected family's seam constraints.
+Text-match joins two adjacent title scenes in a non-overlapping pair;
 both headlines must fit one line at the unchanged type size, at most 32 characters.
 It moves the headline carrier through one continuous curve across the cut while
 supporting copy recedes/arrives. It is invalid on the last scene or on other kinds.

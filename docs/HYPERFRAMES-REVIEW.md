@@ -1,5 +1,10 @@
 # HyperFrames extraction review
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 The 2026-10-15 [verified inventory](HYPERFRAMES-INVENTORY.md) supersedes the earlier counts: 15 package manifests, 210 blocks, 237 registered components and eight examples. It indexes the local source tree and reviews the selected rendering primitives plus relevant timing, readiness, text, runtime-hash and pixel-QA boundaries. This is an integration review, not a line-by-line security certification of every dependency or Studio component.
 
 | Area reviewed | Decision for Short Creator |

@@ -6,20 +6,24 @@
 
 The upstream repository is public at
 [andersonkevin/YouTubeShortCreator](https://github.com/andersonkevin/YouTubeShortCreator).
-Repository visibility and the default `main` branch were verified through GitHub
-on 2026-09-15. This does not mean the current development tree is published or
-release-approved. Check the actual remote commit and local changes at each handoff.
+See [current state](CURRENT-STATE.md#publication-and-qualification) for verified
+source deliveries and the distinction between `main` and the immutable v0.5.0 tag.
+Check the actual remote commit and local changes at each new handoff; a published
+baseline does not include later uncommitted work.
 
 The application does not configure GitHub accounts, remotes, hosted documentation
 or publishing automation. A GitHub Actions workflow (`.github/workflows/tests.yml`)
 runs the unit tests, documentation checks and release audit on pushes and pull
 requests; it is excluded from the source archive. A source archive can be prepared
-without signing in.
+without signing in. The packager intentionally rejects unknown public-root files.
+If local auxiliary data blocks an audit, check that it is not in use, preserve it
+under an ignored private workspace with a checksum/restore record, and verify the
+bytes after relocation. Do not weaken the allowlist or delete data to pass the audit.
 Creating a separate repository or fork remains an explicit operator action; an
 existing upstream checkout does not need another repository to publish an update.
 
 Suggested repository name: `YouTubeShortCreator`.
-Suggested description: `Local-first, brand-driven Shorts production with timed captions and native media QA.`
+Suggested description: `Local video generation with reusable compositions, timed captions and media QA.`
 Suggested topics: `youtube-shorts`, `video-production`, `local-first`, `python`,
 `playwright`, `avfoundation`. These are categorization suggestions, not SEO metrics.
 
@@ -29,25 +33,31 @@ Suggested topics: `youtube-shorts`, `video-production`, `local-first`, `python`,
 git status --short
 git diff --check
 python3 -B -m unittest discover -s tests -v
+node --test tests/*.test.mjs
 python3 -B tools/check_docs.py
 python3 -B tools/release.py audit
+python3 -B -c 'import workflow; print(workflow.verify_lock())'
 ```
 
 `git diff --check` does not cover unstaged/untracked new-file content in the same way
 as a reviewed patch; do not treat an empty result in an initial repository as a full
 audit. Inspect the proposed public file list and documentation images explicitly.
 
-When the media implementation changes, also qualify a fresh native smoke render
-and a real narration path. Documentation-only changes do not automatically require
-a new media export if the implementation lock remains identical.
+When the media implementation changes, also qualify an affected-profile smoke
+render and a real narration path using its explicitly configured backend.
+Documentation-only changes do not automatically require a new media export if
+the implementation lock remains identical.
 
 ## 2. Review Rights and Public Content
 
 Use the [licensing checklist](LICENSING.md). Confirm the MIT attribution is suitable
 and the publisher has authority to release the code. Remove no required notices.
-Do not upload recordings, `.env` files, private runtime paths, HTML font assets or
-customer output folders. Custom workspace folders outside the documented ignored
-names need separate attention.
+Do not upload private recordings, `.env` files, runtime paths, HTML run assets or
+customer output folders. Public distribution permits the pinned, licensed font
+catalog and exactly four manifest-verified `examples/v0.5.0/*/narration.wav`
+inputs. The manifest, provenance and release audit constrain this exception;
+it does not permit arbitrary WAVs, voice models or generated MP4s. Custom workspace
+folders outside the documented ignored names need separate attention.
 
 The release audit checks allowed locations/extensions, selected sensitive-text
 patterns, size and symlinks. It is not a full secret scanner, image-content scanner,
@@ -68,8 +78,10 @@ public documentation images, not generated production media. Existing archives a
 not overwritten; preserve an old release and choose a new filename for a revision.
 
 Open the archive and inspect its contents before upload. In particular, confirm
-there are no user fonts, audio/video files, account credentials or machine-specific
-paths. Compare source checksums when moving the archive between machines.
+there are no private fonts/recordings, generated videos, account credentials or
+machine-specific paths. Check that every distributed font and example WAV is
+manifest-listed and hash-verified. Compare source checksums when moving the archive
+between machines.
 
 ## 4. Publish Through Your Normal GitHub Workflow
 
@@ -105,21 +117,16 @@ license view in GitHub itself; local rendering is only an approximation.
 
 ## Current Delivery Boundary
 
-The maintainer authorized the v0.5.0 source update on 2026-10-17. Its new
-composition, format, typography and cinema capabilities are described in the
-[changelog](../CHANGELOG.md) and [qualification record](RELEASE-QA.md). Historical
-human-review and independent-operator gates remain separate from this source release.
+The v0.5.0 implementation and its later complete public examples are published.
+The [current-state record](CURRENT-STATE.md#publication-and-qualification) identifies
+the tag, merged deliveries and verified CI. Use `main` for the post-tag examples;
+do not move an existing tag to make it include a later documentation update.
 
-
-The published `main` carries the asset library waves, the optional voice tool and
-the CI workflow, released as v0.2.0 and v0.3.0. The pipeline integration batches
-(B01-B07: visual adapter, backend boundary, optional FFmpeg, reliability and
-installation qualification), the six general-purpose layouts, the palette and
-reveal presets, the wave 02 production records and the batch picker are released
-as v0.4.0 with their qualification records. B05/B06 human review, the full B07 first-run
-walkthrough and [B08 independent acceptance](B08-ACCEPTANCE.md) remain pending;
-no independent operator is currently available. Neither B00-B09 nor the marketing
-phase is complete. Reverify the source, gates and remote before a release.
+Historical B05/B06 human review, the full B07 first-run walkthrough and
+[B08 independent acceptance](B08-ACCEPTANCE.md) remain separately scoped gates.
+Publishing source or passing CI does not close them or approve a channel's media.
+The older [pipeline plan](PIPELINE-ROADMAP.md) is retained history, not a claim that
+its unexecuted operator or marketing milestones were delivered in v0.5.0.
 
 GitHub private vulnerability reporting was verified enabled through the repository
 settings API on 2026-09-15. The read-only check submitted no report and changed no
