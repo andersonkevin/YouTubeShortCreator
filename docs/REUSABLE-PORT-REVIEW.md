@@ -88,3 +88,10 @@ The render environment was macOS/Darwin 27, Chrome 155, Node 24.19.0, Playwright
 This qualifies representative examples on that runtime, not every font/color/text
 combination, operating system or ten-minute composition. Human editorial, rights
 and listening review remain open; no videos were published.
+
+The first remote CI run at commit `105fd008` caught a stale documentation test:
+it still expected 30 images after the final two gallery frames were added. The
+documentation checker itself verified all 32 images successfully. The test now
+requires exactly 32 and explicitly includes both editorial frames; hash, path
+and missing-link checks remain unchanged, and rights review remains human. This test/documentation-only
+correction does not change the implementation lock or invalidate the media runs.

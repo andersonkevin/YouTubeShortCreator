@@ -33,7 +33,10 @@ class DocumentationTests(unittest.TestCase):
     def test_public_docs_pass(self):
         result = check(HOME)
         self.assertEqual(result['errors'], [])
-        self.assertEqual(result['manifest_images'], 30)
+        self.assertEqual(result['manifest_images'], 32)
+        manifest = json.loads((HOME / 'docs/images/manifest.json').read_text())
+        self.assertTrue({'docs/images/editorial-light-example.png', 'docs/images/news-local-example.png'} <=
+                        {asset['path'] for asset in manifest['assets']})
 
     def test_assistant_entrypoints_share_workflow(self):
         for name in ('AGENTS.md', 'START-HERE.md'):
