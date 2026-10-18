@@ -45,8 +45,12 @@ def contrast(color, other='#ffffff'):
 
 
 def validate_brand(brand):
-    keys(brand, ['version', 'channel', 'language', 'audience', 'tone', 'scene_count', 'colors', 'logo_style'], 'brand')
-    require(brand['version'] == 1, 'Unsupported brand version')
+    require(isinstance(brand, dict), 'Brand must be an object')
+    require(type(brand.get('version')) is int and brand['version'] in (1, 2), 'Unsupported brand version')
+    light = brand['version'] == 2
+    keys(brand, ['version', 'channel', 'language', 'audience', 'tone', 'scene_count', 'colors', 'logo_style'] +
+         (['theme'] if light else []), 'brand')
+    require(not light or brand['theme'] == 'light-editorial', 'Unknown brand theme')
     text(brand['channel'], 40)
     require('\n' not in brand['channel'], 'Channel name must be one line')
     require(re.fullmatch(r'[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*', brand['language']), 'Expected a language tag such as en-US')
@@ -54,10 +58,13 @@ def validate_brand(brand):
     text(brand['tone'], 100)
     require(type(brand['scene_count']) is int and brand['scene_count'] in (3, 4), 'Choose 3 or 4 scenes')
     require(brand['logo_style'] in ('wordmark', 'monogram', 'provided'), 'Unknown logo style')
-    keys(brand['colors'], ['background', 'accent', 'secondary'], 'colors')
+    keys(brand['colors'], ['background', 'accent', 'secondary'] + (['ink'] if light else []), 'colors')
     for color in brand['colors'].values():
         require(isinstance(color, str) and re.fullmatch(r'#[0-9a-fA-F]{6}', color), 'Colors must be six-digit hex values')
-    require(contrast(brand['colors']['background']) >= 7, 'Background must provide 7:1 contrast with white')
+    foreground = brand['colors']['ink'] if light else '#ffffff'
+    require(contrast(brand['colors']['background'], foreground) >= 7, 'Background needs 7:1 contrast with its text')
+    if light:
+        require(contrast(brand['colors']['accent']) >= 4.5, 'Caption highlight needs 4.5:1 contrast with white')
     for role in ('accent', 'secondary'):
         require(contrast(brand['colors'][role], brand['colors']['background']) >= 4.5, f'{role} needs 4.5:1 contrast against background')
 
@@ -141,10 +148,10 @@ def create(root, brand, fonts, logo=None):
             draw.rounded_rectangle((0, 25, 170, 195), radius=24, outline=brand['colors']['accent'], width=8)
             monogram = ''.join(part[0] for part in name.split()[:2]).upper()
             font = fit_font(monogram, sources['display'], 78, 26, 148)
-            draw.text((85, 108), monogram, font=font, fill='white', anchor='mm')
+            draw.text((85, 108), monogram, font=font, fill=brand['colors'].get('ink', 'white'), anchor='mm')
             left = 210
         font = fit_font(name, sources['display'], 120, 26, 1190 - left)
-        draw.text((left, 110), name, font=font, fill='white', anchor='lm')
+        draw.text((left, 110), name, font=font, fill=brand['colors'].get('ink', 'white'), anchor='lm')
     bbox = logo_canvas.getbbox()
     logo_canvas.crop(bbox).save(asset / 'logo.png')
     css = brand_css(brand, asset)
@@ -173,6 +180,9 @@ def brand_css(brand, asset):
     c = brand['colors']
     rules.append(f':root{{--purple:{c["background"]};--lime:{c["accent"]};--cyan:{c["secondary"]};--surface:color-mix(in srgb,var(--purple),white 7%);--line:color-mix(in srgb,var(--purple),white 28%);--edge:color-mix(in srgb,var(--cyan),transparent 58%)}}')
     rules.append('html,body{background:#08090b}.logo{height:90px;object-fit:contain;object-position:left center}.editor{background:color-mix(in srgb,var(--purple),black 22%)}.editor-head{background:var(--surface)}.approval,.pipeline div.active{background:color-mix(in srgb,var(--purple),var(--lime) 8%)}')
+    if brand['version'] == 2:
+        rules.append(f':root{{--ink:{c["ink"]};--muted:{c["ink"]};--surface:{c["background"]};--line:color-mix(in srgb,var(--ink),transparent 75%)}}')
+        rules.append('#film{color:var(--ink);background:var(--purple)}.scene h2{color:var(--ink)}.spoken-caption{color:var(--ink);text-shadow:none}.spoken-caption .caption-word{display:inline}.spoken-caption .caption-word.active{color:#fff;background:var(--lime);box-decoration-break:clone;-webkit-box-decoration-break:clone;border-radius:3px}.progress{background:var(--line)}')
     return '\n'.join(rules) + '\n'
 
 
@@ -191,7 +201,7 @@ def preview(root, brand):
         ('plan -> preview -> approve', 730, 39, 'mono', brand['colors']['secondary']),
         ('YOUR CAPTIONS GO HERE', 1630, 48, 'display', '#ffffff'),
     ]:
-        draw.text((104, y), copy, font=ImageFont.truetype(str(fonts[role]), size), fill=color)
+        draw.text((104, y), copy, font=ImageFont.truetype(str(fonts[role]), size), fill=brand['colors'].get('ink', color) if color == '#ffffff' else color)
     draw.rounded_rectangle((100, 650, 924, 1010), radius=8, outline=brand['colors']['secondary'], width=2)
     canvas.save(root / 'brand/preview.png')
 
@@ -270,20 +280,21 @@ def thumbnail(root, graphic, headline, label, output=None, profile='shorts'):
         return
     require(not output.exists(), 'No thumbnail overwrite')
     brand = read_json(root / 'brand/brand.json')
+    ink = brand['colors'].get('ink', '#ffffff')
     with Image.open(graphic) as image:
         canvas = ImageOps.fit(image.convert('RGB'), (1080, 1920), method=Image.Resampling.LANCZOS)
     # The type zone stays fixed; variable artwork occupies the lower region.
     draw = ImageDraw.Draw(canvas)
-    draw.rectangle((0, 0, 1080, 640), fill='#000000')
+    draw.rectangle((0, 0, 1080, 640), fill=brand['colors']['background'] if brand['version'] == 2 else '#000000')
     with Image.open(asset / 'logo.png') as image:
         mark = ImageOps.contain(image.convert('RGBA'), (300, 90))
         canvas.paste(mark, (80, 90), mark)
     y = 235
     for line, font in zip(headline, fitted):
-        draw.text((80, y), line, font=font, fill='white', stroke_width=1, anchor='lt')
+        draw.text((80, y), line, font=font, fill=ink, stroke_width=1, anchor='lt')
         y += font.getbbox(line)[3] - font.getbbox(line)[1] + 6
     draw.rectangle((80, 523, 228, 535), fill=brand['colors']['accent'])
-    draw.text((80, 549), label, font=label_font, fill='white', anchor='lt')
+    draw.text((80, 549), label, font=label_font, fill=ink, anchor='lt')
     canvas.save(output, 'JPEG', quality=92, subsampling=0, progressive=True)
 
 

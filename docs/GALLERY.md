@@ -2,6 +2,19 @@
 
 [Docs index](README.md) · [Branding](BRANDING.md) · [Data contracts](DATA-CONTRACTS.md)
 
+## Unreleased Editorial Shorts
+
+These are unmodified decoded frames from two complete, technically qualified
+legacy v2 exports, not design mockups. Both use an illustrative light brand and
+the public example recording with measured caption highlights. The news card is
+a visibly synthetic source-review fixture, not a report of a real announcement.
+
+| Explanatory diagram | Local news-media card |
+| :---: | :---: |
+| <a href="images/editorial-light-example.png"><img src="images/editorial-light-example.png" alt="Light editorial Short with an explanatory flow diagram and measured narration highlight" width="250"></a> | <a href="images/news-local-example.png"><img src="images/news-local-example.png" alt="Light source-review Short showing a synthetic local image card and measured narration highlight" width="250"></a> |
+
+[Reproduce the examples](../examples/editorial-shorts/README.md) | [Qualification](REUSABLE-PORT-REVIEW.md#executed-qualification)
+
 ## v0.5.0 Compositions
 
 These are unmodified frames decoded from complete MP4s exported by the generator,

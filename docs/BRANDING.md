@@ -52,6 +52,12 @@ Thumbnails retain a black type zone and use your brand's primary accent.
 
 ## Logo Preparation
 
+An opt-in `light-editorial` choice creates brand schema 2 with explicit ink,
+background and accent colors. It supports only the dedicated legacy v2 diagrams
+and news media; v3 profiles continue to use schema 1. See the complete
+[light-brand contract](EDITORIAL-SHORTS.md#choose-a-brand). Supplied logos are
+never recolored; review them against the selected background.
+
 Use a high-contrast logo suitable for a dark background. Transparent PNG is the
 most predictable format. JPEG is accepted but retains its opaque background.
 Onboarding does not remove backgrounds or redraw an imported logo.

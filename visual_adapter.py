@@ -123,6 +123,14 @@ def validate_records(records):
         identifier(name)
         require(isinstance(source, dict) and source.get('id') == name, 'Visual ID differs from its key')
         kind = source.get('kind')
+        if kind == 'editorial':
+            import editorial_visuals
+            result[name] = editorial_visuals.validate(source, icons)
+            continue
+        if kind == 'news-media':
+            import news_media
+            result[name] = news_media.validate(source, icons)
+            continue
         if isinstance(kind, str) and kind.startswith(WAVE02_PREFIX):
             # Wave 02 components share the record envelope; the prefix keeps their kinds apart from the chart kinds.
             require(kind in WAVE02_KINDS, 'Unknown wave 02 component kind')
@@ -169,10 +177,19 @@ def validate_scene(scene, records):
     validate_composition(scene, records[scene['visual_id']])
 
 
-def validate_duration(scene, seconds):
+def validate_duration(scene, seconds, record=None):
     presentation = scene.get('presentation', DEFAULT_PRESENTATION)
     require(sum(scene['motion']['visual']['fill']) + presentation['exit_duration'] <= seconds + .00001,
             'Visual entrance and exit overlap or exceed the scene')
+    if record and record['kind'] == 'editorial':
+        groups = len(record['data']['labels']) + (1 if record['data']['variant'] == 'terrain' else 0)
+        require(.12 + (groups - 1) * .7 + .65 + presentation['exit_duration'] <= seconds + .00001,
+                'Editorial reveals exceed the scene; extend it or reduce entries')
+    if record and record['kind'] == 'news-media':
+        count = len(record['data']['items'])
+        last = max(1.1, 1 + (count - 1) * 2 + .55) if count else 1.1
+        require(last + presentation['exit_duration'] <= seconds + .00001,
+                'News beats exceed the scene; extend it or reduce items')
 
 
 def scene_html(scene, start, end):
@@ -198,6 +215,9 @@ def payload(data, brand):
     icons = {name: 'data:image/svg+xml;base64,' + base64.b64encode(
         kit.safe_file(kit.HOME / 'vendor', f'lucide-static/icons/{name}.svg').read_bytes()).decode()
              for name in manifest['icons']}
+    editorial_icons = {name: 'data:image/svg+xml;base64,' + base64.b64encode(
+        kit.symbol_svg('icon:' + name, brand['colors']['accent'], brand['colors']['background'])).decode()
+        for name in {r['icon'] for r in records.values() if r['kind'] == 'editorial'}}
     symbols = {}
     scenes = []
     for scene in data['scenes']:
@@ -208,6 +228,13 @@ def payload(data, brand):
         scenes.append({'id': scene['visual_id'], 'motion': scene['motion']['visual'], 'symbol': scene['symbol'],
                        'presentation': scene.get('presentation', DEFAULT_PRESENTATION)})
     result = {'records': records, 'scenes': scenes, 'colors': brand['colors'], 'icons': icons, 'symbols': symbols}
+    if editorial_icons:
+        result['editorial_icons'] = editorial_icons
+    import news_media
+    news_media.classify(data, brand)
+    for record in records.values():
+        if record['kind'] == 'news-media':
+            record['local_media'] = 'assets/' + news_media.filename(record)
     if any(record['kind'] == 'geo' for record in records.values()):
         result['world'] = json.loads(kit.safe_file(kit.HOME / 'vendor', 'natural-earth/world.json').read_text())
     return result
@@ -240,6 +267,8 @@ def install_assets(output, data, brand):
                'vendor_manifest_sha256': digest(kit.HOME / 'vendor/manifest.json'),
                'asset_hashes': {name: digest(output / 'assets' / name)
                             for name in (*selected, 'visual-scenes.css', 'visual-scenes.js',
+                                         *(('editorial-visuals.js',) if any(r['kind'] == 'editorial' for r in content['records'].values()) else ()),
+                                         *(('news-media.js',) if any(r['kind'] == 'news-media' for r in content['records'].values()) else ()),
                                          *(('visual-effects.css', 'visual-effects.js') if has_effects else ()),
                                          *(('visual-story.js',) if has_story else ()),
                                          *(('visual-cinema.js', 'visual-cinema.css') if has_cinema else ()))}})
@@ -255,6 +284,8 @@ def scripts(data, brand):
     cinema = ('<link rel="stylesheet" href="assets/visual-cinema.css">'
               '<script src="assets/visual-cinema.js"></script>') if any(
                   s.get('presentation', {}).get('composition') for s in data['scenes']) else ''
-    return (f'<script type="application/json" id="visual-scene-data">{content}</script>' + effects + story + cinema +
+    editorial = '<script src="assets/editorial-visuals.js"></script>' if any(r['kind'] == 'editorial' for r in data['visuals'].values()) else ''
+    news = '<script src="assets/news-media.js"></script>' if any(r['kind'] == 'news-media' for r in data['visuals'].values()) else ''
+    return (f'<script type="application/json" id="visual-scene-data">{content}</script>' + effects + story + cinema + editorial + news +
             '<script src="assets/echarts.min.js"></script><script src="assets/visual-options.js"></script>'
             '<script src="assets/wave02.js"></script><script src="assets/visual-scenes.js"></script>')

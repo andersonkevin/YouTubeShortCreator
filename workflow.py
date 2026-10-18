@@ -95,7 +95,8 @@ def validate(path):
     data = read_json(path)
     require(type(data.get('version')) is int and data['version'] in (1, 2, 3), 'Unsupported episode version')
     fields = ['version', 'id', 'template', 'language', 'duration', 'inputs', 'thumbnail', 'youtube', 'scenes', 'timing_adjustments']
-    keys(data, fields + (['visuals'] if data['version'] == 2 else ['format', 'assets'] if data['version'] == 3 else []), 'episode')
+    keys(data, fields + (['visuals'] if data['version'] == 2 else ['format', 'assets'] if data['version'] == 3 else []) +
+         (['editorial'] if 'editorial' in data else []), 'episode')
     profile = episode_profile(data)
     identifier(data['id'])
     require(data['template'] == 'v1' and data['language'] == brand['language'], 'Unsupported contract or language differs from brand')
@@ -103,6 +104,11 @@ def validate(path):
     if data['version'] == 2:
         import visual_adapter
         visual_records = visual_adapter.validate_records(data['visuals'])
+    import news_media
+    news_media.classify(data, brand)
+    if brand['version'] == 2:
+        require(data['version'] == 2 and all(r['kind'] in ('editorial', 'news-media') for r in visual_records.values()),
+                'Light editorial brands require v2 editorial/news scenes; v3 profiles retain their existing brand contract')
     duration = duration_seconds(data['duration'], profile['id'])
     keys(data['inputs'], ['audio', 'graphic', 'transcript', 'captions'], 'inputs')
     inputs = {}
@@ -114,6 +120,7 @@ def validate(path):
         require(digest(file) == item['sha256'], f'Input changed: {name}')
         inputs[name] = file
     require(inputs['audio'].suffix.lower() in ['.mp3', '.wav', '.m4a', '.opus'], 'Unsupported audio file')
+    inputs.update(news_media.files(data, path.parent))
     from PIL import Image, ImageFont
     with Image.open(inputs['graphic']) as graphic:
         require(graphic.format in ['PNG', 'JPEG'] and max(graphic.size) <= 4096, 'Graphic must be bounded PNG/JPG')
@@ -122,6 +129,8 @@ def validate(path):
     captions, transcript = read_json(inputs['captions']), read_json(inputs['transcript'])
     require(transcript.get('audio_sha256') == data['inputs']['audio']['sha256'], 'Transcript is not bound to this recording')
     validate_captions(captions, transcript, duration, data['timing_adjustments'], profile['id'])
+    if brand['version'] == 2:
+        validate_highlights(captions, transcript['words'])
     keys(data['thumbnail'], ['headline', 'label'], 'thumbnail')
     branding.thumbnail(ROOT, inputs['graphic'], data['thumbnail']['headline'], data['thumbnail']['label'], profile=profile['id'])
     validate_metadata(data['youtube'])
@@ -142,6 +151,7 @@ def validate(path):
             visual_adapter.validate_scene(scene, visual_records)
             used_visuals.append(scene['visual_id'])
         else:
+            require(brand['version'] != 2, 'Light editorial brands require visual-library scenes')
             keys(scene, ['layout', 'name', 'first_cue', 'content', 'motion'], 'scene')
         identifier(scene['layout'])
         layout = None if is_visual else read_json(inside(TEMPLATE / 'scenes', scene['layout'] + '.json'))
@@ -174,7 +184,7 @@ def validate(path):
     for scene, start, end in zip(data['scenes'], starts, ends):
         require(end > start, 'Empty scene')
         if scene['layout'] == 'visual-library':
-            visual_adapter.validate_duration(scene, end - start)
+            visual_adapter.validate_duration(scene, end - start, visual_records[scene['visual_id']])
             visual_adapter.validate_effect_timing(scene, captions['cues'], start, end)
             visual_adapter.validate_story_timing(scene, captions['cues'], start, end)
         for values in scene['motion'].values():
@@ -201,7 +211,15 @@ def scene_html(node, content, motion, boundary=None):
     return f'<{tag}{attr}>' + ('' if tag in ['br', 'img', 'hr'] else children + f'</{tag}>')
 
 
-def build_html(data, captions, bounds):
+def validate_highlights(captions, timed_words):
+    require(isinstance(timed_words, list) and timed_words, 'Measured caption segments are required')
+    for cue in captions['cues']:
+        measured = timed_words[cue['firstWord']:cue['lastWord'] + 1]
+        require(' '.join(w['text'].strip() for w in measured) == cue['text'],
+                'Highlight spans must preserve exact caption text; review the transcript instead of rewriting approved captions')
+
+
+def build_html(data, captions, bounds, timed_words=None):
     scenes = []
     profile = episode_profile(data)
     for index, (scene, (start, end)) in enumerate(zip(data['scenes'], bounds)):
@@ -221,8 +239,12 @@ def build_html(data, captions, bounds):
     if data['version'] == 3:
         styles.extend(('production-scenes.css', 'production-resources.css', 'production-evidence.css', 'production-transitions.css', 'production-type.css', 'production-media.css', 'production-shaders.css', 'production-headlines.css', 'production-interface.css', 'production-data.css', 'production-carousels.css', 'production-swap-catalog.css', 'production-code.css', 'production-chart-extras.css', 'production-interactions.css', 'production-spatial-objects.css'))
     links = ''.join(f'<link rel="stylesheet" href="assets/{name}">' for name in styles)
-    payload = json.dumps(captions, ensure_ascii=True).replace('<', '\\u003c')
     brand = read_json(ROOT / 'brand/brand.json')
+    caption_payload = captions
+    if brand['version'] == 2:
+        validate_highlights(captions, timed_words)
+        caption_payload = {**captions, 'highlight': 'measured-segment', 'words': timed_words}
+    payload = json.dumps(caption_payload, ensure_ascii=True, allow_nan=False).replace('<', '\\u003c')
     visual_scripts = ''
     if data['version'] == 2:
         import visual_adapter
@@ -303,7 +325,9 @@ def _build(episode, run_id, render=False):
             import production_visuals
             production_visuals.install_assets(output, data, Path(episode).parent,
                                              brand_root=ROOT, template_hash=digest(HOME / 'lock.json'), runtime_paths=runtime)
-        (output / 'video.html').write_text(build_html(data, captions, bounds), encoding='utf-8')
+        import news_media
+        news_media.install(output, data, inputs)
+        (output / 'video.html').write_text(build_html(data, captions, bounds, read_json(inputs['transcript'])['words']), encoding='utf-8')
         (output / 'captions.srt').write_text(srt(captions), encoding='utf-8')
         write_json(output / 'captions.json', captions)
         write_json(output / 'episode.json', data)

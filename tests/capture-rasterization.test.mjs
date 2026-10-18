@@ -7,14 +7,14 @@ import {fileURLToPath} from 'node:url';
 import {test} from 'node:test';
 
 const capture=fileURLToPath(new URL('../capture.mjs',import.meta.url));
-function launchOptions(scene,version=3){
+function launchOptions(scene,version=3,visuals){
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'shortcreator-capture-selection-'));
   try{
     const run=path.join(root,'runs','test');fs.mkdirSync(run,{recursive:true});
     const playwright=path.join(root,'playwright.mjs');
     fs.writeFileSync(playwright,'export const chromium={launch:async options=>{console.log(JSON.stringify(options));throw new Error("CAPTURE_LAUNCH_OBSERVED");}};');
     fs.writeFileSync(path.join(root,'runtime.json'),JSON.stringify({paths:{playwright,chrome:'test-only-browser'}}));
-    fs.writeFileSync(path.join(run,'episode.json'),JSON.stringify({version,format:'landscape',scenes:[scene]}));
+    fs.writeFileSync(path.join(run,'episode.json'),JSON.stringify({version,format:'landscape',scenes:[scene],...(visuals?{visuals}:{})}));
     const configuration={profile:{id:'landscape',width:1920,height:1080},scenes:[scene]};
     fs.writeFileSync(path.join(run,'video.html'),'<script type="application/json" id="production-scene-data">'+JSON.stringify(configuration)+'</script>');
     const result=spawnSync(process.execPath,[capture,root,run,'qa'],{encoding:'utf8'});
@@ -54,4 +54,10 @@ test('approved-font extrusion keeps WebGL but rasterizes page layers on CPU',()=
 test('retained source stages preserve GPU rendering with stable CPU page rasterization',()=>{
   for(const style of ['glass-shard','frost-orbit'])
     assert.deepEqual(launchOptions({kind:'source-stage',content:{style}}).args,['--disable-gpu-rasterization']);
+});
+
+test('opt-in editorial SVGs use software rasterization without changing ordinary legacy scenes',()=>{
+  for(const kind of ['editorial','news-media'])
+    assert.deepEqual(launchOptions({layout:'visual-library',visual_id:'sample'},2,{sample:{kind}}).args,['--disable-gpu']);
+  assert.equal(launchOptions({layout:'visual-library',visual_id:'sample'},2,{sample:{kind:'bar'}}).args,undefined);
 });

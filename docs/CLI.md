@@ -84,6 +84,13 @@ private narration. The Shorts duration limit is 180 seconds.
 frames) for synthetic visual/caption timing qualification. Default duration is
 12 seconds. This creates test signals, not speech or a real transcript.
 
+## Legacy Editorial Storyboards
+
+For legacy `shorts`, `new --storyboard intake/storyboard.json` also accepts the
+closed v2 [editorial storyboard](EDITORIAL-SHORTS.md#author-a-closed-storyboard).
+It cannot be combined with `--batch` or `--layouts`. Light editorial brands are
+selected during `init` and require this legacy storyboard path, not v3 formats.
+
 ## Landscape Episodes
 
 The development engine accepts explicit version-3 composition episodes at 30 fps,

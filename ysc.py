@@ -31,16 +31,20 @@ def onboarding(root, approved=False):
     audience = ask('Audience', 'Developers and AI builders')
     tone = ask('Editorial tone', 'Clear, practical, technically accurate')
     count = int(ask('Scenes per Short: 3 or 4', '3'))
-    palette = ask('Palette preset (run: python3 ysc.py palettes) or custom', 'violet')
-    require(palette in (*branding.PALETTES, 'custom'), 'Unknown palette')
-    colors = dict(branding.PALETTES.get(palette, branding.PALETTES['violet']))
-    if palette == 'custom':
+    palette = ask('Palette preset (run: python3 ysc.py palettes), light-editorial or custom', 'violet')
+    light = palette == 'light-editorial'
+    require(palette in (*branding.PALETTES, 'custom', 'light-editorial'), 'Unknown palette')
+    colors = ({'background': '#ffffff', 'accent': '#155e75', 'secondary': '#9f1239', 'ink': '#16181d'}
+              if light else dict(branding.PALETTES.get(palette, branding.PALETTES['violet'])))
+    if palette == 'custom' or light:
         colors = {role: ask(f'{role} hex color', value) for role, value in colors.items()}
     logo = ask('Existing PNG/JPG logo path (leave blank to create one)')
     style = 'provided' if logo else ask('Generated logo: wordmark or monogram', 'wordmark')
     fonts = {role: ask(f'{role.title()} font path (.ttf/.otf/.woff2) or font:ID (list: python3 ysc.py fonts)', branding.font_path(role)) for role in ('display', 'body', 'mono')}
-    brand = {'version': 1, 'channel': name, 'language': language, 'audience': audience, 'tone': tone,
+    brand = {'version': 2 if light else 1, 'channel': name, 'language': language, 'audience': audience, 'tone': tone,
              'scene_count': count, 'colors': colors, 'logo_style': style}
+    if light:
+        brand['theme'] = 'light-editorial'
     branding.validate_brand(brand)
     print(json.dumps(brand, indent=2))
     require(approved or ask('Type CREATE to create this private workspace') == 'CREATE', 'Cancelled; no files written')
@@ -66,13 +70,15 @@ def import_file(root, source, name, profile='shorts'):
 def new_episode(root, episode_id, audio, transcript, graphic, captions, batch=None, layouts=None,
                 output_format='shorts', storyboard=None):
     output_profile(output_format)
+    brand = branding.verified(root, workflow.verify_lock())
     if output_format in COMPOSITION_FORMATS:
+        require(brand['version'] == 1, 'Light editorial brands support legacy Shorts only, not v3 composition formats')
         require(storyboard and not batch and not layouts, 'Composition formats need --storyboard; --batch/--layouts apply to legacy Shorts')
         import production_visuals
         return production_visuals.new_episode(root, episode_id,
             {'audio': audio, 'transcript': transcript, 'graphic': graphic, 'captions': captions}, storyboard, profile=output_format)
-    require(storyboard is None, '--storyboard requires a composition format')
-    brand = branding.verified(root, workflow.verify_lock())
+    require(not storyboard or (not batch and not layouts), '--storyboard cannot be mixed with --batch or --layouts')
+    require(storyboard or brand['version'] == 1, 'Light editorial brands need a legacy v2 --storyboard')
     target = inside(root, 'episodes/' + identifier(episode_id), exists=False)
     require(not target.exists(), 'Episode exists; use a new ID')
     sources = {name: inside(root, value) for name, value in {'audio': audio, 'transcript': transcript, 'graphic': graphic, 'captions': captions}.items()}
@@ -103,6 +109,29 @@ def new_episode(root, episode_id, audio, transcript, graphic, captions, batch=No
             for kind, value in values.items():
                 values[kind] = round(value * factor, 6) if isinstance(value, (float, int)) else [round(v * factor, 6) for v in value]
         scenes.append({'layout': layout, 'name': layout, 'first_cue': cue, **sample})
+    board = None
+    media = {}
+    if storyboard:
+        import news_media
+        import visual_adapter
+        board_path = inside(root, storyboard)
+        board = read_json(board_path)
+        keys_required = ['version', 'visuals', 'scenes'] + (['editorial'] if 'editorial' in board else [])
+        from safety import keys
+        keys(board, keys_required, 'legacy visual storyboard')
+        require(type(board['version']) is int and board['version'] == 1, 'Unsupported legacy storyboard version')
+        records = visual_adapter.validate_records(board['visuals'])
+        require(isinstance(board['scenes'], list) and len(board['scenes']) == count, 'Storyboard scene count differs from approved brand')
+        for scene in board['scenes']:
+            require(scene.get('layout') == 'visual-library', 'Legacy storyboard accepts visual-library scenes only')
+            visual_adapter.validate_scene(scene, records)
+        story = {'version': 2, 'visuals': board['visuals'], **({'editorial': board['editorial']} if 'editorial' in board else {})}
+        news_media.classify(story, brand)
+        media = news_media.files(story, board_path.parent)
+        board = copy.deepcopy(board)
+        for record in board['visuals'].values():
+            if record['kind'] == 'news-media':
+                record['data']['asset']['path'] = news_media.filename(record)
     target.mkdir()
     inputs = {}
     for role, source in sources.items():
@@ -117,6 +146,17 @@ def new_episode(root, episode_id, audio, transcript, graphic, captions, batch=No
                         'hashtags': hashtags, 'tags': ['ai', 'programming', 'technology'],
                         'pinned_comment': 'DRAFT: Add a relevant question for viewers.'},
             'scenes': scenes, 'timing_adjustments': {}}
+    if board:
+        data.update(version=2, visuals=board['visuals'], scenes=board['scenes'])
+        if 'editorial' in board:
+            data['editorial'] = board['editorial']
+        for record in board['visuals'].values():
+            if record['kind'] != 'news-media':
+                continue
+            source = media['news:' + record['id']]
+            with source.open('rb') as reader, (target / record['data']['asset']['path']).open('xb') as writer:
+                shutil.copyfileobj(reader, writer)
+            require(digest(source) == record['data']['asset']['sha256'] == digest(target / record['data']['asset']['path']), 'News media changed during authoring')
     write_json(target / 'episode.json', data)
     if batch:
         write_json(target / 'batch.json', {'batch': batch, 'episode': episode_id, 'sequence': len(earlier) + 1, 'picked_layouts': layouts})
@@ -168,7 +208,7 @@ def parser():
     command.add_argument('--batch', help='Batch name; layouts avoid the families this batch already used')
     command.add_argument('--layouts', help='Comma-separated layouts, one per scene, instead of the picker')
     command.add_argument('--format', choices=('shorts',) + COMPOSITION_FORMATS, default='shorts')
-    command.add_argument('--storyboard', help='Workspace-relative closed production storyboard JSON')
+    command.add_argument('--storyboard', help='Workspace-relative v3 composition or legacy v2 visual storyboard JSON')
     command.add_argument('--approve-write', action='store_true')
     for name in ('validate', 'build', 'render'):
         command = sub.add_parser(name)

@@ -48,6 +48,12 @@ approval JSON by hand or bypass onboarding with fabricated records.
 
 ## Keep the Template Stable
 
+For opt-in [editorial Shorts](EDITORIAL-SHORTS.md), choose educational diagrams
+or attributable local news media before drafting the storyboard. Do not infer a
+client's brand from prior work. Light-brand highlights require exact approved
+cue text joined from measured transcript segments; never rewrite captions or
+fabricate word times to make that gate pass. Rights and source review remain human.
+
 Stable branding does not mean repeating the same composition in every Short.
 Vary supported scene layouts and visual sequences to fit the explanation, while
 preserving the approved frame and safe zones. Follow the visual director's
