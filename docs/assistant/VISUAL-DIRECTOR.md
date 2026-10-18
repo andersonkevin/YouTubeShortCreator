@@ -8,10 +8,15 @@ assistant. It is not an installed model, autonomous worker or background agent.
 ## Selection Procedure
 
 1. Inspect the approved brand, final narration and reviewed caption anchors.
-2. State one teaching point for each of the three/four scenes. Preserve the hook,
-   explanation and closing; do not add scenes just to display more assets.
-3. Search the catalog with `tools/visuals.py catalog`, then `describe` the relevant
-   IDs. Read readiness, limits and example fields before drafting data.
+2. Choose the episode contract and output profile first. Legacy v1/v2 uses three
+   or four scenes, up to 180 seconds; v3 permits 1-120 scenes and up to 600 seconds
+   within family-specific constraints. Give each scene one teaching point and
+   caption-anchored beats; do not add scenes just to display more assets.
+3. For v3, run `python3 ysc.py compositions` and inspect the supported family,
+   format, local-asset and cue requirements. Use `tools/visuals.py catalog` and
+   `describe` for offline assets or legacy visual records. Read limits and example
+   fields before drafting data; use the [complete examples](../../examples/v0.5.0/README.md)
+   as runnable references.
 4. Prefer code or a process diagram for logic. Use charts only when values and
    their relationships explain the point. Use a map only for actual geography.
 5. Keep measured data and illustrative examples distinct. Verify claimed sources
@@ -25,6 +30,10 @@ assistant. It is not an installed model, autonomous worker or background agent.
    [chart/motion selection](../VISUAL-PRESENTATION.md). Select visuals by the
    explanation, then choose a bounded entrance/exit. Do not inject unsupported
    fields or edit CSS per episode; check technical qualification separately.
+   For v3, author an explicit `--format` and `--storyboard` using the
+   [composition contracts](../DATA-CONTRACTS.md#landscape-version-3). Select camera
+   moves, transitions and type treatments from that family; keep the original
+   voice, approved brand and caption anchors. Do not implicitly migrate v1/v2.
 
 ## Visual Density and Variety
 

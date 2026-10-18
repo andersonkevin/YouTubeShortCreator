@@ -1,5 +1,10 @@
 # B03 Density and Numeric Boundaries
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 [B03 progress](B03-PROGRESS.md) | [Presentation](VISUAL-PRESENTATION.md)
 
 Recorded 2026-09-15. Automated density qualification passed; subsequent human

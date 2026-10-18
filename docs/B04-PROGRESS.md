@@ -1,5 +1,10 @@
 # B04 Native Backend Evidence
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 [Roadmap](PIPELINE-ROADMAP.md) | [Backend contract](MEDIA-BACKENDS.md)
 
 Recorded 2026-09-15. Implementation and two native exports passed automated

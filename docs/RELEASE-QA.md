@@ -1,5 +1,45 @@
 # Release Qualification
 
+## Storage hardening — 2026-10-18
+
+The post-v0.5.0 storage changes were checked with 665 Python tests and 524 Node
+checks. After the final capture-boundary correction, the complete Node suite and
+31 targeted Python storage/backend tests passed. Documentation, public source
+allowlist, exact implementation integrity and whitespace checks also passed.
+
+A fresh, normally approved example workspace rendered the public `camera-story`
+through the regular engine: 342 frames, four browser viewports, and passing
+visual, media, decoded-frame and audio QA. All 221 output hashes verified.
+Its MP4 SHA-256 remained exactly
+`4a9bb1fb254a0b079e0c0b00fc910d4c3dfea56c58f85e70b41be1a18f933e7c`,
+matching the earlier example byte for byte. Workspace scratch was empty after
+completion; source inputs and prior approval records were not changed.
+
+The qualified implementation lock is
+`d73021c7b60a64d350789ca6e386759112de0ab3c628fb39bd693a40aa43d3f7`.
+Tests cover budget exhaustion before work, every-frame reserve enforcement,
+normal/error/interrupted scratch cleanup, retention age, final-render protection,
+plan drift, symlinks, path traversal, concurrent writers and partial cleanup
+receipts. This is not a new ten-minute endurance or cross-platform media
+qualification. See [storage boundaries](STORAGE.md) and the dated records below.
+
+
+This page retains dated qualification results. For the maintained capability and
+publication overview, see [current state](CURRENT-STATE.md). Test counts and locks
+below apply to their recorded candidates; a documentation edit does not requalify
+media or grant human approval.
+
+## Public examples (2026-10-18)
+
+Four complete episodes and six decoded gallery captures were published through
+[PR #18](https://github.com/andersonkevin/YouTubeShortCreator/pull/18), after the
+v0.5.0 tag. The unchanged engine passed their ordinary authoring/render gates;
+see [example qualification](EXAMPLES-QA.md) for durations, frame/audio checks,
+fixture corrections and review limits. The isolated source check ran 647 Python
+tests (640 passed, seven skipped) and 518 Node tests (517 passed, one skipped).
+Its [main CI run](https://github.com/andersonkevin/YouTubeShortCreator/actions/runs/39108337884)
+passed. The tag retains the original release snapshot; `main` includes the examples.
+
 ## 0.5.0 (2026-10-17)
 
 The release candidate contains the reusable visual engine, 35 composition
@@ -60,7 +100,8 @@ Existing private approvals and render receipts retain their original record.
 The hosted rerun also identified a format-test headline that exceeded the
 unchanged width limit with Linux's display font. The synthetic fixture now uses
 shorter copy; production geometry, minimum font size and overflow rejection are
-unchanged. These packaging/test fixes require hosted verification before merge.
+unchanged. These packaging/test fixes required hosted verification before merge;
+subsequent publication is recorded in [current state](CURRENT-STATE.md).
 The shatter geometry regression now evaluates a hash-pinned extraction of the
 original algorithm in the same JavaScript runtime and requires exact serialized
 geometry equality in all five aspect cases, including repeated reverse-order
@@ -75,8 +116,9 @@ qualification evidence; this release pass did not repeat every catalog resource
 or every duration. Square/feed photographic cinema, portrait diagram cinema,
 fresh dependency installation and Windows/Linux media rendering are not qualified
 by this run. Historical B05-B09 human acceptance gates remain separate from the
-source update. Hosted CI and the remote commit/tag must be checked after an
-authorized push; the local results above do not claim remote publication.
+source update. These were local qualification results before publication;
+[current state](CURRENT-STATE.md#publication-and-qualification) records the later
+merged source delivery. The original local evidence is not rewritten as hosted QA.
 
 ## 0.4.0 (2026-09-16)
 

@@ -2,6 +2,11 @@
 
 [Docs index](README.md) · Prerequisite: [Installation and approved brand](INSTALLATION.md)
 
+This walkthrough covers the supported legacy v1/v2 Shorts workflow (3-4 scenes,
+up to 180 seconds). For v3 compositions, four formats and up to ten minutes, use
+the [complete examples](../examples/v0.5.0/README.md) and
+[composition reference](CLI.md#landscape-episodes).
+
 This walkthrough uses `first-short` as a new episode ID. Commands use the default
 `workspace/`; add the same global `--workspace` option before each command when
 using a different channel. All source media remains local.

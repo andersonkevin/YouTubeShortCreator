@@ -4,6 +4,12 @@
 
 ## Compatibility
 
+Version-specific results are retained in [release qualification](RELEASE-QA.md)
+and [example qualification](EXAMPLES-QA.md). The older tool versions below record
+the installation baseline; later exports used Chrome 155 and Python 3.14.7.
+They are observed environments, not a requirement to downgrade working tools.
+Runtime configuration must still pass the normal qualification and drift checks.
+
 | Component | Expected setup | Qualification |
 | --- | --- | --- |
 | Python | 3.11+ with `venv` and pip | 3.14.6 tested |
@@ -13,7 +19,7 @@
 | Chrome | Installed local Google Chrome | 152.0.7977.83 tested |
 | Swift / OS | Compatible Apple toolchain and macOS | Swift 6.4, macOS 26, Apple Silicon tested |
 | Speech | Supported device and an already-installed locale model | English (US) tested |
-| Fonts | Local TTF/OTF with appropriate usage rights | Local test fonts; no font files distributed |
+| Fonts | Approved local fonts or a `font:` catalog selection | 80 pinned licensed catalog files, including 16 variable faces; see [fonts](BRANDING.md#fonts-and-rights) |
 
 The Python utilities are not inherently macOS-only, but Windows/Linux are not
 qualified production targets. `configure` explicitly requires macOS; consequently
@@ -62,7 +68,7 @@ lifecycle scripts were not run.
 Use `npm ci` only in a dedicated checkout: it replaces that checkout's existing
 `node_modules`. It does not install npm itself or change global packages.
 
-The Python packages also passed a fresh isolated installation and 182 tests.
+The historical B07 check also passed a fresh isolated Python installation and 182 tests.
 Python wheel hashes are recorded as observed evidence, not a portable fully
 hash-locked dependency set. These are fresh dependencies on the same qualified
 macOS host, not qualification of a new machine. The complete operator-guided
@@ -113,8 +119,8 @@ or `YSC_SWIFT`, then discovery defaults.
 `configure --backend native --approve-write` explicitly selects the current
 backend. Existing profiles without a backend remain native and are not migrated
 in place. A new backend or changed runtime requires a new qualified workspace.
-The optional FFmpeg backend is implemented under B05 qualification. To test it,
-use a new workspace and supply already installed binaries explicitly:
+The FFmpeg backend supports legacy Shorts and is required for every v3 profile.
+To configure it, use a new workspace and supply already installed binaries explicitly:
 
 ```sh
 python3 ysc.py --workspace workspaces/ffmpeg-review configure --backend ffmpeg --ffmpeg /path/to/ffmpeg --ffprobe /path/to/ffprobe --approve-write

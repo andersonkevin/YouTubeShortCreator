@@ -22,7 +22,7 @@ language and default scene count. The dark style is intentional; white text need
 at least 7:1 background contrast, and the accents need 4.5:1. Light themes are not
 implemented. Thumbnails use a black type zone with the same accent and logo.
 
-Per episode: source narration, graphic, exact transcript, word-timed captions,
+Per legacy episode: source narration, graphic, exact transcript, word-timed captions,
 3-4 layout selections, text/code slots, motion timings and YouTube metadata.
 An episode cannot override CSS, inject HTML or select executable tools.
 
@@ -91,7 +91,8 @@ change an in-progress render's source files.
 - `video.mp4`: muxed H.264 picture and source narration; review required.
 - `silent.mp4`: rendered picture before mux; retained for optional Canva editing.
   It still contains burned-in captions; only its audio is absent.
-- `thumbnail.jpg`: vertical 1080x1920, RGB, progressive JPEG.
+- `thumbnail.jpg`: RGB progressive JPEG at the output profile's dimensions;
+  legacy Shorts use 1080x1920.
 - `captions.srt`, `captions.json`: caption handoff and timing record.
 - `video.html`, `assets/`: local silent preview; assets may contain private fonts.
 - `youtube.json`, `youtube.md`: title, description, 5-8 lowercase hashtags, tags,

@@ -14,13 +14,16 @@ assistant workflow and leave a new dated handoff when authorized. Never claim
 that a cloud assistant implies local model inference or needs a project API key.
 
 If there is no approved brand in the selected private workspace, begin by asking
-the operator for channel name, language, audience, tone, 3/4 scenes, preferred
+the operator for channel name, language, audience, tone, preferred output profile,
 colors, existing logo (or permission to generate a wordmark/monogram), and licensed
-fonts. Do not infer another channel's branding from conversation history. Use the
-onboarding workflow, show its preview, and obtain explicit approval before production.
+fonts. Onboarding retains a 3/4-scene legacy default; v3 storyboards follow their
+selected composition contract. Do not infer another channel's branding from
+conversation history. Use the onboarding workflow, show its preview, and obtain
+explicit approval before production.
 
 For an approved brand, ask only for the episode topic/script, final voice file and
-thumbnail artwork that are still missing. Keep the template fixed. Draft content
+thumbnail artwork, output profile and storyboard that are still missing. Keep
+approved branding and implementation fixed; choose supported compositions. Draft content
 must match the actual voice track; use transcription timestamps, not word-count
 estimates. Review all outputs locally and hand off files without publishing.
 
@@ -50,3 +53,10 @@ Documentation changes must pass `python3 -B tools/check_docs.py` and the test su
 Keep the gallery's image manifest accurate and use real, authorized render captures.
 Separate retained media qualification from new documentation checks; do not imply
 that every documentation revision rerendered or reapproved the production media.
+
+Read docs/STORAGE.md before media qualification or disk cleanup. Use temporary
+directories for synthetic tests; do not accumulate full engine copies, repeated
+demo workspaces or per-frame dumps. Use one acceptance workspace per change.
+Inspect `storage` before an explicitly authorized `storage-clean`; protect final
+deliveries and never scan or clean another project. Disk-budget failures are stop
+conditions, not permission to bypass reserve checks or remove original inputs.

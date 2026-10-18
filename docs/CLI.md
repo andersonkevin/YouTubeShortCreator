@@ -2,6 +2,15 @@
 
 [Docs index](README.md) · [Troubleshooting](TROUBLESHOOTING.md)
 
+## Storage and retention
+
+`storage` is a read-only inventory and exact cleanup preview for the selected
+workspace. `storage-clean --plan-id SHA256_FROM_STORAGE --approve-write` removes
+only the reviewed eligible outputs; completed renders and originals remain
+protected. `storage-keep EPISODE/RUN --approve-write` protects a completed preview.
+See [storage budgets and retention](STORAGE.md) for defaults, abandoned scratch,
+path checks and compatibility after the implementation-lock change.
+
 ## Invocation
 
 ```bash
@@ -38,7 +47,8 @@ not exist. For an existing workspace it prints the available commands.
 | `build EPISODE --run-id ID` | Valid episode and runtime | Writes HTML, cover, handoff data, screenshots and visual QA | `--approve-write` |
 | `render EPISODE --run-id ID` | Valid non-placeholder metadata and runtime | Builds, encodes, muxes and checks the MP4 | `--approve-write` |
 
-`new` picks one layout per scene from the 18 production layouts, grouped into
+The default legacy `new --format shorts` path picks one layout per scene from
+the 18 production layouts, grouped into
 eight visual families (code, evidence, automation, gate, quote, steps, stat and
 compare). Without `--batch`, every draft starts from the same classic opening.
 With `--batch NAME`, the picker reads the current `episode.json` of every episode
@@ -125,7 +135,7 @@ cannot be combined with a camera or a non-default treatment. For example,
 `{"style":"phone","cutout":"island"}` stages a verified image in a phone;
 `{"style":"feather-focus","target":{"x":0.2,"y":0.15,"width":0.5,"height":0.6}}`
 highlights an explicit region of that image. Labels, captions and brand remain
-outside the effect. These are development options with separate qualification evidence.
+outside the effect. These are supported opt-in options with separately scoped qualification evidence.
 For `title` content, `reveal` selects `rise`, `per-word-rise`, `blur-in`,
 `typewriter`, `scramble`, `bottom-up`, `top-down`, `clip-wipe`, `line-slide`,
 `char-slam`, `headline-slam`, `text-shimmer`, `tracking-in`, `streaming`, `matrix`, or `focus-resolve`.
@@ -150,8 +160,8 @@ Shorts options. Never estimate caption timestamps from word counts.
 
 `import --format` with any composition profile enables a 250 MB audio-size budget; duration is checked
 separately. Parsed JSON stays capped at 2 MB. Render checks free scratch space
-against observed PNG sizes plus a 2 GB encoding reserve before frame writes and
-every 150 frames. Failures preserve run diagnostics and clean only invocation-owned
+against observed PNG sizes and the configured free-space reserve before every
+frame, with remaining-size projections every 150 frames. Failures preserve run diagnostics and clean only invocation-owned
 scratch. New output profiles never rewrite old brand approvals or runtime records.
 
 ## Optional Tools

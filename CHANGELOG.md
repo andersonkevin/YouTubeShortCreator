@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Bound generated runs and capture scratch, check free disk reserve for every frame,
+  and serialize build/render/cleanup within each workspace.
+- Add read-only `storage`, exact-plan `storage-clean`, and `storage-keep` for
+  previews. Preserve originals, final renders and diagnostic records; reclaim
+  abandoned owned scratch only after process, age and open-file checks.
+- The implementation lock changes; existing approvals remain immutable and need
+  a new approved workspace for the updated engine. No v0.5.0 tag is moved.
+
+- Aligned architecture, setup, assistant briefs, validation and release guidance with v0.5.0; added a maintained state page and separated historical qualification records from current operating instructions. Legacy contracts, assets, engine lock and runtime behavior are unchanged.
+
 - Added four complete, reproducible v0.5.0 example episodes with public synthetic narration, word timings, captions, original artwork and storyboards across 16:9, 9:16, 1:1 and 4:5.
 - Added a gated example importer that uses normal episode authoring, verifies every public input and preserves brand approval and no-overwrite rules.
 - Updated the gallery with actual engine captures and documented the example export qualification. Only manifest-verified example narration is included in source; private workspaces and exported videos remain excluded.

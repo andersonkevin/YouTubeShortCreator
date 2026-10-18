@@ -27,7 +27,7 @@ remain trusted operator configuration, not a sandbox against hostile executables
 ## One Capture Path
 
 1. Python validates the brand, runtime and episode, then creates a new run.
-2. For a render, Python owns a unique OS temporary directory and empty `frames/`.
+2. For a render, Python owns a unique workspace `.scratch/ysc-*/` directory and empty `frames/`.
 3. `capture.mjs` runs the existing browser checks and captures exactly
    `round(duration * 30)` PNGs at timestamps `frame / 30`. It does not encode.
 4. `media_backend.py` validates the exact frame sequence and dispatches fixed
@@ -89,9 +89,11 @@ No overwrite or force flag is provided. A missing capability fails before a run
 directory is created. Later failures retain partial run evidence without a
 successful `run.json`; retry with a new ID. There is no native-to-FFmpeg fallback.
 
-Scratch cleanup covers normal completion and Python exception unwinding. A hard
-process/OS kill can leave OS temporary files; it is not claimed as transactional
-recovery. Concurrent editing remains unsupported. Native comparisons and batch
+Scratch cleanup covers normal completion, Python exception unwinding and keyboard
+interruption. A hard process/OS kill can leave owned workspace scratch. Explicit
+retention can reclaim it only after age, owner-process and open-file checks; see
+[storage and retention](STORAGE.md). A workspace lock serializes media writers and
+cleanup. Concurrent external editing remains unsupported. Native comparisons and batch
 evidence are recorded in [B04 progress](B04-PROGRESS.md). B05 requires its own
 format matrix and human review, including an authorized real narration.
 
@@ -108,8 +110,9 @@ is created. A separate two-frame selected-profile probe checks actual geometry w
 rewriting the workspace runtime record. Encoding has a bounded 1,800-second
 subprocess timeout; other FFmpeg operations retain 600 seconds.
 
-Capture checks observed PNG storage needs plus a 2 GB reserve before writes and
-every 150 frames. `visual-qa.json` records capture seconds, PNG bytes, largest
+Capture checks the configured PNG budget and free-space reserve before every
+frame, and projects remaining storage every 150 frames. These checks also cover
+legacy Shorts; see [default budgets](STORAGE.md#defaults). `visual-qa.json` records capture seconds, PNG bytes, largest
 frame and minimum observed free storage. Memory is not a hard-limited sandbox.
 All original duration, timestamp, caption-boundary, pixel and waveform gates apply
 at the selected dimensions. Version 3 and opt-in version-2 `cinematic-v1` episodes use Chrome software

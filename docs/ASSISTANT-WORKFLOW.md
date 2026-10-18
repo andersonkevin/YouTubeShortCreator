@@ -22,10 +22,10 @@ uses existing commands; it must not invent successful checks or install services
 | Intake | Collect the [channel brief](assistant/BRIEF.md); inspect prerequisites | User supplies preferences and approves local setup/install steps |
 | Branding | Run `init`; answer its prompts from the approved brief | Show `brand/preview.png`; explicit approval before `brand-approve --approve-write` |
 | Runtime | Run `configure --approve-write`, then `doctor` | Actual installed runtimes; no downloads or alternative backend without permission |
-| Story | Draft American English or the selected language; plan 3-4 scenes | User reviews narration and main claims before voice generation |
+| Story | Draft in the selected language; choose legacy Shorts or a supported v3 profile and scene families | User reviews narration and main claims before voice generation |
 | Assets | Obtain the final recording and authorized thumbnail artwork | Ask before sending content to external voice/image tools; preserve original bytes |
 | Timing | Import files, `transcribe`, then `caption-draft` | Listen against the actual recording; review words and boundaries |
-| Episode | Run `new`, replace all example content, use exact layout slots | Storyboard agrees with narration; no placeholder metadata |
+| Episode | Run `new`; use legacy layout slots or a v3 `--format` and closed `--storyboard` | Storyboard agrees with narration; no placeholder metadata |
 | Preview | `validate`, then `build` with a new run ID | Inspect scene screenshots and visual QA; get editorial review |
 | Export | `render` with a new run ID | Inspect run, media and audio QA; listen to exported MP4 |
 | Handoff | Deliver MP4, cover, captions and YouTube data with a session note | Remains `review_required`; publication is manual |
@@ -35,10 +35,12 @@ The table names subcommands, not complete shell invocations. Follow
 Put `--workspace` before the subcommand. Write flags express the tool's write
 gate; the assistant must also have the operator's authorization for that step.
 
-The three/four-scene defaults above describe legacy Shorts. For v3 episodes,
+Legacy Shorts use three or four scenes and at most 180 seconds. For v3 episodes,
+use 1-120 scenes and at most 600 seconds, subject to family-specific limits;
 choose an explicit output profile and a supported storyboard through
 `compositions`; preserve the same brand, asset, timing and review gates. Consult
-the [composition commands](CLI.md#landscape-episodes) before authoring.
+the [composition commands](CLI.md#landscape-episodes) and
+[complete public examples](../examples/v0.5.0/README.md) before authoring.
 
 Interactive onboarding is intentional: use a supported terminal session to
 answer one prompt at a time, or let the operator run `init`. Do not create
@@ -55,11 +57,13 @@ Do not copy the density of technical stress fixtures into production episodes.
 
 Change content slots, code examples, authorized graphics and measured timings,
 not layout CSS, fonts, logo position or animation-engine code for each episode.
-Use the existing [18-layout gallery](GALLERY.md). When drafting a series, pass
-the same `--batch NAME` to every `new` call so the picker rotates through layouts
-the batch has not used, and check `batch NAME` before choosing scene layouts by
-hand. Match the thumbnail's fixed type zone, logo and accent; only subject art
-and copy vary.
+Use the [current gallery](GALLERY.md#v050-compositions) and `compositions` for v3;
+provide a supported storyboard and matching-aspect artwork. For legacy Shorts,
+use the [18-layout gallery](GALLERY.md#legacy-v1v2-layouts). Passing the same
+`--batch NAME` to legacy `new` calls rotates through layouts the batch has not
+used; inspect `batch NAME` before choosing those layouts by hand. The batch
+picker does not create v3 storyboards. Preserve the selected profile's thumbnail
+geometry, approved type, logo and accent; only subject art and copy vary.
 
 Use the [visual director](assistant/VISUAL-DIRECTOR.md) and
 [offline library](VISUAL-LIBRARY.md) to discover icons, charts, widgets and existing

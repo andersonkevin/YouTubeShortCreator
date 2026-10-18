@@ -1,11 +1,16 @@
 # HyperFrames visual integration
 
-Current development engine: eighteen composition families in four explicit profiles,
-up to 600 seconds. The sections below retain the evidence for each successive
-extension; early qualification limits describe their original run, not the full
-current catalog. The operator's full resource integration objective remains active.
-The current [cinematic v2 requalification](#cinematic-v2-stability-requalification)
-supersedes the earlier open flow-trace raster qualification below.
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
+This integration log retains successive development checkpoints, including the
+eighteen-family stage and the first four-profile/600-second exports. The later
+resource closeout and published v0.5.0 expose 35 families; use the current state
+page above for that scope. The dated
+[cinematic v2 requalification](#cinematic-v2-stability-requalification) superseded
+the earlier open flow-trace raster qualification within this historical log.
 
 ## Landscape production integration
 

@@ -1,5 +1,10 @@
 # Visual Library Qualification
 
+**Historical record.** Counts, hashes, candidate status and pending actions below
+belong to the dated scope of this document. They are retained evidence, not the
+current operating guide or a new approval. Use [Current Generator State](CURRENT-STATE.md)
+for supported behavior, publication status and remaining acceptance boundaries.
+
 Date: 2026-09-15. Scope: asset preparation, not a new media backend or video scene
 contract. All datasets are illustrative and all production runs remain private.
 

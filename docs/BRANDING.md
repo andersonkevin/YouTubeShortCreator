@@ -59,7 +59,7 @@ Onboarding does not remove backgrounds or redraw an imported logo.
 - Accepted dimensions: both at least 32 px, neither above 4096 px.
 - Accepted size: up to 30 MB, subject to decoder validity.
 - Imported marks are contained without stretching and normalized to a PNG.
-- Video logo zone: 284×90 px, positioned at x=100, y=145 on a 1080×1920 canvas.
+- Legacy video logo zone: 284×90 px, positioned at x=100, y=145 on a 1080×1920 canvas. V3 uses the selected profile and composition geometry; it does not copy this legacy placement into every format.
 - Thumbnail logo zone: up to 300×90 px, positioned at x=80, y=90.
 
 Generated marks use the chosen font: a wordmark, or a two-initial monogram beside
