@@ -8,6 +8,7 @@
 | --- | --- |
 | Operate with an AI assistant | [Start here](../START-HERE.md), [assistant workflow](ASSISTANT-WORKFLOW.md) |
 | Create your first Short | [Installation](INSTALLATION.md), [branding](BRANDING.md), [first Short](FIRST-SHORT.md), [local voice synthesis](VOICE.md) (optional) |
+| Reproduce the v0.5.0 compositions | [Complete public examples](../examples/v0.5.0/README.md), [current gallery](GALLERY.md#v050-compositions), [example qualification](EXAMPLES-QA.md) |
 | Produce the next episode | [Workflow](WORKFLOW.md), [data contracts](DATA-CONTRACTS.md), [validation](VALIDATION.md) |
 | Pick or extend visual assets | [Visual director](assistant/VISUAL-DIRECTOR.md), [visual library](VISUAL-LIBRARY.md), [asset expansion](ASSET-EXPANSION.md), [asset library wave 02](ASSET-LIBRARY-WAVE02.md), [asset library wave 03](ASSET-LIBRARY-WAVE03.md) |
 | Change a layout or understand the engine | [Gallery](GALLERY.md), [architecture](ARCHITECTURE.md), [contributing](../CONTRIBUTING.md) |
@@ -61,7 +62,8 @@ global option and goes **before** the command. Paths in episode inputs are relat
 to the episode JSON; CLI paths usually refer to the selected private workspace.
 [CLI path rules](CLI.md#path-rules) identify the exceptions.
 
-Example IDs and media paths are placeholders, not preinstalled production assets.
+Reference snippets use placeholder IDs and media paths. The separately documented
+[complete examples](../examples/v0.5.0/README.md) include actual hash-verified inputs.
 Successful automated checks are not approval to publish. `review_required` and
 `listening_approval: pending` are deliberate handoff states.
 

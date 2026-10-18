@@ -205,6 +205,8 @@ studies, and it cannot render or publish a Short. See the complete
 | Invocation | Purpose | Writes |
 | --- | --- | --- |
 | `python3 -B tools/check_docs.py` | Local links, embedded images, JSON examples, CLI coverage and image manifest checks | None |
+| `python3 tools/examples.py list` | Verify the bundled inputs and list four complete v0.5.0 examples | None |
+| `python3 tools/examples.py create data-story --workspace workspaces/public-examples --approve-write` | Import the selected public example through normal episode authoring | New intake directory and episode in an already approved private workspace; no overwrite or approval changes |
 | `python3 -B tools/release.py audit` | Audit the allowlisted public source tree | None |
 | `python3 tools/release.py zip OUTPUT.zip --approve-write` | Create a new public source ZIP | New archive only |
 | `python3 tools/freeze.py` | Print an implementation lock candidate | None |

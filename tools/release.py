@@ -31,6 +31,11 @@ def files(home=HOME):
     vendor_root = home / 'tools/visual_library/vendor'
     vendor_files = set()
     font_payloads = set()
+    example_audio = set()
+    if (home / 'examples/v0.5.0/manifest.json').exists():
+        from tools.examples import verify_bundle
+        example_manifest = verify_bundle(home)
+        example_audio = {'examples/v0.5.0/' + name for name in example_manifest['files'] if name.endswith('.wav')}
     if vendor_root.exists():
         sys.path.insert(0, str(home))
         from tools.visual_library import kit
@@ -59,9 +64,9 @@ def files(home=HOME):
             continue
         require((len(relative.parts) == 1 and path.name in ROOT_FILES) or
                 (len(relative.parts) > 1 and relative.parts[0] in DIRECTORIES and path.suffix in EXTENSIONS) or
-                str(relative) in vendor_files or str(relative) in font_payloads or str(relative) == 'tools/visual_library/gallery.html', f'Not on public allowlist: {relative}')
+                str(relative) in vendor_files or str(relative) in font_payloads or str(relative) in example_audio or str(relative) == 'tools/visual_library/gallery.html', f'Not on public allowlist: {relative}')
         require(path.stat().st_size <= 4_000_000, f'Unexpectedly large source file: {relative}')
-        if path.suffix not in ('.png', '.jpg') and str(relative) not in font_payloads:
+        if path.suffix not in ('.png', '.jpg') and str(relative) not in font_payloads and str(relative) not in example_audio:
             content = path.read_text(encoding='utf-8')
             require(not any(pattern.search(content) for pattern in FORBIDDEN), f'Private path or credential pattern: {relative}')
         output.append(path)

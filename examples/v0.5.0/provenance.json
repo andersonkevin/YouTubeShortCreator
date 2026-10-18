@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "created": "2026-10-18",
+  "engine": "Kokoro-82M v1.0 / kokoro-onnx 0.6.1",
+  "models": {
+    "model": {
+      "name": "kokoro-v1.0.onnx",
+      "sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a"
+    },
+    "voices": {
+      "name": "voices-v1.0.bin",
+      "sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    }
+  },
+  "source": "tools/voice-models.json",
+  "generation": "Local CPU synthesis; no download or remote requests",
+  "examples": [
+    {
+      "example": "data-story",
+      "duration_seconds": 16.633333333333333,
+      "audio_sha256": "4ba8d98477ffefddc3b9962bd8a59ac9853d7d8cd7bbf60bdd62106af09988a0",
+      "voice": "af_heart",
+      "speed": 0.95,
+      "sample_rate": 24000,
+      "word_timing": "Native phoneme durations; strict one-to-one word mapping",
+      "narration": "New synthetic English speech generated for the public examples; no private recordings",
+      "artwork": "Original procedural illustrations generated for the public examples",
+      "review_status": "review_required"
+    },
+    {
+      "example": "camera-story",
+      "duration_seconds": 11.4,
+      "audio_sha256": "c52d4c099a8f60ff76de4f7483f7670ec9ff6de40eca3adb394bc25a559fa0ed",
+      "voice": "af_heart",
+      "speed": 0.95,
+      "sample_rate": 24000,
+      "word_timing": "Native phoneme durations; strict one-to-one word mapping",
+      "narration": "New synthetic English speech generated for the public examples; no private recordings",
+      "artwork": "Original procedural illustrations generated for the public examples",
+      "review_status": "review_required"
+    },
+    {
+      "example": "type-story",
+      "duration_seconds": 13.4,
+      "audio_sha256": "5410ecc1cae076e56fe79158b9f104082768972030d099180cc1903db4c45d9b",
+      "voice": "af_heart",
+      "speed": 0.95,
+      "sample_rate": 24000,
+      "word_timing": "Native phoneme durations; strict one-to-one word mapping",
+      "narration": "New synthetic English speech generated for the public examples; no private recordings",
+      "artwork": "Original procedural illustrations generated for the public examples",
+      "review_status": "review_required"
+    },
+    {
+      "example": "screen-story",
+      "duration_seconds": 12.466666666666667,
+      "audio_sha256": "78a8444282e5a2c9e088730b16c8140f7d1f3e17621132b09f986c378cc77be1",
+      "voice": "af_heart",
+      "speed": 0.95,
+      "sample_rate": 24000,
+      "word_timing": "Native phoneme durations; strict one-to-one word mapping",
+      "narration": "New synthetic English speech generated for the public examples; no private recordings",
+      "artwork": "Original procedural illustrations generated for the public examples",
+      "review_status": "review_required"
+    }
+  ]
+}

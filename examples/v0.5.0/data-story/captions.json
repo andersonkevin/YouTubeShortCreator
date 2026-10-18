@@ -1,0 +1,62 @@
+{
+  "duration": 16.633333333333333,
+  "status": "word_timed_review",
+  "cues": [
+    {
+      "text": "A score alone cannot explain",
+      "start": 0.13333333333333333,
+      "end": 1.840333,
+      "firstWord": 0,
+      "lastWord": 4
+    },
+    {
+      "text": "a result.",
+      "start": 1.8666666666666667,
+      "end": 2.538667,
+      "firstWord": 5,
+      "lastWord": 6
+    },
+    {
+      "text": "First, show a clear baseline.",
+      "start": 3.3666666666666667,
+      "end": 5.072,
+      "firstWord": 7,
+      "lastWord": 11
+    },
+    {
+      "text": "Then reveal the next comparison.",
+      "start": 5.833333333333333,
+      "end": 7.665958,
+      "firstWord": 12,
+      "lastWord": 16
+    },
+    {
+      "text": "Finally, put the strongest result",
+      "start": 8.433333333333334,
+      "end": 10.294917,
+      "firstWord": 17,
+      "lastWord": 21
+    },
+    {
+      "text": "in context.",
+      "start": 10.366666666666667,
+      "end": 11.219917,
+      "firstWord": 22,
+      "lastWord": 23
+    },
+    {
+      "text": "These numbers are invented. Ask",
+      "start": 11.966666666666667,
+      "end": 13.972583,
+      "firstWord": 24,
+      "lastWord": 28
+    },
+    {
+      "text": "for real evidence.",
+      "start": 14.033333333333333,
+      "end": 15.156583,
+      "firstWord": 29,
+      "lastWord": 31
+    }
+  ]
+}

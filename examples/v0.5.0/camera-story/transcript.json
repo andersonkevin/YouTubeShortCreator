@@ -1,0 +1,126 @@
+{
+  "duration": 11.4,
+  "audio_sha256": "c52d4c099a8f60ff76de4f7483f7670ec9ff6de40eca3adb394bc25a559fa0ed",
+  "words": [
+    {
+      "text": "A",
+      "start": 0.119,
+      "end": 0.169
+    },
+    {
+      "text": "model",
+      "start": 0.219,
+      "end": 0.544
+    },
+    {
+      "text": "learns",
+      "start": 0.594,
+      "end": 0.869
+    },
+    {
+      "text": "patterns",
+      "start": 0.944,
+      "end": 1.394
+    },
+    {
+      "text": "from",
+      "start": 1.444,
+      "end": 1.544
+    },
+    {
+      "text": "examples.",
+      "start": 1.569,
+      "end": 2.261333
+    },
+    {
+      "text": "New",
+      "start": 3.059,
+      "end": 3.259
+    },
+    {
+      "text": "input",
+      "start": 3.309,
+      "end": 3.809
+    },
+    {
+      "text": "changes",
+      "start": 3.884,
+      "end": 4.284
+    },
+    {
+      "text": "the",
+      "start": 4.309,
+      "end": 4.359
+    },
+    {
+      "text": "context",
+      "start": 4.409,
+      "end": 5.009
+    },
+    {
+      "text": "around",
+      "start": 5.059,
+      "end": 5.309
+    },
+    {
+      "text": "those",
+      "start": 5.334,
+      "end": 5.509
+    },
+    {
+      "text": "patterns.",
+      "start": 5.559,
+      "end": 6.196667
+    },
+    {
+      "text": "A",
+      "start": 6.962,
+      "end": 7.012
+    },
+    {
+      "text": "prediction",
+      "start": 7.062,
+      "end": 7.637
+    },
+    {
+      "text": "is",
+      "start": 7.687,
+      "end": 7.762
+    },
+    {
+      "text": "a",
+      "start": 7.787,
+      "end": 7.812
+    },
+    {
+      "text": "starting",
+      "start": 7.862,
+      "end": 8.262
+    },
+    {
+      "text": "point.",
+      "start": 8.312,
+      "end": 8.887
+    },
+    {
+      "text": "Check",
+      "start": 8.962,
+      "end": 9.212
+    },
+    {
+      "text": "what",
+      "start": 9.237,
+      "end": 9.312
+    },
+    {
+      "text": "it",
+      "start": 9.337,
+      "end": 9.387
+    },
+    {
+      "text": "means.",
+      "start": 9.437,
+      "end": 9.94
+    }
+  ]
+}
