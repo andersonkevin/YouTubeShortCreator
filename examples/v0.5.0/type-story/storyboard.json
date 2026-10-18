@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "kind": "title",
+      "name": "Fluency",
+      "transition": "text-match",
+      "content": {
+        "kicker": "WORDS AND EVIDENCE",
+        "title": "Sounds right.",
+        "subtitle": "Fluency draws attention."
+      },
+      "first_cue": 0,
+      "cues": [
+        0
+      ]
+    },
+    {
+      "kind": "title",
+      "name": "Verification",
+      "transition": "cut-left",
+      "content": {
+        "kicker": "WORDS AND EVIDENCE",
+        "title": "Check first.",
+        "subtitle": "Evidence earns trust."
+      },
+      "first_cue": 1,
+      "cues": [
+        1
+      ]
+    },
+    {
+      "kind": "headline",
+      "name": "Review sequence",
+      "transition": "cut-left",
+      "content": {
+        "kicker": "THREE REVIEW STEPS",
+        "phrases": [
+          "Find the source.",
+          "Read the context.",
+          "Make a decision."
+        ],
+        "swap": "state"
+      },
+      "first_cue": 2,
+      "cues": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "assets": {},
+  "thumbnail": {
+    "headline": [
+      "VISUAL",
+      "EXAMPLES"
+    ],
+    "label": "COMPLETE EPISODE"
+  },
+  "youtube": {
+    "title": "Fluent is not verified",
+    "description": "Matched headline transitions and cue-driven typography in 1:1. Public educational example with synthetic narration and illustrative visuals.\n\n#ai #learning #technology #design #examples",
+    "hashtags": [
+      "#ai",
+      "#learning",
+      "#technology",
+      "#design",
+      "#examples"
+    ],
+    "tags": [
+      "ai",
+      "examples",
+      "visual storytelling"
+    ],
+    "pinned_comment": "What evidence would you check first?"
+  }
+}

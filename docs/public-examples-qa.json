@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "date": "2026-10-18",
+  "implementation_base": "975ec3465ecfdec44fd89a1fc2640772463effb4",
+  "implementation_lock_sha256": "42b08b645219d28ed28919380e5ca00bf0ce6b0a289ef1540e1ce7700866ee0e",
+  "public_input_manifest_sha256": "0875256e1e3d9dded5deef70f78e4107a2bc68fd213a41da31040eb2ee0664e3",
+  "examples": [
+    {
+      "id": "data-story",
+      "format": "landscape",
+      "duration_seconds": 16.633333,
+      "frames": 499,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "checks": {
+        "visual": "PASS",
+        "media": "PASS",
+        "decoded_frames": "PASS",
+        "audio": "PASS",
+        "output_hashes": "PASS"
+      },
+      "viewports": [
+        {
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "decoded_frame_samples": 40,
+      "audio_windows": 6,
+      "maximum_audio_lag_ms": 0.0,
+      "minimum_audio_correlation": 0.9992093867695702,
+      "unmatched_audio_samples": 0,
+      "rehash_count": 221,
+      "video_sha256": "d9ae402882eef2c42c517de373d0dc12623cb55893a9895b2b7950b2418031bb",
+      "storyboard_sha256": "94aa738ee371287911aab5e8350e29f6564661b3fb08005f78ef29517a14bb5e",
+      "body_font": "archivo-semibold",
+      "human_review": "review_required",
+      "listening_approval": "pending"
+    },
+    {
+      "id": "camera-story",
+      "format": "portrait",
+      "duration_seconds": 11.4,
+      "frames": 342,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "fps": 30,
+      "checks": {
+        "visual": "PASS",
+        "media": "PASS",
+        "decoded_frames": "PASS",
+        "audio": "PASS",
+        "output_hashes": "PASS"
+      },
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "decoded_frame_samples": 31,
+      "audio_windows": 4,
+      "maximum_audio_lag_ms": 0.0,
+      "minimum_audio_correlation": 0.9999479852891108,
+      "unmatched_audio_samples": 0,
+      "rehash_count": 221,
+      "video_sha256": "4a9bb1fb254a0b079e0c0b00fc910d4c3dfea56c58f85e70b41be1a18f933e7c",
+      "storyboard_sha256": "8b6005a6122996820c3f0cc02522deeb32ba2d7c61ad3420b0f9beeea1cf7fb3",
+      "body_font": "geist-regular",
+      "human_review": "review_required",
+      "listening_approval": "pending"
+    },
+    {
+      "id": "type-story",
+      "format": "square",
+      "duration_seconds": 13.4,
+      "frames": 402,
+      "dimensions": [
+        1080,
+        1080
+      ],
+      "fps": 30,
+      "checks": {
+        "visual": "PASS",
+        "media": "PASS",
+        "decoded_frames": "PASS",
+        "audio": "PASS",
+        "output_hashes": "PASS"
+      },
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1080
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "decoded_frame_samples": 32,
+      "audio_windows": 4,
+      "maximum_audio_lag_ms": 0.0,
+      "minimum_audio_correlation": 0.9999318647199467,
+      "unmatched_audio_samples": 0,
+      "rehash_count": 220,
+      "video_sha256": "b6f9a3e6b985a61efff6716a651aefd7da0ca99d8730f231e4c09533771f375e",
+      "storyboard_sha256": "5267bbfd92ec3644cb83e1616dae603155788ca2ac4ae210f434a0bf0c707937",
+      "body_font": "geist-regular",
+      "human_review": "review_required",
+      "listening_approval": "pending"
+    },
+    {
+      "id": "screen-story",
+      "format": "portrait-4x5",
+      "duration_seconds": 12.466667,
+      "frames": 374,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "fps": 30,
+      "checks": {
+        "visual": "PASS",
+        "media": "PASS",
+        "decoded_frames": "PASS",
+        "audio": "PASS",
+        "output_hashes": "PASS"
+      },
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1350
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "decoded_frame_samples": 37,
+      "audio_windows": 4,
+      "maximum_audio_lag_ms": 0.0,
+      "minimum_audio_correlation": 0.9999192128951017,
+      "unmatched_audio_samples": 0,
+      "rehash_count": 220,
+      "video_sha256": "20a4d2abd37a30615add64cd45e0012a6ee8192d0bdd0528b18ecfc83151cccb",
+      "storyboard_sha256": "e10c06bc88a5f4b93a950d3daf8f5059115d4b248240174a83439f340469967f",
+      "body_font": "geist-regular",
+      "human_review": "review_required",
+      "listening_approval": "pending"
+    }
+  ]
+}

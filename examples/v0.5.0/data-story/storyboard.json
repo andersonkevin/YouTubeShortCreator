@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "kind": "title",
+      "name": "Question",
+      "transition": "cut-left",
+      "content": {
+        "kicker": "READ THE EVIDENCE",
+        "title": "What changed?",
+        "subtitle": "Start with a baseline.",
+        "reveal": "focus-resolve"
+      },
+      "first_cue": 0,
+      "cues": [
+        0
+      ]
+    },
+    {
+      "kind": "chart",
+      "name": "Comparison",
+      "transition": "cut-left",
+      "content": {
+        "record": {
+          "id": "comparison",
+          "kind": "bar",
+          "title": "Compare the runs",
+          "insight": "Illustrative values only",
+          "icon": "chart-column",
+          "source": {
+            "kind": "illustrative",
+            "label": "Invented example",
+            "reference": "Public example; not a model benchmark",
+            "as_of": "2026-10-18"
+          },
+          "data": {
+            "categories": [
+              "Baseline",
+              "Revision",
+              "Final"
+            ],
+            "series": [
+              {
+                "label": "Example score",
+                "values": [
+                  20,
+                  45,
+                  70
+                ]
+              }
+            ],
+            "unit": "pt"
+          }
+        }
+      },
+      "first_cue": 2,
+      "cues": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "kind": "cta",
+      "name": "Conclusion",
+      "transition": "cut-left",
+      "content": {
+        "heading": "Ask for evidence.",
+        "action": "Check the source",
+        "label": "Invented data / complete example"
+      },
+      "first_cue": 6,
+      "cues": [
+        6
+      ]
+    }
+  ],
+  "assets": {},
+  "thumbnail": {
+    "headline": [
+      "VISUAL",
+      "EXAMPLES"
+    ],
+    "label": "COMPLETE EPISODE"
+  },
+  "youtube": {
+    "title": "Read the evidence",
+    "description": "Animated illustrative bars and a sourced conclusion in 16:9. Public educational example with synthetic narration and illustrative visuals.\n\n#ai #learning #technology #design #examples",
+    "hashtags": [
+      "#ai",
+      "#learning",
+      "#technology",
+      "#design",
+      "#examples"
+    ],
+    "tags": [
+      "ai",
+      "examples",
+      "visual storytelling"
+    ],
+    "pinned_comment": "What evidence would you check first?"
+  }
+}

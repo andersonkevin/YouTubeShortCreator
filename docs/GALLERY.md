@@ -1,6 +1,54 @@
-# Template Gallery
+# Video Gallery
 
 [Docs index](README.md) · [Branding](BRANDING.md) · [Data contracts](DATA-CONTRACTS.md)
+
+## v0.5.0 Compositions
+
+These are unmodified frames decoded from complete MP4s exported by the generator,
+using the [public, reproducible episodes](../examples/v0.5.0/README.md). Every
+example includes its recording, measured word timings, captions, artwork and
+storyboard. The illustrative **Example Lab** identity uses bundled licensed fonts.
+The screenshots show the actual compositions and captions, not marketing mockups.
+
+### Animated Data / 16:9
+
+| Opening question | Progressive comparison |
+| :---: | :---: |
+| <a href="images/v050-data-opening.png"><img src="images/v050-data-opening.png" alt="Landscape title asking what changed, with narration captions" width="420"></a> | <a href="images/v050-data-chart.png"><img src="images/v050-data-chart.png" alt="Landscape bars comparing three clearly labeled invented values" width="420"></a> |
+
+The bars reveal on three separate speech cues, followed by a source-checking
+conclusion. Values are invented illustrations, not measured model performance.
+[Complete storyboard](../examples/v0.5.0/data-story/storyboard.json).
+
+### Camera Sequence / 9:16 and Source Inspection / 4:5
+
+| Portrait camera sequence | Feed-format focus move |
+| :---: | :---: |
+| <a href="images/v050-camera-portrait.png"><img src="images/v050-camera-portrait.png" alt="Portrait camera framing a warm procedural sphere with an overlaid short title and captions" width="250"></a> | <a href="images/v050-screen-focus.png"><img src="images/v050-screen-focus.png" alt="Four-by-five composition focusing on a fictional source page with a visible illustrative-content label" width="340"></a> |
+
+The portrait uses the photographic scene family with original procedural stills:
+three camera paths, a focus cut and a foreground occlusion. The 4:5 episode starts
+with the full fictional page, then moves to two explicit regions before its close.
+[Camera storyboard](../examples/v0.5.0/camera-story/storyboard.json) ·
+[Screen storyboard](../examples/v0.5.0/screen-story/storyboard.json).
+
+### Matched Headlines and Text States / 1:1
+
+| Matched title pair | Caption-driven text |
+| :---: | :---: |
+| <a href="images/v050-type-match.png"><img src="images/v050-type-match.png" alt="Square title composition presenting Check first after a matched headline transition" width="340"></a> | <a href="images/v050-type-state.png"><img src="images/v050-type-state.png" alt="Square typography showing one of three review steps synchronized to narration" width="340"></a> |
+
+The first two titles share a moving headline carrier. The final scene switches
+between three review steps on narration cues. Render `type-story` to see the
+motion; still frames alone do not demonstrate transition continuity.
+[Complete storyboard](../examples/v0.5.0/type-story/storyboard.json).
+
+Read the [reproduction instructions](../examples/v0.5.0/README.md) and
+[executed qualification](EXAMPLES-QA.md). Image hashes, dimensions and exact frame
+numbers are recorded in the [manifest](images/manifest.json). Outputs remain
+`review_required`; full narration and exported MP4s stay in your local workspace.
+
+## Legacy v1/v2 Layouts
 
 These are unmodified PNG captures from the local qualification runs, not generated
 marketing mockups. The illustrative Signal Lab brand demonstrates the shared visual
@@ -73,7 +121,7 @@ character you supply.
 
 ## Reuse the Contract, Not Just the Picture
 
-Each linked layout JSON (eighteen in total) contains a fixed `tree`, `content_keys`, `motion_keys` and
+Each linked legacy layout JSON (eighteen in total) contains a fixed `tree`, `content_keys`, `motion_keys` and
 an `example`. Use these records to create content; PNGs are documentation, not
 editable production templates. Re-run visual QA after any change to text, timing,
 fonts or branding. See [image provenance](images/README.md) for hashes and limitations.

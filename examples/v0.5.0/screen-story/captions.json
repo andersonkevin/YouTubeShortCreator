@@ -1,0 +1,55 @@
+{
+  "duration": 12.466666666666667,
+  "status": "word_timed_review",
+  "cues": [
+    {
+      "text": "Before sharing a claim, inspect",
+      "start": 0.1,
+      "end": 1.744,
+      "firstWord": 0,
+      "lastWord": 4
+    },
+    {
+      "text": "its source.",
+      "start": 1.8,
+      "end": 2.474667,
+      "firstWord": 5,
+      "lastWord": 6
+    },
+    {
+      "text": "Check who wrote the page.",
+      "start": 3.266666,
+      "end": 4.513958,
+      "firstWord": 7,
+      "lastWord": 11
+    },
+    {
+      "text": "Read the date. Inspect the",
+      "start": 5.266666,
+      "end": 6.862958,
+      "firstWord": 12,
+      "lastWord": 16
+    },
+    {
+      "text": "evidence.",
+      "start": 6.933333,
+      "end": 7.533292,
+      "firstWord": 17,
+      "lastWord": 17
+    },
+    {
+      "text": "Use the original source to",
+      "start": 8.333333,
+      "end": 9.950917,
+      "firstWord": 18,
+      "lastWord": 22
+    },
+    {
+      "text": "support your decision.",
+      "start": 10.033333,
+      "end": 11.01925,
+      "firstWord": 23,
+      "lastWord": 25
+    }
+  ]
+}

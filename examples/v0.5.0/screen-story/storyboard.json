@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "kind": "screen",
+      "name": "Inspect source",
+      "transition": "cut-left",
+      "content": {
+        "heading": "Inspect the source",
+        "caption": "Fictional page / not a real citation",
+        "images": [
+          "source-page"
+        ],
+        "chrome": "browser",
+        "focus": [
+          {
+            "x": 0.1,
+            "y": 0.19,
+            "width": 0.45,
+            "height": 0.2,
+            "zoom": 1.6,
+            "label": "Find the author"
+          },
+          {
+            "x": 0.1,
+            "y": 0.51,
+            "width": 0.45,
+            "height": 0.24,
+            "zoom": 1.6,
+            "label": "Read the evidence"
+          }
+        ]
+      },
+      "first_cue": 0,
+      "cues": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "kind": "cta",
+      "name": "Review",
+      "transition": "cut-left",
+      "content": {
+        "heading": "Review, then share.",
+        "action": "Open the original",
+        "label": "A source is more than a title."
+      },
+      "first_cue": 5,
+      "cues": [
+        5
+      ]
+    }
+  ],
+  "assets": {
+    "source-page": {
+      "path": "source-page.png",
+      "sha256": "18ab6885e7a6a58e0e6d0cd09cb518abba88b7a99755874fb4f319e35a801616"
+    }
+  },
+  "thumbnail": {
+    "headline": [
+      "VISUAL",
+      "EXAMPLES"
+    ],
+    "label": "COMPLETE EPISODE"
+  },
+  "youtube": {
+    "title": "Inspect before you share",
+    "description": "A fictional source screen, two focus moves and a review handoff in 4:5. Public educational example with synthetic narration and illustrative visuals.\n\n#ai #learning #technology #design #examples",
+    "hashtags": [
+      "#ai",
+      "#learning",
+      "#technology",
+      "#design",
+      "#examples"
+    ],
+    "tags": [
+      "ai",
+      "examples",
+      "visual storytelling"
+    ],
+    "pinned_comment": "What evidence would you check first?"
+  }
+}

@@ -70,6 +70,10 @@ provider and permissions are separate from the local generator; see
 
 ## Generate a Video
 
+To try the engine immediately, follow the [four complete public examples](examples/v0.5.0/README.md).
+They include narration, timed captions, artwork and storyboards for all four
+formats. See their actual renderer captures in the [v0.5.0 gallery](docs/GALLERY.md#v050-compositions).
+
 Supply the final recording, its recording-bound transcript, reviewed word-timed
 captions, matching-aspect thumbnail artwork and a closed storyboard. Use the
 [composition contract](docs/DATA-CONTRACTS.md) and

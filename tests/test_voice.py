@@ -155,7 +155,11 @@ class VoiceToolTests(unittest.TestCase):
         names = {str(p.relative_to(release.HOME)) for p in release.files()}
         self.assertIn('tools/voice.py', names)
         self.assertIn('tools/voice-models.json', names)
-        self.assertFalse(any(name.endswith(('.onnx', '.bin', '.wav')) for name in names))
+        self.assertFalse(any(name.endswith(('.onnx', '.bin')) for name in names))
+        from tools.examples import verify_bundle
+        expected_audio = {'examples/v0.5.0/' + name for name in verify_bundle()['files'] if name.endswith('.wav')}
+        self.assertEqual({name for name in names if name.endswith('.wav')}, expected_audio)
+        self.assertEqual(len(expected_audio), 4)
 
 
 import unittest.mock  # noqa: E402

@@ -1,0 +1,3 @@
+A model learns patterns from examples.
+New input changes the context around those patterns.
+A prediction is a starting point. Check what it means.

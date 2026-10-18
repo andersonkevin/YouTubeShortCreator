@@ -15,6 +15,10 @@ __pycache__/
 *.local.json
 *.mp3
 *.wav
+!examples/v0.5.0/data-story/narration.wav
+!examples/v0.5.0/camera-story/narration.wav
+!examples/v0.5.0/type-story/narration.wav
+!examples/v0.5.0/screen-story/narration.wav
 *.onnx
 voices-*.bin
 *.m4a

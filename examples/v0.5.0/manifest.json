@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "examples": {
+    "data-story": {
+      "format": "landscape",
+      "title": "Read the evidence",
+      "description": "Animated illustrative bars and a sourced conclusion in 16:9."
+    },
+    "camera-story": {
+      "format": "portrait",
+      "title": "From pattern to prediction",
+      "description": "A three-shot portrait camera sequence over original procedural stills."
+    },
+    "type-story": {
+      "format": "square",
+      "title": "Fluent is not verified",
+      "description": "Matched headline transitions and cue-driven typography in 1:1."
+    },
+    "screen-story": {
+      "format": "portrait-4x5",
+      "title": "Inspect before you share",
+      "description": "A fictional source screen, two focus moves and a review handoff in 4:5."
+    }
+  },
+  "files": {
+    "data-story/captions.json": "3cffc5b386d213228441652fdf2f1bacd8fd4a1c4c20326767a75c788722b6d9",
+    "data-story/cover.png": "e5be2f9b4d5c397b1362249ff7d4ae4b115806d07e036413cb3e420bf50f8b83",
+    "data-story/narration.wav": "4ba8d98477ffefddc3b9962bd8a59ac9853d7d8cd7bbf60bdd62106af09988a0",
+    "data-story/script.txt": "2a9477808f292ef003333a1905f7ce382abe2eb342fbf7bad2032ba32b96598c",
+    "data-story/storyboard.json": "94aa738ee371287911aab5e8350e29f6564661b3fb08005f78ef29517a14bb5e",
+    "data-story/transcript.json": "77913c180feb6560c52693e1bcfac703666aa3bc818109cf2315a669139d07ee",
+    "camera-story/captions.json": "15fee88eb419ee0920239c7adbc3483662e0af45bf742ca43ddbc334fc6939f7",
+    "camera-story/context.png": "1db7a4b1993023fd11b81951a257af33d5546924ac24ff2a8539c40624d569c3",
+    "camera-story/cover.png": "ddee7961377a95f72e2f062441db2b36e0640a787061eab8e85c229fb378b968",
+    "camera-story/narration.wav": "c52d4c099a8f60ff76de4f7483f7670ec9ff6de40eca3adb394bc25a559fa0ed",
+    "camera-story/pattern.png": "2d2be916eeaba828dc7f9719ff49ea6934ae1e86b9ad945ae4417a5e1dbd6bcf",
+    "camera-story/prediction.png": "c1d36b60283c34479cef46165c697ad8ebda73bcc061f73e9dc14a9929b2f4da",
+    "camera-story/script.txt": "817de14093998abc9c65065a56d836d6c39721002600995e0dee4acf640abe9f",
+    "camera-story/storyboard.json": "8b6005a6122996820c3f0cc02522deeb32ba2d7c61ad3420b0f9beeea1cf7fb3",
+    "camera-story/transcript.json": "6a9f4559394fa6b36375a443ba65792abaeb651bd3562ea72dd19a60b159f7d8",
+    "type-story/captions.json": "7172db1506b3a4907fd057447f12d43c9c871ef026559b8001e0119cd2ddb0d6",
+    "type-story/cover.png": "1eca660aa2b352acbe08151d194c3240fad72c758fb12fe4e85a72b624cbf064",
+    "type-story/narration.wav": "5410ecc1cae076e56fe79158b9f104082768972030d099180cc1903db4c45d9b",
+    "type-story/script.txt": "8de65d07a5ac4d8da3ea29cfff1aa49a1337fb4c7a5db5dd9bc8dc8f0c09ba2c",
+    "type-story/storyboard.json": "5267bbfd92ec3644cb83e1616dae603155788ca2ac4ae210f434a0bf0c707937",
+    "type-story/transcript.json": "44992872a86b3e8d850a57692f795315ffbbc3995c9a75105434418104b52083",
+    "screen-story/captions.json": "73902e1c4e2f46ea2391736f6e5f1364c50e07aabfd3f13b9a545edecafa4923",
+    "screen-story/cover.png": "c844aa17c3c45cc8cce3e95d1420ab203995eb5dd0bd8b672b5eca60153a6d9d",
+    "screen-story/narration.wav": "78a8444282e5a2c9e088730b16c8140f7d1f3e17621132b09f986c378cc77be1",
+    "screen-story/script.txt": "b37014fed112e7d080eb4308fb47c55d1acc44be67a0ebfae2df13f4c3442477",
+    "screen-story/source-page.png": "18ab6885e7a6a58e0e6d0cd09cb518abba88b7a99755874fb4f319e35a801616",
+    "screen-story/storyboard.json": "e10c06bc88a5f4b93a950d3daf8f5059115d4b248240174a83439f340469967f",
+    "screen-story/transcript.json": "8ce221074fc5052a5e81f3c6c2ef391722381f953d46a838762a5d797c91c344"
+  }
+}

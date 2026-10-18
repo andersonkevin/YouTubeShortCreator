@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added four complete, reproducible v0.5.0 example episodes with public synthetic narration, word timings, captions, original artwork and storyboards across 16:9, 9:16, 1:1 and 4:5.
+- Added a gated example importer that uses normal episode authoring, verifies every public input and preserves brand approval and no-overwrite rules.
+- Updated the gallery with actual engine captures and documented the example export qualification. Only manifest-verified example narration is included in source; private workspaces and exported videos remain excluded.
+
 ## 0.5.0 (2026-10-17)
 
 - Added the v3 composition workflow with explicit 16:9, 9:16, 1:1 and 4:5 profiles at 30 fps, and full-recording duration up to ten minutes. Legacy v1/v2 Shorts retain their 180-second and three/four-scene contracts.

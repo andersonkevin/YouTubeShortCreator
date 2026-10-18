@@ -1,0 +1,48 @@
+{
+  "duration": 11.4,
+  "status": "word_timed_review",
+  "cues": [
+    {
+      "text": "A model learns patterns from",
+      "start": 0.13333333333333333,
+      "end": 1.544,
+      "firstWord": 0,
+      "lastWord": 4
+    },
+    {
+      "text": "examples.",
+      "start": 1.6,
+      "end": 2.261333,
+      "firstWord": 5,
+      "lastWord": 5
+    },
+    {
+      "text": "New input changes the context",
+      "start": 3.066666666666667,
+      "end": 5.009,
+      "firstWord": 6,
+      "lastWord": 10
+    },
+    {
+      "text": "around those patterns.",
+      "start": 5.066666666666666,
+      "end": 6.196667,
+      "firstWord": 11,
+      "lastWord": 13
+    },
+    {
+      "text": "A prediction is a starting",
+      "start": 6.966666666666667,
+      "end": 8.262,
+      "firstWord": 14,
+      "lastWord": 18
+    },
+    {
+      "text": "point. Check what it means.",
+      "start": 8.333333333333334,
+      "end": 9.94,
+      "firstWord": 19,
+      "lastWord": 23
+    }
+  ]
+}

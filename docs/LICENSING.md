@@ -25,6 +25,7 @@ establish chain of ownership or clear trademarks.
 | --- | --- | --- |
 | Project code, scene contracts and docs | Yes | Project MIT license |
 | Illustrative rendered documentation screenshots | Yes | Documented origin; no font software or customer media included |
+| Four complete v0.5.0 examples | Yes | New synthetic narration, original scripts/procedural illustrations, timed captions and storyboards; exact public inputs listed in the [manifest](../examples/v0.5.0/manifest.json) |
 | Full project MIT license | Yes | Preserve the notice and terms |
 | Python/Node dependency binaries | No | Installed separately; their own licenses apply |
 | Chrome, Swift, Apple frameworks and speech models | No | Separate platform/runtime terms apply |

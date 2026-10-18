@@ -1,0 +1,48 @@
+{
+  "duration": 13.4,
+  "status": "word_timed_review",
+  "cues": [
+    {
+      "text": "Fluent words can feel convincing.",
+      "start": 0.16666666666666666,
+      "end": 2.005333,
+      "firstWord": 0,
+      "lastWord": 4
+    },
+    {
+      "text": "Convincing words still need evidence.",
+      "start": 2.7333333333333334,
+      "end": 4.822667,
+      "firstWord": 5,
+      "lastWord": 9
+    },
+    {
+      "text": "Find the original source.",
+      "start": 5.633333333333334,
+      "end": 7.095333,
+      "firstWord": 10,
+      "lastWord": 13
+    },
+    {
+      "text": "Check the surrounding context.",
+      "start": 7.833333333333333,
+      "end": 9.507333,
+      "firstWord": 14,
+      "lastWord": 17
+    },
+    {
+      "text": "Then decide what you can",
+      "start": 10.266666666666667,
+      "end": 11.371333,
+      "firstWord": 18,
+      "lastWord": 22
+    },
+    {
+      "text": "trust.",
+      "start": 11.433333333333334,
+      "end": 11.983333,
+      "firstWord": 23,
+      "lastWord": 23
+    }
+  ]
+}

@@ -2,12 +2,21 @@
 
 [First-Short walkthrough](../docs/FIRST-SHORT.md) · [Layout gallery](../docs/GALLERY.md)
 
+## Complete v0.5.0 Episodes
+
+Start with the [four reproducible examples](v0.5.0/README.md): animated data in
+16:9, a camera sequence in 9:16, matched headlines in 1:1 and screen inspection
+in 4:5. Each includes public synthetic narration, word timings, captions, all
+artwork and a complete storyboard. The importer uses the normal authoring API;
+the standard renderer and validation gates generate the video.
+
 ## Narration
 
 [narration.txt](narration.txt) is a short American-English script about AI-agent
 boundaries. Record it with a voice you are authorized to use, import the resulting
-audio and transcribe that exact file. The repository does not ship a voice recording.
+audio and transcribe that exact file. This legacy script does not include a recording.
 It also does not claim that one voice service or delivery style is required.
+The separate v0.5.0 set above does include ready-to-use synthetic recordings.
 
 ## Scene Examples
 
