@@ -3,7 +3,7 @@
   "files": {
     "audio_qa.py": "93428fdd1d3bc7195672a94591c76753beac66a237b82cb12766a539844d00ef",
     "branding.py": "7de623eac134805711de7c9c05b9eb0c465b71c91cf793f6060ea575f0c22617",
-    "capture.mjs": "180472045c1d52594048a060ea9fa890b1b4f13356c4fc4b4ceee6b9856c538a",
+    "capture.mjs": "411d2635eb118ff0f611d02a95ed8cc4d496449ec95361200472f441aeb9b3bb",
     "chart-qa.mjs": "5068819ebbb1bc96364f9b06e574176b6bc3740fa7da8e02b48a857596818d2e",
     "cinema.py": "721b80216fd84c24c50f7c461fcf6ed64ccc63ff56826e71d159a2a0f257a7a6",
     "decode-audio.swift": "b47397ca80c52638b8c597508452f1eb0464828aa06e8cdfac016bb55a381dab",
@@ -20,7 +20,7 @@
     "frame_qa.py": "5434dd0c75f9f739d17df2af0479cb631be64856407e285be484bb4205ea45b0",
     "lettering.py": "a9aac32555dff1d4f182c0bcc8dc11c0c0076e9e6dbe7e70120a0dbee80887cf",
     "media-qa.swift": "9fcafa39bc57bf62072a0f5aea706520209bc298d3bb68a335d7b96af442cd8d",
-    "media_backend.py": "1b7cd736763f786c5a2abdd4987a3b10f353f274f80ab85177ddf6ae0916ddd7",
+    "media_backend.py": "6c02e1113b3bc26a1a1680b1fb4b7e0e3964926ded7d23c94ead49bbd4a889ec",
     "media_contract.py": "ff32c968810a95a76c74c18269f124dad3008e1a96c3d9e80a8da4090e5a70d8",
     "mux.swift": "25011df76e61ee0ba97397381f98d92812facfddc5c018fc907817debf187bc7",
     "native-capabilities.swift": "1003e3598702527ee0ed56475741c0437734e538cc44ee42ca10561c05f520e1",
@@ -29,6 +29,8 @@
     "runtime.py": "1ce664cc6c6277a15a425b6046113d32ac115d2498109e6abecfd858bd3bac6c",
     "safety.py": "fca994f0a5abaf603bc4f1c3505329d3195c7eae5eed38a5a3cf838b7185b1ed",
     "seek-qa.mjs": "647eb0a19d1e26d56a1b553aa3963683ff64cf7b6ef8d868bf34ddb34afd9816",
+    "storage-guard.mjs": "828ee663bd6576f01b641f89f8335b96f3a024313aecc0657a3af095c07bc5e0",
+    "storage.py": "59eb771424ccd72c6948bf2d38111565079ee2d5e5a32448608f1d5ce17c5b08",
     "templates/v1/assets/code-graphics-scenes.css": "f33d680f5d43074dc4bc6f079b29c4443a9bcc9258d5b12f543fe5de99d4c653",
     "templates/v1/assets/general-scenes.css": "7f5a2b5f450189391649af7c9e4e81b9fbb976e96ee521d316730d27edaa062f",
     "templates/v1/assets/motion.css": "d87f2956f9e4afe028fb32a77ab5a089debb8050827cbaa2d76d72fc89071ec4",
@@ -407,7 +409,7 @@
     "tools/visual_library/vendor/natural-earth/world.json": "54b46eff26f4cdc3bfab768ac374b50f4070e98fffbf389a3ce0e22a2c3b5165",
     "transcribe.swift": "7f229c23785ca2b80f3a8fe5a32c88d7bc30656b4e70eda630c65edc0e326df5",
     "visual_adapter.py": "860b7867fd3ea02ffb5470abd32c4f88dfce2fe1d3c299d15504a33531058c0e",
-    "workflow.py": "f848ac6b4cc9a48f37801dd19f1f1d35000b8a1198f450741fc888b2f475c4d0",
-    "ysc.py": "0c79d87fa5530108a320868fb8f59c9302e45cda0f096a3a54010dc657cb19d7"
+    "workflow.py": "7b00e618aa5b308ac957ae1cfc3cb53555a84fa88a6ff024a2099726c0eb3d6e",
+    "ysc.py": "6d3833f7bf2ae07ee8316536c0bb819fb07a912c630e216d3d36af51b3a3aefc"
   }
 }

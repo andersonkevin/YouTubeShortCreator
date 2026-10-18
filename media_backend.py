@@ -16,8 +16,14 @@ def validate_backend(name):
 
 
 @contextmanager
-def scratch():
+def scratch(workspace=None):
     """Own only this invocation's temporary frames and compiler/audio cache."""
+    if workspace is not None:
+        import storage
+        with storage.scratch(workspace) as root:
+            (root / 'frames').mkdir()
+            yield root
+        return
     with tempfile.TemporaryDirectory(prefix='shortcreator-media-') as temporary:
         root = Path(temporary).resolve()
         (root / 'frames').mkdir()
@@ -28,7 +34,7 @@ def swift(paths, temporary, script, *arguments):
     require(script in {'encode.swift', 'mux.swift', 'media-qa.swift', 'decode-audio.swift',
                        'native-capabilities.swift'}, 'Unknown native operation')
     subprocess.run([paths['swift'], '-module-cache-path', str(temporary / 'swift-cache'),
-                    str(HOME / script), *map(str, arguments)], check=True)
+                    str(HOME / script), *map(str, arguments)], check=True, timeout=1800)
 
 
 def preflight(name, paths, profile='shorts'):

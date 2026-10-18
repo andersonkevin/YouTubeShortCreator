@@ -53,3 +53,10 @@ Documentation changes must pass `python3 -B tools/check_docs.py` and the test su
 Keep the gallery's image manifest accurate and use real, authorized render captures.
 Separate retained media qualification from new documentation checks; do not imply
 that every documentation revision rerendered or reapproved the production media.
+
+Read docs/STORAGE.md before media qualification or disk cleanup. Use temporary
+directories for synthetic tests; do not accumulate full engine copies, repeated
+demo workspaces or per-frame dumps. Use one acceptance workspace per change.
+Inspect `storage` before an explicitly authorized `storage-clean`; protect final
+deliveries and never scan or clean another project. Disk-budget failures are stop
+conditions, not permission to bypass reserve checks or remove original inputs.

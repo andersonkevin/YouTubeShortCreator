@@ -114,11 +114,15 @@ for the new implementation and approve its brand/runtime combination; preserve
 existing approvals and renders. Existing workspace approval records must not be
 rewritten to bypass the drift check. See [upgrade boundaries](docs/WORKFLOW.md#updating-a-brand-or-engine).
 
-Capture uses temporary lossless PNG frames. Long or detailed photographic films
-can require substantial scratch space; the exporter checks a reserve and stops
-instead of silently reducing quality. Temporary capture files are invocation-owned
-and cleaned on normal failure handling. Full ten-minute coverage is a retained
-representative qualification, not a soak test of every scene recipe.
+Capture uses temporary lossless PNG frames. The post-v0.5.0 storage hardening
+limits generated runs to 10 GiB and scratch to 32 GiB per workspace by default,
+with a 5 GiB free-space reserve. Capture checks every frame and stops instead of
+reducing quality. `storage` previews usage and cleanup candidates; `storage-clean`
+requires the reviewed plan and explicit write approval. Completed renders and
+original inputs remain protected. See [storage and retention](docs/STORAGE.md),
+including new-workspace approval after the implementation-lock change.
+Full ten-minute coverage remains a retained representative qualification, not a
+soak test of every scene recipe or disk budget.
 
 ## Verify and Distribute
 

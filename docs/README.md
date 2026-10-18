@@ -35,6 +35,7 @@
 - [Visual adapter contract](VISUAL-ADAPTER-CONTRACT.md): supported v2 records and compatibility boundaries.
 - [Chart and motion selection](VISUAL-PRESENTATION.md): legacy analytical visuals and bounded motion choices.
 - [Media backend boundary](MEDIA-BACKENDS.md): explicit native/FFmpeg dispatch, temporary ownership and failure behavior.
+- [Storage and retention](STORAGE.md): disk budgets, protected final renders, owned scratch and approved cleanup.
 - [Visual director](assistant/VISUAL-DIRECTOR.md): supervised profile, composition and source selection.
 
 ## Dated Release and Example Qualification

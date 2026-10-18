@@ -137,6 +137,13 @@ def parser():
             for key in ('node', 'playwright', 'chrome', 'swift', 'ffmpeg', 'ffprobe'):
                 command.add_argument('--' + key)
     sub.add_parser('doctor')
+    sub.add_parser('storage', help='Read-only disk usage and retention preview for this workspace')
+    command = sub.add_parser('storage-clean', help='Apply the exact reviewed retention plan; preserve completed renders')
+    command.add_argument('--plan-id', required=True)
+    command.add_argument('--approve-write', action='store_true')
+    command = sub.add_parser('storage-keep', help='Protect a completed preview from retention')
+    command.add_argument('run', help='EPISODE/RUN')
+    command.add_argument('--approve-write', action='store_true')
     sub.add_parser('layouts')
     sub.add_parser('compositions', help='List reusable composition contracts and output formats')
     sub.add_parser('palettes')
@@ -177,6 +184,17 @@ def main(argv=None):
     root = args.workspace.expanduser().resolve()
     workflow.ROOT, workflow.RUNS = root, root / 'runs'
     try:
+        if args.command in ('storage', 'storage-clean', 'storage-keep'):
+            import storage
+            selected = storage.workspace(args.workspace)
+            if args.command == 'storage':
+                result = storage.inventory(selected)
+            elif args.command == 'storage-clean':
+                result = storage.cleanup(selected, args.plan_id, args.approve_write)
+            else:
+                result = storage.keep(selected, args.run, args.approve_write)
+            print(json.dumps(result, indent=2))
+            return 0
         if args.command is None:
             if not root.exists():
                 onboarding(root)
@@ -465,7 +483,9 @@ def main(argv=None):
         print(f'ERROR: {error}', file=sys.stderr)
         return 1
     except (KeyboardInterrupt, EOFError):
-        print('\nCancelled. Existing files were not deleted.', file=sys.stderr)
+        message = ('Cancelled. Cleanup may be partial; inspect .storage cleanup receipts.'
+                   if args.command == 'storage-clean' else 'Cancelled. Existing files were not deleted.')
+        print('\n' + message, file=sys.stderr)
         return 130
 
 

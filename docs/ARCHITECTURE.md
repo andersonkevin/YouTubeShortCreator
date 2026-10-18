@@ -36,6 +36,7 @@ flowchart TD
 | `branding.py` | Palette/font/logo validation, preview, approval hashes, profile-sized covers | Approved private assets or pinned licensed catalog fonts |
 | `safety.py` | JSON parsing, paths, hashes, exact keys and scalar checks | No duplicate keys, non-finite numbers or contained traversal |
 | `runtime.py` | Existing tool discovery, configuration and measured versions | Executables are trusted operator configuration |
+| `storage.py`, `storage-guard.mjs` | Workspace budgets, owned scratch and explicit retention | Protected originals/final renders; no cross-project scan |
 | `media_backend.py` | Explicit native/FFmpeg dispatch, frame sequence checks and temporary ownership | No episode-selected tools or silent fallback |
 | `media_contract.py` | Legacy 180-second/5,400-frame profile and four v3 600-second/18,000-frame profiles; per-profile audio limits and geometry | No automatic narration trimming or unbounded rendering |
 | `frame_qa.py` | Cue-boundary sample selection and encoded/reference pixel comparison | Fixed lossy limits; not semantic or human approval |
@@ -131,6 +132,8 @@ cleanup or a report. A new successful run hashes nested assets as well as its
 top-level deliverables. Older run manifests and approvals are not rewritten.
 
 Temporary frame/PCM/cache directories created by a run are cleaned up by that run.
+Large capture scratch is workspace-scoped; disk budgets and approved retention
+are described in [Storage](STORAGE.md).
 Original narration and existing successful runs are not automatically removed.
 Avoid concurrent edits to source media, branding or template files during production.
 

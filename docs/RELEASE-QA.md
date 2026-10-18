@@ -1,5 +1,29 @@
 # Release Qualification
 
+## Storage hardening — 2026-10-18
+
+The post-v0.5.0 storage changes were checked with 665 Python tests and 524 Node
+checks. After the final capture-boundary correction, the complete Node suite and
+31 targeted Python storage/backend tests passed. Documentation, public source
+allowlist, exact implementation integrity and whitespace checks also passed.
+
+A fresh, normally approved example workspace rendered the public `camera-story`
+through the regular engine: 342 frames, four browser viewports, and passing
+visual, media, decoded-frame and audio QA. All 221 output hashes verified.
+Its MP4 SHA-256 remained exactly
+`4a9bb1fb254a0b079e0c0b00fc910d4c3dfea56c58f85e70b41be1a18f933e7c`,
+matching the earlier example byte for byte. Workspace scratch was empty after
+completion; source inputs and prior approval records were not changed.
+
+The qualified implementation lock is
+`d73021c7b60a64d350789ca6e386759112de0ab3c628fb39bd693a40aa43d3f7`.
+Tests cover budget exhaustion before work, every-frame reserve enforcement,
+normal/error/interrupted scratch cleanup, retention age, final-render protection,
+plan drift, symlinks, path traversal, concurrent writers and partial cleanup
+receipts. This is not a new ten-minute endurance or cross-platform media
+qualification. See [storage boundaries](STORAGE.md) and the dated records below.
+
+
 This page retains dated qualification results. For the maintained capability and
 publication overview, see [current state](CURRENT-STATE.md). Test counts and locks
 below apply to their recorded candidates; a documentation edit does not requalify

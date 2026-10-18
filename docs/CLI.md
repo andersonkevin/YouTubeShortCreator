@@ -2,6 +2,15 @@
 
 [Docs index](README.md) · [Troubleshooting](TROUBLESHOOTING.md)
 
+## Storage and retention
+
+`storage` is a read-only inventory and exact cleanup preview for the selected
+workspace. `storage-clean --plan-id SHA256_FROM_STORAGE --approve-write` removes
+only the reviewed eligible outputs; completed renders and originals remain
+protected. `storage-keep EPISODE/RUN --approve-write` protects a completed preview.
+See [storage budgets and retention](STORAGE.md) for defaults, abandoned scratch,
+path checks and compatibility after the implementation-lock change.
+
 ## Invocation
 
 ```bash
@@ -151,8 +160,8 @@ Shorts options. Never estimate caption timestamps from word counts.
 
 `import --format` with any composition profile enables a 250 MB audio-size budget; duration is checked
 separately. Parsed JSON stays capped at 2 MB. Render checks free scratch space
-against observed PNG sizes plus a 2 GB encoding reserve before frame writes and
-every 150 frames. Failures preserve run diagnostics and clean only invocation-owned
+against observed PNG sizes and the configured free-space reserve before every
+frame, with remaining-size projections every 150 frames. Failures preserve run diagnostics and clean only invocation-owned
 scratch. New output profiles never rewrite old brand approvals or runtime records.
 
 ## Optional Tools

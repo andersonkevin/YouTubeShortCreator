@@ -7,18 +7,28 @@ import {pathToFileURL} from 'node:url';
 import {inspectChartLabels} from './chart-qa.mjs';
 import {checkProduction} from './production-qa.mjs';
 import {effectFrames,checkEffectSeek} from './seek-qa.mjs';
+import {checkFrameStorage} from './storage-guard.mjs';
 
 const [workspace, requested, mode, frames] = process.argv.slice(2);
 assert.ok(['qa', 'render'].includes(mode));
 assert.equal(process.argv.slice(2).length, mode==='render' ? 4 : 3);
+let storageBudget={max_scratch_bytes:32*1024**3,min_free_bytes:5*1024**3};
 if(mode==='render') {
   assert.ok(path.isAbsolute(frames), 'Absolute scratch frame path required');
   assert.equal(fs.realpathSync(frames),frames,'Scratch path cannot contain symlinks');
-  const parent=path.dirname(frames);
-  assert.equal(path.dirname(parent),fs.realpathSync(os.tmpdir()),'Scratch must be in the OS temporary directory');
-  assert.ok(path.basename(parent).startsWith('shortcreator-media-'));
   assert.equal(path.basename(frames),'frames');
   assert.deepEqual(fs.readdirSync(frames),[],'Scratch frames must be empty');
+  const parent=path.dirname(frames);
+  const localScratch=path.join(path.resolve(workspace),'.scratch');
+  if(path.dirname(parent)===localScratch) {
+    assert.equal(fs.realpathSync(localScratch),localScratch,'Scratch root cannot be a symlink');
+    assert.ok(path.basename(parent).startsWith('ysc-'));
+    storageBudget=JSON.parse(fs.readFileSync(path.join(parent,'budget.json'),'utf8'));
+    fs.writeFileSync(path.join(parent,'capture-owner.json'),JSON.stringify({pid:process.pid}),{flag:'wx'});
+  } else {
+    assert.equal(path.dirname(parent),fs.realpathSync(os.tmpdir()),'Scratch must belong to this workspace or the legacy OS temporary directory');
+    assert.ok(path.basename(parent).startsWith('shortcreator-media-'));
+  }
 }
 const out = fs.realpathSync(requested);
 const runs = fs.realpathSync(path.join(workspace, 'runs'));
@@ -276,18 +286,16 @@ try {
       assert.deepEqual(errors,[],'Browser errors at capture frame '+frame);
       assert.deepEqual(network,[],'Network requests at capture frame '+frame);
       peakFrameBytes=Math.max(peakFrameBytes,image.length);
-      if(composition&&(frame===0||frame%150===0)) {
-        const disk=fs.statfsSync(frames),free=disk.bavail*disk.bsize;
-        minimumFreeBytes=Math.min(minimumFreeBytes,free);
-        const required=Math.ceil(peakFrameBytes*(count-frame)*1.5)+2_000_000_000;
-        assert.ok(free>=required,'Insufficient scratch space for the remaining capture and encoding reserve');
-      }
+      const disk=fs.statfsSync(frames),free=disk.bavail*disk.bsize;
+      minimumFreeBytes=Math.min(minimumFreeBytes,free);
+      checkFrameStorage({bytes,imageBytes:image.length,free,peak:peakFrameBytes,remaining:count-frame,
+        budget:storageBudget,project:frame===0||frame%150===0});
       fs.writeFileSync(path.join(frames,`frame-${String(frame).padStart(5,'0')}.png`),image,{flag:'wx'});
       bytes+=image.length;
       if((frame+1)%150===0 || frame+1===count) console.log(`Captured ${frame+1}/${count}`);
     }
     report.frames=count;
-    if(composition)report.resources={capture_seconds:(performance.now()-captureStarted)/1000,
+    report.resources={capture_seconds:(performance.now()-captureStarted)/1000,
       png_bytes:bytes,largest_png_bytes:peakFrameBytes,minimum_free_bytes:minimumFreeBytes};
   }
   assert.deepEqual(errors,[]);

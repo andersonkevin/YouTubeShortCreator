@@ -43,9 +43,10 @@ for the newer compositions.
 - Those examples are available on `main`; the immutable tag does not contain
   these later additions. Post-tag changes are listed under `Unreleased` in the
   [changelog](../CHANGELOG.md). This documentation refresh does not move the tag.
-- The implementation lock is
+- The retained v0.5.0 example lock was
   `42b08b645219d28ed28919380e5ca00bf0ce6b0a289ef1540e1ce7700866ee0e`.
-  Verify it with `python3 -B -c 'import workflow; print(workflow.verify_lock())'`.
+  Post-tag [storage hardening](STORAGE.md) changes the current lock without
+  rewriting previous approvals. Verify the checked-out implementation with `python3 -B -c 'import workflow; print(workflow.verify_lock())'`.
   Older locks in dated receipts apply only to those earlier runs.
 
 The [release qualification](RELEASE-QA.md) records the v0.5.0 source/portrait

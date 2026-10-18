@@ -265,8 +265,16 @@ def execute(command, **kwargs):
 
 
 def build(episode, run_id, render=False):
+    import storage
+    with storage.activity(ROOT):
+        storage.preflight(ROOT)
+        return _build(episode, run_id, render)
+
+
+def _build(episode, run_id, render=False):
     import branding
     import media_backend
+    import storage
     runtime, environment = doctor()
     data, inputs, captions, bounds = validate(episode)
     profile = episode_profile(data)
@@ -303,7 +311,8 @@ def build(episode, run_id, render=False):
         metadata = {**data['youtube'], 'language': data['language'], 'thumbnail': 'thumbnail.jpg', 'video': 'video.mp4' if render else None, 'status': 'review_required', 'published_url': None, 'published_at': None}
         write_json(output / 'youtube.json', metadata)
         (output / 'youtube.md').write_text('\n\n'.join(['# Title', metadata['title'], '# Description', metadata['description'], '# Tags', ', '.join(metadata['tags']), '# Pinned Comment', metadata['pinned_comment']]) + '\n', encoding='utf-8')
-        with media_backend.scratch() if render else nullcontext(None) as temporary:
+        storage.preflight(ROOT)
+        with media_backend.scratch(ROOT) if render else nullcontext(None) as temporary:
             command = [runtime['node'], str(HOME / 'capture.mjs'), str(ROOT), str(output), 'render' if render else 'qa']
             if render:
                 command.append(str(temporary / 'frames'))
@@ -311,9 +320,11 @@ def build(episode, run_id, render=False):
             if render:
                 count = round(data['duration'] * 30)
                 require(read_json(output / 'visual-qa.json')['frames'] == count, 'Captured frame count differs')
+                storage.preflight(ROOT)
                 media_backend.encode(environment['backend'], runtime, temporary, count, output / 'silent.mp4', **profile_args)
                 audio_report = media_backend.finish(environment['backend'], runtime, temporary, output, inputs['audio'], data['duration'], **profile_args)
                 write_json(output / 'audio-qa.json', audio_report)
+        storage.preflight(ROOT)
         validate(episode)
         require(digest(Path(episode)) == episode_hash, 'Episode changed during production')
         require(verify_lock() == environment['lock_sha256'], 'Implementation changed during render')

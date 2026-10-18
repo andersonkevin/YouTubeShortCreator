@@ -17,7 +17,7 @@ PRIVATE = {'workspace', 'workspaces', 'node_modules', '.venv', '.git', '.github'
 EXTENSIONS = {'.py', '.mjs', '.swift', '.json', '.md', '.css', '.js', '.txt', '.png', '.jpg'}
 ROOT_FILES = {'LICENSE', '.gitignore', '.gitattributes', 'requirements.txt', 'package.json', 'package-lock.json', 'lock.json',
               'ysc.py', 'workflow.py', 'branding.py', 'diversity.py', 'safety.py', 'runtime.py', 'audio_qa.py', 'visual_adapter.py', 'capture.mjs', 'chart-qa.mjs',
-              'media_backend.py', 'media_contract.py', 'frame_qa.py', 'native-capabilities.swift', 'ffmpeg_backend.py',
+              'media_backend.py', 'media_contract.py', 'frame_qa.py', 'native-capabilities.swift', 'ffmpeg_backend.py', 'storage.py', 'storage-guard.mjs',
               'production_visuals.py', 'editorial.py', 'cinema.py', 'font_motion.py', 'lettering.py', 'production-qa.mjs', 'seek-qa.mjs', 'font_outlines.py', 'font-outlines.swift',
               'decode-audio.swift', 'encode.swift', 'mux.swift', 'media-qa.swift', 'transcribe.swift',
               'README.md', 'START-HERE.md', 'THIRD_PARTY_NOTICES.md', 'SECURITY.md', 'AGENTS.md', 'CONTRIBUTING.md', 'CHANGELOG.md'}
