@@ -48,6 +48,13 @@ branding or font binaries.
 
 ## Manifest
 
+`editorial-light-example.png` and `news-local-example.png` are unmodified decoded
+frame 48 (1.6 seconds) from the two 2026-10-18 editorial Shorts MP4 exports. They
+use the illustrative Example Lab light brand and the existing public example
+narration/artwork, with visible measured caption highlighting. The news card is
+explicitly a synthetic layout fixture, not a real report or third-party photo.
+See the [candidate qualification](../editorial-shorts-qa.json).
+
 [manifest.json](manifest.json) lists the relative path, SHA-256, dimensions, scene
 layout, illustrative brand and capture origin. Layout images also record their
 sample time in the qualification episode. Source qualification runs and fonts stay

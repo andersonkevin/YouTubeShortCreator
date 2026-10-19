@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "visuals": {
+    "source-1": {
+      "id": "source-1",
+      "kind": "news-media",
+      "title": "SYNTHETIC SOURCE CARD",
+      "insight": "This is a layout fixture, not a real news report.",
+      "icon": "layers",
+      "source": {
+        "kind": "reported",
+        "label": "Example source; not a real report",
+        "reference": "https://example.org/source",
+        "as_of": "2026-10-18"
+      },
+      "data": {
+        "variant": "image",
+        "fit": "contain",
+        "label": "ILLUSTRATIVE FIXTURE",
+        "headline": "Read the original source",
+        "detail": "These cards exercise media layout, not factual reporting.",
+        "items": [],
+        "asset": {
+          "path": "source.png",
+          "sha256": "ddee7961377a95f72e2f062441db2b36e0640a787061eab8e85c229fb378b968",
+          "source_url": "https://example.org/source.png",
+          "source_page": "https://example.org/source",
+          "asset_type": "diagram",
+          "story": "Synthetic source review",
+          "scene": "source-1",
+          "retrieved_at": "2026-10-18",
+          "alt": "Original abstract illustration from the public camera story example",
+          "credit": "YouTubeShortCreator contributors",
+          "rights_status": "Original public example; MIT. No third-party news image or person."
+        }
+      }
+    },
+    "source-2": {
+      "id": "source-2",
+      "kind": "news-media",
+      "title": "SYNTHETIC SOURCE CARD",
+      "insight": "This is a layout fixture, not a real news report.",
+      "icon": "layers",
+      "source": {
+        "kind": "reported",
+        "label": "Example source; not a real report",
+        "reference": "https://example.org/source",
+        "as_of": "2026-10-18"
+      },
+      "data": {
+        "variant": "person",
+        "fit": "contain",
+        "label": "ILLUSTRATIVE FIXTURE",
+        "headline": "Read the original source",
+        "detail": "These cards exercise media layout, not factual reporting.",
+        "items": [],
+        "asset": {
+          "path": "source.png",
+          "sha256": "ddee7961377a95f72e2f062441db2b36e0640a787061eab8e85c229fb378b968",
+          "source_url": "https://example.org/source.png",
+          "source_page": "https://example.org/source",
+          "asset_type": "diagram",
+          "story": "Synthetic source review",
+          "scene": "source-2",
+          "retrieved_at": "2026-10-18",
+          "alt": "Original abstract illustration from the public camera story example",
+          "credit": "YouTubeShortCreator contributors",
+          "rights_status": "Original public example; MIT. No third-party news image or person."
+        }
+      }
+    },
+    "source-3": {
+      "id": "source-3",
+      "kind": "news-media",
+      "title": "SYNTHETIC SOURCE CARD",
+      "insight": "This is a layout fixture, not a real news report.",
+      "icon": "layers",
+      "source": {
+        "kind": "reported",
+        "label": "Example source; not a real report",
+        "reference": "https://example.org/source",
+        "as_of": "2026-10-18"
+      },
+      "data": {
+        "variant": "image-metric",
+        "fit": "contain",
+        "label": "ILLUSTRATIVE FIXTURE",
+        "headline": "Read the original source",
+        "detail": "These cards exercise media layout, not factual reporting.",
+        "items": [],
+        "asset": {
+          "path": "source.png",
+          "sha256": "ddee7961377a95f72e2f062441db2b36e0640a787061eab8e85c229fb378b968",
+          "source_url": "https://example.org/source.png",
+          "source_page": "https://example.org/source",
+          "asset_type": "diagram",
+          "story": "Synthetic source review",
+          "scene": "source-3",
+          "retrieved_at": "2026-10-18",
+          "alt": "Original abstract illustration from the public camera story example",
+          "credit": "YouTubeShortCreator contributors",
+          "rights_status": "Original public example; MIT. No third-party news image or person."
+        }
+      }
+    }
+  },
+  "scenes": [
+    {
+      "layout": "visual-library",
+      "name": "source-1",
+      "first_cue": 0,
+      "content": {
+        "eyebrow": "SOURCE REVIEW",
+        "heading_1": "Fluent words need",
+        "heading_2": "real evidence.",
+        "note": "Synthetic teaching example. Human review remains required."
+      },
+      "motion": {
+        "visual": {
+          "enter": 0.1,
+          "fill": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "visual_id": "source-1",
+      "symbol": "icon:layers"
+    },
+    {
+      "layout": "visual-library",
+      "name": "source-2",
+      "first_cue": 2,
+      "content": {
+        "eyebrow": "SOURCE REVIEW",
+        "heading_1": "Find the source.",
+        "heading_2": "Check the context.",
+        "note": "Synthetic teaching example. Human review remains required."
+      },
+      "motion": {
+        "visual": {
+          "enter": 0.1,
+          "fill": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "visual_id": "source-2",
+      "symbol": "icon:layers"
+    },
+    {
+      "layout": "visual-library",
+      "name": "source-3",
+      "first_cue": 4,
+      "content": {
+        "eyebrow": "SOURCE REVIEW",
+        "heading_1": "Decide what to",
+        "heading_2": "trust.",
+        "note": "Synthetic teaching example. Human review remains required."
+      },
+      "motion": {
+        "visual": {
+          "enter": 0.1,
+          "fill": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "visual_id": "source-3",
+      "symbol": "icon:layers"
+    }
+  ],
+  "editorial": {
+    "format": "news",
+    "story": "Synthetic source review",
+    "verified_at": "2026-10-18",
+    "sources": [
+      "https://example.org/source"
+    ]
+  }
+}

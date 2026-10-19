@@ -37,6 +37,8 @@ const runtime = JSON.parse(fs.readFileSync(path.join(workspace, 'runtime.json'))
 const episode = JSON.parse(fs.readFileSync(path.join(out, 'episode.json')));
 const composition=episode.version===3;
 const cinematic=episode.version===2&&episode.scenes.every(scene=>scene.presentation?.composition==='cinematic-v1');
+const editorialShorts=episode.version===2&&episode.scenes.some(scene=>
+  ['editorial','news-media'].includes(episode.visuals?.[scene.visual_id]?.kind));
 let configuration=null;
 if(composition) {
   const html=fs.readFileSync(path.join(out,'video.html'),'utf8');
@@ -55,10 +57,10 @@ const extrudedType=composition&&configuration.scenes.some(scene=>scene.kind==='s
 const sliceHeadlines=composition&&configuration.scenes.some(scene=>scene.kind==='headline'&&scene.content.swap==='slice-sweep');
 const filmedScreens=composition&&configuration.scenes.some(scene=>scene.kind==='screen'&&scene.content.lens==='filmed');
 const glassParallax=composition&&configuration.scenes.some(scene=>scene.kind==='interface'&&scene.content.variant==='glass-parallax');
-const softwareRaster=(composition||cinematic)&&!gpuBackdrops&&!threeBackdrops&&!liquidGlass&&!spatialCode&&!spatialObjects&&!sourceStages&&!sliceHeadlines&&!filmedScreens&&!glassParallax;
+const softwareRaster=(composition||cinematic||editorialShorts)&&!gpuBackdrops&&!threeBackdrops&&!liquidGlass&&!spatialCode&&!spatialObjects&&!sourceStages&&!sliceHeadlines&&!filmedScreens&&!glassParallax;
 const outputViewport=composition?{width:configuration.profile.width,height:configuration.profile.height}:{width:1080,height:1920};
 const {chromium} = await import(pathToFileURL(runtime.playwright).href);
-// Existing v3 and filtered v2 scenes retain software rasterization. Only an
+// Existing v3, filtered v2 and opt-in editorial SVG scenes use software rasterization. Only an
 // explicitly selected GPU composition needs hardware; every QA gate still runs.
 const browser = await chromium.launch({executablePath:runtime.chrome, headless:true,
   ...(softwareRaster?{args:['--disable-gpu']}:extrudedType||sourceStages?{args:['--disable-gpu-rasterization']}:{})});

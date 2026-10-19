@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "visuals": {
+    "review-1": {
+      "id": "review-1",
+      "kind": "editorial",
+      "title": "From words to evidence",
+      "insight": "This diagram teaches a process; it is not a benchmark.",
+      "icon": "layers",
+      "source": {
+        "kind": "illustrative",
+        "label": "Original teaching example",
+        "reference": "Example script and invented values",
+        "as_of": "2026-10-18"
+      },
+      "data": {
+        "variant": "flow",
+        "labels": [
+          "Read",
+          "Check"
+        ],
+        "details": [
+          "Find the original source",
+          "Review its context"
+        ],
+        "values": [],
+        "unit": "Invented example units",
+        "maximum": 10
+      }
+    },
+    "review-2": {
+      "id": "review-2",
+      "kind": "editorial",
+      "title": "Illustrative comparison",
+      "insight": "This diagram teaches a process; it is not a benchmark.",
+      "icon": "layers",
+      "source": {
+        "kind": "illustrative",
+        "label": "Original teaching example",
+        "reference": "Example script and invented values",
+        "as_of": "2026-10-18"
+      },
+      "data": {
+        "variant": "bars",
+        "labels": [
+          "Read",
+          "Check"
+        ],
+        "details": [
+          "Find the original source",
+          "Review its context"
+        ],
+        "values": [
+          2,
+          4
+        ],
+        "unit": "Invented example units",
+        "maximum": 10
+      }
+    },
+    "review-3": {
+      "id": "review-3",
+      "kind": "editorial",
+      "title": "Review before trusting",
+      "insight": "This diagram teaches a process; it is not a benchmark.",
+      "icon": "layers",
+      "source": {
+        "kind": "illustrative",
+        "label": "Original teaching example",
+        "reference": "Example script and invented values",
+        "as_of": "2026-10-18"
+      },
+      "data": {
+        "variant": "rings",
+        "labels": [
+          "Read",
+          "Check"
+        ],
+        "details": [
+          "Find the original source",
+          "Review its context"
+        ],
+        "values": [],
+        "unit": "Invented example units",
+        "maximum": 10
+      }
+    }
+  },
+  "scenes": [
+    {
+      "layout": "visual-library",
+      "name": "review-1",
+      "first_cue": 0,
+      "content": {
+        "eyebrow": "SOURCE REVIEW",
+        "heading_1": "Fluent words need",
+        "heading_2": "real evidence.",
+        "note": "Synthetic teaching example. Human review remains required."
+      },
+      "motion": {
+        "visual": {
+          "enter": 0.1,
+          "fill": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "visual_id": "review-1",
+      "symbol": "icon:layers"
+    },
+    {
+      "layout": "visual-library",
+      "name": "review-2",
+      "first_cue": 2,
+      "content": {
+        "eyebrow": "SOURCE REVIEW",
+        "heading_1": "Find the source.",
+        "heading_2": "Check the context.",
+        "note": "Synthetic teaching example. Human review remains required."
+      },
+      "motion": {
+        "visual": {
+          "enter": 0.1,
+          "fill": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "visual_id": "review-2",
+      "symbol": "icon:layers"
+    },
+    {
+      "layout": "visual-library",
+      "name": "review-3",
+      "first_cue": 4,
+      "content": {
+        "eyebrow": "SOURCE REVIEW",
+        "heading_1": "Decide what to",
+        "heading_2": "trust.",
+        "note": "Synthetic teaching example. Human review remains required."
+      },
+      "motion": {
+        "visual": {
+          "enter": 0.1,
+          "fill": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "visual_id": "review-3",
+      "symbol": "icon:layers"
+    }
+  ]
+}

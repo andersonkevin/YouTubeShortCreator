@@ -8,6 +8,7 @@
     for (const item of mounted) {
       if(item.cinema){item.cinema.renderAt(seconds);continue;}
       const local = seconds - Number(item.scene.dataset.start);
+      if(item.editorial) item.editorial.renderAt(local);
       const amount = clamp((local-item.motion.fill[0])/item.motion.fill[1]);
       const preset = item.presentation.reveal;
       const eased = amount * amount * (3 - 2 * amount);
@@ -28,7 +29,7 @@
   };
   window.ShortCreatorVisualReady = (async () => {
     await document.fonts.ready;
-    await Promise.all([...Object.values(data.icons), ...Object.values(data.symbols)].map(async source=>{
+    await Promise.all([...Object.values(data.icons), ...Object.values(data.symbols), ...Object.values(data.editorial_icons||{})].map(async source=>{
       const image = new Image(); image.src=source; await image.decode();
     }));
     const theme = {icons:data.icons, colors:[data.colors.accent,data.colors.secondary,'#ef9cab','#d4cce3'],
@@ -59,6 +60,14 @@
       await symbol.decode();
       const chartNode = scene.querySelector('.visual-chart');
       chartNode.setAttribute('aria-label',record.title+'. '+record.insight);
+      if (record.kind === 'editorial' || record.kind === 'news-media') {
+        scene.querySelector('.library-visual').classList.add('editorial-visual');
+        const editorial = record.kind === 'editorial'
+          ? window.ShortCreatorEditorialVisual(chartNode,record,spec,data)
+          : await window.ShortCreatorNewsMedia(chartNode,record,spec,data);
+        mounted.push({scene,chartNode,motion:spec.motion,presentation:spec.presentation,editorial});
+        continue;
+      }
       if(spec.presentation.composition) {
         const cinema=window.ShortCreatorCinema.mount(scene,record,spec.presentation,
           JSON.parse(document.getElementById('spoken-captions-data').textContent).cues,theme,

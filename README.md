@@ -96,6 +96,12 @@ New run IDs preserve previous results and failed diagnostics.
 
 ## Brand and Validation
 
+The unreleased [editorial Shorts workflow](docs/EDITORIAL-SHORTS.md) adds opt-in
+light branding, 12 closed explanatory diagrams, three local-news image layouts
+and measured caption highlighting. [Two complete storyboards](examples/editorial-shorts/README.md)
+reuse the public example narration without importing a customer identity.
+These are legacy v2 options, not replacements for the v3 compositions.
+
 - Approved logo, palette and font files are hash-bound to the implementation.
 - Episodes accept bounded content records and verified local images, not custom executable markup.
 - One frame clock drives scenes, camera moves and captions, including backward seeking.

@@ -28,6 +28,7 @@
 - [Local voice synthesis](VOICE.md): optional offline narration, setup, timing and review limits.
 - [Cinema direction](CINEMA-DIRECTION.md): full-frame editorial/photographic sequences and local Spanish voice support.
 - [Editorial designs](EDITORIAL-DESIGNS.md): three opt-in landscape graphic systems.
+- [Editorial Shorts](EDITORIAL-SHORTS.md): legacy v2 diagrams, local news media, light brand and measured highlights; [complete inputs](../examples/editorial-shorts/README.md) and [port review](REUSABLE-PORT-REVIEW.md).
 - [Variable typography](VARIABLE-TYPOGRAPHY.md): local variable-font axes and cue-driven treatments.
 - [Drawn lettering](LETTERING.md): pen paths, stitched glyphs and controlled text inversion.
 - [Visual library](VISUAL-LIBRARY.md): offline catalog, charts, widgets and SVG/PNG preparation.

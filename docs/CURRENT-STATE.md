@@ -33,6 +33,12 @@ for the newer compositions.
 
 ## Publication and Qualification
 
+The unreleased [editorial Shorts port](EDITORIAL-SHORTS.md) adds a separate
+light-brand schema, 12 diagram variants and three news-media layouts to legacy
+v2 authoring. Existing dark v1 brands and v3 profiles keep their contracts.
+See the [selection/qualification record](REUSABLE-PORT-REVIEW.md) for this source
+candidate; previous example locks and counts below remain historical evidence.
+
 - The `v0.5.0` tag retains commit `975ec3465ecfdec44fd89a1fc2640772463effb4`,
   delivered through [PR #17](https://github.com/andersonkevin/YouTubeShortCreator/pull/17).
 - The complete examples and gallery were added afterward through

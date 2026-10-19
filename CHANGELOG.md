@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add reusable legacy v2 editorial storyboards: 12 explanatory diagrams, three
+  local-news image layouts, source/story associations and media integrity checks.
+- Add opt-in light-editorial onboarding with contrast-checked ink/accent colors,
+  matching covers and exact-text measured caption highlighting. Dark v1 branding,
+  v3 compositions, storage guards and publication approval remain unchanged.
+- Include two public storyboards reusing original example narration/artwork,
+  with explicit synthetic-news labeling and no private channel data.
+
 - Bound generated runs and capture scratch, check free disk reserve for every frame,
   and serialize build/render/cleanup within each workspace.
 - Add read-only `storage`, exact-plan `storage-clean`, and `storage-keep` for

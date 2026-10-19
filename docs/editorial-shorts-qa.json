@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "date": "2026-10-18",
+  "lock_sha256": "27bb5eba47a7da990c42be98bf1410b2e01425146d20dfeb8d4060bc732a160d",
+  "human_review": "required",
+  "publication_performed": false,
+  "environment": {
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "os": "Darwin",
+    "os_version": "27.0.0",
+    "node": "v24.19.0",
+    "chrome": "Google Chrome 155.0.8059.80",
+    "playwright": "1.62.1"
+  },
+  "cases": [
+    {
+      "episode": "educational",
+      "mode": "render",
+      "episode_sha256": "bc815dee2ca9b8ec448f259983f3e144a2cac189a20034be4ca6d96c1bedc1f9",
+      "automated_checks": "PASS",
+      "visual_qa_sha256": "9c0aec63a97ead168753d48814e8b37ec1bdd22ab43790c620a55ee4a74ddfce",
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "publication_performed": false,
+      "storyboard_sha256": "55dba0358e2c464a21d0a749e7b03b45c2e27c2938b286b163156fc2a4601ccd",
+      "video_sha256": "5b19853f7d64b197d9417566e7eefea056203defa652f0a4a4bef94e3fcee19b",
+      "duration": 13.4,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "frame_count": 402,
+      "fps": 30,
+      "audio_qa_sha256": "cc36cfd331f6f70d37da55a7ad07f3095b47aa11bd1e616cef840faa8dc8e664",
+      "media_qa_sha256": "54fe1a34247513358311f2e87b9c913031a0f991ec04d5fbe62ea6bcffe25c63",
+      "minimum_audio_correlation": 0.9999318647199467,
+      "maximum_audio_lag_ms": 0.0,
+      "listening_approval": "pending"
+    },
+    {
+      "episode": "news",
+      "mode": "render",
+      "episode_sha256": "d7bba5d1c805ac59413cc4f076ca799b19019d09e6b904330eba14563ba43c7a",
+      "automated_checks": "PASS",
+      "visual_qa_sha256": "efbb14bc4003ddec56dddab070a92d84250dde71b873ecb87703bdf04da66f3c",
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "publication_performed": false,
+      "storyboard_sha256": "776ce702ea0b36a9655cd3655534c6e45e5bf90cf99aa63f49b05be829b3497f",
+      "video_sha256": "fe14553a9c733f614257c0085f793efd84fb83dd43618d51b53207a0170debf0",
+      "duration": 13.4,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "frame_count": 402,
+      "fps": 30,
+      "audio_qa_sha256": "cc36cfd331f6f70d37da55a7ad07f3095b47aa11bd1e616cef840faa8dc8e664",
+      "media_qa_sha256": "01885c75f45eb3a54be963505c67bae980f42df1153b81c2dfc247e5fabaea9e",
+      "minimum_audio_correlation": 0.9999318647199467,
+      "maximum_audio_lag_ms": 0.0,
+      "listening_approval": "pending"
+    },
+    {
+      "episode": "diagrams-1",
+      "mode": "build",
+      "episode_sha256": "374b73ed0ec3d5bd141d760d3f18c1b7f889287092ed84e79c99c26e82a29db4",
+      "automated_checks": "PASS",
+      "visual_qa_sha256": "e1d91977ba75642ca0ec1d9d3e16901e6097d1cbbfc4b5de292c3ec26f7c91d6",
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "publication_performed": false
+    },
+    {
+      "episode": "diagrams-2",
+      "mode": "build",
+      "episode_sha256": "90eab9e99e17787349cb9b7e063777c22d2d4c425a741d56b6babfc954e6ca55",
+      "automated_checks": "PASS",
+      "visual_qa_sha256": "c50857433254691aec20039b083c1bc7023d722b75f00d6c24c1036c05ebf86e",
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "publication_performed": false
+    },
+    {
+      "episode": "diagrams-3",
+      "mode": "build",
+      "episode_sha256": "417a32b451c1f3e6ede47e2818a0bd2f27d17543c7bb536cc86ce1630ffb14b5",
+      "automated_checks": "PASS",
+      "visual_qa_sha256": "c547c7d282581d3b610b835723b3951a6c8712193bde3460e42698144c9b1bde",
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "publication_performed": false
+    },
+    {
+      "episode": "diagrams-4",
+      "mode": "build",
+      "episode_sha256": "be4d8ff141e4f56559468aa2dc17b7162930d5ef2666314695a8dac8528ef19c",
+      "automated_checks": "PASS",
+      "visual_qa_sha256": "5f4969f21c3a7494e3008fa0e9f2579c63283f98e7c77e68ccccbd0e3b553699",
+      "viewports": [
+        {
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "network_requests": 0,
+      "browser_errors": 0,
+      "publication_performed": false
+    }
+  ]
+}

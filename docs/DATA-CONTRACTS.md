@@ -323,6 +323,13 @@ Brand `scene_count` remains the old Shorts default; version-3 scene count is
 episode-owned. Old approvals are never rewritten. Source:
 [production_visuals.py](../production_visuals.py).
 
+## Editorial Shorts
+
+The opt-in legacy v2 `editorial` and `news-media` visual records and episode
+`editorial` classification are defined in [Editorial Shorts](EDITORIAL-SHORTS.md).
+Their standalone storyboard uses schema 1; this is distinct from episode schema 2,
+public light-brand schema 2, and the existing v3 landscape editorial designs.
+
 ## Transcript
 
 Required operational fields are `duration`, `audio_sha256` and a nonempty `words`
