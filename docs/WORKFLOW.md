@@ -19,8 +19,10 @@ checks. Rounded panels use an 8-pixel radius at full resolution.
 
 Per brand: name, local logo/fonts, dark background, primary/secondary accents,
 language and default scene count. The dark style is intentional; white text needs
-at least 7:1 background contrast, and the accents need 4.5:1. Light themes are not
-implemented. Thumbnails use a black type zone with the same accent and logo.
+at least 7:1 background contrast, and the accents need 4.5:1. Schema 1 thumbnails
+use a black type zone with the same accent and logo. The separate opt-in
+[light-editorial brand schema 2](EDITORIAL-SHORTS.md) supports only legacy v2
+editorial/news Shorts; it does not recolor existing brands or v3 compositions.
 
 Per legacy episode: source narration, graphic, exact transcript, word-timed captions,
 3-4 layout selections, text/code slots, motion timings and YouTube metadata.

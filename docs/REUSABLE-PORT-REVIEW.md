@@ -95,3 +95,65 @@ documentation checker itself verified all 32 images successfully. The test now
 requires exactly 32 and explicitly includes both editorial frames; hash, path
 and missing-link checks remain unchanged, and rights review remains human. This test/documentation-only
 correction does not change the implementation lock or invalidate the media runs.
+
+## Main Integration Review: 2026-10-19
+
+The remote `main` was checked again at
+`3abe36ee0b8d48f892a343279a179e5a875aeebf`, exactly the ancestor of PR #20's
+`64c3c50408b8d2509bbc01f6ae11ce199a8d4c64`. The PR is two commits ahead and
+zero behind; GitHub reports a clean merge with both Python 3.12/3.13 CI jobs
+successful. This is a compatibility review, not authorization to merge.
+
+The diff leaves storage guards, media contracts, FFmpeg, v3 production code,
+the eighteen layout definitions, `motion.js`, vendor assets, dependencies and CI
+configuration unchanged. New records, caption highlighting and light branding
+remain explicitly selected options rather than changes to existing defaults.
+
+A same-runtime differential probe loaded the main versions of `branding.py`,
+`visual_adapter.py`, `workflow.py` and `ysc.py` read-only from Git, then compared
+them with the candidate against unchanged shared dependencies. Six synthetic or
+public-example cases covered legacy v1, v2 charts and all four v3 formats. All
+36 comparisons matched: canonical episode data, captions, scene bounds, compiled
+HTML, generated JPEG cover and brand-file hashes. Separate JavaScript probes
+matched fifteen legacy caption states, including gaps, backward seeks, original
+text and the render function's return value. Temporary fixture workspaces were
+automatically removed. This was not an isolated full-main checkout test, browser
+pixel comparison or new MP4 qualification.
+
+Six additional regression tests in `tests/test_editorial_compatibility.py` retain
+these operational boundaries: default phrase captions, legacy caption case review,
+unmodified v2 chart payloads, all four v3 authoring dispatches, rejection of mixed
+storyboard/batch/layout modes, and rejection of a stale engine approval without
+rewriting any files. The workflow guide's obsolete blanket statement that light
+themes were unimplemented was corrected; schema 1 remains dark.
+
+These test/documentation changes do not alter the qualified implementation lock.
+The 2026-10-18 media results above remain dated evidence, not fresh exports.
+
+Follow-up local validation passed: 693 Python tests (686 passed, seven optional
+skips), 545 Node tests (544 passed, one optional skip), documentation validation
+(61 documents, 560 local references, 32 manifest images), the release audit
+(892 public files), lock verification and `git diff --check`. No dependencies
+were installed. The initial differential probe stopped on the existing
+no-thumbnail-overwrite guard because the probe reused its own temporary output
+name; distinct fixture filenames fixed the probe without changing the product.
+At the end of this review, the six new tests and guide correction were local and
+uncommitted. The remote green CI at that point applied to the PR head above, not
+these additional working-tree changes. Subsequent commit, CI and merge status
+must be checked against the actual GitHub records.
+
+### Recommended Rollout
+
+1. Review and approve the exact PR; merge only through the operator's authorized
+   GitHub workflow, without replacing the repository with the older private fork.
+2. Keep existing production workspaces, approvals, inputs and deliveries intact.
+   The changed engine lock intentionally rejects old approvals; this is an
+   upgrade boundary, not permission to edit or regenerate approval JSON in place.
+3. Finish an existing episode on its matching source revision, or initialize a
+   new private workspace for this implementation and use normal brand/runtime
+   approval. Select editorial/news modes only when needed.
+4. Run an actual channel smoke production and complete visual, listening and
+   rights review before regular use. Technical qualification never publishes.
+
+No merge, new commit, push, tag change, dependency installation, production
+workspace migration or publication was performed during this follow-up review.
