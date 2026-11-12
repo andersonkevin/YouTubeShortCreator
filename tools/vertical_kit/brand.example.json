@@ -1,0 +1,12 @@
+{
+  "name": "Your Channel",
+  "cta": "Follow for more",
+  "url": "example.com",
+  "tag": "NEWS",
+  "logo": null,
+  "logo_white": null,
+  "font": null,
+  "font_family": null,
+  "theme": null,
+  "cover": {"bg": "#070a10", "glow": "#12355b", "accent": "#f4b740", "ink": "#0b1220"}
+}

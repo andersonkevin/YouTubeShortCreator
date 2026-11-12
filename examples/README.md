@@ -10,6 +10,11 @@ in 4:5. Each includes public synthetic narration, word timings, captions, all
 artwork and a complete storyboard. The importer uses the normal authoring API;
 the standard renderer and validation gates generate the video.
 
+## Vertical Kit
+
+[quiet-shorts](vertical-kit/README.md) is a hand-authored 9:16 demo for the
+[vertical kit](../docs/VERTICAL-KIT.md), with word timings, scenes and generated cover art.
+
 ## Narration
 
 [narration.txt](narration.txt) is a short American-English script about AI-agent

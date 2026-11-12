@@ -26,6 +26,7 @@
 - [Architecture](ARCHITECTURE.md): module responsibilities, deterministic capture and privacy boundaries.
 - [Validation](VALIDATION.md): active gates and separately scoped qualification results.
 - [Local voice synthesis](VOICE.md): optional offline narration, setup, timing and review limits.
+- [Vertical kit](VERTICAL-KIT.md): hand-authored, narration-timed HTML Shorts and square videos with loudness normalisation and caption safe zone; [example](../examples/vertical-kit/README.md).
 - [Cinema direction](CINEMA-DIRECTION.md): full-frame editorial/photographic sequences and local Spanish voice support.
 - [Editorial designs](EDITORIAL-DESIGNS.md): three opt-in landscape graphic systems.
 - [Editorial Shorts](EDITORIAL-SHORTS.md): legacy v2 diagrams, local news media, light brand and measured highlights; [complete inputs](../examples/editorial-shorts/README.md) and [port review](REUSABLE-PORT-REVIEW.md).

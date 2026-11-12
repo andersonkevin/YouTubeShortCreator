@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add the vertical kit (`tools/vertical_kit/`): a separate, hand-authored route for narration-timed
+  HTML Shorts and 1:1 videos with a deterministic stage clock, glass/chart/flow scene helpers, a
+  themeable `brand.json`, cover intro, Shorts caption safe zone and two-pass -14 LUFS loudness
+  normalisation. Includes a demo Short and 112 Lucide icons (ISC). The engine, lock and existing
+  contracts are unchanged.
+
 - Add reusable legacy v2 editorial storyboards: 12 explanatory diagrams, three
   local-news image layouts, source/story associations and media integrity checks.
 - Add opt-in light-editorial onboarding with contrast-checked ink/accent colors,

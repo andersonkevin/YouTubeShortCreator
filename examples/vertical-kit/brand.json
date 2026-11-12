@@ -1,0 +1,7 @@
+{
+  "name": "Example Studio",
+  "cta": "Follow for more video tips",
+  "url": "",
+  "tag": "TIP",
+  "cover": {"bg": "#070a10", "glow": "#12355b", "accent": "#f4b740", "ink": "#0b1220"}
+}
