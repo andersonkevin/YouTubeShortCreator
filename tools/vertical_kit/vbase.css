@@ -1,0 +1,146 @@
+/* Vertical kit base layer (1080x1920 Shorts; vsquare.css turns it into 1080x1080). Time is driven by stage.js, which sets
+   --t on :root every frame. Look: translucent "liquid glass" surfaces over a dot grid, layered soft shadows, an ambient
+   light layer and a slow comet ring as the highlight. Every colour comes from the theme variables below: override them in
+   a brand theme.css (see docs/VERTICAL-KIT.md) instead of editing this file.
+   Utilities: .glass .glass-dark .grad .grad-soft .grad-accent .grad-text .glow .glow-accent .depth .float .float-2 .shine */
+:root{
+ /* Theme: the only values a brand needs to change. */
+ --brand:#12355b;--brand-2:#1f5f8b;--brand-deep:#0b2140;--soft:#6f9cc4;--soft-2:#a9c8e4;--soft-3:#4f7fa8;
+ --accent:#f4b740;--accent-2:#ffd77a;--accent-3:#d99a1e;--violet:#2f6fb0;--glow-a:#3d8bfd;--glow-b:#2ec4b6;
+ --bg:#f5f7fb;--dot:#465a78;--tile:#f2f6fb;--tile-line:#d5e0ec;
+ --ink:#1d2330;--text:#363b47;--muted:#667080;--line:#e3e8ef;--panel-line:#dee2e6;
+ --font:"Geist",system-ui,sans-serif;--t:0;
+ --g-brand:linear-gradient(140deg,var(--brand-2) 0%,var(--brand) 52%,var(--brand-deep) 100%);
+ --g-brand-a:linear-gradient(140deg,rgb(from var(--brand-2) r g b / .82) 0%,rgb(from var(--brand) r g b / .78) 52%,rgb(from var(--brand-deep) r g b / .84) 100%);
+ --g-soft:linear-gradient(140deg,rgb(from var(--soft-2) r g b / .85) 0%,rgb(from var(--soft) r g b / .8) 60%,rgb(from var(--soft-3) r g b / .85) 100%);
+ --g-accent:linear-gradient(140deg,var(--accent-2) 0%,var(--accent) 55%,var(--accent-3) 100%);
+ --g-frost:linear-gradient(160deg,rgba(255,255,255,.7),rgb(from var(--tile) r g b / .45));
+ --sh-1:0 1px 2px rgb(from var(--brand) r g b / .06),0 8px 24px -10px rgb(from var(--brand) r g b / .22);
+ --sh-2:0 2px 4px rgb(from var(--brand) r g b / .06),0 22px 48px -18px rgb(from var(--brand) r g b / .38);
+ --sh-3:0 4px 10px rgb(from var(--brand) r g b / .08),0 40px 80px -28px rgb(from var(--brand) r g b / .5);
+ --glow-accent:0 0 0 6px rgb(from var(--accent) r g b / .18),0 12px 34px -6px rgb(from var(--accent) r g b / .65);
+ --glow-brand:0 0 0 6px rgb(from var(--soft) r g b / .16),0 16px 40px -10px rgb(from var(--brand) r g b / .55)}
+*{box-sizing:border-box}
+html,body{width:1080px;height:1920px;margin:0;overflow:hidden}
+body{font-family:var(--font);color:var(--text);background:var(--bg)}
+main{position:relative;width:1080px;height:1920px;overflow:hidden;
+ background-image:radial-gradient(rgb(from var(--dot) r g b / .24) .9px,transparent .9px);background-size:28px 28px;
+ background-position:0 calc(var(--t) * -6px)}
+/* Ambient layer: two drifting brand blobs under everything (positions set per frame by stage.js). */
+.v-amb{position:absolute;inset:0;z-index:0;pointer-events:none}
+.v-amb i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.7}
+.v-amb i:nth-child(1){left:-180px;top:380px;width:760px;height:760px;background:radial-gradient(circle,rgb(from var(--soft) r g b / .55),rgb(from var(--soft) r g b / 0) 70%)}
+.v-amb i:nth-child(2){left:520px;top:980px;width:700px;height:700px;background:radial-gradient(circle,rgb(from var(--accent) r g b / .4),rgb(from var(--accent) r g b / 0) 70%)}
+.v-amb i:nth-child(3){left:300px;top:-160px;width:620px;height:520px;background:radial-gradient(circle,rgb(from var(--brand) r g b / .18),rgb(from var(--brand) r g b / 0) 70%)}
+.v-logo{position:absolute;left:100px;top:110px;height:58px;z-index:5}
+.v-progress{position:absolute;left:100px;right:100px;top:64px;height:4px;background:rgb(from var(--brand) r g b / .08);border-radius:2px;z-index:5;overflow:hidden}
+.v-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--soft),var(--brand));border-radius:2px;box-shadow:0 0 12px rgb(from var(--soft) r g b / .6)}
+.v-scene{position:absolute;inset:0;opacity:0;visibility:hidden;z-index:2}
+.v-cam{position:absolute;left:100px;right:100px;top:250px;height:1180px;transform-origin:50% 40%}
+[data-at]{opacity:0}
+[data-fx=pop],[data-fx=spring],[data-fx=zoom]{transform-box:fill-box;transform-origin:center}
+.hl{opacity:0}
+h1,h2,h3,p{margin:0}
+.ic{width:1em;height:1em;flex:none}
+.v-news{position:absolute;right:100px;top:112px;height:54px;padding:0 22px;border-radius:10px;background:var(--g-accent);box-shadow:var(--glow-accent);color:var(--brand);display:grid;place-items:center;font-size:28px;font-weight:700;letter-spacing:.08em;z-index:5}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.w>i{display:inline-block;font-style:normal}
+/* Captions: frosted plate, gradient active word with a lift. */
+.v-caption{position:absolute;left:130px;width:820px;top:1450px;text-align:center;font:700 56px/1.2 var(--font);text-transform:uppercase;color:var(--ink);z-index:6}
+.v-caption b{display:inline-block;padding:2px 12px;margin:0 2px;border-radius:12px;transform-origin:center 60%}
+.v-caption b.on{background:var(--g-brand-a);color:#fff;box-shadow:0 10px 24px -8px rgb(from var(--brand) r g b / .6)}
+/* Shared pieces, upgraded */
+.tile-ic{display:grid;place-items:center;flex:none;width:76px;height:76px;border-radius:20px;background:var(--g-frost);border:1px solid rgb(from var(--soft) r g b / .28);color:var(--brand);box-shadow:inset 0 1px 0 #fff,var(--sh-1)}
+.tile-ic .ic{width:40px;height:40px}
+.full{position:absolute;left:0;top:0;overflow:visible}
+.vh{position:absolute;left:0;right:0;top:0;font-size:70px;line-height:1.08;font-weight:700;color:var(--ink);letter-spacing:-.025em;text-align:center}
+/* Utilities */
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.62),rgba(255,255,255,.34));backdrop-filter:blur(22px) saturate(1.4);
+ border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgb(from var(--soft) r g b / .16),var(--sh-2)}
+.glass-dark{background:var(--g-brand-a);backdrop-filter:blur(22px) saturate(1.3);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),var(--sh-3);color:#fff}
+.grad{background:var(--g-brand);color:#fff}
+.grad-soft{background:var(--g-soft);color:#fff}
+.grad-accent{background:var(--g-accent);color:var(--brand)}
+.grad-text{background:linear-gradient(120deg,var(--brand),var(--violet) 55%,var(--soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+.glow{box-shadow:var(--glow-brand)}
+.glow-accent{box-shadow:var(--glow-accent)}
+.depth{box-shadow:var(--sh-2)}
+.float{transform:translateY(calc(sin(var(--t) * 1.4rad) * 8px))}
+.float-2{transform:translateY(calc(sin(var(--t) * 1.4rad + 2rad) * 8px))}
+/* Moving highlight band across a surface */
+.shine{position:relative;overflow:hidden}
+.shine::after{content:"";position:absolute;inset:-20%;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.45) 50%,transparent 60%);
+ transform:translateX(calc((mod(var(--t), 4) / 4 * 260% - 130%)));pointer-events:none}
+/* Ghost dots behind comet tokens */
+.v-ghost{pointer-events:none}
+/* Close */
+.btn{display:inline-flex;align-items:center;gap:14px;padding:24px 40px;border-radius:14px;background:var(--g-brand);color:#fff;font-size:40px;font-weight:700;box-shadow:var(--glow-brand)}
+.btn .ic{width:40px;height:40px}
+.s-close .v-cam{display:flex!important;flex-direction:column;justify-content:center;align-items:center;gap:70px}
+.close-logo{width:780px;height:auto}
+/* Wordmark: the channel name as text when brand.json has no logo image. */
+.v-wordmark{display:block;font-weight:800;color:var(--brand);letter-spacing:-.02em;white-space:nowrap}
+.v-logo.v-wordmark{height:58px;font-size:44px;line-height:58px}
+.close-logo.v-wordmark{width:auto;height:auto;font-size:120px;line-height:1.05;text-align:center}
+.close-cta{display:flex;flex-direction:column;align-items:center;gap:28px}
+.close-cta .url{font-size:44px;font-weight:700;color:var(--brand)}
+/* Components from common.py (k-) */
+.k-card{position:absolute;border-radius:28px}
+.k-bars{position:absolute}
+.k-bar{position:absolute;bottom:80px}
+.k-bar i{position:absolute;inset:0;border-radius:22px 22px 8px 8px;transform-origin:center bottom;box-shadow:var(--sh-2)}
+.k-brand{background:var(--g-brand-a)}.k-soft{background:var(--g-soft)}.k-accent{background:var(--g-accent)}
+.k-bar b{position:absolute;left:-20px;right:-20px;top:-74px;text-align:center;font-size:52px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.k-blab{position:absolute;bottom:0;height:64px;display:grid;place-items:center;text-align:center;font-size:30px;font-weight:700;color:var(--muted);line-height:1.05}
+.k-line{fill:none;stroke:url(#vg-flow);stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1}
+.k-head{fill:var(--accent);stroke:#fff;stroke-width:4}
+.glass-dark .k-line{stroke:var(--accent)}.glass-dark .k-head{fill:#fff;stroke:var(--accent)}
+/* Straight paths have a zero-size box, so objectBoundingBox gradients vanish: use .k-conn (solid) for straight connectors. */
+.k-ring0{fill:none;stroke:rgb(from var(--brand) r g b / .06)}
+.k-ring{fill:none;stroke:url(#vg-brand);stroke-linecap:round}
+.k-donut{position:absolute;display:flex;flex-direction:column;align-items:center}
+.k-donut b{font-size:130px;line-height:1;font-weight:700;letter-spacing:-.04em;color:var(--brand)}.k-donut span{font-size:34px;font-weight:700;color:var(--muted)}
+.k-conn{fill:none;stroke:var(--soft);stroke-width:8;stroke-linecap:round;stroke-dasharray:1}
+.k-tok{fill:var(--accent);stroke:var(--brand);stroke-width:3}
+/* News image boxes (photo() in common.py): white glass frame, deep shadow, slow drift. */
+.k-photo{position:absolute;border-radius:32px;overflow:hidden;border:8px solid rgba(255,255,255,.78);box-shadow:inset 0 0 0 1px rgb(from var(--soft) r g b / .2),var(--sh-3);background:#fff}
+.k-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(calc(1.07 + sin(var(--t) * .3rad) * .035 * var(--dr))) translateX(calc(sin(var(--t) * .22rad) * 12px * var(--dr)))}
+.k-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(transparent,rgb(from var(--brand-deep) r g b / .45));pointer-events:none}
+.k-ptag{position:absolute;left:24px;bottom:22px;z-index:2;padding:10px 22px;border-radius:16px;background:var(--g-accent);color:var(--brand);font-size:30px;font-weight:700;box-shadow:var(--glow-accent)}
+
+/* Liquid glass layer: thin white fill, light frost without saturation (it stains boxes), a hairline brand border, a white
+   top edge, low shadows, a faint two-colour page light and the comet ring as the highlight. Overrides the rules above. */
+:root{
+ --sh-1:0 2px 4px rgb(from var(--brand) r g b / .05),0 12px 30px -12px rgb(from var(--brand) r g b / .12);
+ --sh-2:0 2px 4px rgb(from var(--brand) r g b / .05),0 18px 40px -16px rgb(from var(--brand) r g b / .16);
+ --sh-3:0 3px 8px rgb(from var(--brand) r g b / .07),0 28px 60px -24px rgb(from var(--brand) r g b / .26);
+ --glow-accent:0 12px 28px -14px rgb(from var(--accent-3) r g b / .5);
+ --glow-brand:0 2px 4px rgb(from var(--brand) r g b / .06),0 20px 44px -18px rgb(from var(--glow-a) r g b / .38)}
+main{background-image:radial-gradient(rgb(from var(--dot) r g b / .26) .9px,transparent 1px)}
+.v-amb i{filter:blur(110px);opacity:1}
+.v-amb i:nth-child(1){left:-260px;top:300px;width:1000px;height:900px;background:radial-gradient(circle,rgb(from var(--glow-a) r g b / .11),rgb(from var(--glow-a) r g b / 0) 72%)}
+.v-amb i:nth-child(2){left:420px;top:900px;width:960px;height:900px;background:radial-gradient(circle,rgb(from var(--glow-b) r g b / .09),rgb(from var(--glow-b) r g b / 0) 72%)}
+.v-amb i:nth-child(3){left:240px;top:-200px;width:800px;height:600px;background:radial-gradient(circle,rgb(from var(--glow-a) r g b / .05),rgb(from var(--glow-a) r g b / 0) 72%)}
+.ic{stroke-width:1.75}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.1) 60%,rgba(255,255,255,.18));backdrop-filter:blur(14px);
+ border:2px solid rgb(from var(--brand) r g b / .09);box-shadow:inset 0 2px 0 rgba(255,255,255,.7),var(--sh-2)}
+.glass-dark{background:var(--g-brand-a);backdrop-filter:blur(14px);border:2px solid rgba(255,255,255,.08);box-shadow:inset 0 2px 0 rgba(255,255,255,.14),var(--sh-3)}
+.tile-ic{border-radius:16px;background:linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,0) 70%),var(--tile);border:2px solid var(--tile-line);
+ box-shadow:inset 0 2px 0 #fff,0 2px 4px rgb(from var(--brand) r g b / .08)}
+/* Highlight: a conic comet line circling the box over a still faint ring. */
+.glow{box-shadow:var(--glow-brand)}
+.glow::after{content:"";position:absolute;inset:-5px;border-radius:calc(28px + 5px);padding:3px;pointer-events:none;
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.btn.glow::after,.btn::after{border-radius:19px}
+.glow-accent{box-shadow:inset 0 2px 0 rgba(255,255,255,.5),var(--glow-accent)}
+.v-news{box-shadow:inset 0 2px 0 rgba(255,255,255,.5),var(--glow-accent)}
+.k-photo{border:6px solid rgba(255,255,255,.72);box-shadow:inset 0 0 0 2px rgb(from var(--brand) r g b / .09),var(--sh-3)}
+.k-ptag{box-shadow:inset 0 2px 0 rgba(255,255,255,.5),var(--glow-accent)}
+.k-bar i{box-shadow:inset 0 2px 0 rgba(255,255,255,.25),var(--sh-1)}
+.glass-dark .tile-ic{background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.06) 70%),rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);box-shadow:inset 0 2px 0 rgba(255,255,255,.3);color:var(--accent)}
+/* Comet ring colours: soft -> violet -> accent. */
+.glow::after{background:conic-gradient(from calc(var(--t) * 95deg) in oklch,rgb(from var(--soft) r g b / 0) 0deg,rgb(from var(--soft) r g b / 0) 37%,rgb(from var(--soft) r g b / .6) 55%,rgb(from var(--violet) r g b / .9) 75%,rgb(from var(--accent) r g b / .85) 90%,rgb(from var(--accent) r g b / 0) 99.5%),
+ linear-gradient(rgb(from var(--violet) r g b / .18),rgb(from var(--soft) r g b / .16))}
+
+/* Shorts safe zone. Scene camera 250-1430 px, captions from 1450 px at 56 px in an 820 px column, so up to
+   three caption lines end near 1650 px, above the YouTube Shorts title/channel overlay and clear of the right action rail. */

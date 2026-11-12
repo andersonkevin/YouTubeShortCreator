@@ -1,0 +1,29 @@
+/* 1:1 layer over vbase.css: 1080x1080 canvas, 920x640 camera, captions below it. Same look; the geometry changes and the
+   glass is a little more transparent so it still reads as glass at the smaller size. Load it with S.write(..., square=True). */
+html,body,main{width:1080px;height:1080px}
+.v-progress{left:80px;right:80px;top:40px}
+.v-logo{left:80px;top:66px;height:42px}
+.v-cam{left:80px;right:80px;top:150px;height:640px;transform-origin:50% 45%}
+.v-caption{left:80px;width:920px;top:832px;font-size:46px;line-height:1.24}
+.v-caption b{padding:2px 10px;border-radius:10px}
+.vh{font-size:56px}
+.v-amb i:nth-child(1){left:-300px;top:120px;width:900px;height:800px}
+.v-amb i:nth-child(2){left:420px;top:420px;width:900px;height:800px}
+.v-amb i:nth-child(3){left:240px;top:-260px;width:800px;height:560px}
+.s-close .v-cam{gap:56px}
+.close-logo{width:600px}
+.v-logo.v-wordmark{height:42px;font-size:32px;line-height:42px}
+.close-logo.v-wordmark{width:auto;font-size:92px}
+.btn{font-size:34px;padding:20px 34px}
+.btn .ic{width:34px;height:34px}
+.close-cta{gap:22px}
+.close-cta .url{font-size:36px}
+.v-amb i:nth-child(1){background:radial-gradient(circle,rgb(from var(--glow-a) r g b / .2),rgb(from var(--glow-a) r g b / 0) 72%)}
+.v-amb i:nth-child(2){background:radial-gradient(circle,rgb(from var(--glow-b) r g b / .16),rgb(from var(--glow-b) r g b / 0) 72%)}
+.v-amb i:nth-child(3){background:radial-gradient(circle,rgb(from var(--accent) r g b / .1),rgb(from var(--accent) r g b / 0) 72%)}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.05) 55%,rgba(255,255,255,.12));backdrop-filter:blur(10px);
+ border:1.5px solid rgba(255,255,255,.8);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgb(from var(--brand) r g b / .05),0 10px 28px -20px rgb(from var(--brand) r g b / .2)}
+.glass-dark{background:linear-gradient(135deg,rgb(from var(--violet) r g b / .58),rgb(from var(--brand) r g b / .46) 60%,rgb(from var(--brand) r g b / .54));backdrop-filter:blur(12px);
+ border:1.5px solid rgba(255,255,255,.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 14px 32px -22px rgb(from var(--brand) r g b / .45)}
+.tile-ic{background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.15));border:1.5px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 #fff}
+.glass-dark .tile-ic{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.28)}

@@ -1,0 +1,9 @@
+Your Short might be playing quieter than every video around it.
+
+YouTube turns loud uploads down to about -14 LUFS. It never turns quiet ones up.
+
+Our test Short measured -22 LUFS. That is 8 decibels below the feed.
+
+One two-pass loudness step fixes it before you upload.
+
+Follow for more video tips.
